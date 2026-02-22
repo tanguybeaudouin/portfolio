@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mes travaux — Tanguy Beaudouin</title>
+
+    <!-- Initialisation du thème avant le rendu -->
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link rel="preload" as="image" href="images/projet1L-lightmode.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/projet1L-darkmode.webp" type="image/webp">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="work-page">
+    <div id="custom-cursor"></div>
+
+    <div class="page">
+        <main class="main-card">
+            <!-- Section images projets (3 images) -->
+            <section class="projects-gallery-section">
+                <a class="project-item" href="project-1.html"
+                    data-title="Projet 1 — Nintendo"
+                    data-tags="UX RESEARCH · WIREFRAMES · UI DESIGN"
+                    data-description="Rôle : UX/UI Designer · Recherche, wireframes et interface finale.">
+                    <div class="project-media">
+                        <img class="project-image project-image-light" src="images/projet1L-lightmode.webp" alt="Projet 1"
+                            width="2807" height="1016" decoding="async" fetchpriority="high">
+                        <img class="project-image project-image-dark" src="images/projet1L-darkmode.webp" alt="" aria-hidden="true"
+                            width="2807" height="1016" decoding="async" fetchpriority="high">
+                    </div>
+                    <span class="project-cta">VOIR</span>
+                    <div class="project-meta">
+                        <h3>Nintendo</h3>
+                        <p class="project-role">Rôle : UX/UI Designer</p>
+                        <div class="project-tags" aria-label="Tags Nintendo">
+                            <span class="project-tag">UX Research</span>
+                            <span class="project-tag">Wireframes</span>
+                            <span class="project-tag">UI Design</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="project-item" href="project-2.html"
+                    data-title="Projet 2 — Agence Immobilière"
+                    data-tags="USER FLOW · UI DESIGN · DESIGN SYSTEM"
+                    data-description="Rôle : UX/UI Designer · Architecture de contenu et design system.">
+                    <div class="project-media">
+                        <img class="project-image project-image-light" src="images/projet2L-lightmode.webp" alt="Projet 2"
+                            width="2807" height="1017" loading="lazy" decoding="async" fetchpriority="low">
+                        <img class="project-image project-image-dark" src="images/projet2L-darkmode.webp" alt="" aria-hidden="true"
+                            width="2807" height="1017" loading="lazy" decoding="async" fetchpriority="low">
+                    </div>
+                    <span class="project-cta">VOIR</span>
+                    <div class="project-meta">
+                        <h3>L’agence</h3>
+                        <p class="project-role">Rôle : UX/UI Designer</p>
+                        <div class="project-tags" aria-label="Tags L’agence">
+                            <span class="project-tag">User Flow</span>
+                            <span class="project-tag">UI Design</span>
+                            <span class="project-tag">Design System</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="project-item" href="project-3.html"
+                    data-title="Projet 3 — Siko Mobility"
+                    data-tags="UX RESEARCH · USER FLOW · DESIGN SYSTEM"
+                    data-description="Rôle : UX/UI Designer · Parcours mobile et composants d’interface.">
+                    <div class="project-media">
+                        <img class="project-image project-image-light" src="images/projet3L-lightmode.webp" alt="Projet 3"
+                            width="2807" height="1016" loading="lazy" decoding="async" fetchpriority="low">
+                        <img class="project-image project-image-dark" src="images/projet3L-darkmode.webp" alt="" aria-hidden="true"
+                            width="2807" height="1016" loading="lazy" decoding="async" fetchpriority="low">
+                    </div>
+                    <span class="project-cta">VOIR</span>
+                    <div class="project-meta">
+                        <h3>Siko Mobility</h3>
+                        <p class="project-role">Rôle : UX/UI Designer</p>
+                        <div class="project-tags" aria-label="Tags Siko Mobility">
+                            <span class="project-tag">UX Research</span>
+                            <span class="project-tag">User Flow</span>
+                            <span class="project-tag">Design System</span>
+                        </div>
+                    </div>
+                </a>
+            </section>
+
+            <!-- Section contenu -->
+            <section class="content-section">
+                <!-- Header -->
+                <header class="content-top-section">
+                    <div class="title-group">
+                        <h1>Mes projets</h1>
+                        <p class="subtitle">Tanguy Beaudouin - UX/UI & Product Designer</p>
+                    </div>
+                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                        <span class="bar bar-top"></span>
+                        <span class="bar bar-bottom"></span>
+                    </button>
+                </header>
+
+                <!-- Contenu / Menu -->
+                <div class="about-baseline-section">
+                    <div class="projects-intro menu-hide">
+                        <p>Voici une sélection de trois projets qui illustrent ma démarche UX/UI, de la recherche à la
+                            conception d’interfaces. Chaque projet met en avant une problématique claire, une solution
+                            pensée pour l’utilisateur et une exécution soignée.</p>
+                    </div>
+                    <div class="projects-hover-info menu-hide" aria-live="polite">
+                        <h3 class="projects-hover-title">Survolez un projet</h3>
+                        <p class="projects-hover-tags">UX RESEARCH · WIREFRAMES · UI DESIGN</p>
+                        <p class="projects-hover-desc">Une courte description s’affichera ici.</p>
+                    </div>
+                    <nav id="menu-wrapper" style="display:none;">
+                        <ul class="menu-list">
+                            <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                            <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
+                            <li><a href="about.html" class="hover-underline">À propos</a></li>
+                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Footer -->
+                <footer class="footer-group">
+                    <div class="footer-meta">
+                        <span class="location">Rennes, France</span>
+                        <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
+                    </div>
+                    <div class="toggle-control">
+                        <input type="checkbox" id="theme-toggle">
+                        <label for="theme-toggle"></label>
+                    </div>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-core.js"></script>
+    <script src="script-work.js"></script>
+</body>
+
+</html>

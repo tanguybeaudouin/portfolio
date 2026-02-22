@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Developpement en cours — Tanguy Beaudouin</title>
+
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="wip-page">
+    <div id="custom-cursor"></div>
+
+    <div class="page">
+        <main class="main-card">
+            <section class="content-section wip-content-section">
+                <div id="baseline-wrapper" class="wip-baseline-wrapper">
+                    <h2 id="typewriter" data-text="Desole, cette page est en cours de developpement."></h2>
+                    <a href="work.html" class="project-link wip-return-link"
+                        onclick="if (history.length > 1) { history.back(); return false; }">&lt;- Retour</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-core.js"></script>
+</body>
+
+</html>

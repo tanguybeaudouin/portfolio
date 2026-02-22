@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanguy Beaudouin — Portfolio</title>
+
+    <!-- Initialisation du thème avant le rendu -->
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="home-page">
+    <div id="custom-cursor"></div>
+
+    <div class="page">
+        <main class="main-card">
+            <!-- Section image -->
+            <section class="image-section" style="position: relative;">
+                <img src="images/photo-portrait-darkmode.webp" alt="Portrait Dark" class="portrait-dark"
+                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+
+                <img src="images/photo-portrait.webp" alt="Portrait Light" class="portrait-light"
+                    style="position: relative; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: opacity 0.8s ease;">
+            </section>
+
+            <!-- Section contenu -->
+            <section class="content-section">
+                <!-- Header -->
+                <header class="content-top-section">
+                    <div class="title-group">
+                        <h1>Tanguy Beaudouin</h1>
+                        <p class="subtitle">UX/UI & Product Designer</p>
+                    </div>
+                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                        <span class="bar bar-top"></span>
+                        <span class="bar bar-bottom"></span>
+                    </button>
+                </header>
+
+                <!-- Baseline / Menu -->
+                <div class="baseline-section">
+                    <div id="baseline-wrapper">
+                        <h2 id="typewriter"></h2>
+                    </div>
+
+                    <nav id="menu-wrapper" style="display:none;">
+                        <ul class="menu-list">
+                            <li><a href="index.html" class="hover-underline is-active">Accueil</a></li>
+                            <li><a href="work.html" class="hover-underline">Projets</a></li>
+                            <li><a href="about.html" class="hover-underline">À propos</a></li>
+                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Footer -->
+                <footer class="footer-group">
+                    <div class="footer-meta">
+                        <span class="location">Rennes, France</span>
+                        <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
+                    </div>
+                    <div class="toggle-control">
+                        <input type="checkbox" id="theme-toggle">
+                        <label for="theme-toggle"></label>
+                    </div>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-core.js"></script>
+</body>
+
+</html>

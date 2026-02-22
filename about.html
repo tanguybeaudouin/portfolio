@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>À propos de moi — Tanguy Beaudouin</title>
+
+    <!-- Initialisation du thème avant le rendu -->
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="about-page">
+    <div id="custom-cursor"></div>
+
+    <div class="page">
+        <main class="main-card">
+            <!-- Section image -->
+            <section class="image-section" style="position: relative;">
+                <img src="images/photo-portrait-darkmode.webp" alt="Portrait Dark" class="portrait-dark"
+                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+
+                <img src="images/photo-portrait.webp" alt="Portrait Light" class="portrait-light"
+                    style="position: relative; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: opacity 0.8s ease;">
+            </section>
+
+            <!-- Section contenu -->
+            <section class="content-section">
+                <!-- Header -->
+                <header class="content-top-section">
+                    <div class="title-group">
+                        <h1>À propos de moi</h1>
+                        <p class="subtitle">Tanguy Beaudouin - UX/UI & Product Designer</p>
+                    </div>
+                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                        <span class="bar bar-top"></span>
+                        <span class="bar bar-bottom"></span>
+                    </button>
+                </header>
+
+                <!-- Contenu About / Menu -->
+                <div class="about-baseline-section">
+                    <div id="baseline-wrapper">
+                        <div class="about-text-content">
+                            <p class="intro-greeting">"Hello, moi c'est Tanguy !</p>
+
+                            <p>
+                                Je suis étudiant en Master Direction Artistique, option UX/UI, et passionné par le
+                                design d'interface et l'expérience utilisateur. J'aime concevoir des produits digitaux
+                                intuitifs, esthétiques et agréables à utiliser.
+                            </p>
+
+                            <p>
+                                Mon approche est centrée sur l'accessibilité et l'éco-conception, afin de créer des
+                                expériences inclusives tout en réduisant l'impact environnemental des interfaces.
+                            </p>
+
+                            <p>
+                                Pour compléter mon parcours, j'ai suivi plusieurs formations certifiantes telles que
+                                Figma UI/UX Design Advanced et le Google UX Design Professional Certificate, qui m'ont
+                                permis de renforcer mes compétences pratiques et méthodologiques.
+                            </p>
+
+                            <p>
+                                Mon objectif est de devenir Product Designer, capable de concevoir des expériences
+                                digitales responsables, performantes et centrées utilisateur. Je suis actuellement à
+                                la recherche d'une alternance ou d'un stage en UX/UI ou Product Design."
+                            </p>
+
+                            <p class="subtitle">Mon parcours ne s'arrête pas là. Je vous invite à télécharger mon CV
+                                complet ci-dessous pour découvrir le détail de mes expériences professionnelles, mon
+                                cursus académique ainsi que l'ensemble des logiciels et outils techniques que je
+                                maîtrise au quotidien. C'est le meilleur moyen d'avoir une vision globale de mon profil
+                                et de la valeur que je peux apporter à vos projets.</p>
+                        </div>
+
+                        <div class="skills-section-container">
+                            <div class="skills-list">
+                                <h3 class="section-title">Compétences</h3>
+                                <p>Expert Figma : Variantes, tokens, design system & Auto-layout.<br>
+                                    Suite Adobe : Ai, Ps, Ae, iD, LrC (Standards print & digital).<br>
+                                    No-code : Création de sites web via Webflow & Framer.<br>
+                                    VS Code : Intégration Front-End (HTML, CSS & JS).<br>
+                                    Organisation : Notion, Slack, Gather & Gestion de projet.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav id="menu-wrapper" style="display:none;">
+                        <ul class="menu-list">
+                            <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                            <li><a href="work.html" class="hover-underline">Projets</a></li>
+                            <li><a href="about.html" class="hover-underline is-active">À propos</a></li>
+                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- CTA + Footer (MAINTENANT AU BON ENDROIT) -->
+                <div>
+                    <div class="cta-container menu-hide">
+                        <a href="fichiers/CV_Tanguy_Beaudouin.pdf" class="btn btn-download" download>TÉLÉCHARGER MON CV</a>
+                    </div>
+
+                    <footer class="footer-group">
+                        <div class="footer-meta">
+                            <span class="location">Rennes, France</span>
+                            <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
+                        </div>
+                        <div class="toggle-control">
+                            <input type="checkbox" id="theme-toggle">
+                            <label for="theme-toggle"></label>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-core.js"></script>
+</body>
+
+</html>

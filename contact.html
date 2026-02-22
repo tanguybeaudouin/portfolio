@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contactez-moi Tanguy Beaudouin</title>
+
+    <!-- Initialisation du thème avant le rendu -->
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="contact-page">
+    <div id="custom-cursor"></div>
+
+    <div class="page">
+        <main class="main-card">
+            <!-- Section image -->
+            <section class="image-section" style="position: relative;">
+                <img src="images/photo-portrait-darkmode.webp" alt="Portrait Dark" class="portrait-dark"
+                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+
+                <img src="images/photo-portrait.webp" alt="Portrait Light" class="portrait-light"
+                    style="position: relative; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: opacity 0.8s ease;">
+            </section>
+
+            <!-- Section contenu -->
+            <section class="content-section">
+                <!-- Header -->
+                <header class="content-top-section">
+                    <div class="title-group">
+                        <h1>Contactez-moi</h1>
+                        <p class="subtitle">Tanguy Beaudouin - UX/UI & Product Designer</p>
+                    </div>
+                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                        <span class="bar bar-top"></span>
+                        <span class="bar bar-bottom"></span>
+                    </button>
+                </header>
+
+                <!-- Contenu / Menu -->
+                <div class="about-baseline-section">
+                    <nav id="menu-wrapper" style="display:none;">
+                        <ul class="menu-list">
+                            <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                            <li><a href="work.html" class="hover-underline">Projets</a></li>
+                            <li><a href="about.html" class="hover-underline">À propos</a></li>
+                            <li><a href="contact.html" class="hover-underline is-active">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="menu-fade menu-hide">
+                        <div class="contact-layout">
+                            <div class="contact-info">
+                            <div class="contact-block">
+                                <h3>Mes coordonnées</h3>
+                                <p class="contact-email">
+                                    <button class="copy-email" type="button" aria-label="Copier l'adresse email">
+                                        <span class="contact-email-text">tanguy.beaudouin@gmail.com</span>
+                                        <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <rect x="9" y="9" width="13" height="13" rx="3" stroke="currentColor"
+                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </p>
+                                <p>(+33) 7 81 67 64 26</p>
+                            </div>
+
+                            <div class="contact-block">
+                                <h3>Mes réseaux sociaux</h3>
+                                <div class="contact-links">
+                                    <a href="https://www.linkedin.com/in/tanguy-beaudouin/" class="hover-underline">LinkedIn</a>
+                                    <a href="https://www.behance.net/tanguybeaudouin2" class="hover-underline">Behance</a>
+                                    <a href="https://www.instagram.com/tanguy_graphiste" class="hover-underline">Instagram</a>
+                                </div>
+                            </div>
+                            </div>
+
+                            <form class="contact-form" action="https://formspree.io/f/mykprqvv" method="post" novalidate id="contact-form">
+                            <h3 class="contact-form-title">M'envoyer un mail</h3>
+                            <div class="contact-field">
+                                <label class="contact-label sr-only" for="email">Votre adresse mail</label>
+                                <input class="contact-input" type="email" id="email" name="email"
+                                    placeholder="Votre adresse mail" required aria-invalid="false">
+                            </div>
+
+                            <div class="contact-field">
+                                <label class="contact-label sr-only" for="subject">OBJET</label>
+                                <input class="contact-input" type="text" id="subject" name="subject" placeholder="OBJET"
+                                    required aria-invalid="false">
+                            </div>
+
+                            <div class="contact-field message-field">
+                                <label class="contact-label sr-only" for="message">VOTRE MESSAGE</label>
+                                <textarea class="contact-textarea" id="message" name="message" rows="4"
+                                    placeholder="VOTRE MESSAGE" required aria-invalid="false"></textarea>
+                            </div>
+
+                            <button class="contact-submit" type="submit" disabled aria-disabled="true">ENVOYER</button>
+                            <p class="contact-hint" aria-live="polite">Veuillez remplir tous les champs.</p>
+                            <p class="contact-feedback" aria-live="polite"></p>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA + Footer -->
+                <div>
+                    <footer class="footer-group">
+                        <div class="footer-meta">
+                            <span class="location">Rennes, France</span>
+                            <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
+                        </div>
+                        <div class="toggle-control">
+                            <input type="checkbox" id="theme-toggle">
+                            <label for="theme-toggle"></label>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script-core.js"></script>
+    <script src="script-contact.js"></script>
+</body>
+
+</html>
