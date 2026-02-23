@@ -112,6 +112,7 @@ h3,
     text-transform: uppercase;
     color: var(--neutral-dark-05);
     margin-top: 4px;
+    transition: color 0.8s ease;
 }
 
 .menu-list a,
