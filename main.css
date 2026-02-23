@@ -622,6 +622,7 @@ h3,
     color: var(--neutral-dark);
     position: relative;
     display: inline-block;
+    transition: color 0.8s ease;
 }
 
 .hover-underline::after {
@@ -632,7 +633,7 @@ h3,
     width: 0;
     height: 1px;
     background-color: var(--neutral-dark);
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.8s ease;
 }
 
 .hover-underline:hover::after {
