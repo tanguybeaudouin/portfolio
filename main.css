@@ -1694,6 +1694,7 @@ body.project-2-page.menu-reveal .project2-scroll-content {
     line-height: 1.4;
     color: var(--neutral-dark);
     text-decoration: none;
+    transition: color 0.8s ease;
 }
 
 .contact-block p {
@@ -1737,10 +1738,12 @@ body.project-2-page.menu-reveal .project2-scroll-content {
     color: var(--neutral-dark);
     gap: 6px;
     font: inherit;
+    transition: color 0.8s ease;
 }
 
 .copy-email .copy-icon {
     color: var(--neutral-dark-05);
+    transition: color 0.8s ease;
 }
 
 .copy-email:hover,
@@ -1861,7 +1864,7 @@ body.project-2-page.menu-reveal .project2-scroll-content {
     margin-top: 0px;
     min-height: 12px;
     opacity: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.8s ease;
 }
 
 .contact-hint.is-hidden {
