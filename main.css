@@ -1772,6 +1772,7 @@ body.project-2-page.menu-reveal .project2-scroll-content {
 .contact-field {
     border-top: 1px solid var(--neutral-dark);
     padding-top: 8px;
+    transition: border-color 0.8s ease;
 }
 
 .message-field {
@@ -1814,6 +1815,7 @@ body.project-2-page.menu-reveal .project2-scroll-content {
     color: var(--neutral-dark);
     outline: none;
     text-transform: none;
+    transition: color 0.8s ease;
 }
 
 .contact-input {
@@ -1854,6 +1856,7 @@ body.project-2-page.menu-reveal .project2-scroll-content {
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    transition: color 0.8s ease;
 }
 
 .contact-hint {
@@ -1881,7 +1884,7 @@ body.project-2-page.menu-reveal .project2-scroll-content {
     font-weight: 600;
     font-size: 12px;
     letter-spacing: 0.05em;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.8s ease, color 0.8s ease;
     margin-top: auto;
     margin-bottom: 0;
 }
