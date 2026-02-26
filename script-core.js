@@ -188,13 +188,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggle) themeToggle.checked = isDarkInitial;
     updateThemeUI(isDarkInitial, false);
 
-    // Écouteur sur le changement de thème
-    themeToggle?.addEventListener('change', () => {
-        const isDark = themeToggle.checked;
+    function applyTheme(isDark, animate = true) {
         currentIsDark = isDark;
         root.classList.toggle('dark-theme', isDark);
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        updateThemeUI(isDark, true);
+        if (themeToggle) themeToggle.checked = isDark;
+        updateThemeUI(isDark, animate);
+    }
+
+    // Écouteur sur le changement de thème
+    themeToggle?.addEventListener('change', () => {
+        applyTheme(themeToggle.checked, true);
+    });
+
+    // Raccourci clavier: Shift + D
+    document.addEventListener('keydown', (event) => {
+        if (!event.shiftKey || event.key.toLowerCase() !== 'd') return;
+        const target = event.target;
+        const isTypingContext =
+            target instanceof HTMLInputElement ||
+            target instanceof HTMLTextAreaElement ||
+            target instanceof HTMLSelectElement ||
+            target?.isContentEditable;
+        if (isTypingContext) return;
+        event.preventDefault();
+        applyTheme(!currentIsDark, true);
     });
 
     // ==========================================
