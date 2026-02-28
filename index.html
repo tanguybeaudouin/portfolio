@@ -10,9 +10,32 @@
     <!-- Initialisation du thème avant le rendu -->
     <script>
         (function () {
-            if (localStorage.getItem('theme') === 'dark') {
+            let savedTheme = null;
+            try {
+                savedTheme = localStorage.getItem('theme');
+            } catch (_error) {
+                savedTheme = null;
+            }
+
+            if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-theme');
             }
+
+            const homeLoaderStorageKey = 'home-loader-seen-v1';
+            const isHomePath = /(^\/$|\/index\.html$)/.test(window.location.pathname);
+            let hasSeenLoader = false;
+            try {
+                hasSeenLoader = sessionStorage.getItem(homeLoaderStorageKey) === '1';
+            } catch (_error) {
+                hasSeenLoader = false;
+            }
+
+            if (isHomePath && !hasSeenLoader) {
+                document.documentElement.classList.add('first-visit-loading');
+                window.__showHomeFirstLoader = true;
+            }
+
+            window.__homeLoaderStorageKey = homeLoaderStorageKey;
         })();
     </script>
 
@@ -22,6 +45,10 @@
 </head>
 
 <body class="home-page">
+    <div id="first-visit-loader" aria-hidden="true">
+        <p id="first-visit-loader-count">0%</p>
+    </div>
+
     <div id="custom-cursor"></div>
 
     <div class="page">

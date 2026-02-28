@@ -65,3 +65,44 @@
         min-width: 430px;
     }
 }
+
+/* CTA: transition radiale uniquement sur la page About */
+.about-page .btn-download {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--primary);
+    color: white;
+    transition: color 0.62s ease;
+}
+
+.about-page .btn-download .btn-label {
+    position: relative;
+    z-index: 1;
+}
+
+.about-page .btn-download::before {
+    content: '';
+    position: absolute;
+    left: var(--cta-ripple-x, 50%);
+    top: var(--cta-ripple-y, 50%);
+    width: var(--cta-ripple-size, 24px);
+    height: var(--cta-ripple-size, 24px);
+    border-radius: 50%;
+    background-color: var(--btn-hover);
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
+    transition: transform 0.72s cubic-bezier(0.2, 0.9, 0.25, 1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-page .btn-download.is-radial-hover::before,
+.about-page .btn-download:focus-visible::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.about-page .btn-download.is-radial-hover,
+.about-page .btn-download:focus-visible {
+    color: var(--bg-card);
+}

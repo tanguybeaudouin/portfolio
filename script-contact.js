@@ -12,6 +12,9 @@ window.addEventListener('load', () => {
         contactSubmit.disabled = !isEnabled;
         contactSubmit.setAttribute('aria-disabled', String(!isEnabled));
         contactSubmit.classList.toggle('is-enabled', isEnabled);
+        if (!isEnabled) {
+            contactSubmit.classList.remove('is-radial-hover');
+        }
     }
 
     const email = contactForm?.querySelector('#email');
@@ -84,6 +87,21 @@ window.addEventListener('load', () => {
 
     const copyEmailButton = document.querySelector('.copy-email');
     if (copyEmailButton) {
+        const showCopyCursorToast = (x, y) => {
+            const toast = document.createElement('span');
+            toast.className = 'copy-cursor-toast';
+            toast.textContent = '{ Copiée }';
+            toast.style.left = `${x}px`;
+            toast.style.top = `${y - 16}px`;
+            document.body.appendChild(toast);
+            window.requestAnimationFrame(() => {
+                toast.classList.add('is-visible');
+            });
+            window.setTimeout(() => {
+                toast.remove();
+            }, 900);
+        };
+
         copyEmailButton.addEventListener('click', async () => {
             const emailText = copyEmailButton.querySelector('.contact-email-text')?.textContent?.trim();
             if (!emailText) return;
@@ -100,6 +118,11 @@ window.addEventListener('load', () => {
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
             }
+            const icon = copyEmailButton.querySelector('.copy-icon');
+            const anchorRect = (icon || copyEmailButton).getBoundingClientRect();
+            const x = anchorRect.left + (anchorRect.width * 0.5);
+            const y = anchorRect.top;
+            showCopyCursorToast(x, y);
         });
     }
 });

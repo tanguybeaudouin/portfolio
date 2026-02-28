@@ -167,8 +167,8 @@
     opacity: 0;
     transform: translateY(8px);
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
         color 0.8s ease;
 }
 
@@ -356,13 +356,14 @@
 }
 
 .project-2-page .project2-scroll-content {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body.project-2-page.menu-is-open .project2-scroll-content,
 body.project-2-page.menu-reveal .project2-scroll-content {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(15px);
     pointer-events: none;
 }
 

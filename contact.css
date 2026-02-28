@@ -66,6 +66,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: visible;
     border: none;
     background: none;
     padding: 0;
@@ -88,6 +90,26 @@
 .copy-email:hover .copy-icon,
 .copy-email:focus-visible .copy-icon {
     color: var(--neutral-dark);
+}
+
+.copy-cursor-toast {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10120;
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: none;
+    opacity: 0;
+    transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.copy-cursor-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%);
 }
 
 .contact-form {
@@ -227,6 +249,14 @@
     color: #141414;
 }
 
+.dark-theme .contact-submit.is-enabled {
+    color: #ffffff;
+}
+
+.dark-theme .contact-submit.is-enabled:hover {
+    color: #ffffff;
+}
+
 .contact-feedback {
     min-height: 18px;
     font-size: 12px;
@@ -245,3 +275,46 @@
     color: var(--bg-card);
 }
 
+/* CTA radial: uniquement quand ENVOYER est actif */
+.contact-page .contact-submit {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.contact-page .contact-submit .btn-label {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-page .contact-submit.is-enabled {
+    background: var(--primary);
+    color: #ffffff;
+    transition: color 0.62s ease;
+}
+
+.contact-page .contact-submit.is-enabled::before {
+    content: '';
+    position: absolute;
+    left: var(--cta-ripple-x, 50%);
+    top: var(--cta-ripple-y, 50%);
+    width: var(--cta-ripple-size, 24px);
+    height: var(--cta-ripple-size, 24px);
+    border-radius: 50%;
+    background-color: var(--neutral-dark);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.72s cubic-bezier(0.2, 0.9, 0.25, 1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.contact-page .contact-submit.is-enabled.is-radial-hover::before,
+.contact-page .contact-submit.is-enabled:focus-visible::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.contact-page .contact-submit.is-enabled.is-radial-hover,
+.contact-page .contact-submit.is-enabled:focus-visible {
+    background: var(--primary);
+    color: var(--bg-card);
+}
