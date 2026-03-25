@@ -630,7 +630,7 @@ h3,
     .work-page .content-top-section {
         order: 1;
         padding: var(--space-24) var(--space-24) var(--space-24) !important;
-        margin-top: calc(var(--space-32) + env(safe-area-inset-top, 0px))
+        margin-top: calc(var(--space-24) + env(safe-area-inset-top, 0px))
     }
 
     .home-page .baseline-section {
