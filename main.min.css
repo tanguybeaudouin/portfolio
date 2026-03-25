@@ -783,7 +783,7 @@ h3,
     }
 
     #typewriter {
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.2
     }
 
@@ -874,7 +874,7 @@ h3,
 
 @media (max-width:400px) {
     #typewriter {
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.1
     }
 }
