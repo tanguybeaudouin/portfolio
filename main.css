@@ -108,8 +108,6 @@ html::-webkit-scrollbar,
     display: inline-block;
 }
 
-.scramble-char.is-revealed {
-}
 
 html.first-visit-loading .home-page .page {
     opacity: 0;
@@ -815,7 +813,7 @@ h3,
     }
 
     #typewriter {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.2;
     }
 
@@ -914,7 +912,7 @@ h3,
 
 @media (max-width: 400px) {
     #typewriter {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.1;
     }
 }
