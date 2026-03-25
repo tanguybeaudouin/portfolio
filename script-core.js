@@ -9,7 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const typewriter = document.getElementById('typewriter');
     const themeToggle = document.getElementById('theme-toggle');
     const cursor = document.getElementById('custom-cursor');
-    const elementsToHide = document.querySelectorAll('.menu-hide');
+    const baseElementsToHide = Array.from(document.querySelectorAll('.menu-hide'));
+    const mobileExtraHideSelectors = [
+        '.content-top-section .title-group',
+        '.image-section',
+        '.projects-gallery-section',
+        '.footer-group'
+    ];
+
+    const getMenuTransitionElements = () => {
+        const elements = [...baseElementsToHide];
+        const isMobileViewport = window.matchMedia('(max-width: 900px)').matches;
+
+        if (isMobileViewport) {
+            mobileExtraHideSelectors.forEach((selector) => {
+                document.querySelectorAll(selector).forEach((element) => {
+                    if (!element.classList.contains('menu-hide')) {
+                        element.classList.add('menu-hide');
+                    }
+                    elements.push(element);
+                });
+            });
+        }
+
+        return Array.from(new Set(elements)).filter((element) => (
+            element &&
+            !element.closest('.menu-overlay')
+        ));
+    };
     const isHomePage = document.body.classList.contains('home-page');
     const firstVisitLoader = document.getElementById('first-visit-loader');
     const firstVisitLoaderCount = document.getElementById('first-visit-loader-count');
@@ -27,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const rennesTime = document.getElementById('rennes-time');
 
-    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br>Éco-conçues et garanties sans frustration utilisateur.";
+    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives, Éco-conçues et garanties sans frustration utilisateur.";
 
     // ==========================================
     // HORLOGE LOCALE (RENNES)
@@ -419,6 +446,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const revealPageContent = (restartTypewriter = false) => {
+        const elementsToHide = getMenuTransitionElements();
+
         if (baselineWrapper) {
             baselineWrapper.style.display = 'block';
             baselineWrapper.classList.add('hidden-state');
@@ -443,6 +472,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function openMenu() {
+        const elementsToHide = getMenuTransitionElements();
+
         clearMenuTransitionTimer();
         if (baselineWrapper) baselineWrapper.style.display = 'block';
         baselineWrapper?.classList.add('hidden-state');
@@ -458,22 +489,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeMenu() {
-        const isMobile = window.matchMedia('(max-width: 900px)').matches;
         menuScrambleRunId += 1;
         clearMenuTransitionTimer();
-        if (isMobile) {
-            document.body.classList.remove('menu-is-open');
-            document.body.classList.add('menu-reveal');
-            menuWrapper?.classList.add('hidden-state');
-            menuTransitionTimer = window.setTimeout(() => {
-                if (menuWrapper) menuWrapper.style.display = 'none';
-                if (menuOverlay) menuOverlay.style.display = 'none';
-                revealPageContent();
-                menuTransitionTimer = 0;
-            }, MENU_TRANSITION_MS);
-            return;
-        }
-
         menuWrapper?.classList.add('hidden-state');
         document.body.classList.remove('menu-is-open');
         document.body.classList.add('menu-reveal');
