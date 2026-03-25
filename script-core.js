@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const rennesTime = document.getElementById('rennes-time');
 
-    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives, Éco-conçues et garanties sans frustration utilisateur.";
+    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br>Éco-conçues et garanties sans frustration utilisateur.";
 
     // ==========================================
     // HORLOGE LOCALE (RENNES)
