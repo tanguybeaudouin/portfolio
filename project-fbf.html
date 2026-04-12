@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Frame by Frame — Tanguy Beaudouin</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+            try {
+                if (sessionStorage.getItem('project-page-transition-pending-v1') === '1') {
+                    document.documentElement.classList.add('project-transition-enter');
+                }
+            } catch (_error) {
+                // Ignore storage errors and continue.
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link rel="preload" as="video" href="fichiers/video-fbf-previous-hover.mp4?v=20260408" type="video/mp4">
+    <link rel="stylesheet" href="main.min.css?v=20260530">
+    <link rel="stylesheet" href="project-fbf.css?v=20260534">
+</head>
+
+<body class="project-fbf-page">
+    <div id="custom-cursor"></div>
+
+    <div id="smooth-wrapper">
+        <div class="page">
+            <div id="smooth-content">
+                <main class="main-card">
+                    <section class="content-section project-fbf-content-section">
+                <header class="content-top-section">
+                    <div class="title-group">
+                        <h1>tanguy.studio</h1>
+                        <p class="subtitle">PROJECT</p>
+                    </div>
+                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                        <span class="bar bar-top"></span>
+                        <span class="bar bar-bottom"></span>
+                    </button>
+                </header>
+
+                <div class="about-baseline-section">
+                    <div id="baseline-wrapper" class="menu-hide">
+                        <article class="fbf-hero">
+                            <a href="work.html" class="fbf-back" aria-label="Retour"></a>
+                            <video class="fbf-hero-media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                                <source src="fichiers/video-fbf-previous-hover.mp4?v=20260408" type="video/mp4">
+                            </video>
+                            <div class="fbf-hero-overlay">
+                                <img class="fbf-kicker-logo" src="fichiers/logo_framebyframe.svg" alt="Frame by Frame" decoding="async">
+                                <div class="fbf-copy">
+                                    <p class="fbf-lead"><span class="fbf-lead-highlight">Un site vitrine pour une agence</span><span class="fbf-lead-rest"><span class="fbf-line">de branding cinéma, conçu pour</span><span class="fbf-line">plonger le visiteur dans un univers</span><span class="fbf-line">visuel fort.</span></span></p>
+                                </div>
+                            </div>
+                            <div class="fbf-hero-bottom">
+                                <div class="footer-meta">
+                                    <span class="location">Rennes, France</span>
+                                    <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
+                                </div>
+                                <span class="fbf-scroll-indicator">SCROLL
+                                    <img src="fichiers/chevron_scroll.svg" alt="" aria-hidden="true" class="fbf-scroll-chevron">
+                                </span>
+                                <div class="toggle-control fbf-toggle-control">
+                                    <input type="checkbox" id="theme-toggle">
+                                    <label for="theme-toggle"></label>
+                                </div>
+                            </div>
+                        </article>
+
+                        <section class="fbf-sheet">
+                            <div class="fbf-intro">
+                                <p class="fbf-intro-rest fbf-intro-animated">
+                                    <span class="fbf-intro-line">Le site présente les services, le style</span>
+                                    <span class="fbf-intro-line">créatif et les réalisations de l'agence,</span>
+                                    <span class="fbf-intro-line">tout en facilitant la prise de contact</span>
+                                    <span class="fbf-intro-line">avec des clients potentiels.</span>
+                                </p>
+                                <a href="#" class="btn btn-download">ACCÉDER AU PROTOTYPE</a>
+                            </div>
+
+                            <div class="fbf-grid-row">
+                                <figure class="fbf-placeholder fbf-media-frame">
+                                    <img src="images/Frame by Frame/16_9_1.webp" alt="Aperçu interface Frame by Frame 1" class="fbf-media-img" decoding="async">
+                                </figure>
+                                <figure class="fbf-placeholder fbf-media-frame">
+                                    <img src="images/Frame by Frame/16_9_2.webp" alt="Aperçu interface Frame by Frame 2" class="fbf-media-img" decoding="async">
+                                </figure>
+                                <figure class="fbf-placeholder fbf-media-frame">
+                                    <img src="images/Frame by Frame/16_9_3.webp" alt="Aperçu interface Frame by Frame 3" class="fbf-media-img" decoding="async">
+                                </figure>
+                            </div>
+
+                            <div class="fbf-grid-row fbf-grid-large">
+                                <figure class="fbf-placeholder fbf-placeholder-square fbf-media-frame fbf-media-frame-hero">
+                                    <video class="fbf-media-video-bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                                        <source src="fichiers/video-fbf-previous-hover-low.mp4?v=20260410" type="video/mp4">
+                                    </video>
+                                    <img src="images/Frame by Frame/sitefbf.webp" alt="Aperçu du site Frame by Frame" class="fbf-media-img fbf-media-img-foreground" decoding="async">
+                                </figure>
+                                <article class="fbf-text-card">
+                                    <p>Fonctionnalités du site web</p>
+                                    <p>Le site Frame by Frame est un site vitrine immersif conçu pour valoriser une agence créative spécialisée dans le branding pour le cinéma. L'objectif est de montrer les services, la direction artistique et les réalisations de manière claire, sensible et percutante.</p>
+                                    <p>Fonctionnalités principales : Home page immersive, section Film (projets), page Contact.<br>Fonctionnalités secondaires : Newsletter, Blog, Shop.<br>Sur mobile, la hiérarchie est condensée pour conserver l'impact visuel tout en facilitant les interactions (navigation, repérage rapide, prise de contact).</p>
+                                    <dl class="fbf-meta-list">
+                                        <div class="fbf-meta-row">
+                                            <dt>PROJET</dt>
+                                            <dd>Frame by Frame</dd>
+                                        </div>
+                                        <div class="fbf-meta-row">
+                                            <dt>DATE</dt>
+                                            <dd>2025</dd>
+                                        </div>
+                                        <div class="fbf-meta-row">
+                                            <dt>SERVICE</dt>
+                                            <dd>UX/UI Design, Direction artistique, Branding digital.</dd>
+                                        </div>
+                                        <div class="fbf-meta-row">
+                                            <dt>LIVRABLES</dt>
+                                            <dd>Site vitrine responsive, prototype interactif, système visuel.</dd>
+                                        </div>
+                                    </dl>
+                                </article>
+                            </div>
+
+                            <figure class="fbf-placeholder fbf-placeholder-wide fbf-media-frame">
+                                <img src="images/Frame by Frame/arbofbf.webp" alt="Arborescence du projet Frame by Frame" class="fbf-media-img" decoding="async">
+                            </figure>
+
+                            <section class="fbf-contact-cta" aria-label="Contact">
+                                <a class="fbf-contact-cta-frame" href="contact.html" aria-label="Aller à la page contact">
+                                    <div class="fbf-contact-cta-motion">
+                                        <div class="fbf-contact-cta-copy">
+                                            <h3 class="fbf-contact-cta-title">Travaillons ensemble</h3>
+                                            <p class="fbf-contact-cta-desc">Tu as un projet UX/UI ? Parlons-en.</p>
+                                        </div>
+                                        <span class="fbf-contact-cta-arrow" aria-hidden="true"></span>
+                                    </div>
+                                </a>
+                            </section>
+
+                        </section>
+
+                        <section class="fbf-blue-panel fbf-blue-panel-video" data-next-url="project-3.html">
+                            <video class="fbf-next-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                                <source src="fichiers/sikovid_3mb.mp4" type="video/mp4">
+                            </video>
+                            <p class="fbf-next-reveal">
+                                <span class="fbf-next-line">NEXT PROJECT - KEEP SCROLLING</span>
+                                <span class="fbf-next-arrow" aria-hidden="true"></span>
+                            </p>
+                            <footer class="fbf-blue-footer">
+                                <div class="footer-meta">
+                                    <span class="location">Rennes, France</span>
+                                    <span class="subtitle footer-local-time" id="rennes-time-bottom" aria-live="polite">--:--</span>
+                                </div>
+                                <div class="toggle-control">
+                                    <input type="checkbox" id="theme-toggle-bottom">
+                                    <label for="theme-toggle-bottom"></label>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
+
+                    <nav id="menu-wrapper" style="display:none;">
+                        <ul class="menu-list">
+                            <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                            <li><a href="work.html" class="hover-underline">Projets</a></li>
+                            <li><a href="about.html" class="hover-underline">À propos</a></li>
+                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script src="script-core.js?v=20260550"></script>
+</body>
+
+</html>

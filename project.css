@@ -321,6 +321,45 @@
     display: block;
 }
 
+body.project-2-page.fbf-lightbox-open {
+    overflow: hidden;
+}
+
+.project-2-page .fbf-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 40px);
+    margin: 0;
+    border: 0;
+    background: rgba(10, 10, 10, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    cursor: zoom-out;
+    transition: opacity 0.24s ease, visibility 0.24s ease;
+}
+
+.project-2-page .fbf-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.project-2-page .fbf-lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    display: block;
+}
+
 .project2-visual.has-image {
     padding: 0;
     overflow: hidden;
@@ -424,4 +463,10 @@ body.project-2-page.menu-reveal .project2-scroll-content {
         margin-left: 0;
         margin-right: 0;
     }
+}
+
+/* Images: suppression de tous les arrondis */
+.project2-visual,
+.project2-visual img {
+    border-radius: 0 !important;
 }

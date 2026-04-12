@@ -1,55 +1,230 @@
-/* ========================================== 11D. INTRO PAGE PROJETS ========================================== */
+/* ========================================== WORK PAGE ========================================== */
 
-.projects-intro {
-    width: 65%;
-    font-size: 16px;
-    line-height: 1.3;
-    color: var(--neutral-dark);
-    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        color 0.8s ease;
+.work-page .main-card {
+    display: block;
+    width: 100%;
+    padding: 32px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-.projects-hover-info {
-    width: 65%;
+.work-page .content-section {
+    width: 100%;
+    padding: 0;
+    gap: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-top: 16px;
-    min-height: 72px;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: calc(100vh - 64px);
 }
 
-.projects-hover-info.is-active {
+.work-page .content-top-section {
+    align-items: flex-start;
+}
+
+.work-page .about-baseline-section {
+    margin-top: 16px;
+    position: relative;
+    min-height: 0;
+    flex: 1;
+}
+
+.projects-hover-float {
+    --hover-offset-x: 0px;
+    --hover-offset-y: 8px;
+    --hover-motion-x: 0px;
+    --hover-motion-y: 0px;
+    --hover-tilt-x: 0deg;
+    --hover-tilt-y: 0deg;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+    width: var(--hover-width, 320px);
+    opacity: 0;
+    transform:
+        translate3d(var(--hover-offset-x), var(--hover-offset-y), 0)
+        perspective(1100px)
+        rotateX(var(--hover-tilt-y))
+        rotateY(var(--hover-tilt-x));
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 4;
+    will-change: transform;
+}
+
+.projects-hover-float.is-active {
+    --hover-offset-y: 0px;
     opacity: 1;
-    transform: translateY(0);
+}
+
+.projects-hover-copy {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform: translate3d(var(--hover-motion-x), var(--hover-motion-y), 0);
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
 }
 
 .projects-hover-title {
+    font-family: 'DM Mono', monospace;
     font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-
-.projects-hover-tags {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--neutral-dark-05);
+    line-height: 1.4;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .projects-hover-desc {
-    font-size: 16px;
-    line-height: 1.3;
-    color: var(--neutral-dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: justify;
+}
+
+.projects-hover-arrow {
+    width: 80px;
+    height: 80px;
+    display: block;
+    background: url("fichiers/%E2%86%90.svg") center / contain no-repeat;
+    transform: translate3d(var(--hover-motion-x), var(--hover-motion-y), 0);
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.dark-theme .projects-hover-arrow {
+    filter: invert(1);
+}
+
+.projects-gallery-section {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
+}
+
+.work-page .footer-group {
+    margin-top: 0;
+}
+
+.project-item {
+    --pointer-x: 0;
+    --pointer-y: 0;
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2 !important;
+    height: auto !important;
+    max-height: none;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 6px !important;
+    text-decoration: none;
+    color: inherit;
+    background: transparent;
+}
+
+.project-tilt-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    transform: perspective(1100px) rotateX(calc(var(--pointer-y) * -6deg)) rotateY(calc(var(--pointer-x) * 6deg));
+    transform-origin: 50% 50%;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.project-media {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    transform: translate3d(calc(var(--pointer-x) * -16px), calc(var(--pointer-y) * -16px), 0) scale(1.08);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.project-item.is-hover-active .project-media {
+    transform: translate3d(calc(var(--pointer-x) * -16px), calc(var(--pointer-y) * -16px), 0) scale(1.12);
+}
+
+.project-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.project-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.18s linear;
+    z-index: 2;
+    will-change: transform;
+    border-radius: inherit;
+}
+
+.project-image-default {
+    opacity: 1;
+}
+
+.project-image-hover {
+    opacity: 1;
+    z-index: 1;
+}
+
+.project-item.is-hover-active .project-image-default {
+    opacity: 0;
+}
+
+.project-cta,
+.project-meta,
+.project-item::before,
+.project-item::after {
+    display: none;
 }
 
 @media (max-width: 900px) {
-    .projects-intro,
-    .projects-hover-desc {
-        font-size: 14px;
+    .work-page .main-card {
+        padding: 24px;
+        min-height: 100vh;
+    }
+
+    .work-page .about-baseline-section {
+        margin-top: 24px;
+    }
+
+    .projects-hover-float {
+        display: none;
+    }
+
+    .projects-gallery-section {
+        position: static;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .project-item {
+        aspect-ratio: 3 / 2 !important;
     }
 }

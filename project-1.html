@@ -7,206 +7,189 @@
     <title>Nintendo — Tanguy Beaudouin</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-    <!-- Initialisation du thème avant le rendu -->
     <script>
         (function () {
             if (localStorage.getItem('theme') === 'dark') {
                 document.documentElement.classList.add('dark-theme');
+            }
+            try {
+                if (sessionStorage.getItem('project-page-transition-pending-v1') === '1') {
+                    document.documentElement.classList.add('project-transition-enter');
+                }
+            } catch (_error) {
+                // Ignore storage errors and continue.
             }
         })();
     </script>
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
-    <link rel="preload" as="image" href="images/Projet 1/MINIATURE.png" type="image/png">
-    <link rel="stylesheet" href="main.min.css?v=20260325">
-    <link rel="stylesheet" href="project.min.css?v=20260325">
+    <link rel="stylesheet" href="main.min.css?v=20260530">
+    <link rel="stylesheet" href="project-fbf.css?v=20260534">
 </head>
 
-<body class="project-2-page">
+<body class="project-fbf-page">
     <div id="custom-cursor"></div>
 
-    <div class="page">
-        <main class="main-card">
-            <section class="content-section project2-content-section">
-                <header class="content-top-section">
-                    <div class="title-group">
-                        <h1>Nintendo</h1>
-                        <p class="subtitle">Tanguy Beaudouin - UX/UI & Product Designer</p>
-                    </div>
-                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
-                        <span class="bar bar-top"></span>
-                        <span class="bar bar-bottom"></span>
-                    </button>
-                </header>
+    <div id="smooth-wrapper">
+        <div class="page">
+            <div id="smooth-content">
+                <main class="main-card">
+                    <section class="content-section project-fbf-content-section">
+                        <header class="content-top-section">
+                            <div class="title-group">
+                                <h1>tanguy.studio</h1>
+                                <p class="subtitle">NINTENDO</p>
+                            </div>
+                            <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                                <span class="bar bar-top"></span>
+                                <span class="bar bar-bottom"></span>
+                            </button>
+                        </header>
 
-                <div class="about-baseline-section project2-baseline">
-                    <div id="baseline-wrapper">
-                        <div class="project2-scroll-content">
-                            <section class="project2-panel project2-text-panel menu-hide">
-                                <div class="project2-intro">
-                                    <a href="work.html" class="project-link project2-top-return-link">Retour</a>
-                                    <div class="project2-columns">
-                                        <div class="project2-column">
-                                            <article class="project2-block">
-                                                <h3>Informations clés</h3>
-                                                <p><span class="subtitle">Date :</span> 2025</p>
-                                                <p><span class="subtitle">Objectif :</span> Repenser l’expérience du site Nintendo pour
-                                                    faciliter l’accès rapide aux jeux, aux offres et aux contenus clés.</p>
-                                                <p><span class="subtitle">Rôle :</span> UX/UI Designer (architecture de
-                                                    l’information, wireframes, direction UI).</p>
-                                                <p><span class="subtitle">Livrables :</span> Audit UX, wireframes, design system,
-                                                    prototype haute fidélité.</p>
-                                            </article>
-                                        </div>
-                                        <div class="project2-column">
-                                            <article class="project2-block">
-                                                <h3>Contexte</h3>
-                                                <p>Le site Nintendo regroupe une offre très riche (jeux, consoles,
-                                                    nouveautés, offres et contenus éditoriaux) destinée à des profils
-                                                    variés, du joueur occasionnel au fan de licence. Cette richesse est un
-                                                    vrai atout, mais elle rendait la lecture globale moins fluide et la
-                                                    priorisation des contenus parfois difficile au premier coup d’œil.</p>
-                                            </article>
-                                            <article class="project2-block">
-                                                <h3>Problème</h3>
-                                                <p>Comment permettre aux utilisateurs de trouver rapidement le bon jeu,
-                                                    la bonne console ou la bonne information sans subir une surcharge
-                                                    visuelle ? Le défi était de simplifier le parcours sans appauvrir
-                                                    l’univers Nintendo, en conservant une expérience vivante, claire et
-                                                    engageante.</p>
-                                            </article>
-                                            <article class="project2-block">
-                                                <h3>Process</h3>
-                                                <p>Le travail a commencé par un audit UX de l’existant pour identifier les
-                                                    points de friction (navigation, hiérarchie, lisibilité). J’ai ensuite
-                                                    restructuré les parcours prioritaires, défini une architecture de
-                                                    contenu plus claire, puis produit des wireframes des écrans clés avant
-                                                    de consolider l’interface dans un système de composants cohérent et
-                                                    responsive.</p>
-                                            </article>
-                                            <article class="project2-block">
-                                                <h3>Solution</h3>
-                                                <p>La proposition finale repose sur une hiérarchie visuelle renforcée,
-                                                    une navigation simplifiée et des appels à l’action mieux positionnés.
-                                                    Les contenus sont mieux segmentés, les composants sont harmonisés,
-                                                    et l’ensemble de l’interface a été pensé pour rester lisible et
-                                                    performant sur desktop comme sur mobile.</p>
-                                            </article>
-                                            <article class="project2-block">
-                                                <h3>Résultats</h3>
-                                                <p>Le parcours utilisateur devient plus direct et plus rassurant: les
-                                                    contenus clés sont identifiés plus vite, la compréhension de l’offre
-                                                    est plus immédiate et la navigation demande moins d’effort. Le projet
-                                                    aboutit à une expérience plus cohérente, plus lisible et mieux alignée
-                                                    avec les objectifs de conversion.</p>
-                                            </article>
+                        <div class="about-baseline-section">
+                            <div id="baseline-wrapper" class="menu-hide">
+                                <article class="fbf-hero">
+                                    <a href="work.html" class="fbf-back" aria-label="Retour"></a>
+                                    <video class="fbf-hero-media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                                        <source src="fichiers/video_nintendo_low.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="fbf-hero-overlay">
+                                        <img class="fbf-kicker-logo" src="fichiers/logo_nintendo.svg" alt="Nintendo" decoding="async">
+                                        <div class="fbf-copy">
+                                            <p class="fbf-lead"><span class="fbf-lead-highlight">Repenser l'expérience web pour</span><span class="fbf-lead-rest"><span class="fbf-line">accéder rapidement aux jeux, offres</span><span class="fbf-line">et contenus clés de la marque.</span></span></p>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="project2-actions">
-                                    <div class="cta-container project2-cta">
-                                        <a href="#" class="btn btn-download project2-prototype-link">ACCÉDER AU PROTOTYPE</a>
-                                    </div>
-                                    <button type="button" class="project2-scroll-indicator"
-                                        aria-label="Descendre à la première image">SCROLL
-                                        <img src="fichiers/chevron_scroll.svg" alt="" aria-hidden="true"
-                                            class="project2-scroll-chevron">
-                                    </button>
-                                </div>
-                            </section>
-
-                            <section class="project2-panel project2-images-panel menu-hide">
-                                <article class="project2-gallery-item">
-                                    <figure class="project2-visual has-image">
-                                        <img src="images/Projet 1/MINIATURE.png" alt="Nintendo - miniature du projet"
-                                            loading="lazy">
-                                    </figure>
-                                    <div class="project2-caption">
-                                        <h3>Accueil & hiérarchie</h3>
-                                        <p>Refonte de la page d’accueil pour prioriser les contenus clés et guider la
-                                            découverte des jeux.</p>
+                                    <div class="fbf-hero-bottom">
+                                        <div class="footer-meta">
+                                            <span class="location">Rennes, France</span>
+                                            <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
+                                        </div>
+                                        <span class="fbf-scroll-indicator">SCROLL
+                                            <img src="fichiers/chevron_scroll.svg" alt="" aria-hidden="true" class="fbf-scroll-chevron">
+                                        </span>
+                                        <div class="toggle-control fbf-toggle-control">
+                                            <input type="checkbox" id="theme-toggle">
+                                            <label for="theme-toggle"></label>
+                                        </div>
                                     </div>
                                 </article>
 
-                                <article class="project2-gallery-item">
-                                    <figure class="project2-visual">
-                                        <span>[ image 2 à ajouter ]</span>
-                                    </figure>
-                                    <div class="project2-caption">
-                                        <h3>Navigation simplifiée</h3>
-                                        <p>Organisation des catégories et des accès rapides pour réduire les hésitations
-                                            sur les parcours principaux.</p>
+                                <section class="fbf-sheet">
+                                    <div class="fbf-intro">
+                                        <p class="fbf-intro-rest fbf-intro-animated">
+                                            <span class="fbf-intro-line">Projet de refonte UX/UI Nintendo.</span>
+                                            <span class="fbf-intro-line">Objectif : rendre l'offre lisible et accélérer l'accès</span>
+                                            <span class="fbf-intro-line">aux actions principales sur desktop et mobile.</span>
+                                        </p>
+                                        <a
+                                            href="https://www.figma.com/proto/Zk9unhCny2r2patjT46NaK/G4---UX-UI?node-id=236-3050&t=IP51KtSqFAsYPrEQ-1&hide-ui=1"
+                                            class="btn btn-download"
+                                            data-desktop-url="https://www.figma.com/proto/Zk9unhCny2r2patjT46NaK/G4---UX-UI?node-id=236-3050&t=IP51KtSqFAsYPrEQ-1&hide-ui=1"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >ACCÉDER AU PROTOTYPE</a>
                                     </div>
-                                </article>
 
-                                <article class="project2-gallery-item">
-                                    <figure class="project2-visual">
-                                        <span>[ image 3 à ajouter ]</span>
-                                    </figure>
-                                    <div class="project2-caption">
-                                        <h3>Design system</h3>
-                                        <p>Composants et règles UI unifiés pour garantir la cohérence visuelle et
-                                            l’adaptation responsive.</p>
+                                    <div class="fbf-grid-row">
+                                        <figure class="fbf-placeholder fbf-media-frame">
+                                            <img src="images/Nintendo/16_9_1.jpg" alt="Visuel Nintendo 16:9 1" class="fbf-media-img" decoding="async">
+                                        </figure>
+                                        <figure class="fbf-placeholder fbf-media-frame">
+                                            <img src="images/Nintendo/16_9_2.jpg" alt="Visuel Nintendo 16:9 2" class="fbf-media-img" decoding="async">
+                                        </figure>
+                                        <figure class="fbf-placeholder fbf-media-frame">
+                                            <img src="images/Nintendo/16_9_3.jpg" alt="Visuel Nintendo 16:9 3" class="fbf-media-img" decoding="async">
+                                        </figure>
                                     </div>
-                                </article>
 
-                                <article class="project2-gallery-item">
-                                    <figure class="project2-visual">
-                                        <span>[ image 4 à ajouter ]</span>
-                                    </figure>
-                                    <div class="project2-caption">
-                                        <h3>Résultat final</h3>
-                                        <p>Une interface plus lisible, orientée action, avec une expérience plus fluide
-                                            sur l’ensemble du parcours.</p>
+                                    <div class="fbf-grid-row fbf-grid-large">
+                                        <figure class="fbf-placeholder fbf-placeholder-square fbf-media-frame">
+                                            <img src="images/Nintendo/mockup_nintendo.jpg?v=20260412" alt="Mockup Nintendo" class="fbf-media-img" decoding="async">
+                                        </figure>
+                                        <article class="fbf-text-card">
+                                            <h4>Contexte & objectifs</h4>
+                                            <p>L'écosystème Nintendo réunit une offre riche, des profils utilisateurs variés et de nombreux points d'entrée. Le défi est de clarifier la navigation sans perdre l'identité visuelle forte de la marque.</p>
+                                            <p>Le travail s'est concentré sur la hiérarchie des contenus, les parcours prioritaires et l'unification des composants pour une expérience plus directe.</p>
+                                            <dl class="fbf-meta-list">
+                                                <div class="fbf-meta-row">
+                                                    <dt>PROJET</dt>
+                                                    <dd>Nintendo</dd>
+                                                </div>
+                                                <div class="fbf-meta-row">
+                                                    <dt>DATE</dt>
+                                                    <dd>2025</dd>
+                                                </div>
+                                                <div class="fbf-meta-row">
+                                                    <dt>SERVICE</dt>
+                                                    <dd>UX Audit, UI Design</dd>
+                                                </div>
+                                                <div class="fbf-meta-row">
+                                                    <dt>LIVRABLES</dt>
+                                                    <dd>Wireframes, Design System, Prototype</dd>
+                                                </div>
+                                            </dl>
+                                        </article>
                                     </div>
-                                </article>
-                            </section>
 
-                            <footer class="footer-group project2-footer menu-hide">
-                                <div class="footer-meta">
-                                    <span class="location">Rennes, France</span>
-                                    <span class="subtitle footer-local-time" id="rennes-time" aria-live="polite">--:--</span>
-                                </div>
-                                <p class="project2-copyright">© Tanguy Beaudouin</p>
-                                <div class="toggle-control">
-                                    <input type="checkbox" id="theme-toggle">
-                                    <label for="theme-toggle"></label>
-                                </div>
-                            </footer>
+                                    <figure class="fbf-placeholder fbf-placeholder-wide fbf-media-frame">
+                                        <img src="images/Nintendo/wireframe_nintendo.jpg" alt="Wireframe Nintendo" class="fbf-media-img" decoding="async">
+                                    </figure>
+
+                                    <section class="fbf-contact-cta" aria-label="Contact">
+                                        <a class="fbf-contact-cta-frame" href="contact.html" aria-label="Aller à la page contact">
+                                            <div class="fbf-contact-cta-motion">
+                                                <div class="fbf-contact-cta-copy">
+                                                    <h3 class="fbf-contact-cta-title">Travaillons ensemble</h3>
+                                                    <p class="fbf-contact-cta-desc">Tu as un projet UX/UI ? Parlons-en.</p>
+                                                </div>
+                                                <span class="fbf-contact-cta-arrow" aria-hidden="true"></span>
+                                            </div>
+                                        </a>
+                                    </section>
+
+                                </section>
+
+                                <section class="fbf-blue-panel fbf-blue-panel-video" data-next-url="project-fbf.html">
+                                    <video class="fbf-next-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                                        <source src="fichiers/video-fbf-previous-hover.mp4?v=20260408" type="video/mp4">
+                                    </video>
+                                    <p class="fbf-next-reveal">
+                                        <span class="fbf-next-line">NEXT PROJECT - KEEP SCROLLING</span>
+                                        <span class="fbf-next-arrow" aria-hidden="true"></span>
+                                    </p>
+                                    <footer class="fbf-blue-footer">
+                                        <div class="footer-meta">
+                                            <span class="location">Rennes, France</span>
+                                            <span class="subtitle footer-local-time" id="rennes-time-bottom" aria-live="polite">--:--</span>
+                                        </div>
+                                        <div class="toggle-control">
+                                            <input type="checkbox" id="theme-toggle-bottom">
+                                            <label for="theme-toggle-bottom"></label>
+                                        </div>
+                                    </footer>
+                                </section>
+                            </div>
+
+                            <nav id="menu-wrapper" style="display:none;">
+                                <ul class="menu-list">
+                                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                                    <li><a href="work.html" class="hover-underline">Projets</a></li>
+                                    <li><a href="about.html" class="hover-underline">À propos</a></li>
+                                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                                </ul>
+                            </nav>
                         </div>
-                    </div>
-
-                    <nav id="menu-wrapper" style="display:none;">
-                        <ul class="menu-list">
-                            <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                            <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
-                            <li><a href="about.html" class="hover-underline">À propos</a></li>
-                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </section>
-        </main>
+                    </section>
+                </main>
+            </div>
+        </div>
     </div>
 
-    <script src="script-core.js?v=20260325"></script>
-    <script>
-        window.addEventListener('load', () => {
-            const scrollIndicator = document.querySelector('.project2-scroll-indicator');
-            const firstImage = document.querySelector('.project2-images-panel .project2-visual');
-            if (!scrollIndicator) return;
-            window.setTimeout(() => {
-                scrollIndicator.classList.add('is-visible');
-            }, 1500);
-            if (!firstImage) return;
-            scrollIndicator.addEventListener('click', () => {
-                const targetTop = window.scrollY + firstImage.getBoundingClientRect().top - 16;
-                window.scrollTo({ top: targetTop, behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script src="script-core.js?v=20260550"></script>
 </body>
 
 </html>

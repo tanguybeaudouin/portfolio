@@ -13,25 +13,34 @@
             if (localStorage.getItem('theme') === 'dark') {
                 document.documentElement.classList.add('dark-theme');
             }
+            try {
+                if (sessionStorage.getItem('project-page-transition-pending-v1') === '1') {
+                    document.documentElement.classList.add('project-transition-enter');
+                }
+            } catch (_error) {
+                // Ignore storage errors and continue.
+            }
         })();
     </script>
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
-    <link rel="stylesheet" href="main.min.css?v=20260325">
-    <link rel="stylesheet" href="project.min.css?v=20260325">
+    <link rel="stylesheet" href="main.min.css?v=20260530">
+    <link rel="stylesheet" href="project.min.css?v=20260326">
 </head>
 
 <body class="project-2-page">
     <div id="custom-cursor"></div>
 
-    <div class="page">
-        <main class="main-card">
-            <section class="content-section project2-content-section">
+    <div id="smooth-wrapper">
+        <div class="page">
+            <div id="smooth-content">
+                <main class="main-card">
+                    <section class="content-section project2-content-section">
                 <header class="content-top-section">
                     <div class="title-group">
-                        <h1>L’agence</h1>
-                        <p class="subtitle">Tanguy Beaudouin - UX/UI & Product Designer</p>
+                        <h1>tanguy.studio</h1>
+                        <p class="subtitle">L’AGENCE</p>
                     </div>
                     <button class="menu-burger" id="menu-toggle" aria-label="Menu">
                         <span class="bar bar-top"></span>
@@ -91,7 +100,7 @@
                                     </div>
                                     <button type="button" class="project2-scroll-indicator" aria-label="Descendre à la première image">SCROLL
                                         <img src="fichiers/chevron_scroll.svg" alt="" aria-hidden="true"
-                                            class="project2-scroll-chevron">
+                                            class="project2-scroll-chevron" decoding="async">
                                     </button>
                                 </div>
                             </section>
@@ -155,17 +164,22 @@
                     <nav id="menu-wrapper" style="display:none;">
                         <ul class="menu-list">
                             <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                            <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
+                            <li><a href="work.html" class="hover-underline">Projets</a></li>
                             <li><a href="about.html" class="hover-underline">À propos</a></li>
                             <li><a href="contact.html" class="hover-underline">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
-            </section>
-        </main>
+                    </section>
+                </main>
+            </div>
+        </div>
     </div>
 
-    <script src="script-core.js?v=20260325"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script src="script-core.js?v=20260550"></script>
     <script>
         window.addEventListener('load', () => {
             const scrollIndicator = document.querySelector('.project2-scroll-indicator');
@@ -177,6 +191,11 @@
             if (!firstImage) return;
             scrollIndicator.addEventListener('click', () => {
                 const targetTop = window.scrollY + firstImage.getBoundingClientRect().top - 16;
+                const smoother = window.__projectSmoother;
+                if (smoother && typeof smoother.scrollTo === 'function') {
+                    smoother.scrollTo(targetTop, true);
+                    return;
+                }
                 window.scrollTo({ top: targetTop, behavior: 'smooth' });
             });
         });
