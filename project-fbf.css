@@ -80,7 +80,7 @@ body.project-fbf-page {
     width: 86px;
     height: 86px;
     display: block;
-    background: url("fichiers/%E2%86%90.svg") center / contain no-repeat;
+    background: url("fichiers/arrow-left.svg") center / contain no-repeat;
     filter: invert(1);
     transform: scaleX(-1);
     text-decoration: none;
@@ -654,7 +654,7 @@ body.project-fbf-page.fbf-lightbox-open {
     display: block;
     flex: 0 0 auto;
     margin-bottom: 30px;
-    background: url("fichiers/%E2%86%90.svg") center / contain no-repeat;
+    background: url("fichiers/arrow-left.svg") center / contain no-repeat;
     transform: translate3d(calc(var(--pointer-x) * -10px), calc(var(--pointer-y) * -10px), 0);
     filter: invert(0);
     transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
@@ -798,7 +798,7 @@ body.project-fbf-page.fbf-lightbox-open {
     content: "";
     position: absolute;
     inset: 0;
-    background: url("fichiers/%E2%86%90.svg") center / contain no-repeat;
+    background: url("fichiers/arrow-left.svg") center / contain no-repeat;
     filter: invert(1);
 }
 

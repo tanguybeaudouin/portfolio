@@ -91,7 +91,7 @@
     width: 80px;
     height: 80px;
     display: block;
-    background: url("fichiers/%E2%86%90.svg") center / contain no-repeat;
+    background: url("fichiers/arrow-left.svg") center / contain no-repeat;
     transform: translate3d(var(--hover-motion-x), var(--hover-motion-y), 0);
     transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
