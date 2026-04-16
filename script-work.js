@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const frameByFrameItem = document.querySelector('.project-item-fbf') ||
         Array.from(projectItems).find(item => (item.getAttribute('data-title') || '').toLowerCase().includes('frame by frame'));
     if (frameByFrameItem) {
-        frameByFrameItem.setAttribute('href', '/project-fbf.html');
+        frameByFrameItem.setAttribute('href', 'project-2.html');
     }
 
     const animateHoverInfoMotion = () => {

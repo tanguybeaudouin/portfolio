@@ -133,6 +133,19 @@
     transform: translate(1px, -1px) rotate(-45deg);
 }
 
+.project2-prototype-link.is-disabled,
+.project2-prototype-link[aria-disabled="true"] {
+    background: var(--neutral-dark-01);
+    color: #F4F4F4;
+    border: none;
+    pointer-events: none;
+}
+
+.dark-theme .project2-prototype-link.is-disabled,
+.dark-theme .project2-prototype-link[aria-disabled="true"] {
+    color: #141414;
+}
+
 .project2-top-return-link {
     margin-top: 0;
     align-self: flex-start;

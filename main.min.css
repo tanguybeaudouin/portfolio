@@ -49,6 +49,11 @@ VARIABLES & THÈMES ========================================== */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html.has-custom-cursor *,
+html.has-custom-cursor *::before,
+html.has-custom-cursor *::after {
     cursor: none !important;
 }
 

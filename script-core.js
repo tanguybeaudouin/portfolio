@@ -537,6 +537,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // GESTION DU MENU BURGER
     // ==========================================
     let menuOverlay = null;
+    const setMenuA11yState = (isOpen) => {
+        if (!btn) return;
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    if (btn && menuWrapper?.id) {
+        btn.setAttribute('aria-controls', menuWrapper.id);
+    }
+    setMenuA11yState(false);
+
     if (menuWrapper) {
         menuOverlay = document.createElement('div');
         menuOverlay.className = 'menu-overlay';
@@ -545,6 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuOverlay.addEventListener('click', (event) => {
             if (event.target === menuOverlay && btn?.classList.contains('active')) {
                 btn.classList.remove('active');
+                setMenuA11yState(false);
                 closeMenu();
             }
         });
@@ -610,6 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const elementsToHide = getMenuTransitionElements();
 
         clearMenuTransitionTimer();
+        setMenuA11yState(true);
         projectSmoother?.paused(true);
         if (baselineWrapper) baselineWrapper.style.display = 'block';
         baselineWrapper?.classList.add('hidden-state');
@@ -627,6 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeMenu() {
         menuScrambleRunId += 1;
         clearMenuTransitionTimer();
+        setMenuA11yState(false);
         menuWrapper?.classList.add('hidden-state');
         document.body.classList.remove('menu-is-open');
         document.body.classList.add('menu-reveal');
@@ -704,8 +717,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cursor) {
         const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
         if (!hasFinePointer) {
+            document.documentElement.classList.remove('has-custom-cursor');
             cursor.style.display = 'none';
         } else {
+            document.documentElement.classList.add('has-custom-cursor');
             let mouseX = -100;
             let mouseY = -100;
             let rafId = 0;
