@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>À propos de moi — Tanguy Beaudouin</title>
+    <title>À propos — Tanguy Beaudouin, UX/UI Designer</title>
+    <meta name="description" content="À propos de Tanguy Beaudouin : parcours, méthode de travail et vision du design d'interface centré utilisateur.">
+    <link rel="canonical" href="https://tanguy.studio/about.html">
+    <meta property="og:title" content="À propos — Tanguy Beaudouin, UX/UI Designer">
+    <meta property="og:description" content="À propos de Tanguy Beaudouin : parcours, méthode de travail et vision du design d'interface centré utilisateur.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tanguy.studio/about.html">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <!-- Initialisation du thème avant le rendu -->
     <script>
@@ -17,7 +24,8 @@
 
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.min.css?v=20260531">
+    <link rel="stylesheet" href="about.min.css?v=20260422">
 </head>
 
 <body class="about-page">
@@ -25,24 +33,15 @@
 
     <div class="page">
         <main class="main-card">
-            <!-- Section image -->
-            <section class="image-section" style="position: relative;">
-                <img src="images/photo-portrait-darkmode.webp" alt="Portrait Dark" class="portrait-dark"
-                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
-
-                <img src="images/photo-portrait.webp" alt="Portrait Light" class="portrait-light"
-                    style="position: relative; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: opacity 0.8s ease;">
-            </section>
-
             <!-- Section contenu -->
             <section class="content-section">
                 <!-- Header -->
                 <header class="content-top-section">
                     <div class="title-group">
-                        <h1>À propos de moi</h1>
-                        <p class="subtitle">Tanguy Beaudouin - UX/UI & Product Designer</p>
+                        <h1>tanguy.studio</h1>
+                        <p class="subtitle">ABOUT</p>
                     </div>
-                    <button class="menu-burger" id="menu-toggle" aria-label="Menu">
+                    <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
                         <span class="bar bar-top"></span>
                         <span class="bar bar-bottom"></span>
                     </button>
@@ -51,47 +50,28 @@
                 <!-- Contenu About / Menu -->
                 <div class="about-baseline-section">
                     <div id="baseline-wrapper">
-                        <div class="about-text-content">
-                            <p class="intro-greeting">"Hello, moi c'est Tanguy !</p>
+                        <div class="about-structure">
+                            <figure class="about-image image-section" aria-hidden="true"></figure>
 
-                            <p>
-                                Je suis étudiant en Master Direction Artistique, option UX/UI, et passionné par le
-                                design d'interface et l'expérience utilisateur. J'aime concevoir des produits digitaux
-                                intuitifs, esthétiques et agréables à utiliser.
-                            </p>
+                            <div class="about-columns">
+                            <div class="about-text-content">
+                                <p class="intro-greeting no-scramble">“Hello, moi c'est Tanguy !<br><br>Je suis étudiant en Master Direction Artistique, option UX/UI, et je suis passionné par tout ce qui touche au design d’interface et à l’expérience utilisateur. J’aime créer des produits digitaux intuitifs, esthétiques et agréables à utiliser, en pensant à l’accessibilité pour tous et à l’éco-conception pour réduire l’impact environnemental de mes créations.<br><br>Pour compléter mes études, j’ai suivi des formations certifiantes comme “Figma UI UX Design Advanced” par un formateur Adobe et “Google UX Design” par Google, qui m’ont permis de renforcer mes compétences pratiques et ma compréhension des processus centrés utilisateur.<br><br>Mon objectif est de devenir un Product Designer de haut niveau, capable de concevoir des expériences digitales inclusives, responsables et performantes. Je suis actuellement à la recherche d’une alternance ou d’une alternance en UX/UI ou Product Design, où je pourrai apprendre, créer et contribuer à des projets concrets qui font la différence.”</p>
+                                <div class="about-cta menu-hide">
+                                    <a href="fichiers/CV_Tanguy_Beaudouin.pdf" class="btn btn-download" download>TÉLÉCHARGER MON CV</a>
+                                </div>
+                            </div>
 
-                            <p>
-                                Mon approche est centrée sur l'accessibilité et l'éco-conception, afin de créer des
-                                expériences inclusives tout en réduisant l'impact environnemental des interfaces.
-                            </p>
-
-                            <p>
-                                Pour compléter mon parcours, j'ai suivi plusieurs formations certifiantes telles que
-                                Figma UI/UX Design Advanced et le Google UX Design Professional Certificate, qui m'ont
-                                permis de renforcer mes compétences pratiques et méthodologiques.
-                            </p>
-
-                            <p>
-                                Mon objectif est de devenir Product Designer, capable de concevoir des expériences
-                                digitales responsables, performantes et centrées utilisateur. Je suis actuellement à
-                                la recherche d'une alternance ou d'un stage en UX/UI ou Product Design."
-                            </p>
-
-                            <p class="subtitle">Mon parcours ne s'arrête pas là. Je vous invite à télécharger mon CV
-                                complet ci-dessous pour découvrir le détail de mes expériences professionnelles, mon
-                                cursus académique ainsi que l'ensemble des logiciels et outils techniques que je
-                                maîtrise au quotidien. C'est le meilleur moyen d'avoir une vision globale de mon profil
-                                et de la valeur que je peux apporter à vos projets.</p>
-                        </div>
-
-                        <div class="skills-section-container">
-                            <div class="skills-list">
-                                <h3 class="section-title">Compétences</h3>
-                                <p>Expert Figma : Variantes, tokens, design system & Auto-layout.<br>
-                                    Suite Adobe : Ai, Ps, Ae, iD, LrC (Standards print & digital).<br>
-                                    No-code : Création de sites web via Webflow & Framer.<br>
-                                    VS Code : Intégration Front-End (HTML, CSS & JS).<br>
-                                    Organisation : Notion, Slack, Gather & Gestion de projet.</p>
+                            <aside class="skills-section-container">
+                                <div class="skills-list">
+                                    <h3 class="section-title">Compétences</h3>
+                                    <p>Expert Figma : Variantes, tokens, design system & Auto-layout.<br>
+                                        Suite Adobe : Ai, Ps, Ae, iD, LrC (Standards print & digital).<br>
+                                        No-code : Création de sites web via Webflow & Framer.<br>
+                                        VS Code : Intégration Front-End (HTML, CSS & JS).<br>
+                                        Organisation : Notion, Slack, Gather & Gestion de projet.</p>
+                                </div>
+                                <p class="about-note subtitle no-scramble">Mon parcours ne s'arrête pas là. Je vous invite à télécharger mon CV complet ci-dessous pour découvrir le détail de mes expériences professionnelles, mon cursus académique ainsi que l'ensemble des logiciels et outils techniques que je maîtrise au quotidien. C'est le meilleur moyen d'avoir une vision globale de mon profil et de la valeur que je peux apporter à vos projets.</p>
+                            </aside>
                             </div>
                         </div>
                     </div>
@@ -106,12 +86,8 @@
                     </nav>
                 </div>
 
-                <!-- CTA + Footer (MAINTENANT AU BON ENDROIT) -->
+                <!-- CTA + Footer -->
                 <div>
-                    <div class="cta-container menu-hide">
-                        <a href="fichiers/CV_Tanguy_Beaudouin.pdf" class="btn btn-download" download>TÉLÉCHARGER MON CV</a>
-                    </div>
-
                     <footer class="footer-group">
                         <div class="footer-meta">
                             <span class="location">Rennes, France</span>
@@ -127,7 +103,8 @@
         </main>
     </div>
 
-    <script src="script-core.js"></script>
+    <script src="script-core.js?v=20260551"></script>
+    <script src="script-about.js?v=20260420"></script>
 </body>
 
 </html>
