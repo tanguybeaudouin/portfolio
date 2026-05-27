@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const rennesTimes = Array.from(document.querySelectorAll('.footer-local-time'));
 
-    const defaultTypewriterText = "“Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br>Éco-conçues et garanties sans frustration utilisateur.”";
+    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br>Éco-conçues et garanties sans frustration utilisateur.";
 
     // ==========================================
     // HORLOGE LOCALE (RENNES)
@@ -404,19 +404,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const menuScrambleElements = Array.from(document.querySelectorAll('#menu-wrapper .menu-list a'));
-    const socialScrambleElements = Array.from(document.querySelectorAll('.contact-links a'));
     menuScrambleElements.forEach((element) => {
         if (!element.dataset.scrambleText) {
             element.dataset.scrambleText = element.textContent || '';
         }
     });
-    socialScrambleElements.forEach((element) => {
-        if (!element.dataset.scrambleText) {
-            element.dataset.scrambleText = element.textContent || '';
-        }
-    });
     let menuScrambleRunId = 0;
-    const socialHoverScrambling = new WeakSet();
 
     const runMenuTextScramble = () => {
         if (menuScrambleElements.length === 0) return;
@@ -430,17 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     };
-
-    socialScrambleElements.forEach((element) => {
-        element.addEventListener('pointerenter', () => {
-            if (socialHoverScrambling.has(element)) return;
-            const targetText = element.dataset.scrambleText || element.textContent || '';
-            socialHoverScrambling.add(element);
-            scrambleText(element, targetText, MENU_SCRAMBLE_DURATION_MS).finally(() => {
-                socialHoverScrambling.delete(element);
-            });
-        });
-    });
 
     const runPageIntroScramble = async (withPageReveal = false, staggerMs = SCRAMBLE_STAGGER_MS) => {
         const revealTargets = [];
@@ -727,6 +709,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let cursorHasAppeared = false;
             let hasKnownCursorPosition = false;
             const cursorStorageKey = 'custom-cursor-state-v1';
+            const cursorPersistThrottleMs = 180;
+            let cursorPersistTimeoutId = 0;
+            let cursorStateDirty = false;
             const interactiveSelector = 'a, button, label, .menu-burger, .toggle-control, .project-item';
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const isLoaderInitiallyActive = document.documentElement.classList.contains('first-visit-loading');
@@ -771,6 +756,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
+            const flushCursorState = () => {
+                if (!cursorStateDirty) return;
+                cursorStateDirty = false;
+                if (cursorPersistTimeoutId) {
+                    window.clearTimeout(cursorPersistTimeoutId);
+                    cursorPersistTimeoutId = 0;
+                }
+                persistCursorState();
+            };
+
+            const scheduleCursorStatePersist = () => {
+                cursorStateDirty = true;
+                if (cursorPersistTimeoutId) return;
+                cursorPersistTimeoutId = window.setTimeout(() => {
+                    cursorPersistTimeoutId = 0;
+                    flushCursorState();
+                }, cursorPersistThrottleMs);
+            };
+
             try {
                 const rawState = sessionStorage.getItem(cursorStorageKey);
                 if (rawState) {
@@ -802,12 +806,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 mouseX = event.clientX;
                 mouseY = event.clientY;
                 hasKnownCursorPosition = true;
-                persistCursorState();
+                scheduleCursorStatePersist();
                 if (rafId) return;
                 rafId = window.requestAnimationFrame(renderCursor);
             }, { passive: true });
 
-            window.addEventListener('pagehide', persistCursorState, { passive: true });
+            window.addEventListener('pagehide', () => {
+                flushCursorState();
+            }, { passive: true });
             window.addEventListener('home-loader-complete', () => {
                 if (!hasKnownCursorPosition) {
                     mouseX = window.innerWidth * 0.5;
@@ -817,7 +823,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 window.setTimeout(() => {
                     showCursor({ animate: true });
-                    persistCursorState();
+                    scheduleCursorStatePersist();
                 }, 1000);
             }, { passive: true });
 
