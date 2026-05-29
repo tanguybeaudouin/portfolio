@@ -6,10 +6,11 @@ window.addEventListener('load', () => {
     const contactSubmit = document.querySelector('.contact-submit');
     const contactFeedback = document.querySelector('.contact-feedback');
     const contactHint = document.querySelector('.contact-hint');
+    let hasTriedInvalidSubmit = false;
 
     function setContactSubmitState(isEnabled) {
         if (!contactSubmit) return;
-        contactSubmit.disabled = !isEnabled;
+        contactSubmit.disabled = false;
         contactSubmit.setAttribute('aria-disabled', String(!isEnabled));
         contactSubmit.classList.toggle('is-enabled', isEnabled);
         if (!isEnabled) {
@@ -35,7 +36,7 @@ window.addEventListener('load', () => {
 
         setContactSubmitState(isValid);
         if (contactHint) {
-            contactHint.classList.toggle('is-hidden', isValid);
+            contactHint.classList.toggle('is-hidden', isValid || !hasTriedInvalidSubmit);
         }
         return isValid;
     }
@@ -47,7 +48,11 @@ window.addEventListener('load', () => {
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const isValid = validateContactForm();
-            if (!isValid || contactSubmit?.disabled) return;
+            if (!isValid || contactSubmit?.getAttribute('aria-disabled') === 'true') {
+                hasTriedInvalidSubmit = true;
+                validateContactForm();
+                return;
+            }
 
             const formData = new FormData(contactForm);
             try {
@@ -61,13 +66,14 @@ window.addEventListener('load', () => {
 
                 if (response.ok) {
                     contactForm.reset();
+                    hasTriedInvalidSubmit = false;
                     setContactSubmitState(false);
                     [email, subject, message].forEach(field => {
                         if (!field) return;
                         field.setAttribute('aria-invalid', 'false');
                     });
                     if (contactHint) {
-                        contactHint.classList.remove('is-hidden');
+                        contactHint.classList.add('is-hidden');
                     }
                     if (contactFeedback) {
                         contactFeedback.textContent = "Merci pour votre message, j’y répondrai au plus vite.";
