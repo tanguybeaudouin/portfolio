@@ -1,0 +1,7 @@
+/project-1 /project-1.html 200
+/project-2 /project-2.html 200
+/project-3 /project-3.html 200
+
+/project-1.html /project-1 301
+/project-2.html /project-2 301
+/project-3.html /project-3 301

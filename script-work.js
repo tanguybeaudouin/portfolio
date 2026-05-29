@@ -20,15 +20,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let hoverTiltCurrentX = 0;
     let hoverTiltCurrentY = 0;
     let hoverMotionFrameId = null;
+    let pointerUpdateFrameId = null;
+    const pendingPointerUpdates = new Map();
 
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
     const lerp = (from, to, alpha) => from + (to - from) * alpha;
+
+    const flushPointerUpdates = () => {
+        pendingPointerUpdates.forEach((coords, item) => {
+            item.style.setProperty('--pointer-x', String(coords.x));
+            item.style.setProperty('--pointer-y', String(coords.y));
+        });
+        pendingPointerUpdates.clear();
+        pointerUpdateFrameId = null;
+    };
+
+    const schedulePointerUpdate = (item, x, y) => {
+        pendingPointerUpdates.set(item, { x, y });
+        if (pointerUpdateFrameId !== null) return;
+        pointerUpdateFrameId = requestAnimationFrame(flushPointerUpdates);
+    };
 
     // Sécurise le lien de la card Frame by Frame, même si une ancienne version HTML est en cache.
     const frameByFrameItem = document.querySelector('.project-item-fbf') ||
         Array.from(projectItems).find(item => (item.getAttribute('data-title') || '').toLowerCase().includes('frame by frame'));
     if (frameByFrameItem) {
-        frameByFrameItem.setAttribute('href', 'project-2.html');
+        frameByFrameItem.setAttribute('href', '/project-2');
     }
 
     const animateHoverInfoMotion = () => {
@@ -79,15 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+        const clampedX = clamp(x, -1, 1);
+        const clampedY = clamp(y, -1, 1);
 
-        item.style.setProperty('--pointer-x', String(clamp(x, -1, 1)));
-        item.style.setProperty('--pointer-y', String(clamp(y, -1, 1)));
+        schedulePointerUpdate(item, clampedX, clampedY);
 
         if (hoverInfo && activeItem === item) {
-            hoverMotionTargetX = x * 16;
-            hoverMotionTargetY = y * 16;
-            hoverTiltTargetX = x * 6;
-            hoverTiltTargetY = y * -6;
+            hoverMotionTargetX = clampedX * 16;
+            hoverMotionTargetY = clampedY * 16;
+            hoverTiltTargetX = clampedX * 6;
+            hoverTiltTargetY = clampedY * -6;
             ensureHoverInfoMotionLoop();
         }
     };
