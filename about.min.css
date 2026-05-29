@@ -17,9 +17,9 @@
 }
 
 .about-page .title-group h1 {
-    font-size: 72px;
-    line-height: 0.92;
-    letter-spacing: -0.03em;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.02em;
     text-transform: lowercase;
 }
 
@@ -213,10 +213,6 @@
 }
 
 @media (max-width: 1200px) {
-    .about-page .title-group h1 {
-        font-size: 62px;
-    }
-
     .about-structure {
         gap: 24px;
     }
@@ -225,11 +221,6 @@
 @media (max-width: 960px) {
     .about-page .main-card {
         padding: 32px;
-    }
-
-    .about-page .title-group h1 {
-        font-size: 52px;
-        line-height: 0.94;
     }
 
     .about-structure {
