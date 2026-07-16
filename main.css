@@ -86,6 +86,48 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+body.project-2-page .page,
+body.project-fbf-page .page {
+    transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1), filter 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: none;
+    transform-origin: 50% 50%;
+}
+
+body.is-project-transitioning-will-change.project-2-page .page,
+body.is-project-transitioning-will-change.project-fbf-page .page,
+body.is-project-entering-will-change.project-2-page .page,
+body.is-project-entering-will-change.project-fbf-page .page {
+    will-change: transform, opacity, filter;
+}
+
+body.is-project-transitioning.project-2-page .page,
+body.is-project-transitioning.project-fbf-page .page {
+    transform: scale(0.75);
+    opacity: 0;
+    filter: none;
+}
+
+body.is-project-transitioning.is-project-transitioning-critical.project-2-page .page,
+body.is-project-transitioning.is-project-transitioning-critical.project-fbf-page .page {
+    filter: blur(30px);
+}
+
+body.is-project-entering-from-project.project-2-page .page,
+body.is-project-entering-from-project.project-fbf-page .page {
+    transform: translateY(100vh) scale(1);
+    opacity: 1;
+    filter: none;
+}
+
+html.project-transition-enter body.project-2-page .page,
+html.project-transition-enter body.project-fbf-page .page {
+    transform: translateY(100vh) scale(1);
+    opacity: 1;
+    filter: none;
+}
+
 /* Style Body (Figma): DM Mono / Regular / 14 / 140% / 0% */
 :where(
     .projects-intro,
