@@ -759,7 +759,12 @@ h3 {
     .main-card {
         flex-direction: column;
         height: auto;
+        /* svh = hauteur visible barre d'outils COMPRISE. Avec 100vh, Safari iOS calcule
+           la hauteur barre masquee : le bas de la carte (le footer) passe alors derriere
+           la barre. svh cale la carte sur la zone reellement visible, sans scroll.
+           100vh reste en repli pour les navigateurs sans svh (< iOS 15.4). */
         min-height: 100vh;
+        min-height: 100svh;
         padding: 0;
         gap: 0;
     }
@@ -826,6 +831,8 @@ h3 {
 
     .home-page .footer-group {
         padding: var(--space-24);
+        /* degage le footer de l'indicateur d'accueil / barre Safari sur iPhone */
+        padding-bottom: calc(var(--space-24) + env(safe-area-inset-bottom, 0px));
         margin-top: 0;
     }
 
