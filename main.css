@@ -758,15 +758,18 @@ h3 {
 
     /* La home tient en un ecran : on la verrouille pour interdire tout scroll.
        Uniquement .home-page — les autres pages depassent un ecran et doivent scroller.
-       position: fixed sort le body du flux : l'element html n'a alors plus de contenu
-       a faire defiler, ce qui coupe le scroll a la source (le body seul ne suffisait
-       pas, c'est html qui scrollait). Cale en haut, hauteur svh = zone visible barre
-       comprise, donc le footer reste visible. 100vh en repli avant svh. */
+       Le scroll se faisait sur html, pas sur body : on bloque donc les deux avec
+       overflow: hidden, sans sortir le body du flux. Garder le body dans le flux est
+       indispensable pour que le fond sombre de html couvre tout l'ecran (position:
+       fixed cassait cette propagation, d'ou la bande claire en bas en dark mode).
+       min-height: 0 neutralise le body { min-height: 100vh } de base. */
+    html:has(body.home-page) {
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+    }
+
     body.home-page {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
         height: 100vh;
         height: 100svh;
         min-height: 0;
@@ -848,8 +851,10 @@ h3 {
 
     .home-page .footer-group {
         padding: var(--space-24);
-        /* degage le footer de l'indicateur d'accueil / barre Safari sur iPhone */
-        padding-bottom: calc(var(--space-24) + env(safe-area-inset-bottom, 0px));
+        /* max au lieu de +: on prend la plus grande des deux valeurs (marge de base
+           ou safe-area) au lieu de les additionner. Degage l'indicateur d'accueil
+           sans doubler la marge en bas. */
+        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
         margin-top: 0;
     }
 
