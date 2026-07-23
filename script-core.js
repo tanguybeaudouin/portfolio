@@ -191,7 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const rennesTimes = Array.from(document.querySelectorAll('.footer-local-time'));
 
-    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br>Éco-conçues et garanties sans frustration utilisateur.";
+    // Le 2e <br> est masque sous 900px (voir main.css) : le texte doit donc rester
+    // lisible avec ET sans ce saut de ligne, d'ou l'espace apres le <br>.
+    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br> éco-conçues et garanties sans frustration utilisateur.";
 
     // ==========================================
     // HORLOGE LOCALE (RENNES)

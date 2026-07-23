@@ -540,10 +540,33 @@ h3 {
 }
 
 .home-page #typewriter {
+    /* DM Mono n'est charge qu'en 400 : garder le 600 de #typewriter forcerait
+       le navigateur a simuler un gras. */
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    letter-spacing: 0;
+    /* justify n'agit que sur les lignes qui se replient d'elles-memes : ni la derniere
+       ligne d'un bloc, ni une ligne terminee par un <br>. Il faut donc une mesure qui
+       force le repli — sans max-width, la declaration resterait sans effet.
+       42ch = la mesure de la maquette : "…expériences digitales" tient (36 car.),
+       "…inclusives," (48) non ; la ligne suivante tient ses 41 caracteres. */
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.3;
+    /* content-box car le reset global met border-box : sinon les 96px de padding
+       seraient decomptes des 42ch et la colonne tomberait a 312px. */
+    box-sizing: content-box;
+    max-width: 42ch;
     padding: 96px;
     transform: translate3d(var(--home-parallax-x), var(--home-parallax-y), 0);
     transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
+}
+
+/* Le 1er <br> reste : il isole "Hello, moi c'est Tanguy." en drapeau, comme la
+   maquette. Le 2e sauterait le repli du paragraphe, donc la justification. */
+.home-page #typewriter br:nth-of-type(2) {
+    display: none;
 }
 
 #menu-wrapper {
@@ -762,13 +785,59 @@ h3 {
         margin-top: calc(var(--space-24) + env(safe-area-inset-top, 0px));
     }
 
+    /* ---- Echelle sous 900px ----
+       Les trois clamp ci-dessous font grandir la composition avec l'ecran au lieu de
+       la laisser figee a la taille telephone. Reperes : le plancher est atteint des
+       390px (valeurs de la maquette, mobile inchange), le plafond vers 900px.
+       vmin et non vw : un telephone en paysage fait 844px de large mais 390px de
+       haut, il lit donc 390 et reste a l'echelle telephone. Pas de garde-fou. */
     .home-page .baseline-section {
         order: 2;
-        padding: 0 var(--space-24) 0;
-        flex-grow: 0;
-        justify-content: flex-start;
+        padding: 0 clamp(32px, 6.2vmin, 56px);
+        flex-grow: 1;
+        justify-content: center;
         align-items: flex-start;
-        margin-top: auto;
+        margin-top: 0;
+    }
+
+    /* Typo mobile de la home — d'apres la maquette Figma (node 2043:3101) */
+    .home-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        line-height: 1;
+        letter-spacing: -0.012em;
+    }
+
+    .home-page .title-group .subtitle {
+        font-size: 14px;
+        line-height: 1.3;
+        font-weight: 300;
+    }
+
+    /* Sous 900px le texte coule d'un bloc et se replie sur une mesure fixe : ce sont
+       ces replis que le text-align: justify herite de .home-page #typewriter etire.
+       34ch = la mesure obtenue sur un telephone de 390px, la ou le bloc a ete calibre
+       d'apres la maquette. La police est fixe a 16px comme sur desktop : seuls le h1
+       et la marge grandissent avec l'ecran, le pave garde sa taille de lecture. */
+    .home-page #typewriter {
+        font-size: 16px;
+        max-width: 34ch;
+        padding: 0;
+    }
+
+    .home-page .footer-group {
+        padding: var(--space-24);
+        margin-top: 0;
+    }
+
+    .home-page .location {
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .home-page .footer-local-time {
+        font-size: 16px;
+        line-height: 1.2;
     }
 
     .home-page .image-section {
@@ -1008,16 +1077,6 @@ h3 {
     }
 
 }
-
-@media (max-width: 400px) {
-    #typewriter {
-        font-size: 14px;
-        line-height: 1.1;
-    }
-}
-
-
-
 
 /* ========================================== 12. BOUTON CTA ========================================== */
 

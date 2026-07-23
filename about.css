@@ -212,12 +212,15 @@
     margin-top: 16px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
     .about-structure {
         gap: 24px;
     }
 }
 
+/* 960 et non 900 : au-dessus, .about-image garde son masque et son ::after, la photo
+   ne se revele qu'au survol. Sur une tablette tactile large il n'y a pas de survol,
+   donc la photo resterait invisible. Ce palier n'est pas alignable sur les autres. */
 @media (max-width: 960px) {
     .about-page .main-card {
         padding: 32px;
