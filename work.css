@@ -205,9 +205,23 @@
 }
 
 @media (max-width: 900px) {
+    /* padding 0 sur la carte : le padding 24 des sections (header, galerie, footer)
+       suffit. Avant, carte 24 + sections 24 = 48px de double marge (padding "pas bon"). */
     .work-page .main-card {
-        padding: 24px;
+        padding: 0;
         min-height: 100vh;
+        min-height: 100svh;
+    }
+
+    .work-page .content-section {
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+
+    /* Header 40px qui grandit avec l'ecran, comme les autres pages */
+    .work-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
     }
 
     .work-page .about-baseline-section {
@@ -221,10 +235,20 @@
     .projects-gallery-section {
         position: static;
         grid-template-columns: 1fr;
-        gap: 16px;
     }
 
     .project-item {
         aspect-ratio: 3 / 2 !important;
+    }
+
+    /* Pas de zoom/tilt en mobile (aucun pointeur) : visuel plein cadre */
+    .project-media,
+    .project-item.is-hover-active .project-media {
+        transform: none;
+    }
+
+    /* Footer : safe-area (degage l'indicateur d'accueil) */
+    .work-page .footer-group {
+        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
     }
 }

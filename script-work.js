@@ -194,4 +194,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         item.addEventListener('mousemove', event => updatePointerMotion(item, event));
     });
+
+    // ==========================================
+    // MOBILE / TACTILE : etat hover permanent
+    // Pas de survol sur tactile -> on affiche directement la version "hover" de
+    // chaque card (couverture couleur revelee, video en lecture), au lieu de la
+    // seule couverture sombre. Sur desktop (pointeur fin) on garde l'interaction.
+    // ==========================================
+    const isTouchLike = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isTouchLike) {
+        projectItems.forEach(item => {
+            item.classList.add('is-hover-active');
+            const video = item.querySelector('.project-video');
+            if (!video) return;
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {});
+            }
+        });
+    }
 });
