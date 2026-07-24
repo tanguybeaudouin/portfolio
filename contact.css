@@ -194,11 +194,19 @@
 }
 
 @media (max-width: 900px) {
+    /* Header comme home/about : h1 40px qui grandit avec l'ecran */
+    .contact-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
+    }
+
     .contact-layout {
         display: flex;
         flex-direction: column;
         gap: var(--space-16);
         align-items: stretch;
+        margin-top: 0;
+        flex: none;
     }
 
     .contact-block p,
@@ -211,6 +219,43 @@
     .contact-input,
     .contact-textarea {
         line-height: 14px;
+    }
+
+    /* ---- Tenir en un ecran, sans scroll (principe de la home) ----
+       En desktop, le formulaire et le textarea sont en flex:1 pour remplir la
+       colonne ; en mobile empile, ca gonflait la page bien au-dela de l'ecran.
+       On coupe ces flex-grow et on plafonne le textarea : tout le contenu rentre.
+       Pas de verrou overflow ici, au contraire de la home : la page a un formulaire,
+       et bloquer le scroll piegerait le clavier (champ cache derriere). Comme le
+       contenu tient, il n'y a de toute facon rien a faire defiler. */
+    .contact-info {
+        gap: 12px;
+    }
+
+    .contact-form {
+        flex: none;
+        gap: 10px;
+    }
+
+    .message-field {
+        flex: none;
+        margin-bottom: 0;
+    }
+
+    .contact-textarea {
+        flex: none;
+        min-height: 84px;
+    }
+
+    .contact-form-actions {
+        margin-top: var(--space-16);
+    }
+
+    /* Footer : safe-area comme home */
+    .contact-page .footer-group {
+        padding: var(--space-24);
+        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
+        margin-top: 0;
     }
 }
 

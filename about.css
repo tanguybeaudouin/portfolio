@@ -218,22 +218,107 @@
     }
 }
 
-/* 960 et non 900 : au-dessus, .about-image garde son masque et son ::after, la photo
-   ne se revele qu'au survol. Sur une tablette tactile large il n'y a pas de survol,
-   donc la photo resterait invisible. Ce palier n'est pas alignable sur les autres. */
-@media (max-width: 960px) {
+/* ========== ABOUT MOBILE (<= 900px) ==========
+   Refonte d'apres la maquette Figma (node 2077:60257), alignee sur index :
+   flux vertical unique, header -> texte intro -> CTA -> competences + note ->
+   portrait pleine largeur -> footer. 96px header/footer, 32px entre blocs.
+   Aligne sur 900px comme tout le site (l'ancien palier 960 est supprime).
+   Le portrait, en survol seulement sur desktop, est ici toujours affiche en bas. */
+@media (max-width: 900px) {
+    /* Padding gere par section (comme la maquette), pas par la carte */
     .about-page .main-card {
-        padding: 32px;
+        padding: 0;
     }
 
-    .about-structure {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    /* h1 40px qui grandit avec l'ecran, exactement comme index */
+    .about-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
+    }
+
+    /* 96px entre le header et le contenu ; le padding lateral passe sur la structure */
+    .about-page .about-baseline-section {
+        flex: none;
+        margin-top: 96px;
+        padding: 0;
+    }
+
+    .about-page #baseline-wrapper {
         height: auto;
     }
 
-    .about-image {
-        height: min(520px, 95vw);
+    /* Colonne unique, ordre maquette : texte (1), competences (2), portrait (3).
+       Grand blanc en haut (hero aere, maquette pt-499) : le texte demarre bas
+       et se revele au scroll. En vh pour rester proportionnel a l'ecran. */
+    .about-structure {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        height: auto;
+        padding: clamp(300px, 56vh, 499px) var(--space-24) 0;
+    }
+
+    /* Reveal au scroll facon pages projets : caractere par caractere en ordre de
+       lecture. Pas de transition -> bord NET (comme le clip des pages projets), la
+       frontiere sombre/gris est franche, jamais un fondu (voir script-about.js). */
+    .about-page .intro-greeting .reveal-char {
+        color: var(--neutral-dark-05);
+    }
+
+    .about-page .intro-greeting .reveal-char.is-revealed {
+        color: var(--neutral-dark);
+    }
+
+    .about-columns {
+        display: contents;
+    }
+
+    .about-text-content {
+        order: 1;
+        gap: 32px;
+    }
+
+    .skills-section-container {
+        order: 2;
+        gap: 32px;
+    }
+
+    .about-page .about-image {
+        order: 3;
+    }
+
+    /* Texte intro 16px DM Mono justifie, comme la baseline d'index */
+    .about-page .about-text-content .intro-greeting {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    /* CTA juste sous le texte (32px via le gap du parent), centre */
+    .about-cta {
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    /* Liste de competences 16px (main.css la met a 12px en mobile) */
+    .about-page .skills-list p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    /* Note 12px capitales, l'espace vient du gap:32 du conteneur */
+    .about-note {
+        margin-top: 0;
+        font-size: 12px;
+        line-height: 1.6;
+        letter-spacing: 0.02em;
+    }
+
+    /* Portrait pleine largeur en bas, ratio de la maquette, toujours visible */
+    .about-page .about-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 342 / 523;
+        border-radius: 6px;
     }
 
     .about-image::before {
@@ -246,12 +331,22 @@
         display: none;
     }
 
-    .about-columns {
-        display: block;
+    /* Dark mode : on montre le portrait sombre a la place du clair */
+    .dark-theme .about-image::before {
+        opacity: 0;
     }
 
-    .about-cta {
-        justify-content: center;
-        margin-top: 24px;
+    .dark-theme .about-image::after {
+        display: block;
+        opacity: 1;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    /* 96px entre le contenu et le footer, safe-area comme index */
+    .about-page .footer-group {
+        margin-top: 96px;
+        padding: var(--space-24);
+        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
     }
 }
