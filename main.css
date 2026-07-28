@@ -756,13 +756,22 @@ h3 {
         font-size: 14px;
     }
 
-    /* Home et contact tiennent en un ecran : on les verrouille pour interdire tout
-       scroll. Pas work/about, qui depassent un ecran et doivent scroller.
-       Le scroll se faisait sur html, pas sur body : on bloque donc les deux avec
-       overflow: hidden, sans sortir le body du flux. Garder le body dans le flux est
-       indispensable pour que le fond sombre de html couvre tout l'ecran (position:
-       fixed cassait cette propagation, d'ou la bande claire en bas en dark mode).
-       min-height: 0 neutralise le body { min-height: 100vh } de base. */
+    /* ================= SYSTEME DE SCROLL (mobile) =================
+       Une seule regle pour tout le site : une page est verrouillee si et seulement
+       si son contenu tient dans un ecran. Sinon elle scrolle normalement.
+
+         verrouillees (tiennent en un ecran) : home, contact
+         scrollent (contenu plus long)       : about, work, pages projet
+
+       Pour ajouter une page verrouillee : l'ajouter aux deux selecteurs ci-dessous
+       ET verifier que son contenu tient reellement (sinon overflow:hidden rogne
+       le bas, typiquement le footer).
+
+       Mise en oeuvre : le scroll se fait sur html, pas sur body -> on bloque les
+       deux. On garde le body dans le flux (pas de position:fixed) pour que le fond
+       sombre de html couvre tout l'ecran en dark mode. min-height: 0 neutralise le
+       body { min-height: 100vh } de base. dvh = hauteur reellement visible, barre
+       Safari comprise ; 100vh en repli pour les navigateurs sans dvh. */
     html:has(body.home-page),
     html:has(body.contact-page) {
         height: 100vh;
@@ -870,12 +879,10 @@ h3 {
         height: min(410px, 100vw);
     }
 
-    /* Regle unique (etait dupliquee : une 2e definition plus bas dans le fichier
-       ecrasait le padding-bottom/margin-top voulus ici via le cascade). */
+    /* Padding et margin viennent de la regle .footer-group commune ci-dessus :
+       on ne declare ici que la position dans le flux. */
     .home-page .footer-group {
         order: 4;
-        padding: var(--space-24);
-        margin-top: 0;
     }
 
     .about-page .image-section,
@@ -1022,9 +1029,14 @@ h3 {
         margin-top: var(--space-8);
     }
 
+    /* ---- FOOTER : source unique pour toutes les pages ----
+       24px sur les 4 cotes, colle en bas de la carte. Les pages ne surchargent
+       plus que ce qui leur est propre (l'ordre dans le flux, un espacement au
+       dessus). Ne pas redefinir ce padding ailleurs : c'est ce qui avait produit
+       des footers differents d'une page a l'autre. */
     .footer-group {
         margin-top: 0;
-        padding: 0 var(--space-24) var(--space-24);
+        padding: var(--space-24);
     }
 
     .about-page .cta-container {

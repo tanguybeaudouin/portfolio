@@ -343,9 +343,9 @@
         mask-image: none;
     }
 
-    /* 96px entre le contenu et le footer ; 24px en bas, comme les autres pages */
+    /* Padding commun (.footer-group dans main.css) ; seul l'espacement au-dessus
+       est propre a about (respiration apres le portrait). */
     .about-page .footer-group {
         margin-top: 96px;
-        padding: var(--space-24);
     }
 }

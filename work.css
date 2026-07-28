@@ -247,8 +247,5 @@
         transform: none;
     }
 
-    /* Footer : 24px en bas, comme les autres pages */
-    .work-page .footer-group {
-        padding-bottom: var(--space-24);
-    }
+    /* Footer : padding commun (.footer-group dans main.css), rien a surcharger ici. */
 }
