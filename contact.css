@@ -250,8 +250,13 @@
         height: 46px;
     }
 
-    .contact-form-actions {
-        margin-top: var(--space-8);
+    /* .contact-page pour battre .contact-form-actions { margin-top: 24px } de la
+       regle de base (ligne ~313, situee APRES ce bloc dans le fichier : sans cette
+       specificite renforcee, elle ecrase le auto au cascade malgre l'ordre visuel).
+       margin-top: auto -> le bouton descend tout en bas de la zone, juste
+       au-dessus du footer, au lieu de coller au formulaire. */
+    .contact-page .contact-form-actions {
+        margin-top: auto;
     }
 
     /* Footer : 24px en bas, comme la home */
