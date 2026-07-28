@@ -766,14 +766,14 @@ h3 {
     html:has(body.home-page),
     html:has(body.contact-page) {
         height: 100vh;
-        height: 100svh;
+        height: 100dvh;
         overflow: hidden;
     }
 
     body.home-page,
     body.contact-page {
         height: 100vh;
-        height: 100svh;
+        height: 100dvh;
         min-height: 0;
         overflow: hidden;
     }
@@ -781,12 +781,12 @@ h3 {
     .main-card {
         flex-direction: column;
         height: auto;
-        /* svh = hauteur visible barre d'outils COMPRISE. Avec 100vh, Safari iOS calcule
-           la hauteur barre masquee : le bas de la carte (le footer) passe alors derriere
-           la barre. svh cale la carte sur la zone reellement visible, sans scroll.
-           100vh reste en repli pour les navigateurs sans svh (< iOS 15.4). */
+        /* dvh = hauteur reellement visible a l'instant (barre Safari comprise). Avec
+           svh, la carte se calait sur la plus petite hauteur possible et laissait un
+           vide sous le footer ; avec 100vh, le footer passait derriere la barre. dvh
+           colle a la zone visible : footer pile au-dessus de la barre. 100vh en repli. */
         min-height: 100vh;
-        min-height: 100svh;
+        min-height: 100dvh;
         padding: 0;
         gap: 0;
     }

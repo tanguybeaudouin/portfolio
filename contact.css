@@ -203,7 +203,7 @@
     .contact-layout {
         display: flex;
         flex-direction: column;
-        gap: var(--space-16);
+        gap: 12px;
         align-items: stretch;
         margin-top: 0;
         flex: none;
@@ -221,15 +221,15 @@
         line-height: 14px;
     }
 
-    /* ---- Tenir en un ecran, sans scroll (principe de la home) ----
-       En desktop, le formulaire et le textarea sont en flex:1 pour remplir la
-       colonne ; en mobile empile, ca gonflait la page bien au-dela de l'ecran.
-       On coupe ces flex-grow et on plafonne le textarea : tout le contenu rentre.
-       Pas de verrou overflow ici, au contraire de la home : la page a un formulaire,
-       et bloquer le scroll piegerait le clavier (champ cache derriere). Comme le
-       contenu tient, il n'y a de toute facon rien a faire defiler. */
+    /* ---- Tenir en un ecran, verrouille comme la home (voir le verrou dans main.css) ----
+       En desktop, formulaire et textarea sont en flex:1 pour remplir la colonne ; en
+       mobile empile ca depassait l'ecran. On coupe ces flex-grow et on plafonne le
+       textarea. Valeurs serrees pour que TOUT rentre dans la zone visible (barre
+       Safari comprise) et que le footer reste visible malgre le verrou overflow.
+       NB : la page ayant un formulaire, si le clavier masque un champ a la saisie,
+       repasser au scroll est l'option de repli. */
     .contact-info {
-        gap: 12px;
+        gap: 10px;
     }
 
     .contact-form {
@@ -242,19 +242,21 @@
         margin-bottom: 0;
     }
 
-    .contact-textarea {
+    /* .contact-page pour battre la regle de base .contact-textarea (min-height 110,
+       situee plus loin dans le fichier) ; height fixe pour battre aussi rows="4". */
+    .contact-page .contact-textarea {
         flex: none;
-        min-height: 84px;
+        min-height: 0;
+        height: 46px;
     }
 
     .contact-form-actions {
-        margin-top: var(--space-16);
+        margin-top: var(--space-8);
     }
 
-    /* Footer : safe-area comme home */
+    /* Footer : 24px en bas, comme la home */
     .contact-page .footer-group {
         padding: var(--space-24);
-        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
         margin-top: 0;
     }
 }
