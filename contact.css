@@ -276,6 +276,13 @@
         overflow: hidden;
     }
 
+    /* L'ecart bouton -> footer vient du padding bas de cette section (24px par
+       defaut dans main.css), pas du bouton. On le passe a 16px pour rester
+       coherent avec les 16px sous le footer. */
+    .contact-page .about-baseline-section {
+        padding-bottom: var(--space-16);
+    }
+
     /* Footer : padding commun (.footer-group dans main.css), rien a surcharger ici. */
 }
 
