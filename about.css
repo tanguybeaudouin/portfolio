@@ -1,0 +1,351 @@
+/* ========================================== ABOUT PAGE ========================================== */
+
+.about-page .main-card {
+    display: block;
+    width: 100%;
+    padding: 32px;
+}
+
+.about-page .content-section {
+    width: 100%;
+    padding: 0;
+    gap: 16px;
+}
+
+.about-page .content-top-section {
+    align-items: flex-start;
+}
+
+.about-page .title-group h1 {
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+}
+
+.about-page .title-group .subtitle {
+    font-size: 14px;
+    letter-spacing: 0.01em;
+}
+
+.about-page .about-baseline-section {
+    flex: 1;
+    min-height: 0;
+    margin-top: 16px;
+}
+
+.about-page #baseline-wrapper {
+    height: 100%;
+}
+
+.about-structure {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    align-items: start;
+    min-height: 0;
+    height: 100%;
+}
+
+.about-image {
+    position: relative;
+    z-index: 10110;
+    isolation: isolate;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background-color: var(--bg-card);
+    transition: background-color 0.8s ease;
+    --spot-x: 50%;
+    --spot-y: 50%;
+    --spot-size: 150px;
+    --portrait-dark-mix: 0;
+}
+
+.about-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('images/tanguy-beaudouin-portrait-light.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: calc(var(--spot-opacity, 0) * (1 - var(--portrait-dark-mix)));
+    pointer-events: none;
+    transition:
+        opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        -webkit-mask-image 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        mask-image 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-mask-image: radial-gradient(circle var(--spot-size) at var(--spot-x) var(--spot-y), #000 0%, #000 44%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.56) 73%, rgba(0, 0, 0, 0.34) 84%, rgba(0, 0, 0, 0.2) 91%, rgba(0, 0, 0, 0.1) 95%, rgba(0, 0, 0, 0.04) 98%, transparent 100%);
+    mask-image: radial-gradient(circle var(--spot-size) at var(--spot-x) var(--spot-y), #000 0%, #000 44%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.56) 73%, rgba(0, 0, 0, 0.34) 84%, rgba(0, 0, 0, 0.2) 91%, rgba(0, 0, 0, 0.1) 95%, rgba(0, 0, 0, 0.04) 98%, transparent 100%);
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('images/tanguy-beaudouin-portrait-dark.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: calc(var(--spot-opacity, 0) * var(--portrait-dark-mix));
+    pointer-events: none;
+    transition:
+        opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        -webkit-mask-image 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        mask-image 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-mask-image: radial-gradient(circle var(--spot-size) at var(--spot-x) var(--spot-y), #000 0%, #000 44%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.56) 73%, rgba(0, 0, 0, 0.34) 84%, rgba(0, 0, 0, 0.2) 91%, rgba(0, 0, 0, 0.1) 95%, rgba(0, 0, 0, 0.04) 98%, transparent 100%);
+    mask-image: radial-gradient(circle var(--spot-size) at var(--spot-x) var(--spot-y), #000 0%, #000 44%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.56) 73%, rgba(0, 0, 0, 0.34) 84%, rgba(0, 0, 0, 0.2) 91%, rgba(0, 0, 0, 0.1) 95%, rgba(0, 0, 0, 0.04) 98%, transparent 100%);
+}
+
+.dark-theme .about-image {
+    --portrait-dark-mix: 1;
+}
+
+.about-columns {
+    display: contents;
+}
+
+.about-text-content {
+    width: 100%;
+    min-width: 0;
+    color: var(--neutral-dark);
+    transition: color 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+.about-text-content .intro-greeting {
+    margin: 0;
+    text-indent: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.skills-section-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+    gap: 12px;
+}
+
+.section-title {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0;
+    margin: 0 0 8px;
+}
+
+.skills-list p {
+    margin: 0;
+    text-align: justify;
+}
+
+.about-note {
+    margin-top: 32px;
+    margin-bottom: 0;
+    font-size: 10px;
+    line-height: 1.60;
+    letter-spacing: 0.01em;
+    text-align: justify;
+}
+
+.about-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.about-page .btn-download {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    min-width: 0;
+    transition: color 0.62s ease;
+}
+
+.about-page .btn-download .btn-label {
+    position: relative;
+    z-index: 1;
+}
+
+.about-page .btn-download::before {
+    content: '';
+    position: absolute;
+    left: var(--cta-ripple-x, 50%);
+    top: var(--cta-ripple-y, 50%);
+    width: var(--cta-ripple-size, 24px);
+    height: var(--cta-ripple-size, 24px);
+    border-radius: 50%;
+    background-color: var(--btn-hover);
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
+    transition: transform 0.72s cubic-bezier(0.2, 0.9, 0.25, 1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-page .btn-download.is-radial-hover::before,
+.about-page .btn-download:focus-visible::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.about-page .btn-download.is-radial-hover,
+.about-page .btn-download:focus-visible {
+    color: var(--bg-card);
+}
+
+.about-page .footer-group {
+    margin-top: 16px;
+}
+
+@media (max-width: 1250px) {
+    .about-structure {
+        gap: 24px;
+    }
+}
+
+/* ========== ABOUT MOBILE (<= 900px) ==========
+   Refonte d'apres la maquette Figma (node 2077:60257), alignee sur index :
+   flux vertical unique, header -> texte intro -> CTA -> competences + note ->
+   portrait pleine largeur -> footer. 96px header/footer, 32px entre blocs.
+   Aligne sur 900px comme tout le site (l'ancien palier 960 est supprime).
+   Le portrait, en survol seulement sur desktop, est ici toujours affiche en bas. */
+@media (max-width: 900px) {
+    /* Padding gere par section (comme la maquette), pas par la carte */
+    .about-page .main-card {
+        padding: 0;
+    }
+
+    /* h1 40px qui grandit avec l'ecran, exactement comme index */
+    .about-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
+    }
+
+    /* 96px entre le header et le contenu ; le padding lateral passe sur la structure */
+    .about-page .about-baseline-section {
+        flex: none;
+        margin-top: 96px;
+        padding: 0;
+    }
+
+    .about-page #baseline-wrapper {
+        height: auto;
+    }
+
+    /* Colonne unique, ordre maquette : texte (1), competences (2), portrait (3).
+       Grand blanc en haut (hero aere, maquette pt-499) : le texte demarre bas
+       et se revele au scroll. En vh pour rester proportionnel a l'ecran. */
+    .about-structure {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        height: auto;
+        padding: clamp(300px, 56vh, 499px) var(--space-24) 0;
+    }
+
+    /* Reveal au scroll facon pages projets : caractere par caractere en ordre de
+       lecture. Pas de transition -> bord NET (comme le clip des pages projets), la
+       frontiere sombre/gris est franche, jamais un fondu (voir script-about.js). */
+    .about-page .intro-greeting .reveal-char {
+        color: var(--neutral-dark-05);
+    }
+
+    .about-page .intro-greeting .reveal-char.is-revealed {
+        color: var(--neutral-dark);
+    }
+
+    .about-columns {
+        display: contents;
+    }
+
+    .about-text-content {
+        order: 1;
+        gap: 32px;
+    }
+
+    .skills-section-container {
+        order: 2;
+        gap: 32px;
+    }
+
+    .about-page .about-image {
+        order: 3;
+    }
+
+    /* Texte intro 16px DM Mono justifie, comme la baseline d'index */
+    .about-page .about-text-content .intro-greeting {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    /* CTA juste sous le texte (32px via le gap du parent), centre */
+    .about-cta {
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    /* Liste de competences 16px (main.css la met a 12px en mobile) */
+    .about-page .skills-list p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    /* Note 12px capitales, l'espace vient du gap:32 du conteneur */
+    .about-note {
+        margin-top: 0;
+        font-size: 12px;
+        line-height: 1.6;
+        letter-spacing: 0.02em;
+    }
+
+    /* Portrait pleine largeur en bas, ratio de la maquette, toujours visible */
+    .about-page .about-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 342 / 523;
+        border-radius: 6px;
+    }
+
+    .about-image::before {
+        opacity: 1;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .about-image::after {
+        display: none;
+    }
+
+    /* Dark mode : on montre le portrait sombre a la place du clair */
+    .dark-theme .about-image::before {
+        opacity: 0;
+    }
+
+    .dark-theme .about-image::after {
+        display: block;
+        opacity: 1;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    /* Padding commun (.footer-group dans main.css) ; seul l'espacement au-dessus
+       est propre a about (respiration apres le portrait). */
+    .about-page .footer-group {
+        margin-top: 96px;
+    }
+}

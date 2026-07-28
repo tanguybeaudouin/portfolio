@@ -6,12 +6,16 @@ window.addEventListener('load', () => {
     const contactSubmit = document.querySelector('.contact-submit');
     const contactFeedback = document.querySelector('.contact-feedback');
     const contactHint = document.querySelector('.contact-hint');
+    let hasTriedInvalidSubmit = false;
 
     function setContactSubmitState(isEnabled) {
         if (!contactSubmit) return;
-        contactSubmit.disabled = !isEnabled;
+        contactSubmit.disabled = false;
         contactSubmit.setAttribute('aria-disabled', String(!isEnabled));
         contactSubmit.classList.toggle('is-enabled', isEnabled);
+        if (!isEnabled) {
+            contactSubmit.classList.remove('is-radial-hover');
+        }
     }
 
     const email = contactForm?.querySelector('#email');
@@ -32,7 +36,7 @@ window.addEventListener('load', () => {
 
         setContactSubmitState(isValid);
         if (contactHint) {
-            contactHint.classList.toggle('is-hidden', isValid);
+            contactHint.classList.toggle('is-hidden', isValid || !hasTriedInvalidSubmit);
         }
         return isValid;
     }
@@ -44,7 +48,11 @@ window.addEventListener('load', () => {
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const isValid = validateContactForm();
-            if (!isValid || contactSubmit?.disabled) return;
+            if (!isValid || contactSubmit?.getAttribute('aria-disabled') === 'true') {
+                hasTriedInvalidSubmit = true;
+                validateContactForm();
+                return;
+            }
 
             const formData = new FormData(contactForm);
             try {
@@ -58,13 +66,14 @@ window.addEventListener('load', () => {
 
                 if (response.ok) {
                     contactForm.reset();
+                    hasTriedInvalidSubmit = false;
                     setContactSubmitState(false);
                     [email, subject, message].forEach(field => {
                         if (!field) return;
                         field.setAttribute('aria-invalid', 'false');
                     });
                     if (contactHint) {
-                        contactHint.classList.remove('is-hidden');
+                        contactHint.classList.add('is-hidden');
                     }
                     if (contactFeedback) {
                         contactFeedback.textContent = "Merci pour votre message, j’y répondrai au plus vite.";
@@ -84,6 +93,21 @@ window.addEventListener('load', () => {
 
     const copyEmailButton = document.querySelector('.copy-email');
     if (copyEmailButton) {
+        const showCopyCursorToast = (x, y) => {
+            const toast = document.createElement('span');
+            toast.className = 'copy-cursor-toast';
+            toast.textContent = '{ Copiée }';
+            toast.style.left = `${x}px`;
+            toast.style.top = `${y - 16}px`;
+            document.body.appendChild(toast);
+            window.requestAnimationFrame(() => {
+                toast.classList.add('is-visible');
+            });
+            window.setTimeout(() => {
+                toast.remove();
+            }, 900);
+        };
+
         copyEmailButton.addEventListener('click', async () => {
             const emailText = copyEmailButton.querySelector('.contact-email-text')?.textContent?.trim();
             if (!emailText) return;
@@ -100,6 +124,11 @@ window.addEventListener('load', () => {
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
             }
+            const icon = copyEmailButton.querySelector('.copy-icon');
+            const anchorRect = (icon || copyEmailButton).getBoundingClientRect();
+            const x = anchorRect.left + (anchorRect.width * 0.5);
+            const y = anchorRect.top;
+            showCopyCursorToast(x, y);
         });
     }
 });
