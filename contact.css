@@ -257,6 +257,23 @@
        au-dessus du footer, au lieu de coller au formulaire. */
     .contact-page .contact-form-actions {
         margin-top: auto;
+        /* gap: 0 -> le conteneur se termine exactement au bas du bouton. Le hint
+           reprend son espacement via son propre margin quand il s'affiche. */
+        gap: 0;
+    }
+
+    /* Le message d'erreur est masque en opacity mais occupait quand meme sa place
+       sous le bouton (13px + le gap), ce qui eloignait le bouton du footer de 51px
+       au lieu de 24. On le collapse tant qu'il est masque. */
+    .contact-page .contact-hint {
+        margin-top: 8px;
+    }
+
+    .contact-page .contact-hint.is-hidden {
+        height: 0;
+        min-height: 0;
+        margin-top: 0;
+        overflow: hidden;
     }
 
     /* Footer : 24px en bas, comme la home */
