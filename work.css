@@ -210,12 +210,12 @@
     .work-page .main-card {
         padding: 0;
         min-height: 100vh;
-        min-height: 100svh;
+        min-height: 100dvh;
     }
 
     .work-page .content-section {
         min-height: 100vh;
-        min-height: 100svh;
+        min-height: 100dvh;
     }
 
     /* Header 40px qui grandit avec l'ecran, comme les autres pages */
@@ -247,8 +247,8 @@
         transform: none;
     }
 
-    /* Footer : safe-area (degage l'indicateur d'accueil) */
+    /* Footer : 24px en bas, comme les autres pages */
     .work-page .footer-group {
-        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
+        padding-bottom: var(--space-24);
     }
 }

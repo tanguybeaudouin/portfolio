@@ -851,12 +851,6 @@ h3 {
         padding: 0;
     }
 
-    .home-page .footer-group {
-        /* 24px sur les 4 cotes, y compris en bas (sans ajout de safe-area) */
-        padding: var(--space-24);
-        margin-top: 0;
-    }
-
     .home-page .location {
         font-family: 'DM Mono', monospace;
         font-size: 14px;
@@ -876,9 +870,12 @@ h3 {
         height: min(410px, 100vw);
     }
 
+    /* Regle unique (etait dupliquee : une 2e definition plus bas dans le fichier
+       ecrasait le padding-bottom/margin-top voulus ici via le cascade). */
     .home-page .footer-group {
         order: 4;
-        margin-top: var(--space-24);
+        padding: var(--space-24);
+        margin-top: 0;
     }
 
     .about-page .image-section,

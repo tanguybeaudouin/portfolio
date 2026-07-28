@@ -343,10 +343,9 @@
         mask-image: none;
     }
 
-    /* 96px entre le contenu et le footer, safe-area comme index */
+    /* 96px entre le contenu et le footer ; 24px en bas, comme les autres pages */
     .about-page .footer-group {
         margin-top: 96px;
         padding: var(--space-24);
-        padding-bottom: max(var(--space-24), env(safe-area-inset-bottom, 0px));
     }
 }
