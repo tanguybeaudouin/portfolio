@@ -162,24 +162,19 @@ body.project-fbf-page {
     width: auto;
 }
 
+/* Le fond blanc doit suivre le texte quand il passe sur plusieurs lignes.
+   Un ::before en position absolue ne couvrait que la premiere ligne : des que
+   l'accroche se coupait (mobile), la fin du texte restait en noir sur la photo.
+   box-decoration-break: clone redessine le fond sur chaque ligne. */
 .fbf-lead-highlight {
-    position: relative;
     display: inline;
     color: #0b0b0b;
     line-height: inherit;
-    z-index: 0;
-}
-
-.fbf-lead-highlight::before {
-    content: "";
-    position: absolute;
-    left: -6px;
-    right: -6px;
-    top: -3px;
-    bottom: -3px;
     background: #ffffff;
     border-radius: 6px;
-    z-index: -1;
+    padding: 3px 6px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 .fbf-lead-rest {
@@ -909,6 +904,35 @@ body.project-fbf-page.fbf-lightbox-open {
     .fbf-intro {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    /* Sous 900px, les rangees gardaient les colonnes du desktop : la carte de
+       texte tombait dans 148px, moins 64px de padding, moins le padding-right
+       de 128px prevu pour le desktop -> largeur utile nulle, un mot par ligne.
+       On empile, et on neutralise la gouttiere typographique du desktop. */
+    .fbf-grid-row,
+    .fbf-grid-large {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fbf-text-card {
+        padding: 24px 0 0;
+    }
+
+    .fbf-text-card h4,
+    .fbf-text-card p {
+        padding-right: 0;
+    }
+
+    /* Le calque de revelation est un duplicata en nowrap, decoupe par sa largeur.
+       Sur une ligne (desktop) c'est exact ; en mobile la ligne d'origine revient
+       a la ligne, pas le duplicata, qui debordait donc a droite. On le laisse
+       s'aligner sur le texte reel et on decoupe au clip-path : meme balayage
+       gauche-droite, meme variable, mais compatible avec le retour a la ligne. */
+    .fbf-intro-line::after {
+        white-space: normal;
+        width: 100%;
+        clip-path: inset(0 calc(100% - var(--line-reveal, 0%)) 0 0);
     }
 
     .fbf-contact-cta {
