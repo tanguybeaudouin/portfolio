@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectTransitionDurationMs = 220;
     const projectEnterAnimationDurationMs = 780;
     let isProjectTransitionRunning = false;
-    const isProjectPathname = (pathname) => /\/project-(?:fbf|\d+)\.html$/i.test(pathname);
+    const isProjectPathname = (pathname) => /\/project-(?:fbf|\d+)(?:\.html)?$/i.test(pathname);
     let projectSmoother = null;
 
     const initProjectScrollSmoother = () => {
