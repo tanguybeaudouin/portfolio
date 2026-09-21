@@ -13,6 +13,19 @@ VARIABLES & THÈMES ========================================== */
     unicode-range: U+2192;
 }
 
+/* Masque a l'ecran, reste accessible aux lecteurs d'ecran. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 :root {
     --primary: #FF2A16;
     --neutral-dark: #141414;
