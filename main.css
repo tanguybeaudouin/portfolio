@@ -1129,35 +1129,50 @@ h3 {
     white-space: nowrap;
 }
 
-/* Les secondes apparaissent par un bref clignotement a chaque pas. Le span est
-   cree par script-core.js (voir HORLOGE LOCALE), qui rejoue l'animation a chaque
-   changement de valeur. Les paliers 40%/41% sont volontairement colles : a 300ms
-   un pourcent vaut 3ms, la reapparition est donc franche et non un fondu.
-   inline-block fige la boite pour que AM/PM ne tressaute pas, et DM Mono garantit
-   deja une largeur constante quelles que soient les chiffres. */
+/* Les secondes defilent verticalement facon compteur, comme NumberFlow : chaque
+   chiffre est une bande de ses valeurs possibles (voir HORLOGE LOCALE dans
+   script-core.js) qu'on translate d'un cran. Le masque efface le haut et le bas
+   de la fenetre, pour que le chiffre sortant se dissolve au bord au lieu d'etre
+   tranche net — c'est lui qui fait tout l'effet.
+
+   --clock-cell fixe la hauteur d'un cran : elle sert a la fois a la fenetre, aux
+   chiffres et a la translation, les trois ne peuvent donc pas se desaccorder. */
 .clock-seconds {
-    display: inline-block;
+    --clock-cell: 1.2em;
+    --clock-mask: 0.26em;
+    display: inline-flex;
+    align-items: flex-start;
 }
 
-.clock-seconds.is-ticking {
-    animation: clock-second-tick 300ms linear;
+.clock-digit {
+    display: block;
+    height: var(--clock-cell);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--clock-mask), #000 calc(100% - var(--clock-mask)), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 var(--clock-mask), #000 calc(100% - var(--clock-mask)), transparent 100%);
 }
 
-@keyframes clock-second-tick {
-    0%,
-    40% {
-        opacity: 0;
-    }
+.clock-digit-strip {
+    display: block;
+    transform: translateY(calc(var(--n, 0) * -1 * var(--clock-cell)));
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-    41%,
-    100% {
-        opacity: 1;
-    }
+/* Pose d'un cran sans animation : premier rendu, et recalage apres le passage
+   par le doublon de fin de bande. */
+.clock-digit-strip.is-instant {
+    transition: none;
+}
+
+.clock-digit-num {
+    display: block;
+    height: var(--clock-cell);
+    line-height: var(--clock-cell);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .clock-seconds.is-ticking {
-        animation: none;
+    .clock-digit-strip {
+        transition: none;
     }
 }
 

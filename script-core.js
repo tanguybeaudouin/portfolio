@@ -209,17 +209,74 @@ document.addEventListener('DOMContentLoaded', () => {
             timeZone: 'Europe/Paris'
         });
 
-        // Les secondes vivent dans leur propre <span> : c'est lui qui clignote a
-        // chaque pas, sans toucher au reste de l'heure. La structure est batie une
-        // fois, on ne reecrit ensuite que les valeurs qui changent.
+        // Les secondes defilent verticalement facon compteur (le procede de
+        // NumberFlow) : chaque chiffre est une bande de ses valeurs possibles
+        // qu'on translate. La bande se termine par un doublon du premier chiffre,
+        // pour que le passage de 9 a 0 roule vers l'avant comme les autres au
+        // lieu de rembobiner ; on recale ensuite sur le vrai 0 sans transition.
+        const ROLL_MS = 450;
+        const DIZAINES = ['0', '1', '2', '3', '4', '5', '0'];
+        const UNITES = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+        const buildDigit = (glyphs) => {
+            const cell = document.createElement('span');
+            cell.className = 'clock-digit';
+            const strip = document.createElement('span');
+            strip.className = 'clock-digit-strip is-instant';
+            glyphs.forEach((glyph) => {
+                const num = document.createElement('span');
+                num.className = 'clock-digit-num';
+                num.textContent = glyph;
+                strip.append(num);
+            });
+            cell.append(strip);
+            return { cell, strip, wrapAt: glyphs.length - 1, value: null, resetId: 0 };
+        };
+
+        const setDigit = (digit, value) => {
+            if (digit.value === value) return;
+            const first = digit.value === null;
+            // On vise le doublon de fin quand on repasse par 0, sauf au tout
+            // premier rendu ou il n'y a rien a faire rouler.
+            const target = (value === 0 && !first) ? digit.wrapAt : value;
+            digit.value = value;
+
+            digit.strip.classList.toggle('is-instant', first);
+            digit.strip.style.setProperty('--n', target);
+
+            window.clearTimeout(digit.resetId);
+            if (target === digit.wrapAt) {
+                digit.resetId = window.setTimeout(() => {
+                    digit.strip.classList.add('is-instant');
+                    digit.strip.style.setProperty('--n', 0);
+                    // Sans ce reflow, retirer la classe dans la meme frame
+                    // laisserait la transition rejouer le retour en arriere.
+                    void digit.strip.offsetWidth;
+                    digit.strip.classList.remove('is-instant');
+                }, ROLL_MS);
+            } else if (first) {
+                void digit.strip.offsetWidth;
+                digit.strip.classList.remove('is-instant');
+            }
+        };
+
+        // Le deux-points fait partie du groupe des secondes : masque aux lecteurs
+        // d'ecran, l'heure se lit "01:52 PM" et non "01:52: <bande de chiffres>".
         const clocks = rennesTimes.map((timeElement) => {
             timeElement.textContent = '';
             const before = document.createTextNode('');
             const seconds = document.createElement('span');
             seconds.className = 'clock-seconds';
+            seconds.setAttribute('aria-hidden', 'true');
+            const colon = document.createElement('span');
+            colon.className = 'clock-colon';
+            colon.textContent = ':';
+            const dizaines = buildDigit(DIZAINES);
+            const unites = buildDigit(UNITES);
+            seconds.append(colon, dizaines.cell, unites.cell);
             const after = document.createTextNode('');
             timeElement.append(before, seconds, after);
-            return { before, seconds, after };
+            return { before, after, dizaines, unites };
         });
 
         const partValue = (parts, type) => {
@@ -229,22 +286,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const renderRennesTime = () => {
             const parts = formatter.formatToParts(new Date());
-            const beforeValue = `${partValue(parts, 'hour')}:${partValue(parts, 'minute')}:`;
-            const secondsValue = partValue(parts, 'second');
+            const beforeValue = `${partValue(parts, 'hour')}:${partValue(parts, 'minute')}`;
+            const secondsValue = partValue(parts, 'second').padStart(2, '0');
             const dayPeriod = partValue(parts, 'dayPeriod');
             const afterValue = dayPeriod ? ` ${dayPeriod}` : '';
 
             clocks.forEach((clock) => {
                 if (clock.before.nodeValue !== beforeValue) clock.before.nodeValue = beforeValue;
                 if (clock.after.nodeValue !== afterValue) clock.after.nodeValue = afterValue;
-                if (clock.seconds.textContent === secondsValue) return;
-
-                clock.seconds.textContent = secondsValue;
-                // Rejoue l'animation : sans le reflow intercalaire, retirer puis
-                // remettre la classe dans la meme frame ne redemarre rien.
-                clock.seconds.classList.remove('is-ticking');
-                void clock.seconds.offsetWidth;
-                clock.seconds.classList.add('is-ticking');
+                setDigit(clock.dizaines, Number(secondsValue[0]));
+                setDigit(clock.unites, Number(secondsValue[1]));
             });
         };
 
