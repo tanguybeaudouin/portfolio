@@ -383,7 +383,7 @@
    partagee, dont le padding de la zone de defilement se sert aussi, pour que
    les deux ne puissent pas diverger. */
 .about-page {
-    --fade-h-edge: 160px;
+    --fade-h-edge: 144px;
 }
 
 .about-page .edge-fade-top {
