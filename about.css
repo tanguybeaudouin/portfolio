@@ -520,7 +520,12 @@
         margin-top: calc(-1 * var(--about-header-h, 0px));
         margin-bottom: calc(-1 * var(--about-footer-h, 0px));
         padding-top: calc(var(--about-header-h, 0px) + var(--space-16));
-        padding-bottom: calc(var(--about-footer-h, 0px) + var(--space-16));
+        /* Le CTA est le dernier element : il termine donc sa course au ras du
+           bas, dans la bande de fondu, et finissait floute et coupe. On degage
+           la BANDE (96px) et non le seul footer. 64px suffisent : les 32px de
+           padding du bloc CTA s'y ajoutent, et la carte en pose 32 de plus
+           sous la zone. Le bouton se pose ainsi 32px au-dessus de la bande. */
+        padding-bottom: max(var(--about-footer-h, 0px), 64px);
     }
 
     .about-page .about-baseline-section::-webkit-scrollbar {
