@@ -195,13 +195,19 @@
     line-height: normal;
     text-transform: uppercase;
     white-space: nowrap;
-    color: var(--neutral-dark);
+    /* Pas de `color` ici : elle est heritee de .about-text-content, qui la fond
+       en 0.8s au changement de theme. Une declaration propre la ferait basculer
+       d'un coup pendant que tout le reste fond encore. */
 }
 
+/* Attenuation par l'opacite plutot que par une couleur a 10% ou 50% : la
+   couleur reste heritee, donc fondue avec le theme, et le survol n'anime que
+   l'opacite. Les deux transitions ne se marchent plus dessus. */
 .about-entry-leader {
     flex: 1 1 0;
     min-width: 1px;
-    border-bottom: 1px solid var(--neutral-dark-01);
+    border-bottom: 1px solid currentColor;
+    opacity: 0.1;
 }
 
 .about-entry-year {
@@ -212,7 +218,7 @@
     line-height: normal;
     text-transform: uppercase;
     white-space: nowrap;
-    color: var(--neutral-dark-05);
+    opacity: 0.5;
 }
 
 .about-entry-desc {
@@ -221,7 +227,7 @@
     font-size: 14px;
     line-height: 1.2;
     text-align: justify;
-    color: var(--neutral-dark-05);
+    opacity: 0.5;
 }
 
 /* Au survol d'une entree, tout ce qui est attenue reprend sa pleine valeur :
@@ -232,12 +238,9 @@
    de theme, ou le reste du texte met 0.8s — leger decalage, mais preferable a
    un survol qui traine. */
 .about-entry-desc,
-.about-entry-year {
-    transition: color 0.2s ease;
-}
-
+.about-entry-year,
 .about-entry-leader {
-    transition: border-color 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .about-entry {
@@ -246,12 +249,9 @@
 
 @media (hover: hover) {
     .about-entry:hover .about-entry-desc,
-    .about-entry:hover .about-entry-year {
-        color: var(--neutral-dark);
-    }
-
+    .about-entry:hover .about-entry-year,
     .about-entry:hover .about-entry-leader {
-        border-bottom-color: var(--neutral-dark);
+        opacity: 1;
     }
 
     /* Les autres entrees de la meme liste s'effacent, pour isoler celle qu'on
@@ -417,8 +417,12 @@
     backdrop-filter: blur(8px);
 }
 
+/* Meme fondu que .main-card : sans transition, les deux bandes prenaient la
+   nouvelle couleur de fond d'un coup pendant que la carte, elle, fondait encore
+   — on voyait deux bandeaux de la mauvaise couleur pendant tout le basculement. */
 .edge-fade-tint {
     background-color: var(--bg-card);
+    transition: background-color 0.8s ease;
 }
 
 .edge-fade-top .edge-fade-1 {
