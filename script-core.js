@@ -204,14 +204,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const formatter = new Intl.DateTimeFormat('en-US', {
             hour: '2-digit',
             minute: '2-digit',
+            second: '2-digit',
             hour12: true,
             timeZone: 'Europe/Paris'
         });
 
+        // Les secondes vivent dans leur propre <span> : c'est lui qui clignote a
+        // chaque pas, sans toucher au reste de l'heure. La structure est batie une
+        // fois, on ne reecrit ensuite que les valeurs qui changent.
+        const clocks = rennesTimes.map((timeElement) => {
+            timeElement.textContent = '';
+            const before = document.createTextNode('');
+            const seconds = document.createElement('span');
+            seconds.className = 'clock-seconds';
+            const after = document.createTextNode('');
+            timeElement.append(before, seconds, after);
+            return { before, seconds, after };
+        });
+
+        const partValue = (parts, type) => {
+            const part = parts.find((candidate) => candidate.type === type);
+            return part ? part.value : '';
+        };
+
         const renderRennesTime = () => {
-            const timeValue = formatter.format(new Date());
-            rennesTimes.forEach((timeElement) => {
-                timeElement.textContent = timeValue;
+            const parts = formatter.formatToParts(new Date());
+            const beforeValue = `${partValue(parts, 'hour')}:${partValue(parts, 'minute')}:`;
+            const secondsValue = partValue(parts, 'second');
+            const dayPeriod = partValue(parts, 'dayPeriod');
+            const afterValue = dayPeriod ? ` ${dayPeriod}` : '';
+
+            clocks.forEach((clock) => {
+                if (clock.before.nodeValue !== beforeValue) clock.before.nodeValue = beforeValue;
+                if (clock.after.nodeValue !== afterValue) clock.after.nodeValue = afterValue;
+                if (clock.seconds.textContent === secondsValue) return;
+
+                clock.seconds.textContent = secondsValue;
+                // Rejoue l'animation : sans le reflow intercalaire, retirer puis
+                // remettre la classe dans la meme frame ne redemarre rien.
+                clock.seconds.classList.remove('is-ticking');
+                void clock.seconds.offsetWidth;
+                clock.seconds.classList.add('is-ticking');
             });
         };
 

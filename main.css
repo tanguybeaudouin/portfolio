@@ -1129,6 +1129,38 @@ h3 {
     white-space: nowrap;
 }
 
+/* Les secondes apparaissent par un bref clignotement a chaque pas. Le span est
+   cree par script-core.js (voir HORLOGE LOCALE), qui rejoue l'animation a chaque
+   changement de valeur. Les paliers 40%/41% sont volontairement colles : a 300ms
+   un pourcent vaut 3ms, la reapparition est donc franche et non un fondu.
+   inline-block fige la boite pour que AM/PM ne tressaute pas, et DM Mono garantit
+   deja une largeur constante quelles que soient les chiffres. */
+.clock-seconds {
+    display: inline-block;
+}
+
+.clock-seconds.is-ticking {
+    animation: clock-second-tick 300ms linear;
+}
+
+@keyframes clock-second-tick {
+    0%,
+    40% {
+        opacity: 0;
+    }
+
+    41%,
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clock-seconds.is-ticking {
+        animation: none;
+    }
+}
+
 .toggle-control input {
     display: none;
 }
