@@ -244,6 +244,10 @@
     transition: border-color 0.2s ease;
 }
 
+.about-entry {
+    transition: opacity 0.2s ease;
+}
+
 @media (hover: hover) {
     .about-entry:hover .about-entry-desc,
     .about-entry:hover .about-entry-year {
@@ -252,6 +256,14 @@
 
     .about-entry:hover .about-entry-leader {
         border-bottom-color: var(--neutral-dark);
+    }
+
+    /* Les autres entrees de la meme liste s'effacent, pour isoler celle qu'on
+       lit. Porte par .about-list:hover et non par la colonne entiere : les trois
+       blocs restent independants, survoler une competence ne fait pas palir les
+       experiences. */
+    .about-list:hover .about-entry:not(:hover) {
+        opacity: 0.5;
     }
 }
 
