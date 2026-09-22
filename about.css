@@ -465,11 +465,16 @@
     bottom: 0;
 }
 
+/* L'aplat ne doit jamais devenir opaque : il attenue le contenu, il ne le
+   recouvre pas. La reference part de #000 a 20%, ce qui donne une barre de fond
+   pleine sur les 19px du bas — le contenu y disparaissait au lieu de se
+   dissoudre. Ici la rampe demarre au bord meme (0%) et plafonne a 60% d'alpha :
+   le texte reste lisible a travers, de plus en plus flou, jusqu'en bas. */
 .edge-fade-bottom .edge-fade-tint {
     top: 0;
     bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 90%);
-    mask-image: linear-gradient(to top, #000 20%, transparent 90%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 85%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 85%);
 }
 
 @media (max-width: 1250px) {
