@@ -206,7 +206,6 @@
     flex: 1 1 0;
     min-width: 1px;
     border-bottom: 1px solid var(--neutral-dark-01);
-    transition: border-color 0.8s ease;
 }
 
 .about-entry-year {
@@ -227,6 +226,33 @@
     line-height: 1.2;
     text-align: justify;
     color: var(--neutral-dark-05);
+}
+
+/* Au survol d'une entree, tout ce qui est attenue reprend sa pleine valeur :
+   description, annee et ligne de conduite. Sous @media (hover: hover) pour que
+   l'etat ne reste pas colle apres un appui sur ecran tactile.
+
+   Transition courte (0.2s) : elle sert au survol. Elle joue aussi au changement
+   de theme, ou le reste du texte met 0.8s — leger decalage, mais preferable a
+   un survol qui traine. */
+.about-entry-desc,
+.about-entry-year {
+    transition: color 0.2s ease;
+}
+
+.about-entry-leader {
+    transition: border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+    .about-entry:hover .about-entry-desc,
+    .about-entry:hover .about-entry-year {
+        color: var(--neutral-dark);
+    }
+
+    .about-entry:hover .about-entry-leader {
+        border-bottom-color: var(--neutral-dark);
+    }
 }
 
 .about-cta {
