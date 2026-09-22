@@ -178,13 +178,9 @@
     background-image: url('fichiers/logo-google.svg');
 }
 
-/* Les deux icones monochromes disparaitraient sur fond sombre : variante dediee,
-   comme le portrait clair/sombre plus haut. Les quatre autres sont colorees et
-   tiennent sur les deux themes. */
-.dark-theme .icon-freelance {
-    background-image: url('fichiers/logo-freelance-dark.svg');
-}
-
+/* Le "u" d'Udemy est monochrome et disparaitrait sur fond sombre : variante
+   dediee, comme le portrait clair/sombre plus haut. Les autres tiennent sur les
+   deux themes — celle du freelance est bicolore et s'y adapte d'elle-meme. */
 .dark-theme .icon-udemy {
     background-image: url('fichiers/logo-udemy-dark.svg');
 }
