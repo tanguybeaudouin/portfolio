@@ -193,7 +193,9 @@
     margin: 0;
     font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    /* 500 et non 450 : la fonte n'est pas variable, cdnfonts ne fournit que des
+       paliers pleins et 450 serait de toute facon arrondi a 500. */
+    font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
     white-space: nowrap;
@@ -211,7 +213,7 @@
     flex: none;
     font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
     white-space: nowrap;
