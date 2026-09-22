@@ -522,19 +522,33 @@
         overscroll-behavior: contain;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        margin-top: calc(-1 * var(--about-header-h, 0px));
-        margin-bottom: calc(-1 * var(--about-footer-h, 0px));
-        padding-top: calc(var(--about-header-h, 0px) + var(--space-16));
-        /* Le CTA est le dernier element : il termine donc sa course au ras du
-           bas, dans la bande de fondu, et finissait floute et coupe. On degage
-           la BANDE (96px) et non le seul footer. 64px suffisent : les 32px de
-           padding du bloc CTA s'y ajoutent, et la carte en pose 32 de plus
-           sous la zone. Le bouton se pose ainsi 32px au-dessus de la bande. */
-        padding-bottom: max(var(--about-footer-h, 0px), 64px);
+        /* overflow:auto coupe net au bord de la zone. Tant que ce bord tombait
+           avant celui de l'ecran (le padding de la carte l'en ecartait de 32px,
+           la marge du footer de 16 de plus), le texte etait tranche en plein
+           milieu de la bande de fondu, avant que le flou ait fait son travail.
+           La zone est donc etiree d'un bord a l'autre de l'ecran : la coupe
+           tombe pile sur l'arete, invisible, et le contenu a toute la bande
+           pour se dissoudre.
+
+           Les marges negatives reprennent header, footer ET padding de carte ;
+           le padding rend exactement le meme espace, la position de repos du
+           contenu est donc inchangee. */
+        margin-top: calc(-1 * (var(--about-header-h, 0px) + var(--space-32)));
+        margin-bottom: calc(-1 * (var(--about-footer-h, 0px) + var(--space-32)));
+        padding-top: calc(var(--about-header-h, 0px) + var(--space-32) + var(--space-16));
+        /* Le CTA est le dernier element : 64px le posent au-dessus de la bande
+           basse (96px), les 32px de padding du bloc CTA s'y ajoutant. */
+        padding-bottom: calc(max(var(--about-footer-h, 0px), 64px) + var(--space-32));
     }
 
     .about-page .about-baseline-section::-webkit-scrollbar {
         display: none;
+    }
+
+    /* L'espace au-dessus du footer vient du padding de la zone de defilement :
+       une marge ici rentrerait le bord de la zone et ramenerait la coupe. */
+    .about-page .footer-group {
+        margin-top: 0;
     }
 }
 
