@@ -360,16 +360,23 @@
     pointer-events: none;
 }
 
-/* La bande du haut doit couvrir tout le header (86px a partir de 32px, donc
-   118px) : 160px laissent une marge. Celle du bas n'a qu'un footer de 19px a
-   couvrir, 96px suffisent — c'est la valeur de la reference. */
+/* Les deux bandes sont strictement identiques : meme hauteur, memes paliers,
+   meme masque d'aplat, le bas en miroir du haut. Le bas avait ete raccourci a
+   96px (la valeur de la reference) et son aplat adouci : le fondu y etait donc
+   compresse et ne ressemblait pas a celui du haut. La hauteur est une variable
+   partagee, dont le padding de la zone de defilement se sert aussi, pour que
+   les deux ne puissent pas diverger. */
+.about-page {
+    --fade-h-edge: 160px;
+}
+
 .about-page .edge-fade-top {
-    --fade-h: 160px;
+    --fade-h: var(--fade-h-edge);
     top: 0;
 }
 
 .about-page .edge-fade-bottom {
-    --fade-h: 96px;
+    --fade-h: var(--fade-h-edge);
     bottom: 0;
 }
 
@@ -465,16 +472,11 @@
     bottom: 0;
 }
 
-/* L'aplat ne doit jamais devenir opaque : il attenue le contenu, il ne le
-   recouvre pas. La reference part de #000 a 20%, ce qui donne une barre de fond
-   pleine sur les 19px du bas — le contenu y disparaissait au lieu de se
-   dissoudre. Ici la rampe demarre au bord meme (0%) et plafonne a 60% d'alpha :
-   le texte reste lisible a travers, de plus en plus flou, jusqu'en bas. */
 .edge-fade-bottom .edge-fade-tint {
     top: 0;
     bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 85%);
-    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 85%);
+    -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 90%);
+    mask-image: linear-gradient(to top, #000 20%, transparent 90%);
 }
 
 @media (max-width: 1250px) {
@@ -536,9 +538,9 @@
         margin-top: calc(-1 * (var(--about-header-h, 0px) + var(--space-32)));
         margin-bottom: calc(-1 * (var(--about-footer-h, 0px) + var(--space-32)));
         padding-top: calc(var(--about-header-h, 0px) + var(--space-32) + var(--space-16));
-        /* Le CTA est le dernier element : 64px le posent au-dessus de la bande
-           basse (96px), les 32px de padding du bloc CTA s'y ajoutant. */
-        padding-bottom: calc(max(var(--about-footer-h, 0px), 64px) + var(--space-32));
+        /* Le CTA est le dernier element : il doit se poser au-dessus de la
+           bande, pas dedans. Le dégagement suit donc la hauteur de bande. */
+        padding-bottom: calc(max(var(--about-footer-h, 0px), var(--fade-h-edge)) + var(--space-16));
     }
 
     .about-page .about-baseline-section::-webkit-scrollbar {
