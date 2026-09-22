@@ -34,6 +34,24 @@
 <body class="about-page">
     <div id="custom-cursor"></div>
 
+    <!-- Fondu progressif sous le header et au-dessus du footer. Purement
+         decoratif : aria-hidden + pointer-events:none, jamais dans le chemin
+         du clic ni dans l'arbre d'accessibilite. -->
+    <div class="edge-fade edge-fade-top" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+    <div class="edge-fade edge-fade-bottom" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+
     <div class="page">
         <main class="main-card">
             <!-- Section contenu -->
@@ -54,8 +72,6 @@
                 <div class="about-baseline-section">
                     <div id="baseline-wrapper">
                         <div class="about-structure">
-                            <figure class="about-image image-section" aria-hidden="true"></figure>
-
                             <div class="about-columns">
                             <div class="about-text-content">
                                 <p class="intro-greeting no-scramble">« Hello ! Moi c'est Tanguy, étudiant en Master Direction Artistique, spécialisé en UX/UI Design. Fraîchement sorti d'une alternance chez Digidop, agence primée “Webflow Partner of the Year” et reconnue aux Awwwards, où je concevais des maquettes BtoB pensées conversion et SEO/GEO. Certifié “Figma UI UX Design Advanced” et “Google UX Design”, je crée des expériences intuitives, accessibles et éco-conçues. Je recherche actuellement une alternance en UX/UI ou Product Design. »</p>
@@ -173,7 +189,7 @@
                 </div>
 
                 <!-- CTA + Footer -->
-                <div>
+                <div class="footer-shell">
                     <footer class="footer-group">
                         <div class="footer-meta">
                             <span class="location">Rennes, France</span>
