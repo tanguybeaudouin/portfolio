@@ -246,10 +246,16 @@
 }
 
 .about-entry {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 @media (hover: hover) {
+    /* Léger décalage vers la droite, en plus de la remise a pleine valeur : la
+       colonne 3 de la grille est vide, les 4px ne debordent donc de rien. */
+    .about-entry:hover {
+        transform: translateX(4px);
+    }
+
     .about-entry:hover .about-entry-desc,
     .about-entry:hover .about-entry-year,
     .about-entry:hover .about-entry-leader {
