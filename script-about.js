@@ -187,3 +187,43 @@
     window.addEventListener('resize', onScroll, { passive: true });
     updateReveal();
 })();
+
+/* ==========================================
+   HAUTEURS DU HEADER / FOOTER
+   ==========================================
+   La zone de defilement remonte sous le header et descend sous le footer par
+   des marges negatives, et rend l'espace par un padding egal : le contenu
+   glisse donc dessous pour se dissoudre dans le flou, sans que header et footer
+   entrent eux-memes dans le defilement (voir about.css, ZONE DE DEFILEMENT).
+
+   Leurs hauteurs ne sont pas figees : le h1 est en clamp() sous 900px, et le
+   footer se replie en deux lignes. On les publie en variables plutot que de les
+   coder en dur, et on resynchronise au resize comme au chargement des polices,
+   qui change la hauteur du texte apres le premier rendu. */
+(() => {
+    if (!document.body.classList.contains('about-page')) return;
+
+    const section = document.querySelector('.content-section');
+    const header = document.querySelector('.content-top-section');
+    const footer = document.querySelector('.footer-group');
+    if (!section || !header || !footer) return;
+
+    const sync = () => {
+        section.style.setProperty('--about-header-h', `${header.offsetHeight}px`);
+        section.style.setProperty('--about-footer-h', `${footer.offsetHeight}px`);
+    };
+
+    sync();
+
+    if (typeof ResizeObserver === 'function') {
+        const observer = new ResizeObserver(sync);
+        observer.observe(header);
+        observer.observe(footer);
+    } else {
+        window.addEventListener('resize', sync, { passive: true });
+    }
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sync).catch(() => {});
+    }
+})();

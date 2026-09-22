@@ -279,19 +279,17 @@
     margin-top: 16px;
 }
 
-/* ========== PAGE DEFILANTE (desktop) ==========
-   La maquette fait 1574px de haut : contrairement aux autres pages, qui tiennent
-   dans une carte de 100vh, about deborde et doit defiler. Le header et le footer
-   suivent le flux, comme dans la maquette. */
-body.about-page {
-    overflow-y: auto;
-}
+/* ========== ZONE DE DEFILEMENT ==========
+   Le contenu depasse l'ecran (la maquette fait 1574px), mais c'est LUI qui
+   defile, pas le document : la carte garde sa hauteur d'ecran comme le reste du
+   site. C'est ce qui garde le header et le footer parfaitement immobiles — en
+   sticky ils suivaient le rebond elastique du document en fin de course.
 
-.about-page .main-card {
-    height: auto;
-    min-height: 100vh;
-}
-
+   Le contenu doit quand meme glisser SOUS eux pour se dissoudre dans le flou :
+   la zone de defilement remonte sous le header par une marge negative et rend
+   l'espace par un padding egal. D'ou le besoin de leurs hauteurs reelles, que
+   script-about.js publie en variables (elles bougent avec le viewport et au
+   chargement des polices). */
 .about-page #baseline-wrapper {
     height: auto;
 }
@@ -307,13 +305,12 @@ body.about-page {
    un aplat de la couleur de fond. Un flou unique ferait une arete visible ;
    l'escalier de paliers masques, lui, ne se voit pas.
 
-   Le footer est enveloppe dans un div sans style : il est passe en
-   display:contents (voir .about-page .footer-shell) pour que son bloc
-   contenant devienne .content-section, sinon sticky n'aurait aucune course. */
+   Header et footer sont hors de la zone de defilement : ils ne bougent jamais,
+   pas meme pendant le rebond elastique de fin de course. Ils gardent juste un
+   z-index pour passer au-dessus du contenu et du flou. */
 
 .about-page .content-top-section {
-    position: sticky;
-    top: var(--space-32);
+    position: relative;
     z-index: 50;
 }
 
@@ -322,8 +319,7 @@ body.about-page {
 }
 
 .about-page .footer-group {
-    position: sticky;
-    bottom: var(--space-32);
+    position: relative;
     z-index: 50;
 }
 
@@ -454,6 +450,56 @@ body.about-page {
     }
 }
 
+/* ========== DEFILEMENT INTERNE (> 900px) ==========
+   Au-dessus de 900px, ce n'est pas le document qui defile mais le contenu, dans
+   sa propre zone : la carte garde sa hauteur d'ecran comme le reste du site.
+   C'est ce qui rend le header et le footer parfaitement immobiles — en sticky
+   ils suivaient le rebond elastique du document en fin de course.
+
+   Le contenu doit quand meme glisser SOUS eux pour se dissoudre dans le flou :
+   la zone remonte sous le header par une marge negative et rend l'espace par un
+   padding egal. D'ou le besoin de leurs hauteurs reelles, que script-about.js
+   publie en variables (elles changent avec le viewport et au chargement des
+   polices).
+
+   Sous 900px, main.css passe .about-page .content-section en display:contents et
+   fait defiler le document : ce modele n'y a pas sa place, d'ou le palier.
+
+   overscroll-behavior: contain isole le rebond dans la zone sans le supprimer —
+   le petit saut de fin de course reste, mais il n'entraine plus rien d'autre. */
+@media (min-width: 901px) {
+    body.about-page {
+        overflow: hidden;
+    }
+
+    .about-page .main-card {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .about-page .content-section {
+        gap: 0;
+    }
+
+    .about-page .about-baseline-section {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin-top: calc(-1 * var(--about-header-h, 0px));
+        margin-bottom: calc(-1 * var(--about-footer-h, 0px));
+        padding-top: calc(var(--about-header-h, 0px) + var(--space-16));
+        padding-bottom: calc(var(--about-footer-h, 0px) + var(--space-16));
+    }
+
+    .about-page .about-baseline-section::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 /* ========== ABOUT MOBILE (<= 900px) ==========
    Refonte d'apres la maquette Figma (node 2077:60257), alignee sur index :
    flux vertical unique : header -> intro -> competences -> experiences ->
@@ -473,7 +519,10 @@ body.about-page {
         letter-spacing: -0.012em;
     }
 
-    /* 96px entre le header et le contenu ; le padding lateral passe sur la structure */
+    /* 96px entre le header et le contenu ; le padding lateral passe sur la
+       structure. Sous 900px, main.css passe .content-section en display:contents
+       et fait defiler le document : le modele de defilement interne du desktop
+       ne s'applique pas ici (voir le bloc min-width: 901px). */
     .about-page .about-baseline-section {
         flex: none;
         margin-top: 96px;
@@ -522,7 +571,7 @@ body.about-page {
         margin-top: 0;
     }
 
-            /* Padding commun (.footer-group dans main.css) ; seul l'espacement au-dessus
+    /* Padding commun (.footer-group dans main.css) ; seul l'espacement au-dessus
        est propre a about. */
     .about-page .footer-group {
         margin-top: 96px;
