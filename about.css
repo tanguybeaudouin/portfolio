@@ -120,50 +120,167 @@
     margin: 0;
     text-indent: 0;
     font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.3;
     letter-spacing: 0;
     font-weight: 400;
     text-align: justify;
 }
 
-.skills-section-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    height: 100%;
-    gap: 12px;
+/* ========== COLONNE CV (maquette Figma 2120:64762) ==========
+   La grille 3 colonnes de .about-structure produit deja des colonnes de
+   461.33px pour un viewport de 1512px : exactement la largeur de la maquette.
+   Le portrait garde la colonne 1, le CV prend la colonne 2, la 3 reste vide.
+
+   Rythme vertical de la maquette : 32px de padding en haut ET en bas de chaque
+   bloc, donc 64px entre deux contenus, le filet tombant pile au milieu. Le filet
+   est porte par les sections : l'intro (premiere) et le CTA (dernier) n'en ont
+   pas, conformement a la maquette. */
+
+.about-text-content > * {
+    padding: 32px 0;
 }
 
+.about-text-content > .about-block {
+    margin: 0;
+    border-top: 1px solid var(--neutral-dark-01);
+    transition: border-color 0.8s ease;
+}
+
+/* Titre de section : 20px medium, comme la maquette. Indispensable ici, sinon
+   le h2 retombe sur les 36px de main.css. L'espace sous le titre vient du
+   margin-top de .about-list (8px). */
 .section-title {
     font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
     font-size: 20px;
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0;
-    margin: 0 0 8px;
-}
-
-.skills-list p {
     margin: 0;
-    text-align: justify;
 }
 
-.about-note {
-    margin-top: 32px;
-    margin-bottom: 0;
-    font-size: 10px;
-    line-height: 1.60;
-    letter-spacing: 0.01em;
+.about-list {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.about-entry {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+/* Les competences sont plus serrees que les deux autres listes dans la maquette :
+   8px entre les entrees et 4px entre l'intitule et sa description, contre 16 et 8
+   pour experiences et certifications. */
+.about-list--tight {
+    gap: var(--space-8);
+}
+
+.about-list--tight .about-entry {
+    gap: 4px;
+}
+
+/* Ligne intitule / annee : l'icone et le filet s'alignent sur la ligne de base
+   basse du texte (items-end dans la maquette), le filet mange l'espace libre. */
+.about-entry-head {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-8);
+    margin: 0;
+}
+
+.about-entry-icon {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    background: center / contain no-repeat;
+}
+
+.icon-digidop {
+    background-image: url('fichiers/logo-digidop.svg');
+}
+
+.icon-freelance {
+    width: 13px;
+    background-image: url('fichiers/logo-freelance.svg');
+}
+
+.icon-localranker {
+    width: 17px;
+    background-image: url('fichiers/logo-localranker.svg');
+}
+
+.icon-hackathon {
+    background-image: url('fichiers/logo-hackathon.svg');
+}
+
+.icon-udemy {
+    width: 9px;
+    background-image: url('fichiers/logo-udemy.svg');
+}
+
+.icon-google {
+    background-image: url('fichiers/logo-google.svg');
+}
+
+/* Les deux icones monochromes disparaitraient sur fond sombre : variante dediee,
+   comme le portrait clair/sombre plus haut. Les quatre autres sont colorees et
+   tiennent sur les deux themes. */
+.dark-theme .icon-freelance {
+    background-image: url('fichiers/logo-freelance-dark.svg');
+}
+
+.dark-theme .icon-udemy {
+    background-image: url('fichiers/logo-udemy-dark.svg');
+}
+
+.about-entry-title {
+    margin: 0;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--neutral-dark);
+}
+
+.about-entry-leader {
+    flex: 1 1 0;
+    min-width: 1px;
+    border-bottom: 1px solid var(--neutral-dark-01);
+    transition: border-color 0.8s ease;
+}
+
+.about-entry-year {
+    flex: none;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--neutral-dark-05);
+}
+
+.about-entry-desc {
+    margin: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.2;
     text-align: justify;
+    color: var(--neutral-dark-05);
 }
 
 .about-cta {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: auto;
 }
 
 .about-page .btn-download {
@@ -212,6 +329,36 @@
     margin-top: 16px;
 }
 
+/* ========== PAGE DEFILANTE (desktop) ==========
+   La maquette fait 1574px de haut : contrairement aux autres pages, qui tiennent
+   dans une carte de 100vh, about deborde et doit defiler. Le header et le footer
+   suivent le flux, comme dans la maquette. */
+body.about-page {
+    overflow-y: auto;
+}
+
+.about-page .main-card {
+    height: auto;
+    min-height: 100vh;
+}
+
+.about-page #baseline-wrapper {
+    height: auto;
+}
+
+.about-structure {
+    height: auto;
+}
+
+/* Le portrait garde son cadrage actuel (cover sur une zone de la hauteur de
+   l'ecran) et reste colle pendant que le CV defile, au lieu de s'etirer sur les
+   ~1500px de la colonne, ce qui le rognerait severement. */
+.about-page .about-image {
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 64px);
+}
+
 @media (max-width: 1250px) {
     .about-structure {
         gap: 24px;
@@ -220,8 +367,9 @@
 
 /* ========== ABOUT MOBILE (<= 900px) ==========
    Refonte d'apres la maquette Figma (node 2077:60257), alignee sur index :
-   flux vertical unique, header -> texte intro -> CTA -> competences + note ->
-   portrait pleine largeur -> footer. 96px header/footer, 32px entre blocs.
+   flux vertical unique : header -> intro -> competences -> experiences ->
+   certifications -> CTA -> portrait pleine largeur -> footer. 96px header/footer.
+   Le rythme entre blocs vient du padding 32px de .about-text-content > *.
    Aligne sur 900px comme tout le site (l'ancien palier 960 est supprime).
    Le portrait, en survol seulement sur desktop, est ici toujours affiche en bas. */
 @media (max-width: 900px) {
@@ -247,7 +395,7 @@
         height: auto;
     }
 
-    /* Colonne unique, ordre maquette : texte (1), competences (2), portrait (3).
+    /* Colonne unique : la colonne CV (1) puis le portrait (2).
        Grand blanc en haut (hero aere, maquette pt-499) : le texte demarre bas
        et se revele au scroll. En vh pour rester proportionnel a l'ecran. */
     .about-structure {
@@ -275,23 +423,9 @@
 
     .about-text-content {
         order: 1;
-        gap: 32px;
+        gap: 0;
     }
 
-    .skills-section-container {
-        order: 2;
-        gap: 32px;
-    }
-
-    .about-page .about-image {
-        order: 3;
-    }
-
-    /* Texte intro 16px DM Mono justifie, comme la baseline d'index */
-    .about-page .about-text-content .intro-greeting {
-        font-size: 16px;
-        line-height: 1.3;
-    }
 
     /* CTA juste sous le texte (32px via le gap du parent), centre */
     .about-cta {
@@ -299,22 +433,10 @@
         margin-top: 0;
     }
 
-    /* Liste de competences 16px (main.css la met a 12px en mobile) */
-    .about-page .skills-list p {
-        font-size: 16px;
-        line-height: 1.3;
-    }
-
-    /* Note 12px capitales, l'espace vient du gap:32 du conteneur */
-    .about-note {
-        margin-top: 0;
-        font-size: 12px;
-        line-height: 1.6;
-        letter-spacing: 0.02em;
-    }
-
     /* Portrait pleine largeur en bas, ratio de la maquette, toujours visible */
     .about-page .about-image {
+        order: 3;
+        position: static;
         width: 100%;
         height: auto;
         aspect-ratio: 342 / 523;
