@@ -1,0 +1,662 @@
+/* ========================================== ABOUT PAGE ========================================== */
+
+.about-page .main-card {
+    display: block;
+    width: 100%;
+    padding: 32px;
+}
+
+.about-page .content-section {
+    width: 100%;
+    padding: 0;
+    gap: 16px;
+}
+
+.about-page .content-top-section {
+    align-items: flex-start;
+}
+
+.about-page .title-group h1 {
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+}
+
+.about-page .title-group .subtitle {
+    font-size: 14px;
+    letter-spacing: 0.01em;
+}
+
+.about-page .about-baseline-section {
+    flex: 1;
+    min-height: 0;
+    margin-top: 16px;
+}
+
+.about-page #baseline-wrapper {
+    height: 100%;
+}
+
+.about-structure {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    align-items: start;
+    min-height: 0;
+    height: 100%;
+}
+
+.about-columns {
+    display: contents;
+}
+
+.about-text-content {
+    /* Le portrait occupait la colonne 1 : sans lui, .about-text-content y
+       retomberait. On l'ancre explicitement au milieu pour garder le cadrage
+       de la maquette, colonnes 1 et 3 vides. */
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+    color: var(--neutral-dark);
+    transition: color 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+.about-text-content .intro-greeting {
+    margin: 0;
+    text-indent: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* ========== COLONNE CV (maquette Figma 2120:64762) ==========
+   La grille 3 colonnes de .about-structure produit deja des colonnes de
+   461.33px pour un viewport de 1512px : exactement la largeur de la maquette.
+   Le CV est ancre dans la colonne 2, les colonnes 1 et 3 restent vides.
+
+   Rythme vertical de la maquette : 32px de padding en haut ET en bas de chaque
+   bloc, donc 64px entre deux contenus, le filet tombant pile au milieu. Le filet
+   est porte par les sections : l'intro (premiere) et le CTA (dernier) n'en ont
+   pas, conformement a la maquette. */
+
+.about-text-content > * {
+    padding: 32px 0;
+}
+
+.about-text-content > .about-block {
+    margin: 0;
+    border-top: 1px solid var(--neutral-dark-01);
+    transition: border-color 0.8s ease;
+}
+
+/* Titre de section : 20px medium, comme la maquette. Indispensable ici, sinon
+   le h2 retombe sur les 36px de main.css. L'espace sous le titre vient du
+   margin-top de .about-list (16px). */
+.section-title {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.about-list {
+    list-style: none;
+    /* 16px sous le titre de section (maquette mise a jour : le bloc competences
+       passe de 345 a 353 de haut, soit +8 sur cette seule gouttiere). */
+    margin: var(--space-16) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.about-entry {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+/* Les competences sont plus serrees que les deux autres listes dans la maquette :
+   8px entre les entrees et 4px entre l'intitule et sa description, contre 16 et 8
+   pour experiences et certifications. */
+.about-list--tight {
+    gap: var(--space-8);
+}
+
+.about-list--tight .about-entry {
+    gap: 4px;
+}
+
+/* Ligne intitule / annee : l'icone et le filet s'alignent sur la ligne de base
+   basse du texte (items-end dans la maquette), le filet mange l'espace libre. */
+.about-entry-head {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-8);
+    margin: 0;
+}
+
+.about-entry-icon {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    background: center / contain no-repeat;
+}
+
+.icon-digidop {
+    background-image: url('fichiers/logo-digidop.svg');
+}
+
+.icon-freelance {
+    width: 13px;
+    background-image: url('fichiers/logo-freelance.svg');
+}
+
+.icon-localranker {
+    width: 17px;
+    background-image: url('fichiers/logo-localranker.svg');
+}
+
+.icon-hackathon {
+    background-image: url('fichiers/logo-hackathon.svg');
+}
+
+.icon-udemy {
+    width: 9px;
+    background-image: url('fichiers/logo-udemy.svg');
+}
+
+.icon-google {
+    background-image: url('fichiers/logo-google.svg');
+}
+
+/* Le "u" d'Udemy est monochrome et disparaitrait sur fond sombre : variante
+   dediee, comme le portrait clair/sombre plus haut. Les autres tiennent sur les
+   deux themes — celle du freelance est bicolore et s'y adapte d'elle-meme. */
+.dark-theme .icon-udemy {
+    background-image: url('fichiers/logo-udemy-dark.svg');
+}
+
+.about-entry-title {
+    margin: 0;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 14px;
+    /* 500 et non 450 : la fonte n'est pas variable, cdnfonts ne fournit que des
+       paliers pleins et 450 serait de toute facon arrondi a 500. */
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+    /* Pas de `color` ici : elle est heritee de .about-text-content, qui la fond
+       en 0.8s au changement de theme. Une declaration propre la ferait basculer
+       d'un coup pendant que tout le reste fond encore. */
+}
+
+/* Attenuation par l'opacite plutot que par une couleur a 10% ou 50% : la
+   couleur reste heritee, donc fondue avec le theme, et le survol n'anime que
+   l'opacite. Les deux transitions ne se marchent plus dessus. */
+.about-entry-leader {
+    flex: 1 1 0;
+    min-width: 1px;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.1;
+}
+
+.about-entry-year {
+    flex: none;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.5;
+}
+
+.about-entry-desc {
+    margin: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: justify;
+    opacity: 0.5;
+}
+
+/* Au survol d'une entree, tout ce qui est attenue reprend sa pleine valeur :
+   description, annee et ligne de conduite. Sous @media (hover: hover) pour que
+   l'etat ne reste pas colle apres un appui sur ecran tactile.
+
+   Transition courte (0.2s) : elle sert au survol. Elle joue aussi au changement
+   de theme, ou le reste du texte met 0.8s — leger decalage, mais preferable a
+   un survol qui traine. */
+.about-entry-desc,
+.about-entry-year,
+.about-entry-leader {
+    transition: opacity 0.2s ease;
+}
+
+.about-entry {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@media (hover: hover) {
+    /* Léger décalage vers la droite, en plus de la remise a pleine valeur : la
+       colonne 3 de la grille est vide, les 4px ne debordent donc de rien. */
+    .about-entry:hover {
+        transform: translateX(4px);
+    }
+
+    .about-entry:hover .about-entry-desc,
+    .about-entry:hover .about-entry-year,
+    .about-entry:hover .about-entry-leader {
+        opacity: 1;
+    }
+
+    /* Les autres entrees de la meme liste s'effacent, pour isoler celle qu'on
+       lit. Porte par .about-list:hover et non par la colonne entiere : les trois
+       blocs restent independants, survoler une competence ne fait pas palir les
+       experiences. */
+    .about-list:hover .about-entry:not(:hover) {
+        opacity: 0.5;
+    }
+}
+
+.about-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.about-page .btn-download {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    min-width: 0;
+    transition: color 0.62s ease;
+}
+
+.about-page .btn-download .btn-label {
+    position: relative;
+    z-index: 1;
+}
+
+.about-page .btn-download::before {
+    content: '';
+    position: absolute;
+    left: var(--cta-ripple-x, 50%);
+    top: var(--cta-ripple-y, 50%);
+    width: var(--cta-ripple-size, 24px);
+    height: var(--cta-ripple-size, 24px);
+    border-radius: 50%;
+    background-color: var(--btn-hover);
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
+    transition: transform 0.72s cubic-bezier(0.2, 0.9, 0.25, 1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-page .btn-download.is-radial-hover::before,
+.about-page .btn-download:focus-visible::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.about-page .btn-download.is-radial-hover,
+.about-page .btn-download:focus-visible {
+    color: var(--bg-card);
+}
+
+.about-page .footer-group {
+    margin-top: 16px;
+}
+
+/* ========== ZONE DE DEFILEMENT ==========
+   Le contenu depasse l'ecran (la maquette fait 1574px), mais c'est LUI qui
+   defile, pas le document : la carte garde sa hauteur d'ecran comme le reste du
+   site. C'est ce qui garde le header et le footer parfaitement immobiles — en
+   sticky ils suivaient le rebond elastique du document en fin de course.
+
+   Le contenu doit quand meme glisser SOUS eux pour se dissoudre dans le flou :
+   la zone de defilement remonte sous le header par une marge negative et rend
+   l'espace par un padding egal. D'ou le besoin de leurs hauteurs reelles, que
+   script-about.js publie en variables (elles bougent avec le viewport et au
+   chargement des polices). */
+.about-page #baseline-wrapper {
+    height: auto;
+}
+
+.about-structure {
+    height: auto;
+}
+
+/* ========== HEADER / FOOTER COLLES + FONDU DE BORD ==========
+   Le contenu passe sous le header et le footer, qui restent visibles. Le
+   raccord est un "progressive blur" : quatre paliers de flou (1, 2, 4, 8px)
+   sur des bandes de plus en plus courtes, chacune masquee par un degrade, plus
+   un aplat de la couleur de fond. Un flou unique ferait une arete visible ;
+   l'escalier de paliers masques, lui, ne se voit pas.
+
+   Header et footer sont hors de la zone de defilement : ils ne bougent jamais,
+   pas meme pendant le rebond elastique de fin de course. Ils gardent juste un
+   z-index pour passer au-dessus du contenu et du flou. */
+
+.about-page .content-top-section {
+    position: relative;
+    z-index: 50;
+}
+
+.about-page .footer-shell {
+    display: contents;
+}
+
+.about-page .footer-group {
+    position: relative;
+    z-index: 50;
+}
+
+.about-page .edge-fade {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: var(--fade-h);
+    z-index: 40;
+    pointer-events: none;
+}
+
+/* Les deux bandes sont strictement identiques : meme hauteur, memes paliers,
+   meme masque d'aplat, le bas en miroir du haut. Le bas avait ete raccourci a
+   96px (la valeur de la reference) et son aplat adouci : le fondu y etait donc
+   compresse et ne ressemblait pas a celui du haut. La hauteur est une variable
+   partagee, dont le padding de la zone de defilement se sert aussi, pour que
+   les deux ne puissent pas diverger. */
+.about-page {
+    --fade-h-edge: 128px;
+}
+
+.about-page .edge-fade-top {
+    --fade-h: var(--fade-h-edge);
+    top: 0;
+}
+
+.about-page .edge-fade-bottom {
+    --fade-h: var(--fade-h-edge);
+    bottom: 0;
+}
+
+.edge-fade-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+}
+
+/* Les quatre paliers occupent 4/4, 3/4, 2/4 puis 1/4 de la bande, avec un flou
+   qui double a chaque fois. */
+.edge-fade-1 {
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+}
+
+.edge-fade-2 {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+.edge-fade-3 {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.edge-fade-4 {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+/* Meme fondu que .main-card : sans transition, les deux bandes prenaient la
+   nouvelle couleur de fond d'un coup pendant que la carte, elle, fondait encore
+   — on voyait deux bandeaux de la mauvaise couleur pendant tout le basculement. */
+.edge-fade-tint {
+    background-color: var(--bg-card);
+    transition: background-color 0.8s ease;
+}
+
+.edge-fade-top .edge-fade-1 {
+    top: 0;
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(#000 70%, transparent 95%);
+    mask-image: linear-gradient(#000 70%, transparent 95%);
+}
+
+.edge-fade-top .edge-fade-2 {
+    top: 0;
+    bottom: calc(var(--fade-h) * 0.25);
+    -webkit-mask-image: linear-gradient(#000 45%, transparent 70%);
+    mask-image: linear-gradient(#000 45%, transparent 70%);
+}
+
+.edge-fade-top .edge-fade-3 {
+    top: 0;
+    bottom: calc(var(--fade-h) * 0.5);
+    -webkit-mask-image: linear-gradient(#000 20%, transparent 45%);
+    mask-image: linear-gradient(#000 20%, transparent 45%);
+}
+
+/* Ce palier n'avait aucun masque : le flou le plus fort s'arretait net a son
+   bord, ce qui dessinait une barre floue au lieu de se fondre. Il s'eteint
+   maintenant sur toute sa hauteur, comme les trois autres. */
+.edge-fade-top .edge-fade-4 {
+    top: 0;
+    bottom: calc(var(--fade-h) * 0.75);
+    -webkit-mask-image: linear-gradient(#000 0%, transparent 100%);
+    mask-image: linear-gradient(#000 0%, transparent 100%);
+}
+
+.edge-fade-top .edge-fade-tint {
+    top: 0;
+    bottom: 0;
+    /* Plus de plateau opaque : le degrade descend des le bord. Les 20% pleins
+       faisaient un bloc de couleur franc la ou tout le reste est diffus. */
+    -webkit-mask-image: linear-gradient(#000 0%, transparent 90%);
+    mask-image: linear-gradient(#000 0%, transparent 90%);
+}
+
+.edge-fade-bottom .edge-fade-1 {
+    top: 0;
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(to top, #000 70%, transparent 95%);
+    mask-image: linear-gradient(to top, #000 70%, transparent 95%);
+}
+
+.edge-fade-bottom .edge-fade-2 {
+    top: calc(var(--fade-h) * 0.25);
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(to top, #000 45%, transparent 70%);
+    mask-image: linear-gradient(to top, #000 45%, transparent 70%);
+}
+
+.edge-fade-bottom .edge-fade-3 {
+    top: calc(var(--fade-h) * 0.5);
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 45%);
+    mask-image: linear-gradient(to top, #000 20%, transparent 45%);
+}
+
+.edge-fade-bottom .edge-fade-4 {
+    top: calc(var(--fade-h) * 0.75);
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+    mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+.edge-fade-bottom .edge-fade-tint {
+    top: 0;
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 90%);
+    mask-image: linear-gradient(to top, #000 0%, transparent 90%);
+}
+
+@media (max-width: 1250px) {
+    .about-structure {
+        gap: 24px;
+    }
+}
+
+/* ========== DEFILEMENT INTERNE (> 900px) ==========
+   Au-dessus de 900px, ce n'est pas le document qui defile mais le contenu, dans
+   sa propre zone : la carte garde sa hauteur d'ecran comme le reste du site.
+   C'est ce qui rend le header et le footer parfaitement immobiles — en sticky
+   ils suivaient le rebond elastique du document en fin de course.
+
+   Le contenu doit quand meme glisser SOUS eux pour se dissoudre dans le flou :
+   la zone remonte sous le header par une marge negative et rend l'espace par un
+   padding egal. D'ou le besoin de leurs hauteurs reelles, que script-about.js
+   publie en variables (elles changent avec le viewport et au chargement des
+   polices).
+
+   Sous 900px, main.css passe .about-page .content-section en display:contents et
+   fait defiler le document : ce modele n'y a pas sa place, d'ou le palier.
+
+   overscroll-behavior: contain isole le rebond dans la zone sans le supprimer —
+   le petit saut de fin de course reste, mais il n'entraine plus rien d'autre. */
+@media (min-width: 901px) {
+    body.about-page {
+        overflow: hidden;
+    }
+
+    .about-page .main-card {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .about-page .content-section {
+        gap: 0;
+    }
+
+    .about-page .about-baseline-section {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        /* overflow:auto coupe net au bord de la zone. Tant que ce bord tombait
+           avant celui de l'ecran (le padding de la carte l'en ecartait de 32px,
+           la marge du footer de 16 de plus), le texte etait tranche en plein
+           milieu de la bande de fondu, avant que le flou ait fait son travail.
+           La zone est donc etiree d'un bord a l'autre de l'ecran : la coupe
+           tombe pile sur l'arete, invisible, et le contenu a toute la bande
+           pour se dissoudre.
+
+           Les marges negatives reprennent header, footer ET padding de carte ;
+           le padding rend exactement le meme espace, la position de repos du
+           contenu est donc inchangee. */
+        margin-top: calc(-1 * (var(--about-header-h, 0px) + var(--space-32)));
+        margin-bottom: calc(-1 * (var(--about-footer-h, 0px) + var(--space-32)));
+        padding-top: calc(var(--about-header-h, 0px) + var(--space-32) + var(--space-16));
+        /* Le CTA est le dernier element : il doit se poser au-dessus de la
+           bande, pas dedans. Le dégagement suit donc la hauteur de bande. */
+        padding-bottom: calc(max(var(--about-footer-h, 0px), var(--fade-h-edge)) + var(--space-16));
+    }
+
+    .about-page .about-baseline-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* L'espace au-dessus du footer vient du padding de la zone de defilement :
+       une marge ici rentrerait le bord de la zone et ramenerait la coupe. */
+    .about-page .footer-group {
+        margin-top: 0;
+    }
+}
+
+/* ========== ABOUT MOBILE (<= 900px) ==========
+   Refonte d'apres la maquette Figma (node 2077:60257), alignee sur index :
+   flux vertical unique : header -> intro -> competences -> experiences ->
+   certifications -> CTA -> footer. 96px sous le header.
+   Le rythme entre blocs vient du padding 32px de .about-text-content > *.
+   Aligne sur 900px comme tout le site (l'ancien palier 960 est supprime).
+*/
+@media (max-width: 900px) {
+    /* Padding gere par section (comme la maquette), pas par la carte */
+    .about-page .main-card {
+        padding: 0;
+    }
+
+    /* h1 40px qui grandit avec l'ecran, exactement comme index */
+    .about-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
+    }
+
+    /* 96px entre le header et le contenu ; le padding lateral passe sur la
+       structure. Sous 900px, main.css passe .content-section en display:contents
+       et fait defiler le document : le modele de defilement interne du desktop
+       ne s'applique pas ici (voir le bloc min-width: 901px). */
+    .about-page .about-baseline-section {
+        flex: none;
+        margin-top: 96px;
+        padding: 0;
+    }
+
+    .about-page #baseline-wrapper {
+        height: auto;
+    }
+
+    /* Colonne unique.
+       Grand blanc en haut (hero aere, maquette pt-499) : le texte demarre bas
+       et se revele au scroll. En vh pour rester proportionnel a l'ecran. */
+    .about-structure {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        height: auto;
+        padding: clamp(300px, 56vh, 499px) var(--space-24) 0;
+    }
+
+    /* Reveal au scroll facon pages projets : caractere par caractere en ordre de
+       lecture. Pas de transition -> bord NET (comme le clip des pages projets), la
+       frontiere sombre/gris est franche, jamais un fondu (voir script-about.js). */
+    .about-page .intro-greeting .reveal-char {
+        color: var(--neutral-dark-05);
+    }
+
+    .about-page .intro-greeting .reveal-char.is-revealed {
+        color: var(--neutral-dark);
+    }
+
+    .about-columns {
+        display: contents;
+    }
+
+    .about-text-content {
+        order: 1;
+        gap: 0;
+    }
+
+
+    /* CTA juste sous le texte (32px via le gap du parent), centre */
+    .about-cta {
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    /* Padding commun (.footer-group dans main.css) ; seul l'espacement au-dessus
+       est propre a about. */
+    .about-page .footer-group {
+        margin-top: 96px;
+    }
+}
