@@ -183,27 +183,35 @@
 }
 
 .about-list {
+    /* Demi-gouttiere entre deux entrees : 16px ici, 8px pour les competences. */
+    --entry-half-gap: 8px;
     list-style: none;
     /* 16px sous le titre de section (maquette mise a jour : le bloc competences
-       passe de 345 a 353 de haut, soit +8 sur cette seule gouttiere). */
-    margin: var(--space-16) 0 0;
+       passe de 345 a 353 de haut, soit +8 sur cette seule gouttiere). Les
+       marges retranchent le padding des entrees des extremites, pour que la
+       liste garde exactement sa place. */
+    margin: calc(var(--space-16) - var(--entry-half-gap)) 0 calc(-1 * var(--entry-half-gap));
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-16);
 }
 
+/* Zones de survol jointives, comme la liste de la page Projets : l'espace entre
+   deux entrees est du padding (moitie dessus, moitie dessous) et non un gap.
+   Le curseur passe d'une entree a la suivante sans traverser de vide, donc
+   la liste ne repasse jamais par l'etat "tout efface" en chemin. */
 .about-entry {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
+    padding: var(--entry-half-gap) 0;
 }
 
 /* Les competences sont plus serrees que les deux autres listes dans la maquette :
    8px entre les entrees et 4px entre l'intitule et sa description, contre 16 et 8
    pour experiences et certifications. */
 .about-list--tight {
-    gap: var(--space-8);
+    --entry-half-gap: 4px;
 }
 
 .about-list--tight .about-entry {
