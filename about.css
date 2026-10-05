@@ -77,24 +77,97 @@
     text-align: justify;
 }
 
+/* Intro : nom + role, texte, portrait carre puis tags, 16px entre chaque
+   (maquette 2324:65488). Le nom reprend .section-title, le role .subtitle. */
+.about-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.about-intro-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.about-intro-head .subtitle {
+    margin: 0;
+    /* 45 Light dans la maquette : cdnfonts sert la Light en 400. A 300 le
+       navigateur prenait la Thin. */
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+/* Cadre des visuels des pages projet (maquette 2370:4398) : bord fin, ombre
+   portee, 4px de marge ; la photo, arrondie a 8px, est recadree en portrait
+   (451 x 500 dans la maquette). */
+.about-portrait-frame {
+    margin: 0;
+    padding: 4px;
+    border: 1px solid var(--neutral-dark-01);
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: 0 7px 11px -2px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.8s ease, border-color 0.8s ease;
+}
+
+.about-portrait {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 451 / 500;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 1px 2px -1px rgba(0, 0, 0, 0.06),
+        0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+.about-tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+}
+
+.about-tag {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--neutral-dark-01);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    white-space: nowrap;
+    transition: background-color 0.8s ease;
+}
+
 /* ========== COLONNE CV (maquette Figma 2120:64762) ==========
    La grille 3 colonnes de .about-structure produit deja des colonnes de
    461.33px pour un viewport de 1512px : exactement la largeur de la maquette.
    Le CV est ancre dans la colonne 2, les colonnes 1 et 3 restent vides.
 
-   Rythme vertical de la maquette : 32px de padding en haut ET en bas de chaque
-   bloc, donc 64px entre deux contenus, le filet tombant pile au milieu. Le filet
-   est porte par les sections : l'intro (premiere) et le CTA (dernier) n'en ont
-   pas, conformement a la maquette. */
+   Rythme vertical : 64px de padding en haut ET en bas de chaque bloc, donc
+   128px entre deux contenus. Plus de filet entre les sections : la maquette
+   s'en passe, le blanc suffit a les separer. Le CTA n'a que 32px. */
 
 .about-text-content > * {
-    padding: 32px 0;
+    padding: 64px 0;
 }
 
 .about-text-content > .about-block {
     margin: 0;
-    border-top: 1px solid var(--neutral-dark-01);
-    transition: border-color 0.8s ease;
+}
+
+.about-text-content > .about-cta {
+    padding: 32px 0;
 }
 
 /* Titre de section : 20px medium, comme la maquette. Indispensable ici, sinon
@@ -171,20 +244,19 @@
     background-image: url('fichiers/logo-hackathon.svg');
 }
 
+/* Udemy en SVG inline : le "u" est en currentColor, il herite donc de la couleur
+   du texte et fond avec elle au changement de theme. Une image de fond par theme
+   basculait d'un coup, decalee du texte qui met 0.8s. */
 .icon-udemy {
     width: 9px;
-    background-image: url('fichiers/logo-udemy.svg');
+}
+
+.icon-udemy svg {
+    display: block;
 }
 
 .icon-google {
     background-image: url('fichiers/logo-google.svg');
-}
-
-/* Le "u" d'Udemy est monochrome et disparaitrait sur fond sombre : variante
-   dediee, comme le portrait clair/sombre plus haut. Les autres tiennent sur les
-   deux themes — celle du freelance est bicolore et s'y adapte d'elle-meme. */
-.dark-theme .icon-udemy {
-    background-image: url('fichiers/logo-udemy-dark.svg');
 }
 
 .about-entry-title {
@@ -587,7 +659,7 @@
    Refonte d'apres la maquette Figma (node 2077:60257), alignee sur index :
    flux vertical unique : header -> intro -> competences -> experiences ->
    certifications -> CTA -> footer. 96px sous le header.
-   Le rythme entre blocs vient du padding 32px de .about-text-content > *.
+   Le rythme entre blocs vient du padding 64px de .about-text-content > *.
    Aligne sur 900px comme tout le site (l'ancien palier 960 est supprime).
 */
 @media (max-width: 900px) {
