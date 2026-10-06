@@ -1,12 +1,13 @@
 # Temporaire : les études de cas sont en refonte, leurs URL renvoient vers la
 # page "en cours de développement". 302 (et non 301) pour que navigateurs et
-# moteurs ne retiennent pas la redirection.
-/project-1 /en-cours 302
-/project-2 /en-cours 302
-/project-3 /en-cours 302
-/project-1.html /en-cours 302
-/project-2.html /en-cours 302
-/project-3.html /en-cours 302
+# moteurs ne retiennent pas la redirection. Le "!" force la regle : sans lui,
+# Netlify sert le fichier project-N.html qui existe et ignore la redirection.
+/project-1 /en-cours 302!
+/project-2 /en-cours 302!
+/project-3 /en-cours 302!
+/project-1.html /en-cours 302!
+/project-2.html /en-cours 302!
+/project-3.html /en-cours 302!
 
 # A remettre quand les études de cas reviennent :
 # /project-1 /project-1.html 200
