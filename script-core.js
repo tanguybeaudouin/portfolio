@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileExtraHideSelectors = [
         '.content-top-section .title-group',
         '.image-section',
-        '.projects-gallery-section',
+        '.projects-list-section',
         '.footer-group'
     ];
 
@@ -728,6 +728,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
+    // BURGER MAGNETIQUE (facon perappelgren.de)
+    // ==========================================
+    // A l'approche du curseur, le bouton glisse vers lui, et ses barres un peu
+    // plus encore : il a l'air de "regarder" la souris. Le mouvement suit une
+    // interpolation par frame, donc il garde de l'inertie a l'arrivee comme au
+    // retour. Souris uniquement, et rien si le visiteur reduit les animations.
+    if (
+        btn &&
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+        const MAGNET_RADIUS = 36;   // distance au centre ou l'attraction commence
+        const MAGNET_PULL = 0.15;   // part de l'ecart curseur/centre suivie par le bouton
+        const BARS_PULL = 0.06;     // supplement pour les barres, effet de profondeur
+        const MAGNET_EASE = 0.1;
+
+        const bars = Array.from(btn.querySelectorAll('.bar'));
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let magnetFrame = 0;
+
+        const renderMagnet = () => {
+            currentX += (targetX - currentX) * MAGNET_EASE;
+            currentY += (targetY - currentY) * MAGNET_EASE;
+
+            const settled = Math.abs(targetX - currentX) < 0.05 && Math.abs(targetY - currentY) < 0.05;
+            if (settled) {
+                currentX = targetX;
+                currentY = targetY;
+            }
+
+            btn.style.translate = `${currentX}px ${currentY}px`;
+            const barsX = currentX * (BARS_PULL / MAGNET_PULL);
+            const barsY = currentY * (BARS_PULL / MAGNET_PULL);
+            bars.forEach((bar) => {
+                bar.style.translate = `${barsX}px ${barsY}px`;
+            });
+
+            magnetFrame = settled ? 0 : requestAnimationFrame(renderMagnet);
+        };
+
+        const startMagnet = () => {
+            if (!magnetFrame) magnetFrame = requestAnimationFrame(renderMagnet);
+        };
+
+        window.addEventListener('pointermove', (event) => {
+            // Centre de repos : le rect inclut le decalage courant, on le retire.
+            const rect = btn.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2 - currentX;
+            const centerY = rect.top + rect.height / 2 - currentY;
+            const dx = event.clientX - centerX;
+            const dy = event.clientY - centerY;
+            const inRange = Math.hypot(dx, dy) < MAGNET_RADIUS;
+
+            const nextX = inRange ? dx * MAGNET_PULL : 0;
+            const nextY = inRange ? dy * MAGNET_PULL : 0;
+            if (nextX === targetX && nextY === targetY) return;
+            targetX = nextX;
+            targetY = nextY;
+            startMagnet();
+        }, { passive: true });
+
+        document.documentElement.addEventListener('pointerleave', () => {
+            targetX = 0;
+            targetY = 0;
+            startMagnet();
+        });
+    }
+
+    // ==========================================
     // DARK MODE & PORTRAIT (Technique de superposition)
     // ==========================================
     function updateThemeUI(isDark, animate = true) {
@@ -929,10 +1001,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
         document.body.classList.contains('about-page') ||
         document.body.classList.contains('contact-page') ||
-        document.body.classList.contains('project-fbf-page')
+        document.body.classList.contains('project-fbf-page') ||
+        document.body.classList.contains('case-page')
     ) {
         const radialCtaButtons = document.querySelectorAll(
-            '.about-page .btn-download, .contact-page .contact-submit, .project-fbf-page .fbf-sheet .btn-download'
+            '.about-page .btn-download, .contact-page .contact-submit, .project-fbf-page .fbf-sheet .btn-download, .case-page .btn-download'
         );
 
         const setCtaRippleVars = (button, clientX, clientY) => {

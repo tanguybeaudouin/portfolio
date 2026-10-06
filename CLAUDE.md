@@ -26,8 +26,8 @@ deleted in `402a761`; the source files are what the pages load directly.
 
 - `main.css` on every page, plus `about.css`, `contact.css`, `work.css`, or
   `project-fbf.css` (the three project pages) / `project.css` (`en-cours.html` only).
-- `script-core.js` on every page, plus `script-home.js`, `script-about.js`,
-  `script-contact.js`, or `script-work.js`.
+- `script-core.js` on every page, plus `script-home.js`, `script-about.js`, or
+  `script-contact.js`. `work.html` has no page script (its project list is plain links).
 - Fonts are declared in each page's `<head>`: Neue Haas Grotesk (cdnfonts) and DM Mono
   (Google Fonts). Do not move them back into a CSS `@import` — that serialises the
   download behind `main.css`.
@@ -46,7 +46,7 @@ serve this directory directly. The working setup lives in `~/.claude/portfolio-p
 
 ## Architecture
 
-**One shared script (`script-core.js`) drives all pages**, gated by `document.body.classList.contains('<page>-page')`. It's a single `DOMContentLoaded` handler containing distinct sections (search for the `// ====` banners): DOM selection, Rennes local-time clock, typewriter animation, burger menu, dark-mode/portrait image swap, and a custom throttled cursor. Page-specific extra behavior lives in a matching small script per page: `script-home.js`, `script-about.js`, `script-contact.js`, `script-work.js`.
+**One shared script (`script-core.js`) drives all pages**, gated by `document.body.classList.contains('<page>-page')`. It's a single `DOMContentLoaded` handler containing distinct sections (search for the `// ====` banners): DOM selection, Rennes local-time clock, typewriter animation, burger menu, dark-mode/portrait image swap, and a custom throttled cursor. Page-specific extra behavior lives in a matching small script per page: `script-home.js`, `script-about.js`, `script-contact.js` (`work.html` needs none).
 
 **Body classes are the routing mechanism** — there's no JS router; each page sets one `<body class="...">` and both CSS and `script-core.js` branch on it:
 - `home-page` (`index.html`), `work-page` (`work.html`), `about-page` (`about.html`), `contact-page` (`contact.html`), `wip-page` (`en-cours.html`, `robots.txt`-disallowed placeholder)

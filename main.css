@@ -1223,3 +1223,75 @@ img {
 .project-image {
     border-radius: 6px !important;
 }
+
+/* ========================================== 14. LISTE DE PROJETS ==========================================
+   Titre + sous-titre entre parentheses, filet entre les entrees, fleche au
+   survol. Page Projets et bloc "et.ensuite" des pages projet. */
+
+/* Zones cliquables jointives : l'espacement entre projets est du padding du
+   lien, et le filet est sa bordure. Aucun trou mort entre deux liens, le
+   survol passe de l'un a l'autre sans clignoter. La marge negative compense
+   le padding des extremites pour garder la colonne a sa place. */
+.projects-list {
+    list-style: none;
+    margin: -16px 0;
+    padding: 0;
+    width: 100%;
+}
+
+.projects-list-link {
+    padding: 16px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.projects-list li + li .projects-list-link {
+    border-top: 1px solid var(--neutral-dark-01);
+}
+
+.projects-list-title,
+.projects-list-tag {
+    grid-column: 1;
+}
+
+.projects-list-tag {
+    opacity: 0.48;
+}
+
+/* Fleche au survol, calee a droite sur toute la hauteur titre + sous-titre
+   (deux lignes de 1.3em + 4px). Masque SVG teinte en currentColor : suit le
+   theme sans filtre. Ratio du fichier (83x71). */
+.projects-list-arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    height: calc(2.6em + 4px);
+    aspect-ratio: 83 / 71;
+    background-color: currentColor;
+    -webkit-mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
+    mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.projects-list-link:hover .projects-list-arrow,
+.projects-list-link:focus-visible .projects-list-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Pas de survol en tactile : la fleche reste visible pour signaler le lien */
+@media (max-width: 900px) {
+    .projects-list-arrow {
+        opacity: 1;
+        transform: none;
+    }
+}
