@@ -1212,6 +1212,52 @@ h3 {
     background: var(--primary);
 }
 
+/* Interrupteur de son : injecté par script-sound.js à gauche de chaque
+   interrupteur de thème. Les barres prennent la couleur du texte autour
+   (claire sur les pieds de page des pages projet). */
+.footer-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    justify-self: end;
+}
+
+.sound-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 30px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    position: relative;
+    opacity: 0.4;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sound-toggle.is-on,
+.sound-toggle:hover,
+.sound-toggle:focus-visible {
+    opacity: 1;
+}
+
+.sound-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+}
+
+.sound-toggle span {
+    display: block;
+    width: 2px;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+}
+
 /* Images: arrondi global */
 img {
     border-radius: 6px;
