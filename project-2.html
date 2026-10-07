@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frame by Frame — Étude de cas UX/UI | Tanguy Beaudouin</title>
     <meta name="description" content="Étude de cas Frame by Frame : conception d'un site vitrine immersif pour une agence créative orientée cinéma.">
     <link rel="canonical" href="https://tanguy.studio/project-2">
@@ -15,16 +15,12 @@
 
     <script>
         (function () {
+            var root = document.documentElement;
             if (localStorage.getItem('theme') === 'dark') {
-                document.documentElement.classList.add('dark-theme');
+                root.classList.add('dark-theme');
             }
-            try {
-                if (sessionStorage.getItem('project-page-transition-pending-v1') === '1') {
-                    document.documentElement.classList.add('project-transition-enter');
-                }
-            } catch (_error) {
-                // Ignore storage errors and continue.
-            }
+            // Pose avant le rendu : sans JS, rien n'est masque en attente du reveal.
+            root.classList.add('case-js');
         })();
     </script>
 
@@ -32,171 +28,209 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20260923">
-    <link rel="stylesheet" href="project-fbf.css?v=20260923">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css?v=20261004">
+    <link rel="stylesheet" href="project-case.css?v=20261007q">
 </head>
 
-<body class="project-fbf-page">
+<body class="case-page">
     <div id="custom-cursor"></div>
 
-    <div id="smooth-wrapper">
-        <div class="page">
-            <div id="smooth-content">
-                <main class="main-card">
-                    <section class="content-section project-fbf-content-section">
-                <header class="content-top-section">
-                    <div class="title-group">
-                        <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
-                        <p class="subtitle" lang="en">PROJECT</p>
-                    </div>
-                    <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
-                        <span class="bar bar-top"></span>
-                        <span class="bar bar-bottom"></span>
-                    </button>
-                </header>
+    <div class="edge-fade edge-fade-top" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+    <div class="edge-fade edge-fade-bottom" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
 
-                <div class="about-baseline-section">
-                    <div id="baseline-wrapper" class="menu-hide">
-                        <article class="fbf-hero">
-                            <h2 class="sr-only">Frame by Frame — site vitrine pour une agence de branding cinéma</h2>
-                            <a href="work.html" class="fbf-back" aria-label="Retour aux projets"></a>
-                            <video class="fbf-hero-media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <div class="page">
+        <main class="main-card">
+            <header class="content-top-section">
+                <div class="title-group">
+                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="subtitle">FRAME BY FRAME</p>
+                </div>
+                <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-bottom"></span>
+                </button>
+            </header>
+
+            <div id="baseline-wrapper">
+                <article class="case">
+
+                    <!-- 1. En-tete : ce que c'est, en une lecture -->
+                    <section class="case-text case-intro case-reveal">
+                        <div class="case-head">
+                            <div class="case-actions">
+                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                    onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
+                            </div>
+                            <h2 class="section-title">frame.by.frame</h2>
+                            <p class="subtitle">Identité &amp; site vitrine</p>
+                        </div>
+                        <p class="case-lead">Un site vitrine pour une agence de branding cinéma, conçu pour plonger le visiteur dans un univers visuel fort. Il présente les services, le style créatif et les réalisations de l'agence, tout en facilitant la prise de contact.</p>
+                        <ul class="case-tags" aria-label="Domaines">
+                            <li class="case-tag">Direction artistique</li>
+                            <li class="case-tag">Logo</li>
+                            <li class="case-tag">Identité visuelle</li>
+                            <li class="case-tag">Vidéo</li>
+                            <li class="case-tag">Motion design</li>
+                            <li class="case-tag">Props</li>
+                            <li class="case-tag">UI Design</li>
+                            <li class="case-tag">Site web</li>
+                        </ul>
+                        <ul class="case-list case-list--meta" aria-label="Informations projet">
+                            <li class="case-entry">
+                                <span class="case-entry-title">Année</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">2025</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Supports</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Web, print &amp; vidéo</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Livrables</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Identité, Vidéos, Props, Site</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- 2. Visuel d'ouverture : le motion du projet, charge a l'approche -->
+                    <figure class="case-media case-media--hero case-reveal">
+                        <video class="case-video" muted loop playsinline preload="none"
+                            poster="images/frame-by-frame/frame-by-frame-motion-poster.webp?v=20261007"
+                            aria-label="Motion design Frame by Frame : platine vinyle en gros plan">
+                            <source src="fichiers/frame-by-frame-motion-son.mp4" type="video/mp4">
+                        </video>
+                        <button type="button" class="case-video-sound is-magnetic" aria-pressed="false" aria-label="Activer le son de la vidéo">
+                            <svg class="icon-sound-off" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M2.5 6h2l3-2.5v9L4.5 10h-2z"/>
+                                <path d="m10.5 6.5 3 3m0-3-3 3"/>
+                            </svg>
+                            <svg class="icon-sound-on" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M2.5 6h2l3-2.5v9L4.5 10h-2z"/>
+                                <path d="M10 6a3 3 0 0 1 0 4M12 4a6 6 0 0 1 0 8"/>
+                            </svg>
+                        </button>
+                    </figure>
+
+                    <!-- Le carnet imprime -->
+                    <figure class="case-media case-reveal">
+                        <img src="images/frame-by-frame/frame-by-frame-print-booklet.webp" alt="Livret imprimé Frame by Frame à couverture orange, logo en noir" width="2400" height="1600" decoding="async">
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">contexte.objectifs</h2>
+                        <p class="case-body">Frame by Frame est une agence créative spécialisée dans le branding pour le cinéma. L'enjeu : montrer ses services, sa direction artistique et ses réalisations de manière claire, sensible et percutante.</p>
+                    </section>
+
+                    <figure class="case-media case-reveal">
+                        <img src="images/frame-by-frame/frame-by-frame-interface-home.webp" alt="Interface d'accueil du site Frame by Frame" width="2200" height="1236" loading="lazy" decoding="async">
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">architecture.site</h2>
+                        <p class="case-body">Trois pages portent l'essentiel du site ; les fonctionnalités secondaires restent accessibles sans concurrencer l'univers visuel.</p>
+                        <ol class="case-list case-list--steps">
+                            <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Accueil</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Home page immersive</span></li>
+                            <li class="case-entry"><span class="case-entry-num">02</span><span class="case-entry-title">Film</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Projets de l'agence</span></li>
+                            <li class="case-entry"><span class="case-entry-num">03</span><span class="case-entry-title">Contact</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Prise de contact</span></li>
+                            <li class="case-entry"><span class="case-entry-num">04</span><span class="case-entry-title">Newsletter</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Secondaire</span></li>
+                            <li class="case-entry"><span class="case-entry-num">05</span><span class="case-entry-title">Blog</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Secondaire</span></li>
+                            <li class="case-entry"><span class="case-entry-num">06</span><span class="case-entry-title">Shop</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Secondaire</span></li>
+                        </ol>
+                    </section>
+
+                    <figure class="case-media case-reveal">
+                        <img src="images/frame-by-frame/frame-by-frame-sitemap.webp" alt="Arborescence des pages du projet Frame by Frame" width="2200" height="1236" loading="lazy" decoding="async">
+                    </figure>
+
+                    <!-- Paire video + 16/9 : meme hauteur, la video est recadree en carre -->
+                    <div class="case-pair case-reveal">
+                        <figure class="case-media">
+                            <video class="case-video" muted loop playsinline preload="none"
+                                poster="images/frame-by-frame/frame-by-frame-site-video-poster.webp"
+                                aria-label="Ambiance du site Frame by Frame : magazine posé sur une nappe brodée">
                                 <source src="fichiers/video-fbf-previous-hover.mp4?v=20260408" type="video/mp4">
                             </video>
-                            <div class="fbf-hero-overlay">
-                                <img class="fbf-kicker-logo" src="fichiers/logo_framebyframe.svg" alt="Logo Frame by Frame" width="194" height="36" decoding="async">
-                                <div class="fbf-copy">
-                                    <p class="fbf-lead"><span class="fbf-lead-highlight">Un site vitrine pour une agence</span><span class="fbf-lead-rest"><span class="fbf-line">de branding cinéma, conçu pour</span><span class="fbf-line">plonger le visiteur dans un univers</span><span class="fbf-line">visuel fort.</span></span></p>
-                                </div>
-                            </div>
-                            <div class="fbf-hero-bottom">
-                                <div class="footer-meta">
-                                    <span class="location">Rennes, France</span>
-                                    <span class="subtitle footer-local-time" id="rennes-time">--:--:--</span>
-                                </div>
-                                <span class="fbf-scroll-indicator" lang="en">SCROLL
-                                    <img src="fichiers/chevron_scroll.svg" alt="" aria-hidden="true" class="fbf-scroll-chevron" width="11" height="11">
-                                </span>
-                                <div class="toggle-control fbf-toggle-control">
-                                    <input type="checkbox" id="theme-toggle">
-                                    <label for="theme-toggle"></label>
-                                </div>
-                            </div>
-                        </article>
-
-                        <section class="fbf-sheet">
-                            <div class="fbf-intro">
-                                <p class="fbf-intro-rest fbf-intro-animated">
-                                    <span class="fbf-intro-line">Le site présente les services, le style</span>
-                                    <span class="fbf-intro-line">créatif et les réalisations de l'agence,</span>
-                                    <span class="fbf-intro-line">tout en facilitant la prise de contact</span>
-                                    <span class="fbf-intro-line">avec des clients potentiels.</span>
-                                </p>
-                            </div>
-
-                            <div class="fbf-grid-row">
-                                <figure class="fbf-placeholder fbf-media-frame">
-                                    <img src="images/frame-by-frame/frame-by-frame-interface-home.webp" alt="Interface d'accueil du site Frame by Frame" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2200" height="1236">
-                                </figure>
-                                <figure class="fbf-placeholder fbf-media-frame">
-                                    <img src="images/frame-by-frame/frame-by-frame-interface-services.webp" alt="Page services du site Frame by Frame" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2200" height="1236">
-                                </figure>
-                                <figure class="fbf-placeholder fbf-media-frame">
-                                    <img src="images/frame-by-frame/frame-by-frame-interface-projects.webp" alt="Page projets du site Frame by Frame" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2200" height="1236">
-                                </figure>
-                            </div>
-
-                            <div class="fbf-grid-row fbf-grid-large">
-                                <figure class="fbf-placeholder fbf-placeholder-square fbf-media-frame fbf-media-frame-hero">
-                                    <video class="fbf-media-video-bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                                        <source src="fichiers/video-fbf-previous-hover-low.mp4?v=20260410" type="video/mp4">
-                                    </video>
-                                    <img src="images/frame-by-frame/frame-by-frame-desktop-mockup.webp" alt="Mockup desktop du site Frame by Frame" class="fbf-media-img fbf-media-img-foreground" loading="lazy" fetchpriority="low" decoding="async" width="1800" height="1800">
-                                </figure>
-                                <article class="fbf-text-card">
-                                    <h4>Fonctionnalités du site web</h4>
-                                    <p>Le site Frame by Frame est un site vitrine immersif conçu pour valoriser une agence créative spécialisée dans le branding pour le cinéma. L'objectif est de montrer les services, la direction artistique et les réalisations de manière claire, sensible et percutante.</p>
-                                    <p>Fonctionnalités principales : Home page immersive, section Film (projets), page Contact.<br>Fonctionnalités secondaires : Newsletter, Blog, Shop.<br>Sur mobile, la hiérarchie est condensée pour conserver l'impact visuel tout en facilitant les interactions (navigation, repérage rapide, prise de contact).</p>
-                                    <dl class="fbf-meta-list">
-                                        <div class="fbf-meta-row">
-                                            <dt>PROJET</dt>
-                                            <dd>Frame by Frame</dd>
-                                        </div>
-                                        <div class="fbf-meta-row">
-                                            <dt>DATE</dt>
-                                            <dd>2025</dd>
-                                        </div>
-                                        <div class="fbf-meta-row">
-                                            <dt>SERVICE</dt>
-                                            <dd>UX/UI Design, Direction artistique, Branding digital.</dd>
-                                        </div>
-                                        <div class="fbf-meta-row">
-                                            <dt>LIVRABLES</dt>
-                                            <dd>Site vitrine responsive, prototype interactif, système visuel.</dd>
-                                        </div>
-                                    </dl>
-                                </article>
-                            </div>
-
-                            <figure class="fbf-placeholder fbf-placeholder-wide fbf-media-frame">
-                                <img src="images/frame-by-frame/frame-by-frame-sitemap.webp" alt="Arborescence des pages du projet Frame by Frame" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2200" height="1236">
-                            </figure>
-
-                            <section class="fbf-contact-cta" aria-label="Contact">
-                                <a class="fbf-contact-cta-frame" href="contact.html" aria-label="Aller à la page contact">
-                                    <div class="fbf-contact-cta-motion">
-                                        <div class="fbf-contact-cta-copy">
-                                            <h3 class="fbf-contact-cta-title">Travaillons ensemble</h3>
-                                            <p class="fbf-contact-cta-desc">Tu as un projet UX/UI ? Parlons-en.</p>
-                                        </div>
-                                        <span class="fbf-contact-cta-arrow" aria-hidden="true"></span>
-                                    </div>
-                                </a>
-                            </section>
-
-                        </section>
-
-                        <section class="fbf-blue-panel fbf-blue-panel-video" data-next-url="project-3.html">
-                            <video class="fbf-next-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                                <source src="fichiers/sikovid_3mb.mp4" type="video/mp4">
-                            </video>
-                            <p class="fbf-next-reveal">
-                                <span class="fbf-next-line" lang="en">NEXT PROJECT - KEEP SCROLLING</span>
-                                <span class="fbf-next-arrow" aria-hidden="true"></span>
-                            </p>
-                            <footer class="fbf-blue-footer">
-                                <div class="footer-meta">
-                                    <span class="location">Rennes, France</span>
-                                    <span class="subtitle footer-local-time" id="rennes-time-bottom">--:--:--</span>
-                                </div>
-                                <div class="toggle-control">
-                                    <input type="checkbox" id="theme-toggle-bottom">
-                                    <label for="theme-toggle-bottom"></label>
-                                </div>
-                            </footer>
-                        </section>
+                        </figure>
+                        <figure class="case-media">
+                            <img src="images/frame-by-frame/frame-by-frame-interface-services.webp" alt="Page services du site Frame by Frame" width="2200" height="1236" loading="lazy" decoding="async">
+                        </figure>
                     </div>
 
-                    <nav id="menu-wrapper" style="display:none;">
-                        <ul class="menu-list">
-                            <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                            <li><a href="work.html" class="hover-underline">Projets</a></li>
-                            <li><a href="about.html" class="hover-underline">À propos</a></li>
-                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">interface.design</h2>
+                        <p class="case-body">Sur mobile, la hiérarchie est condensée pour conserver l'impact visuel tout en facilitant les interactions : navigation, repérage rapide et prise de contact.</p>
+                    </section>
+
+                    <!-- Suite : meme grammaire que les listes de la page About -->
+                    <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
+                        <h2 class="section-title">et.ensuite</h2>
+                        <ul class="projects-list">
+                            <li>
+                                <a class="projects-list-link" href="project-3.html">
+                                    <span class="projects-list-title">Siko Mobility</span>
+                                    <span class="projects-list-tag">( Projet suivant )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="projects-list-link" href="work.html">
+                                    <span class="projects-list-title">Tous les projets</span>
+                                    <span class="projects-list-tag">( 5 projets )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
-                </div>
-                    </section>
-                </main>
+
+                </article>
             </div>
+
+            <nav id="menu-wrapper" style="display:none;">
+                <ul class="menu-list">
+                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="about.html" class="hover-underline">À propos</a></li>
+                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                </ul>
+            </nav>
+
+            <footer class="footer-group">
+                <div class="footer-meta">
+                    <span class="location">Rennes, France</span>
+                    <span class="subtitle footer-local-time" id="rennes-time">--:--:--</span>
+                </div>
+                <div class="toggle-control">
+                    <input type="checkbox" id="theme-toggle">
+                    <label for="theme-toggle"></label>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div class="case-lightbox" role="dialog" aria-label="Image agrandie" aria-hidden="true">
+        <div class="case-lightbox-backdrop"></div>
+        <div class="case-lightbox-frame">
+            <img class="case-lightbox-img" alt="">
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
-    <script src="script-core.js?v=20261006"></script>
+    <script src="script-core.js?v=20261007b"></script>
+    <script src="script-case.js?v=20261007j"></script>
     <script src="script-sound.js?v=20261006"></script>
 </body>
 

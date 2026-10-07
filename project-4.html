@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportigo — Identité et site web | Tanguy Beaudouin</title>
+    <meta name="description" content="Sportigo : identité visuelle et landing page d'une plateforme de gestion pour salles de sport, studios et clubs.">
+    <link rel="canonical" href="https://tanguy.studio/project-4">
+    <meta property="og:title" content="Sportigo — Identité et site web | Tanguy Beaudouin">
+    <meta property="og:description" content="Sportigo : identité visuelle et landing page d'une plateforme de gestion pour salles de sport, studios et clubs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tanguy.studio/project-4">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            if (localStorage.getItem('theme') === 'dark') {
+                root.classList.add('dark-theme');
+            }
+            // Pose avant le rendu : sans JS, rien n'est masque en attente du reveal.
+            root.classList.add('case-js');
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Inter:wght@500&amp;display=swap" rel="stylesheet">
+    <!-- Switzer : police de la maquette Sportigo codee dans la page -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css?v=20261004">
+    <link rel="stylesheet" href="project-case.css?v=20261007q">
+    <link rel="stylesheet" href="project-sportigo.css?v=20261007k">
+</head>
+
+<body class="case-page">
+    <div id="custom-cursor"></div>
+
+    <div class="edge-fade edge-fade-top" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+    <div class="edge-fade edge-fade-bottom" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+
+    <div class="page">
+        <main class="main-card">
+            <header class="content-top-section">
+                <div class="title-group">
+                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="subtitle">SPORTIGO</p>
+                </div>
+                <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-bottom"></span>
+                </button>
+            </header>
+
+            <div id="baseline-wrapper">
+                <article class="case">
+
+                    <!-- 1. En-tete : ce que c'est, en une lecture -->
+                    <section class="case-text case-intro case-reveal">
+                        <div class="case-head">
+                            <div class="case-actions">
+                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                    onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
+                            </div>
+                            <h2 class="section-title">sportigo</h2>
+                            <p class="subtitle">Identité &amp; site web</p>
+                        </div>
+                        <p class="case-lead">Pilotez votre salle, automatisez vos revenus. Sportigo est une plateforme qui réunit réservations, abonnements, paiements et plannings pour les salles de sport, studios et clubs. Le projet couvre son identité visuelle et sa landing page.</p>
+                        <ul class="case-tags" aria-label="Domaines">
+                            <li class="case-tag">Direction artistique</li>
+                            <li class="case-tag">UX Design</li>
+                            <li class="case-tag">UI Design</li>
+                            <li class="case-tag">Landing page</li>
+                            <li class="case-tag">SEO / GEO</li>
+                            <li class="case-tag">Conversion</li>
+                            <li class="case-tag">Prototype</li>
+                        </ul>
+                        <ul class="case-list case-list--meta" aria-label="Informations projet">
+                            <li class="case-entry">
+                                <span class="case-entry-title">Année</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">2026</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Supports</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Web</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Livrables</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Look &amp; feel, Landing page, Prototype</span>
+                            </li>
+                        </ul>
+                        <ul class="projects-list case-proto">
+                            <li>
+                                <a class="projects-list-link" href="https://www.figma.com/proto/bCS6qJNjjaQyNcH63S6CGb/tanguy.studio?node-id=2404-28015&amp;t=fg8FRHnmlAC4cc4T-1&amp;content-scaling=responsive" target="_blank" rel="noopener noreferrer">
+                                    <span class="projects-list-title">Accéder au prototype</span>
+                                    <span class="projects-list-tag">( Figma )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- 2. Visuel d'ouverture : la planche logo de la charte, codee
+                         (1920 x 1080, mise a l'echelle du cadre). Styles : project-sportigo.css -->
+                    <figure class="case-media case-reveal">
+                        <div class="case-mock case-mock--wide" role="img" aria-label="Logo Sportigo blanc sur un dégradé bleu cobalt, avec la signature « Pilotez votre salle. Automatisez vos revenus. »">
+                            <div class="sg-stage" aria-hidden="true">
+                                <div class="sg-cover">
+                                    <img class="sg-cover-logo" src="images/sportigo/hero/logo-blanc.svg" alt="" width="466" height="119" decoding="async">
+                                    <p class="sg-cover-tagline sg-trim">Pilotez votre salle.<br>Automatisez vos revenus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">contexte.objectifs</h2>
+                        <p class="case-body">Les gérants de salles jonglent entre plusieurs outils pour gérer leurs membres, leurs cours et leurs encaissements. Sportigo les rassemble dans une seule plateforme. L'enjeu : une marque assez énergique pour parler au monde du sport, et assez claire pour inspirer confiance à des gérants qui confient leurs revenus à l'outil.</p>
+                    </section>
+
+                    <!-- Hero de la landing page, code en HTML/CSS d'apres la maquette Figma
+                         (1280 x 832, mis a l'echelle du cadre). Styles : project-sportigo.css -->
+                    <figure class="case-media case-reveal">
+                        <div class="case-mock" role="img" aria-label="Haut de la landing page Sportigo : navigation, titre « Pilotez votre salle. Automatisez vos revenus. », boutons et aperçu du tableau de bord">
+                            <div class="sg-stage" aria-hidden="true">
+                                <div class="sg-hero">
+                                    <div class="sg-intro">
+                                        <p class="sg-title sg-trim">Pilotez votre salle.<br>Automatisez vos revenus.</p>
+                                        <p class="sg-lead">Sportigo accompagne les clubs afin de leur proposer<br>un outil simple et complet.</p>
+                                        <div class="sg-actions">
+                                            <span class="sg-btn">Être rappelé<img src="images/sportigo/hero/arrow-dark.svg" alt="" width="15" height="15" loading="lazy" decoding="async"></span>
+                                            <span class="sg-btn sg-btn--primary">Demander une démo<img src="images/sportigo/hero/arrow-light.svg" alt="" width="15" height="15" loading="lazy" decoding="async"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="sg-dash">
+                                        <div class="sg-aside">
+                                            <div class="sg-brand">
+                                                <span class="sg-brand-logo"><img src="images/sportigo/hero/brand-logo-mark.svg" alt="" width="20" height="7" loading="lazy" decoding="async"></span>
+                                                <span class="sg-brand-info"><span class="sg-brand-name sg-trim">Fitness Gym</span><span class="sg-brand-plan sg-trim">Premium member</span></span>
+                                            </div>
+                                            <div class="sg-nav">
+                                    <div class="sg-nav-item">
+                                        <span class="sg-nav-link"><img src="images/sportigo/hero/nav-activite.svg" alt="" width="12" height="12" loading="lazy" decoding="async"><span class="sg-trim">Activité</span></span>
+                                    </div>
+                                    <div class="sg-nav-item is-active">
+                                        <span class="sg-nav-link"><img src="images/sportigo/hero/nav-dashboard.svg" alt="" width="12" height="12" loading="lazy" decoding="async"><span class="sg-trim">Dashboard</span></span>
+                                    </div>
+                                    <div class="sg-nav-item">
+                                        <span class="sg-nav-link"><img src="images/sportigo/hero/nav-planning.svg" alt="" width="12" height="12" loading="lazy" decoding="async"><span class="sg-trim">Planning</span></span>
+                                    </div>
+                                    <div class="sg-nav-item">
+                                        <span class="sg-nav-link"><img src="images/sportigo/hero/nav-finance.svg" alt="" width="12" height="12" loading="lazy" decoding="async"><span class="sg-trim">Finance</span></span>
+                                        <img class="sg-nav-chevron" src="images/sportigo/hero/nav-chevron.svg" alt="" width="12" height="12" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="sg-nav-item">
+                                        <span class="sg-nav-link"><img src="images/sportigo/hero/nav-marketing.svg" alt="" width="12" height="12" loading="lazy" decoding="async"><span class="sg-trim">Marketing</span></span>
+                                    </div>
+                                    <div class="sg-nav-item">
+                                        <span class="sg-nav-link"><img src="images/sportigo/hero/nav-statistiques.svg" alt="" width="12" height="12" loading="lazy" decoding="async"><span class="sg-trim">Statistiques</span></span>
+                                    </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sg-main">
+                                            <div class="sg-main-inner">
+                                                <div class="sg-topbar">
+                                                    <p class="sg-topbar-title sg-trim">Tableau de bord</p>
+                                                    <div class="sg-topbar-actions">
+                                                        <img src="images/sportigo/hero/topbar-notification.svg" alt="" width="16" height="16" loading="lazy" decoding="async">
+                                                        <span class="sg-topbar-divider"><img src="images/sportigo/hero/topbar-divider.svg" alt="" width="32" height="1" loading="lazy" decoding="async"></span>
+                                                        <span class="sg-user">
+                                                            <span class="sg-user-profile"><span class="sg-avatar"><img src="images/sportigo/hero/topbar-avatar-64.jpg" alt="" width="64" height="64" loading="lazy" decoding="async"></span><span class="sg-trim">Laure Amara</span></span>
+                                                            <img class="sg-user-caret" src="images/sportigo/hero/topbar-caret.svg" alt="" width="12" height="12" loading="lazy" decoding="async">
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="sg-content">
+                                                    <div class="sg-card sg-card--revenue">
+                                                        <div class="sg-card-head">
+                                                            <div class="sg-card-row">
+                                                                <span class="sg-label">Chiffre d’affaires</span>
+                                                                <span class="sg-badge"><img class="sg-badge-arrow" src="images/sportigo/hero/badge-arrow.svg" alt="" width="5" height="5" loading="lazy" decoding="async"><span class="sg-trim">16%</span></span>
+                                                            </div>
+                                                            <img class="sg-divider" src="images/sportigo/hero/card-divider.svg" alt="" width="217" height="1" loading="lazy" decoding="async">
+                                                        </div>
+                                                        <div class="sg-value"><span class="sg-value-main sg-trim" data-count="1240" data-suffix=" €">1 240 €</span><span class="sg-value-total sg-trim">/ 1 438 €</span></div>
+                                                        <div class="sg-progress"><span></span></div>
+                                                        <div class="sg-list">
+                                                <div class="sg-list-item"><span class="sg-label">Paiement validé</span><span class="sg-badge"><span class="sg-trim">+ 40 €</span></span></div>
+                                                <div class="sg-list-item"><span class="sg-label">Paiement validé</span><span class="sg-badge"><span class="sg-trim">+ 28 €</span></span></div>
+                                                <div class="sg-list-item"><span class="sg-label">Paiement validé</span><span class="sg-badge"><span class="sg-trim">+ 60 €</span></span></div>
+                                                <div class="sg-list-item"><span class="sg-label">Paiement validé</span><span class="sg-badge"><span class="sg-trim">+ 40 €</span></span></div>
+                                                <div class="sg-list-item"><span class="sg-label">Paiement validé</span><span class="sg-badge"><span class="sg-trim">+ 28 €</span></span></div>
+                                                        </div>
+                                                        <span class="sg-card-fade"></span>
+                                                    </div>
+
+                                                    <div class="sg-card-group">
+                                                        <div class="sg-card-group-top">
+                                                            <div class="sg-card sg-card--email">
+                                                                <div class="sg-card-head">
+                                                                    <div class="sg-card-row">
+                                                                        <span class="sg-label">Campagnes d’emailing</span>
+                                                                        <span class="sg-badge"><span class="sg-trim">Envoyé</span></span>
+                                                                    </div>
+                                                                    <img class="sg-divider" src="images/sportigo/hero/card-divider-email.svg" alt="" width="217" height="1" loading="lazy" decoding="async">
+                                                                </div>
+                                                                <div class="sg-metrics">
+                                                                    <div class="sg-metric"><span class="sg-label">Ouverture</span><span class="sg-meter"><span class="sg-meter-fill" style="width: 44px"></span><span class="sg-trim">46%</span></span></div>
+                                                                    <div class="sg-metric"><span class="sg-label">Rebond</span><span class="sg-meter"><span class="sg-meter-fill" style="width: 20px"></span><span class="sg-trim">12%</span></span></div>
+                                                                </div>
+                                                                <div class="sg-select"><span class="sg-label sg-trim">Liste des destinataires</span><img src="images/sportigo/hero/select-caret.svg" alt="" width="3" height="5" loading="lazy" decoding="async"></div>
+                                                            </div>
+                                                            <div class="sg-card sg-card--members">
+                                                                <div class="sg-card-head">
+                                                                    <div class="sg-card-row">
+                                                                        <span class="sg-label">Nouveaux adhérents</span>
+                                                                        <img src="images/sportigo/hero/card-badge-up.svg" alt="" width="13" height="13" loading="lazy" decoding="async">
+                                                                    </div>
+                                                                    <img class="sg-divider" src="images/sportigo/hero/card-divider-members.svg" alt="" width="217" height="1" loading="lazy" decoding="async">
+                                                                </div>
+                                                                <div class="sg-value"><span class="sg-value-main sg-trim" data-count="4" data-prefix="+">+4</span></div>
+                                                                <span class="sg-label">aujourd’hui</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="sg-card sg-card--activity">
+                                                            <span class="sg-label">Activité du jour</span>
+                                                            <div class="sg-list">
+                                                <div class="sg-list-item sg-activity-item"><span class="sg-user-chip"><img src="images/sportigo/hero/avatar.png" alt="" width="16" height="16" loading="lazy" decoding="async"><span class="sg-trim">Dan Amara</span></span><span class="sg-badge"><span class="sg-trim">Actif</span></span></div>
+                                                <div class="sg-list-item sg-activity-item"><span class="sg-user-chip"><img src="images/sportigo/hero/avatar.png" alt="" width="16" height="16" loading="lazy" decoding="async"><span class="sg-trim">Dan Amara</span></span><span class="sg-badge sg-badge--pending"><span class="sg-trim">En attente</span></span></div>
+                                                <div class="sg-list-item sg-activity-item"><span class="sg-user-chip"><img src="images/sportigo/hero/avatar.png" alt="" width="16" height="16" loading="lazy" decoding="async"><span class="sg-trim">Dan Amara</span></span><span class="sg-badge sg-badge--blue"><span class="sg-trim">Actif</span></span></div>
+                                                            </div>
+                                                            <span class="sg-card-fade"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <span class="sg-hero-fade"></span>
+                                    <span class="sg-tag sg-trim">700+ gérants nous font confiance</span>
+                                </div>
+
+                                <div class="sg-navbar">
+                                    <img class="sg-navbar-backdrop" src="images/sportigo/hero/nav-backdrop.png" alt="" width="1024" height="76" loading="lazy" decoding="async">
+                                    <div class="sg-navbar-bar">
+                                        <div class="sg-navbar-left">
+                                            <img src="images/sportigo/hero/sportigo-logo.svg" alt="" width="94" height="24" loading="lazy" decoding="async">
+                                            <span class="sg-navbar-links"><span>Solutions</span><span>Objectifs</span><span>Fonctionnalités</span><span>Ressources</span><span>À propos</span></span>
+                                        </div>
+                                        <div class="sg-navbar-right">
+                                            <span class="sg-navbar-lang">FR</span>
+                                            <img class="sg-navbar-phone" src="images/sportigo/hero/phone.svg" alt="" width="15" height="15" loading="lazy" decoding="async">
+                                            <span class="sg-btn">Demander une démo<img src="images/sportigo/hero/arrow-dark.svg" alt="" width="15" height="15" loading="lazy" decoding="async"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">identite.visuelle</h2>
+                        <p class="case-body">Un bleu cobalt pour la confiance, un vert lime pour l'énergie, un noir onyx et un gris brume pour poser le contenu. Côté typographie, Switzer porte les titres et Inter le texte courant.</p>
+                    </section>
+
+                    <!-- Paire de deux 16/9 : colonnes egales -->
+                    <div class="case-pair case-pair--even case-reveal">
+                        <figure class="case-media">
+                            <img src="images/sportigo/sportigo-couleurs.webp" alt="Palette Sportigo : lime, cobalt, onyx, brume et blanc" width="1920" height="1080" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="case-media">
+                            <img src="images/sportigo/sportigo-typographie.webp" alt="Typographies Sportigo : Switzer Variable et Inter" width="1920" height="1080" loading="lazy" decoding="async">
+                        </figure>
+                    </div>
+
+                    <figure class="case-media case-reveal">
+                        <img src="images/sportigo/sportigo-direction-photo.webp" alt="Direction photo Sportigo : sportifs souriants en tenue lime et cobalt, mêlés à des aplats de couleur de la charte" width="1920" height="1080" loading="lazy" decoding="async">
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">landing.page</h2>
+                        <p class="case-body">La landing page déroule l'argumentaire du plus large au plus concret : la promesse, les bénéfices, puis la preuve.</p>
+                        <ol class="case-list case-list--steps">
+                            <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Promesse</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Aperçu du tableau de bord</span></li>
+                            <li class="case-entry"><span class="case-entry-num">02</span><span class="case-entry-title">Bénéfices</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Grille des fonctionnalités</span></li>
+                            <li class="case-entry"><span class="case-entry-num">03</span><span class="case-entry-title">Disciplines</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Une offre par activité</span></li>
+                            <li class="case-entry"><span class="case-entry-num">04</span><span class="case-entry-title">Produit</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Tout pour piloter son activité</span></li>
+                            <li class="case-entry"><span class="case-entry-num">05</span><span class="case-entry-title">Preuve</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Chiffres et témoignages</span></li>
+                            <li class="case-entry"><span class="case-entry-num">06</span><span class="case-entry-title">Questions</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">FAQ et prise de contact</span></li>
+                        </ol>
+                    </section>
+
+                    <!-- Section Fonctionnalites de la landing page, codee d'apres Figma
+                         (1280 x 1166, mise a l'echelle du cadre). Styles : project-sportigo.css -->
+                    <figure class="case-media case-reveal">
+                        <div class="case-mock case-mock--features" role="img" aria-label="Section fonctionnalités de la landing page Sportigo : titre « Une plateforme pensée pour faire grandir votre salle. » et grille de six cartes cobalt, lime, photo, gris et noir">
+                            <div class="sg-stage" aria-hidden="true">
+                                <div class="sg-features">
+                                    <div class="sg-section-intro">
+                                        <p class="sg-h2 sg-trim">Une plateforme pensée pour<br>faire grandir votre salle.</p>
+                                        <p class="sg-section-lead" style="width: 472px">Centralisez vos réservations, abonnements, paiements et plannings dans un outil simple, pensé pour les studios et clubs de sport.</p>
+                                    </div>
+
+                                    <div class="sg-features-grid">
+                                        <div class="sg-features-row">
+                                            <div class="sg-features-col">
+                                                <div class="sg-features-row">
+                                                    <div class="sg-feature sg-feature--blue">
+                                                        <div class="sg-feature-head"><p class="sg-feature-title">Sécurisez votre accès</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-light.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                        <p class="sg-feature-text">Suivez la fréquentation de votre club,<br>et pilotez le libre accès depuis votre canapé.</p>
+                                                    </div>
+                                                    <div class="sg-feature sg-feature--lime">
+                                                        <div class="sg-feature-head"><p class="sg-feature-title">Développez votre marque</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-dark.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                        <p class="sg-feature-text">Proposez une expérience<br>adaptée à votre image.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="sg-feature sg-feature--photo">
+                                                    <img class="sg-feature-photo" src="images/sportigo/sections/photo-activite.webp" alt="" width="1200" height="400" loading="lazy" decoding="async">
+                                                    <span class="sg-feature-photo-shade"></span>
+                                                    <div class="sg-feature-head"><p class="sg-feature-title">Pilotez votre activité</p><span class="sg-arrow sg-arrow--box"><img src="images/sportigo/sections/arrow-white.svg" alt="" width="8" height="8" loading="lazy" decoding="async"></span></div>
+                                                    <p class="sg-feature-text">Avoir la bonne donnée au bon moment<br>peut vous faire prendre les bonnes décisions.</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="sg-feature sg-feature--tall">
+                                                <div class="sg-paid-group">
+                                                    <span class="sg-widget-fade"></span>
+                                                    <span class="sg-widget-fade sg-widget-fade--flip"></span>
+                                                    <div class="sg-widget">
+                                                        <div class="sg-widget-head">
+                                                            <span class="sg-label">Paiements encaissés et en attente</span>
+                                                            <img class="sg-divider" src="images/sportigo/sections/divider-encaisse.svg" alt="" width="174" height="1" loading="lazy" decoding="async">
+                                                        </div>
+                                                        <div class="sg-paid-figures">
+                                                            <div class="sg-paid-counts">
+                                                                <span class="sg-paid-count"><span class="sg-value-main sg-trim" data-count="2" data-pad="2">02</span><span class="sg-paid-count-label sg-trim">En attente</span></span>
+                                                                <span class="sg-paid-count"><span class="sg-value-main sg-trim" data-count="18" data-suffix=" ">18 </span><span class="sg-paid-count-label sg-trim">Encaissés</span></span>
+                                                            </div>
+                                                            <span class="sg-label">ce mois</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sg-feature-head"><p class="sg-feature-title">Encaissez sans effort</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-dark.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                <p class="sg-feature-text">Ne perdez plus de temps à courir après<br>les paiements et les impayés</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="sg-features-row">
+                                            <div class="sg-feature">
+                                                <div class="sg-widget-strip sg-widget-strip--retention">
+                                                    <span class="sg-widget-fade sg-widget-fade--flip"></span>
+                                                    <div class="sg-widget">
+                                                        <div class="sg-widget-head">
+                                                            <span class="sg-label">Chiffre d’affaires</span>
+                                                            <img class="sg-divider" src="images/sportigo/sections/divider-retention.svg" alt="" width="162" height="1" loading="lazy" decoding="async">
+                                                        </div>
+                                                        <div class="sg-value"><span class="sg-value-main sg-trim" data-count="1240" data-suffix=" €">1 240 €</span></div>
+                                                        <div class="sg-trend">
+                                                            <span class="sg-label">vs semaine dernière</span>
+                                                            <span class="sg-badge"><img class="sg-badge-arrow" src="images/sportigo/hero/badge-arrow.svg" alt="" width="5" height="5" loading="lazy" decoding="async"><span class="sg-trim">24%</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="sg-widget-fade"></span>
+                                                </div>
+                                                <div class="sg-feature-head"><p class="sg-feature-title">Améliorez votre rétention</p><span class="sg-arrow sg-arrow--box sg-arrow--box-dark"><img src="images/sportigo/sections/arrow-dark.svg" alt="" width="8" height="8" loading="lazy" decoding="async"></span></div>
+                                                <p class="sg-feature-text" style="width: 246px">Identifiez les membres à risque et lancez des relances automatiques pour les retenir.</p>
+                                            </div>
+                                            <div class="sg-feature sg-feature--dark">
+                                                <div class="sg-widget-strip sg-widget-strip--growth">
+                                                    <span class="sg-widget-fade sg-widget-fade--dark sg-widget-fade--flip"></span>
+                                                    <div class="sg-widget">
+                                                        <div class="sg-widget-head">
+                                                            <div class="sg-card-row">
+                                                                <span class="sg-label">Nouveaux adhérents</span>
+                                                                <img src="images/sportigo/hero/card-badge-up.svg" alt="" width="13" height="13" loading="lazy" decoding="async">
+                                                            </div>
+                                                            <img class="sg-divider" src="images/sportigo/sections/divider-croissance.svg" alt="" width="135" height="1" loading="lazy" decoding="async">
+                                                        </div>
+                                                        <div class="sg-value"><span class="sg-value-main sg-trim" data-count="4" data-prefix="+">+4</span></div>
+                                                        <span class="sg-label">aujourd’hui</span>
+                                                    </div>
+                                                    <span class="sg-widget-fade sg-widget-fade--dark"></span>
+                                                </div>
+                                                <div class="sg-feature-head"><p class="sg-feature-title">Accélérez votre croissance</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-light.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                <p class="sg-feature-text">Optimisez le remplissage<br>des cours sans effort</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <!-- Section Disciplines de la landing page, codee d'apres Figma
+                         (1280 x 832, mise a l'echelle du cadre). Styles : project-sportigo.css -->
+                    <figure class="case-media case-reveal">
+                        <div class="case-mock" role="img" aria-label="Section disciplines de la landing page Sportigo : huit cartes Crossfit, Hyrox, Boxe, Pilate, Danse, Natation, Escalade et Yoga">
+                            <div class="sg-stage" aria-hidden="true">
+                                <div class="sg-disc">
+                                    <span class="sg-board-fade"></span>
+                                    <div class="sg-section-intro">
+                                        <p class="sg-h2 sg-trim" style="width: 596px">Une solution pensée<br>pour chaque discipline.</p>
+                                        <p class="sg-section-lead" style="width: 302px">Planning, abonnements, paiements et pilotage adaptés à votre activité.</p>
+                                    </div>
+                                    <div class="sg-disc-grid">
+                                        <div class="sg-disc-row">
+                                            <div class="sg-disc-card sg-disc-card--lime">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Crossfit</span><span class="sg-disc-tag sg-trim">Top Choice</span></span></div>
+                                                <p class="sg-disc-text">Planifiez vos séances et remplissez chaque créneau de votre box.</p>
+                                            </div>
+                                            <div class="sg-disc-card">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Hyrox</span></span></div>
+                                                <p class="sg-disc-text">Planifiez vos entraînements et suivez leur progression.</p>
+                                            </div>
+                                            <div class="sg-disc-card sg-disc-card--photo">
+                                                <img class="sg-disc-photo" src="images/sportigo/sections/photo-boxe.webp" alt="" width="600" height="489" loading="lazy" decoding="async">
+                                                <span class="sg-disc-shade"></span>
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Boxe</span></span><span class="sg-arrow sg-arrow--box"><img src="images/sportigo/sections/arrow-white.svg" alt="" width="8" height="8" loading="lazy" decoding="async"></span></div>
+                                                <p class="sg-disc-text">Gérez vos cours, vos niveaux et le planning de la salle.</p>
+                                                <img class="sg-disc-hand" src="images/sportigo/sections/pointing-hand.svg" alt="" width="24" height="27" loading="lazy" decoding="async">
+                                            </div>
+                                            <div class="sg-disc-card">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Pilate</span></span></div>
+                                                <p class="sg-disc-text">Remplissez vos cours en petit comité et gérez vos places limitées.</p>
+                                            </div>
+                                        </div>
+                                        <div class="sg-disc-row">
+                                            <div class="sg-disc-card">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Danse</span></span></div>
+                                                <p class="sg-disc-text">Pilotez vos cours par niveau, vos abonnements et vos spectacles.</p>
+                                            </div>
+                                            <div class="sg-disc-card">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Natation</span></span></div>
+                                                <p class="sg-disc-text">Organisez vos créneaux de piscine et vos leçons en quelques clics.</p>
+                                            </div>
+                                            <div class="sg-disc-card">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Escalade</span></span></div>
+                                                <p class="sg-disc-text">Gérez les accès, les abonnements et la fréquentation de vos murs.</p>
+                                            </div>
+                                            <div class="sg-disc-card sg-disc-card--blue">
+                                                <div class="sg-disc-head"><span class="sg-disc-name"><span class="sg-disc-title sg-trim">Yoga</span><span class="sg-disc-tag sg-trim">New</span></span></div>
+                                                <p class="sg-disc-text">Réservations fluides, abonnements souples, pour vos élèves.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">interface.design</h2>
+                        <p class="case-body">Les cartes reprennent les couleurs de la charte pour hiérarchiser l'information, et des fragments du tableau de bord montrent le produit à chaque étape plutôt que de le décrire.</p>
+                    </section>
+
+                    <!-- Section Tableau de bord de la landing page, codee d'apres Figma
+                         (1280 x 832, mise a l'echelle du cadre). Styles : project-sportigo.css -->
+                    <figure class="case-media case-reveal">
+                        <div class="case-mock" role="img" aria-label="Section produit de la landing page Sportigo : menu des modules à gauche, et cartes Paiement &amp; Abonnement, Tunnel vente et Application mobile">
+                            <div class="sg-stage" aria-hidden="true">
+                                <div class="sg-board">
+                                    <div class="sg-section-intro">
+                                        <p class="sg-h2 sg-trim">Tout ce dont vous avez besoin<br>pour piloter votre activité</p>
+                                        <p class="sg-section-lead" style="width: 478px">Centralisez vos réservations, abonnements, paiements et plannings dans un outil simple, pensé pour les studios et clubs de sport.</p>
+                                    </div>
+                                    <div class="sg-board-body">
+                                        <div class="sg-board-nav">
+                                            <p class="sg-board-nav-current">Paiement &amp; Abonnement<span class="sg-board-rail"></span></p>
+                                            <p>Tunnel vente</p>
+                                            <p>Application mobile</p>
+                                            <p>CRM</p>
+                                            <p>Contrôle d’accès</p>
+                                            <p>Réservation</p>
+                                        </div>
+                                        <div class="sg-board-list">
+                                            <div class="sg-module sg-module--active">
+                                                <div class="sg-module-head"><p class="sg-module-title">Paiement &amp; Abonnement</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-light.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                <p class="sg-module-text">SEPA, CB, TPE connecté. Prélèvements automatiques et zéro impayé.</p>
+                                            </div>
+                                            <div class="sg-module">
+                                                <div class="sg-module-head"><p class="sg-module-title">Tunnel vente</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-dark.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                <p class="sg-module-text">Formulaires et automations pour transformer vos prospects en membres.</p>
+                                            </div>
+                                            <div class="sg-module">
+                                                <div class="sg-module-head"><p class="sg-module-title">Application mobile</p><img class="sg-arrow" src="images/sportigo/sections/arrow-box-dark.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></div>
+                                                <p class="sg-module-text">Formulaires et automations pour transformer vos prospects en membres.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="sg-board-fade"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <figure class="case-media case-reveal">
+                        <img src="images/sportigo/sportigo-laptop-mockup.webp" alt="Mockup d'un MacBook affichant la landing page Sportigo" width="1920" height="1080" loading="lazy" decoding="async">
+                    </figure>
+
+                    <!-- Suite : meme grammaire que les listes de la page About -->
+                    <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
+                        <h2 class="section-title">et.ensuite</h2>
+                        <ul class="projects-list">
+                            <li>
+                                <a class="projects-list-link" href="project-3.html">
+                                    <span class="projects-list-title">Siko Mobility</span>
+                                    <span class="projects-list-tag">( Projet suivant )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="projects-list-link" href="work.html">
+                                    <span class="projects-list-title">Tous les projets</span>
+                                    <span class="projects-list-tag">( 5 projets )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </article>
+            </div>
+
+            <nav id="menu-wrapper" style="display:none;">
+                <ul class="menu-list">
+                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="about.html" class="hover-underline">À propos</a></li>
+                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                </ul>
+            </nav>
+
+            <footer class="footer-group">
+                <div class="footer-meta">
+                    <span class="location">Rennes, France</span>
+                    <span class="subtitle footer-local-time" id="rennes-time">--:--:--</span>
+                </div>
+                <div class="toggle-control">
+                    <input type="checkbox" id="theme-toggle">
+                    <label for="theme-toggle"></label>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div class="case-lightbox" role="dialog" aria-label="Image agrandie" aria-hidden="true">
+        <div class="case-lightbox-backdrop"></div>
+        <div class="case-lightbox-frame">
+            <img class="case-lightbox-img" alt="">
+        </div>
+    </div>
+
+    <script src="script-core.js?v=20261007b"></script>
+    <script src="script-case.js?v=20261007j"></script>
+    <script src="script-sound.js?v=20261006"></script>
+</body>
+
+</html>

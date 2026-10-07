@@ -243,62 +243,17 @@ body.case-page {
     transition: background-color 0.8s ease;
 }
 
-.case-cta {
-    display: flex;
-    padding-top: var(--space-16);
+/* Lien vers le prototype : meme grammaire que la liste "et.ensuite" (titre,
+   sous-titre entre parentheses, fleche au survol), sous un filet qui le
+   separe de la fiche projet. */
+.case-intro .case-proto {
+    margin: var(--space-16) 0 0;
+    border-top: 1px solid var(--neutral-dark-01);
+    transition: border-color 0.8s ease;
 }
 
-/* Centre dans la colonne (maquette 2341:5447). */
-.case-intro .case-cta {
-    justify-content: center;
-}
-
-/* Bouton : meme remplissage radial que sur About (gere par script-core.js). */
-.case-page .btn-download {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    background-color: var(--primary);
-    color: #fff;
-    transition: color 0.62s ease;
-}
-
-.case-page .btn-download:hover {
-    background-color: var(--primary);
-    color: #fff;
-}
-
-.case-page .btn-download .btn-label {
-    position: relative;
-    z-index: 1;
-}
-
-.case-page .btn-download::before {
-    content: '';
-    position: absolute;
-    left: var(--cta-ripple-x, 50%);
-    top: var(--cta-ripple-y, 50%);
-    width: var(--cta-ripple-size, 24px);
-    height: var(--cta-ripple-size, 24px);
-    border-radius: 50%;
-    background-color: var(--btn-hover);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.72s cubic-bezier(0.2, 0.9, 0.25, 1);
-    z-index: 0;
-    pointer-events: none;
-}
-
-.case-page .btn-download.is-radial-hover::before,
-.case-page .btn-download:focus-visible::before {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.case-page .btn-download.is-radial-hover,
-.case-page .btn-download:focus-visible {
-    color: var(--bg-card);
-}
-
-.case-page .btn-download.is-disabled {
+/* Sur mobile sans URL dediee, script-core.js desactive le lien. */
+.case-proto .is-disabled {
     opacity: 0.55;
     pointer-events: none;
 }
@@ -405,8 +360,10 @@ body.case-page {
 /* ---------- Visuels ---------- */
 
 /* Cadre de la maquette : carte a bord fin et ombre portee, 4px de marge
-   autour du visuel, lui-meme arrondi a 8px avec un liseré d'ombre. */
-.case-media {
+   autour du visuel, lui-meme arrondi a 8px avec un liseré d'ombre. La
+   lightbox reprend le meme cadre. */
+.case-media,
+.case-lightbox-frame {
     margin: 0;
     padding: 4px;
     overflow: hidden;
@@ -417,8 +374,11 @@ body.case-page {
     transition: background-color 0.8s ease, border-color 0.8s ease;
 }
 
-.case-media img,
-.case-video {
+/* Images directes du cadre seulement : une maquette codee (.case-mock) a
+   ses propres images, dimensionnees par son CSS. */
+.case-media > img,
+.case-video,
+.case-lightbox-img {
     display: block;
     width: 100%;
     height: auto;
@@ -429,8 +389,68 @@ body.case-page {
         0 2px 4px 0 rgba(0, 0, 0, 0.04);
 }
 
-.case-media img {
+.case-media > img {
     cursor: zoom-in;
+}
+
+/* Bouton son pose sur la video, en bas a droite : petit haut-parleur au
+   trait fin, barre quand le son est coupe, avec ondes quand il joue. Meme
+   effet d'aimant que le burger (script-core.js, .is-magnetic). */
+.case-media--hero {
+    position: relative;
+}
+
+.case-video-sound {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #fff;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.25));
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Zone de clic plus large que l'icone, a la mesure du rayon de l'aimant. */
+.case-video-sound::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+}
+
+.case-video-sound[aria-pressed="true"],
+.case-video-sound:hover,
+.case-video-sound:focus-visible {
+    opacity: 1;
+}
+
+.case-video-sound svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.case-video-sound .icon-sound-on,
+.case-video-sound[aria-pressed="true"] .icon-sound-off {
+    display: none;
+}
+
+.case-video-sound[aria-pressed="true"] .icon-sound-on {
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .case-video-sound {
+        right: 16px;
+        bottom: 16px;
+    }
 }
 
 /* Le ratio porte sur la video, pas sur le cadre qui ajoute sa marge. */
@@ -469,7 +489,23 @@ body.case-page {
     grid-column: 2 / -1;
 }
 
-.case-pair > .case-media img {
+/* Variante a deux visuels de meme format (16/9 + 16/9) : deux colonnes
+   egales, sans recadrage. Sur mobile, la regle commune les empile. */
+.case-pair--even {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-16);
+}
+
+.case-pair--even > .case-media:first-child {
+    margin-right: 0;
+}
+
+.case-pair--even > .case-media:last-child {
+    grid-column: auto;
+}
+
+.case-pair > .case-media > img,
+.case-pair > .case-media .case-video {
     height: 100%;
     object-fit: cover;
 }
@@ -487,7 +523,14 @@ body.case-page {
     .case-js .case-reveal {
         opacity: 0;
         transform: translateY(24px);
-        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        /* Les couleurs sont repetees ici : sans elles, cette transition
+           remplacait celle du cadre (.case-media) et son fond basculait d'un
+           coup au changement de theme, pendant que la page fondait. */
+        transition:
+            opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            background-color 0.8s ease,
+            border-color 0.8s ease;
     }
 
     .case-js .case-reveal.is-in {
@@ -496,42 +539,97 @@ body.case-page {
     }
 }
 
-/* ---------- Lightbox (dialog natif) ---------- */
+/* ---------- Lightbox ----------
+   Pas de <dialog> : showModal() le place dans la "top layer", au-dessus de tout
+   z-index, curseur personnalise compris. Ici c'est une couche fixe glissee
+   sous le header et le footer (z-index 50) : le curseur reste visible et le
+   burger, passe en croix, sert a fermer. L'image grandit depuis sa place dans
+   la page (animation FLIP dans script-case.js). */
 
 .case-lightbox {
-    max-width: none;
-    max-height: none;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: clamp(16px, 4vw, 64px);
-    border: 0;
-    background: transparent;
-    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 46;
+    display: flex;
     align-items: center;
     justify-content: center;
+    /* Meme marge de 32px que le reste de l'ecran. Le titre et le footer
+       s'effacent le temps de la lightbox, seule la croix reste. */
+    padding: var(--lightbox-pad);
     cursor: zoom-out;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.case-lightbox[open] {
-    display: flex;
-    animation: case-fade 0.24s ease;
+.case-lightbox.is-open,
+.case-lightbox.is-closing {
+    visibility: visible;
 }
 
-.case-lightbox::backdrop {
+.case-lightbox.is-open {
+    pointer-events: auto;
+}
+
+.case-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
     background: var(--bg-card);
-    opacity: 0.96;
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.8s ease;
 }
 
-.case-lightbox-img {
-    max-width: 100%;
-    max-height: 100%;
+.case-lightbox.is-open .case-lightbox-backdrop {
+    opacity: 1;
+}
+
+.case-page .title-group,
+.case-page .footer-group {
+    transition: opacity 0.3s ease;
+}
+
+.case-page.lightbox-open .title-group,
+.case-page.lightbox-open .footer-group {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Le cadre (4px de marge + 1px de bord de chaque cote) est retire de la
+   place disponible pour que l'ensemble tienne dans la marge d'ecran. */
+.case-lightbox {
+    --lightbox-pad: var(--space-32);
+}
+
+.case-lightbox-frame {
+    position: relative;
+    transform-origin: 0 0;
+    will-change: transform;
+}
+
+.case-lightbox .case-lightbox-img {
+    width: auto;
+    max-width: calc(100vw - 2 * var(--lightbox-pad) - 10px);
+    max-height: calc(100vh - 2 * var(--lightbox-pad) - 10px);
+    max-height: calc(100dvh - 2 * var(--lightbox-pad) - 10px);
     object-fit: contain;
-    border-radius: 8px;
 }
 
-@keyframes case-fade {
-    from { opacity: 0; }
+/* Pendant l'agrandissement, le visuel d'origine (cadre compris) s'efface :
+   c'est lui qui semble quitter la page. */
+.case-media.is-zoom-source {
+    visibility: hidden;
+}
+
+/* Sur mobile le header defile avec la page : on le fixe le temps de la
+   lightbox pour que la croix reste a portee. */
+@media (max-width: 900px) {
+    .case-lightbox {
+        --lightbox-pad: var(--space-24);
+    }
+
+    .case-page.lightbox-open .content-top-section {
+        position: fixed;
+        top: var(--space-24);
+    }
 }
 
 /* ---------- Fondu de bord ----------

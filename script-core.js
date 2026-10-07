@@ -728,23 +728,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // BURGER MAGNETIQUE (facon perappelgren.de)
+    // BOUTONS MAGNETIQUES (facon perappelgren.de)
     // ==========================================
-    // A l'approche du curseur, le bouton glisse vers lui, et ses barres un peu
+    // A l'approche du curseur, le bouton glisse vers lui, et son contenu un peu
     // plus encore : il a l'air de "regarder" la souris. Le mouvement suit une
     // interpolation par frame, donc il garde de l'inertie a l'arrivee comme au
     // retour. Souris uniquement, et rien si le visiteur reduit les animations.
-    if (
-        btn &&
-        window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
-        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
+    // Le burger et les boutons marques .is-magnetic (son des videos) l'ont.
+    const makeMagnetic = (element, innerSelector) => {
         const MAGNET_RADIUS = 36;   // distance au centre ou l'attraction commence
         const MAGNET_PULL = 0.15;   // part de l'ecart curseur/centre suivie par le bouton
-        const BARS_PULL = 0.06;     // supplement pour les barres, effet de profondeur
+        const INNER_PULL = 0.06;    // supplement pour le contenu, effet de profondeur
         const MAGNET_EASE = 0.1;
 
-        const bars = Array.from(btn.querySelectorAll('.bar'));
+        const inner = Array.from(element.querySelectorAll(innerSelector));
         let targetX = 0;
         let targetY = 0;
         let currentX = 0;
@@ -761,11 +758,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentY = targetY;
             }
 
-            btn.style.translate = `${currentX}px ${currentY}px`;
-            const barsX = currentX * (BARS_PULL / MAGNET_PULL);
-            const barsY = currentY * (BARS_PULL / MAGNET_PULL);
-            bars.forEach((bar) => {
-                bar.style.translate = `${barsX}px ${barsY}px`;
+            element.style.translate = `${currentX}px ${currentY}px`;
+            const innerX = currentX * (INNER_PULL / MAGNET_PULL);
+            const innerY = currentY * (INNER_PULL / MAGNET_PULL);
+            inner.forEach((child) => {
+                child.style.translate = `${innerX}px ${innerY}px`;
             });
 
             magnetFrame = settled ? 0 : requestAnimationFrame(renderMagnet);
@@ -777,7 +774,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('pointermove', (event) => {
             // Centre de repos : le rect inclut le decalage courant, on le retire.
-            const rect = btn.getBoundingClientRect();
+            const rect = element.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2 - currentX;
             const centerY = rect.top + rect.height / 2 - currentY;
             const dx = event.clientX - centerX;
@@ -797,6 +794,14 @@ document.addEventListener('DOMContentLoaded', () => {
             targetY = 0;
             startMagnet();
         });
+    };
+
+    if (
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+        if (btn) makeMagnetic(btn, '.bar');
+        document.querySelectorAll('.is-magnetic').forEach((element) => makeMagnetic(element, 'svg'));
     }
 
     // ==========================================
@@ -1066,8 +1071,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Bouton (About) ou lien de liste (page Siko) : tout lien qui porte une
+    // URL desktop, et eventuellement mobile.
     const adaptivePrototypeButtons = Array.from(
-        document.querySelectorAll('.btn-download[data-desktop-url]')
+        document.querySelectorAll('a[data-desktop-url]')
     );
     if (adaptivePrototypeButtons.length > 0) {
         const isMobilePrototypeContext = () => (

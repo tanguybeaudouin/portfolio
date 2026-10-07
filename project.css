@@ -308,9 +308,11 @@
     left: var(--space-16);
     display: block;
     color: var(--neutral-dark);
-    transition: transform 0.2s ease, color 0.8s ease;
+    transition: color 0.8s ease;
 }
 
+/* Au survol, seule la fleche glisse : le lien (la zone cliquable) reste en
+   place, sinon il s'echappe de sous le curseur et le survol clignote. */
 .wip-return-arrow {
     display: block;
     height: calc(2.6em + 4px);
@@ -320,11 +322,12 @@
     -webkit-mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
     mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
     transform: scaleX(-1);
+    transition: transform 0.2s ease;
 }
 
 @media (hover: hover) {
-    .wip-return-link:hover {
-        transform: translateX(-4px);
+    .wip-return-link:hover .wip-return-arrow {
+        transform: translateX(-4px) scaleX(-1);
     }
 }
 

@@ -30,7 +30,7 @@
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css?v=20261004">
-    <link rel="stylesheet" href="project-case.css?v=20261007">
+    <link rel="stylesheet" href="project-case.css?v=20261007q">
 </head>
 
 <body class="case-page">
@@ -101,16 +101,20 @@
                                 <span class="case-entry-meta">Wireframes, UI Kit, Prototype</span>
                             </li>
                         </ul>
-                        <div class="case-cta">
-                            <a
-                                href="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&amp;t=CwRA9eGsXH4xepeP-1"
-                                class="btn btn-download"
-                                data-desktop-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&amp;t=CwRA9eGsXH4xepeP-1"
-                                data-mobile-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=11-2021&amp;t=CwRA9eGsXH4xepeP-1"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >ACCÉDER AU PROTOTYPE</a>
-                        </div>
+                        <ul class="projects-list case-proto">
+                            <li>
+                                <a class="projects-list-link"
+                                    href="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&amp;t=CwRA9eGsXH4xepeP-1"
+                                    data-desktop-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&amp;t=CwRA9eGsXH4xepeP-1"
+                                    data-mobile-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=11-2021&amp;t=CwRA9eGsXH4xepeP-1"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <span class="projects-list-title">Accéder au prototype</span>
+                                    <span class="projects-list-tag">( Figma )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
                     </section>
 
                     <!-- 2. Visuel d'ouverture : la video ne se charge qu'a l'approche -->
@@ -214,12 +218,15 @@
         </main>
     </div>
 
-    <dialog class="case-lightbox" aria-label="Image agrandie">
-        <img class="case-lightbox-img" alt="">
-    </dialog>
+    <div class="case-lightbox" role="dialog" aria-label="Image agrandie" aria-hidden="true">
+        <div class="case-lightbox-backdrop"></div>
+        <div class="case-lightbox-frame">
+            <img class="case-lightbox-img" alt="">
+        </div>
+    </div>
 
-    <script src="script-core.js?v=20261004"></script>
-    <script src="script-case.js?v=20261004"></script>
+    <script src="script-core.js?v=20261007b"></script>
+    <script src="script-case.js?v=20261007j"></script>
     <script src="script-sound.js?v=20261006"></script>
 </body>
 
