@@ -1,0 +1,700 @@
+/* ========================================== PAGE PROJET (case-page) ==========================================
+   Gabarit d'etude de cas aligne sur la page About : meme en-tete, meme
+   pied de page, meme colonne de lecture (colonne 2 d'une grille de 3), memes
+   titres de section "mot.mot", memes listes a filet. Les visuels, eux,
+   prennent toute la largeur.
+
+   Pas de GSAP ni de ScrollSmoother : le document defile nativement, le header
+   et le footer sont fixes, et le contenu se dissout sous eux grace au meme
+   fondu de bord que la page About. */
+
+/* Pas d'overscroll-behavior: none ici : le rebond elastique en haut et en bas
+   de page reste, comme sur About. Header, footer et fondus sont fixes, ils ne
+   suivent pas le rebond. */
+body.case-page {
+    overflow: visible;
+}
+
+.case-page .main-card {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* ---------- Header / footer fixes ---------- */
+
+.case-page .content-top-section {
+    position: fixed;
+    top: var(--space-32);
+    left: var(--space-32);
+    right: var(--space-32);
+    z-index: 50;
+}
+
+.case-page .footer-group {
+    position: fixed;
+    bottom: var(--space-32);
+    left: var(--space-32);
+    right: var(--space-32);
+    z-index: 50;
+}
+
+/* Le menu s'ouvre par-dessus l'ecran, pas au milieu d'une page de 5000px. */
+.case-page .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+}
+
+/* ---------- Grille ---------- */
+
+.case {
+    --case-gap: var(--space-32);
+    --case-pad-top: 224px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--case-gap);
+    padding: var(--case-pad-top) var(--space-32) 192px;
+    color: var(--neutral-dark);
+    transition: color 0.8s ease;
+}
+
+.case-text {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: 96px 0;
+    min-width: 0;
+}
+
+.case-intro {
+    padding-top: 0;
+}
+
+.case-media,
+.case-pair {
+    grid-column: 1 / -1;
+}
+
+/* ---------- Typo (reprend la page About) ---------- */
+
+.case-page .section-title {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.case-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.case-head .subtitle {
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.3;
+}
+
+/* Retour + copie du lien (maquette 2341:5385) : deux pastilles de 36px aux
+   extremites de la colonne, 16px au-dessus du titre. */
+.case-actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-16);
+}
+
+.case-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 99px;
+    background: var(--neutral-dark-01);
+    color: var(--neutral-dark);
+    cursor: pointer;
+    transition: background-color 0.8s ease, transform 0.2s ease;
+}
+
+.case-icon-btn[hidden] {
+    display: none;
+}
+
+.case-icon-btn svg {
+    display: block;
+}
+
+.case-icon-btn .case-check-icon,
+.case-copy-link.is-copied .case-copy-icon {
+    display: none;
+}
+
+.case-copy-link.is-copied .case-check-icon {
+    display: block;
+}
+
+.case-copy-status {
+    position: absolute;
+    right: 44px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.case-copy-status.is-visible {
+    opacity: 0.5;
+}
+
+@media (hover: hover) {
+    .case-actions a.case-icon-btn:hover {
+        transform: translateX(-2px);
+    }
+}
+
+/* Retour : la meme grande fleche que la page "en cours" (.wip-return-* dans
+   project.css), masque teinte en currentColor pour suivre le theme. */
+.case-return-link {
+    display: block;
+    color: var(--neutral-dark);
+    transition: color 0.8s ease;
+}
+
+/* Au survol, seule la fleche glisse : le lien (la zone cliquable) reste en
+   place, sinon il s'echappe de sous le curseur et le survol clignote. */
+.case-return-arrow {
+    display: block;
+    height: calc(2.6em + 4px);
+    font-size: 16px;
+    aspect-ratio: 83 / 71;
+    background-color: currentColor;
+    -webkit-mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
+    mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
+    transform: scaleX(-1);
+    transition: transform 0.2s ease;
+}
+
+@media (hover: hover) {
+    .case-return-link:hover .case-return-arrow {
+        transform: translateX(-4px) scaleX(-1);
+    }
+}
+
+.case-back {
+    align-self: flex-start;
+    margin-bottom: var(--space-16);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.2;
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.case-lead,
+.case-body {
+    margin: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    line-height: 1.3;
+    text-align: justify;
+}
+
+.case-body {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.case-tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+}
+
+.case-tag {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--neutral-dark-01);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    white-space: nowrap;
+    transition: background-color 0.8s ease;
+}
+
+.case-cta {
+    display: flex;
+    padding-top: var(--space-16);
+}
+
+/* Centre dans la colonne (maquette 2341:5447). */
+.case-intro .case-cta {
+    justify-content: center;
+}
+
+/* Bouton : meme remplissage radial que sur About (gere par script-core.js). */
+.case-page .btn-download {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--primary);
+    color: #fff;
+    transition: color 0.62s ease;
+}
+
+.case-page .btn-download:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.case-page .btn-download .btn-label {
+    position: relative;
+    z-index: 1;
+}
+
+.case-page .btn-download::before {
+    content: '';
+    position: absolute;
+    left: var(--cta-ripple-x, 50%);
+    top: var(--cta-ripple-y, 50%);
+    width: var(--cta-ripple-size, 24px);
+    height: var(--cta-ripple-size, 24px);
+    border-radius: 50%;
+    background-color: var(--btn-hover);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.72s cubic-bezier(0.2, 0.9, 0.25, 1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.case-page .btn-download.is-radial-hover::before,
+.case-page .btn-download:focus-visible::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.case-page .btn-download.is-radial-hover,
+.case-page .btn-download:focus-visible {
+    color: var(--bg-card);
+}
+
+.case-page .btn-download.is-disabled {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+/* ---------- Listes a filet (grammaire des listes About) ---------- */
+
+.case-list {
+    list-style: none;
+    margin: var(--space-16) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.case-entry {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-8);
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.case-entry-num,
+.case-entry-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.2;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.case-entry-num {
+    flex: none;
+    width: 24px;
+}
+
+.case-entry-title {
+    flex: none;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.case-entry-leader {
+    flex: 1 1 0;
+    min-width: 16px;
+    margin-bottom: 3px;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.1;
+    transition: opacity 0.2s ease;
+}
+
+.case-entry-meta {
+    min-width: 0;
+    text-align: right;
+}
+
+/* Survol reserve aux entrees cliquables : les listes d'information (infos
+   projet, etapes du parcours) restent statiques. */
+@media (hover: hover) {
+    a.case-entry:hover {
+        transform: translateX(4px);
+    }
+
+    a.case-entry:hover .case-entry-num,
+    a.case-entry:hover .case-entry-meta,
+    a.case-entry:hover .case-entry-leader {
+        opacity: 1;
+    }
+
+    .case-list:hover li:not(:hover) > a.case-entry {
+        opacity: 0.5;
+    }
+
+    .case-back:hover {
+        opacity: 1;
+        transform: translateX(-4px);
+    }
+}
+
+/* Le lien "projet suivant" prend l'accent au survol : seul point rouge de la
+   section, comme le curseur. */
+.case-next .case-entry:hover .case-entry-meta {
+    color: var(--primary);
+}
+
+/* "et.ensuite" en pleine page : la section occupe tout l'ecran et son contenu
+   est centre verticalement, comme la liste de la page Projets. La marge
+   negative annule le padding bas de l'article pour qu'en fin de page la
+   section corresponde exactement au viewport. */
+.case-next--full {
+    min-height: 100vh;
+    min-height: 100svh;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: -192px;
+}
+
+/* ---------- Visuels ---------- */
+
+/* Cadre de la maquette : carte a bord fin et ombre portee, 4px de marge
+   autour du visuel, lui-meme arrondi a 8px avec un liseré d'ombre. */
+.case-media {
+    margin: 0;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid var(--neutral-dark-01);
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: 0 7px 11px -2px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.8s ease, border-color 0.8s ease;
+}
+
+.case-media img,
+.case-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 1px 2px -1px rgba(0, 0, 0, 0.06),
+        0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+.case-media img {
+    cursor: zoom-in;
+}
+
+/* Le ratio porte sur la video, pas sur le cadre qui ajoute sa marge. */
+.case-media--hero .case-video {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+/* Carre + 16/9 cote a cote, calques sur les 3 colonnes de l'article : le carre
+   prend la colonne 1, le 16/9 les colonnes 2-3, qui demarre ainsi a l'aplomb
+   du texte au-dessus. Le carre deborde dans la gouttiere de la grille pour
+   ne laisser que 16px entre les deux. */
+.case-pair {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--case-gap);
+}
+
+/* Les ratios ne collent plus exactement aux colonnes : on etire les deux
+   cadres a la meme hauteur et le visuel couvre (le carre est un peu rogne
+   sur les cotes). */
+.case-pair {
+    align-items: stretch;
+}
+
+.case-pair > .case-media {
+    grid-column: auto;
+    display: flex;
+}
+
+.case-pair > .case-media:first-child {
+    margin-right: calc(var(--space-16) - var(--case-gap));
+}
+
+.case-pair > .case-media:last-child {
+    grid-column: 2 / -1;
+}
+
+.case-pair > .case-media img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.case > .case-media + .case-media,
+.case > .case-pair + .case-media,
+.case > .case-media + .case-pair {
+    margin-top: var(--space-32);
+}
+
+/* ---------- Apparition au defilement ----------
+   Seulement si le JS tourne (classe posee dans le <head>) et si le visiteur
+   accepte le mouvement. */
+@media (prefers-reduced-motion: no-preference) {
+    .case-js .case-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .case-js .case-reveal.is-in {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ---------- Lightbox (dialog natif) ---------- */
+
+.case-lightbox {
+    max-width: none;
+    max-height: none;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: clamp(16px, 4vw, 64px);
+    border: 0;
+    background: transparent;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.case-lightbox[open] {
+    display: flex;
+    animation: case-fade 0.24s ease;
+}
+
+.case-lightbox::backdrop {
+    background: var(--bg-card);
+    opacity: 0.96;
+}
+
+.case-lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+@keyframes case-fade {
+    from { opacity: 0; }
+}
+
+/* ---------- Fondu de bord ----------
+   Meme principe que la page About (4 paliers de flou + voile), mais plus fin :
+   - bande basse plus courte (le footer tient sur une ligne), la haute garde de
+     quoi passer sous le titre ;
+   - le voile suit une courbe ease-in-out au lieu d'un degrade lineaire : un
+     degrade lineaire a un debut et une fin de rampe visibles (bandes de Mach),
+     ce qui dessinait une ligne laiteuse au-dessus des images ;
+   - plateau opaque reduit a ~10% : avant, 30% de la bande etait un aplat franc.
+   --fade-scrim est la rampe, du plus opaque (bord d'ecran) au transparent. */
+
+.case-page {
+    --fade-h-top: 150px;
+    --fade-h-bottom: 112px;
+    --fade-scrim:
+        #000 0%, #000 10%,
+        rgba(0, 0, 0, 0.987) 17.3%, rgba(0, 0, 0, 0.951) 24%,
+        rgba(0, 0, 0, 0.896) 30.3%, rgba(0, 0, 0, 0.825) 36.1%,
+        rgba(0, 0, 0, 0.741) 41.8%, rgba(0, 0, 0, 0.648) 47.1%,
+        rgba(0, 0, 0, 0.55) 52.4%, rgba(0, 0, 0, 0.45) 57.6%,
+        rgba(0, 0, 0, 0.352) 62.9%, rgba(0, 0, 0, 0.259) 68.2%,
+        rgba(0, 0, 0, 0.175) 73.9%, rgba(0, 0, 0, 0.104) 79.8%,
+        rgba(0, 0, 0, 0.049) 86.1%, rgba(0, 0, 0, 0.013) 92.7%,
+        transparent 100%;
+}
+
+.case-page .edge-fade {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    pointer-events: none;
+}
+
+.case-page .edge-fade-top { top: 0; height: var(--fade-h-top); }
+.case-page .edge-fade-bottom { bottom: 0; height: var(--fade-h-bottom); }
+
+.case-page .edge-fade-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+}
+
+/* Chaque palier double le flou et se termine par un fondu doux (masque sur
+   ~30% de sa hauteur) pour qu'on ne voie jamais ou l'un relaie l'autre. */
+.case-page .edge-fade-1 { -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); }
+.case-page .edge-fade-2 { -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.case-page .edge-fade-3 { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.case-page .edge-fade-4 { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+
+.case-page .edge-fade-tint {
+    top: 0;
+    bottom: 0;
+    background-color: var(--bg-card);
+    transition: background-color 0.8s ease;
+}
+
+.case-page .edge-fade-top .edge-fade-1 { top: 0; bottom: 0; -webkit-mask-image: linear-gradient(#000 65%, transparent 100%); mask-image: linear-gradient(#000 65%, transparent 100%); }
+.case-page .edge-fade-top .edge-fade-2 { top: 0; bottom: 25%; -webkit-mask-image: linear-gradient(#000 50%, transparent 100%); mask-image: linear-gradient(#000 50%, transparent 100%); }
+.case-page .edge-fade-top .edge-fade-3 { top: 0; bottom: 50%; -webkit-mask-image: linear-gradient(#000 35%, transparent 100%); mask-image: linear-gradient(#000 35%, transparent 100%); }
+.case-page .edge-fade-top .edge-fade-4 { top: 0; bottom: 75%; -webkit-mask-image: linear-gradient(#000 20%, transparent 100%); mask-image: linear-gradient(#000 20%, transparent 100%); }
+.case-page .edge-fade-top .edge-fade-tint { -webkit-mask-image: linear-gradient(to bottom, var(--fade-scrim)); mask-image: linear-gradient(to bottom, var(--fade-scrim)); }
+
+.case-page .edge-fade-bottom .edge-fade-1 { top: 0; bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 65%, transparent 100%); mask-image: linear-gradient(to top, #000 65%, transparent 100%); }
+.case-page .edge-fade-bottom .edge-fade-2 { top: 25%; bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 50%, transparent 100%); mask-image: linear-gradient(to top, #000 50%, transparent 100%); }
+.case-page .edge-fade-bottom .edge-fade-3 { top: 50%; bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 35%, transparent 100%); mask-image: linear-gradient(to top, #000 35%, transparent 100%); }
+.case-page .edge-fade-bottom .edge-fade-4 { top: 75%; bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 100%); mask-image: linear-gradient(to top, #000 20%, transparent 100%); }
+.case-page .edge-fade-bottom .edge-fade-tint { -webkit-mask-image: linear-gradient(to top, var(--fade-scrim)); mask-image: linear-gradient(to top, var(--fade-scrim)); }
+
+/* ---------- Tablette ---------- */
+
+@media (max-width: 1250px) {
+    .case {
+        --case-gap: var(--space-24);
+    }
+
+    /* La colonne du milieu devient trop etroite : le texte prend 2 colonnes. */
+    .case-text {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* ---------- Mobile (<= 900px) ----------
+   Colonne unique, gouttieres de 24px comme le reste du site. */
+@media (max-width: 900px) {
+    /* Sur petit ecran le header est trop haut pour la bande de fondu : il
+       defile avec la page, comme sur About mobile. */
+    .case-page .content-top-section {
+        position: absolute;
+        top: var(--space-24);
+        left: var(--space-24);
+        right: var(--space-24);
+    }
+
+    .case-page .title-group h1 {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
+    }
+
+    /* Le footer quitte l'ecran : en bas de page, dans le flux. */
+    .case-page .footer-group {
+        position: static;
+        padding: 0 var(--space-24) var(--space-24);
+    }
+
+    .case-page .edge-fade {
+        display: none;
+    }
+
+    .case {
+        display: flex;
+        flex-direction: column;
+        padding: 176px var(--space-24) 96px;
+    }
+
+    .case-text {
+        padding: 64px 0;
+    }
+
+    .case-intro {
+        padding-top: 0;
+    }
+
+    .case-next--full {
+        padding: 0;
+        margin-bottom: -96px;
+    }
+
+    .case-pair {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-16);
+    }
+
+    .case-pair > .case-media:first-child {
+        margin-right: 0;
+    }
+
+    .case-pair > .case-media:last-child {
+        grid-column: auto;
+    }
+
+    .case > .case-media + .case-media,
+    .case > .case-pair + .case-media,
+    .case > .case-media + .case-pair {
+        margin-top: var(--space-16);
+    }
+
+    /* Sur petit ecran le libelle de droite passe sous l'intitule plutot que
+       d'ecraser le filet. */
+    .case-list--steps .case-entry {
+        flex-wrap: wrap;
+        row-gap: 2px;
+    }
+
+    .case-list--steps .case-entry-leader {
+        display: none;
+    }
+
+    .case-list--steps .case-entry-meta {
+        flex-basis: 100%;
+        padding-left: 32px;
+        text-align: left;
+    }
+}

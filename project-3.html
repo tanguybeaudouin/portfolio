@@ -3,28 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siko Mobility — Étude de cas UX/UI | Tanguy Beaudouin</title>
-    <meta name="description" content="Conception UX/UI d'un service de mobilité urbaine : user flow, design system et interface claire pour simplifier le trajet utilisateur.">
+    <meta name="description" content="Siko Mobility : conception UX/UI d'un parcours de financement de véhicule en 8 étapes, sur mobile et desktop.">
     <link rel="canonical" href="https://tanguy.studio/project-3">
     <meta property="og:title" content="Siko Mobility — Étude de cas UX/UI | Tanguy Beaudouin">
-    <meta property="og:description" content="Conception UX/UI d'un service de mobilité urbaine : user flow, design system et interface claire pour simplifier le trajet utilisateur.">
+    <meta property="og:description" content="Siko Mobility : conception UX/UI d'un parcours de financement de véhicule en 8 étapes, sur mobile et desktop.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tanguy.studio/project-3">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <script>
         (function () {
+            var root = document.documentElement;
             if (localStorage.getItem('theme') === 'dark') {
-                document.documentElement.classList.add('dark-theme');
+                root.classList.add('dark-theme');
             }
-            try {
-                if (sessionStorage.getItem('project-page-transition-pending-v1') === '1') {
-                    document.documentElement.classList.add('project-transition-enter');
-                }
-            } catch (_error) {
-                // Ignore storage errors and continue.
-            }
+            // Pose avant le rendu : sans JS, rien n'est masque en attente du reveal.
+            root.classList.add('case-js');
         })();
     </script>
 
@@ -32,174 +28,198 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20260923">
-    <link rel="stylesheet" href="project-fbf.css?v=20260923">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css?v=20261004">
+    <link rel="stylesheet" href="project-case.css?v=20261007">
 </head>
 
-<body class="project-fbf-page project-siko-page">
+<body class="case-page">
     <div id="custom-cursor"></div>
 
-    <div id="smooth-wrapper">
-        <div class="page">
-            <div id="smooth-content">
-                <main class="main-card">
-                    <section class="content-section project-fbf-content-section">
-                        <header class="content-top-section">
-                            <div class="title-group">
-                                <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
-                                <p class="subtitle">SIKO MOBILITY</p>
-                            </div>
-                            <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
-                                <span class="bar bar-top"></span>
-                                <span class="bar bar-bottom"></span>
-                            </button>
-                        </header>
-
-                        <div class="about-baseline-section">
-                            <div id="baseline-wrapper" class="menu-hide">
-                                <article class="fbf-hero">
-                                    <a href="work.html" class="fbf-back" aria-label="Retour"></a>
-                                    <video class="fbf-hero-media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                                        <source src="fichiers/sikovid_3mb.mp4" type="video/mp4">
-                                    </video>
-                                    <div class="fbf-hero-overlay">
-                                        <img class="fbf-kicker-logo" src="fichiers/logo_siko-mobility.svg" alt="Logo Siko Mobility" width="180" height="45" decoding="async">
-                                        <div class="fbf-copy">
-                                            <p class="fbf-lead"><span class="fbf-lead-highlight">Une expérience mobile</span><span class="fbf-lead-rest"><span class="fbf-line">pensée pour aller vite, sans jamais</span><span class="fbf-line">perdre l'utilisateur en route.</span></span></p>
-                                        </div>
-                                    </div>
-                                    <div class="fbf-hero-bottom">
-                                        <div class="footer-meta">
-                                            <span class="location">Rennes, France</span>
-                                            <span class="subtitle footer-local-time" id="rennes-time">--:--:--</span>
-                                        </div>
-                                        <span class="fbf-scroll-indicator">SCROLL
-                                            <img src="fichiers/chevron_scroll.svg" alt="" aria-hidden="true" class="fbf-scroll-chevron" width="11" height="11">
-                                        </span>
-                                        <div class="toggle-control fbf-toggle-control">
-                                            <input type="checkbox" id="theme-toggle">
-                                            <label for="theme-toggle"></label>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <section class="fbf-sheet">
-                                    <div class="fbf-intro">
-                                        <p class="fbf-intro-rest fbf-intro-animated">
-                                            <span class="fbf-intro-line">De la recherche à la réservation, chaque</span>
-                                            <span class="fbf-intro-line">écran est conçu pour réduire les frictions</span>
-                                            <span class="fbf-intro-line">et garder le contrôle à portée de pouce.</span>
-                                        </p>
-                                        <a
-                                            href="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&t=CwRA9eGsXH4xepeP-1"
-                                            class="btn btn-download"
-                                            data-desktop-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&t=CwRA9eGsXH4xepeP-1"
-                                            data-mobile-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=11-2021&t=CwRA9eGsXH4xepeP-1"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >ACCÉDER AU PROTOTYPE</a>
-                                    </div>
-
-                                    <div class="fbf-grid-row">
-                                        <figure class="fbf-placeholder fbf-media-frame">
-                                            <img src="images/siko-mobility/siko-mobility-mobile-app-hero.webp" alt="Écran principal de l'application Siko Mobility" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="3200" height="1799">
-                                        </figure>
-                                        <figure class="fbf-placeholder fbf-media-frame">
-                                            <img src="images/siko-mobility/siko-mobility-booking-flow.webp" alt="Parcours de réservation Siko Mobility" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="3200" height="1799">
-                                        </figure>
-                                        <figure class="fbf-placeholder fbf-media-frame">
-                                            <img src="images/siko-mobility/siko-mobility-device-mockup.webp?v=20260416" alt="Mockup mobile du produit Siko Mobility" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2771" height="1558">
-                                        </figure>
-                                    </div>
-
-                                    <div class="fbf-grid-row fbf-grid-large">
-                                        <figure class="fbf-placeholder fbf-placeholder-square fbf-media-frame">
-                                            <img src="images/siko-mobility/siko-mobility-square-ui-card.webp" alt="Carte d'interface carrée Siko Mobility" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2800" height="2800">
-                                        </figure>
-                                        <article class="fbf-text-card">
-                                            <p>Contexte et objectifs</p>
-                                            <p>Le produit regroupe plusieurs actions clés de mobilité dans une interface consultée en déplacement. L'enjeu principal est de raccourcir le temps d'accès à l'information et à l'action, tout en conservant une lecture claire.</p>
-                                            <p>Le travail a porté sur la hiérarchie visuelle, la simplification des parcours et la cohérence des composants pour fluidifier les usages sur mobile.</p>
-                                            <dl class="fbf-meta-list">
-                                                <div class="fbf-meta-row">
-                                                    <dt>PROJET</dt>
-                                                    <dd>Siko Mobility</dd>
-                                                </div>
-                                                <div class="fbf-meta-row">
-                                                    <dt>DATE</dt>
-                                                    <dd>2025</dd>
-                                                </div>
-                                                <div class="fbf-meta-row">
-                                                    <dt>SERVICE</dt>
-                                                    <dd>UX Research, User Flow, UI Design</dd>
-                                                </div>
-                                                <div class="fbf-meta-row">
-                                                    <dt>LIVRABLES</dt>
-                                                    <dd>Wireframes, UI Kit, Prototype</dd>
-                                                </div>
-                                            </dl>
-                                        </article>
-                                    </div>
-
-                                    <figure class="fbf-placeholder fbf-placeholder-wide fbf-media-frame">
-                                        <img src="images/siko-mobility/siko-mobility-prototype-mockup.webp" alt="Mockup du prototype final Siko Mobility" class="fbf-media-img" loading="lazy" fetchpriority="low" decoding="async" width="2771" height="1558">
-                                    </figure>
-
-                                    <section class="fbf-contact-cta" aria-label="Contact">
-                                        <a class="fbf-contact-cta-frame" href="contact.html" aria-label="Aller à la page contact">
-                                            <div class="fbf-contact-cta-motion">
-                                                <div class="fbf-contact-cta-copy">
-                                                    <h3 class="fbf-contact-cta-title">Travaillons ensemble</h3>
-                                                    <p class="fbf-contact-cta-desc">Tu as un projet UX/UI ? Parlons-en.</p>
-                                                </div>
-                                                <span class="fbf-contact-cta-arrow" aria-hidden="true"></span>
-                                            </div>
-                                        </a>
-                                    </section>
-
-                                </section>
-
-                                <section class="fbf-blue-panel fbf-blue-panel-video fbf-blue-panel-siko" data-next-url="project-1.html">
-                                    <video class="fbf-next-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                                        <source src="fichiers/video_nintendo_low.mp4" type="video/mp4">
-                                    </video>
-                                    <p class="fbf-next-reveal">
-                                        <span class="fbf-next-line">NEXT PROJECT - KEEP SCROLLING</span>
-                                        <span class="fbf-next-arrow" aria-hidden="true"></span>
-                                    </p>
-                                    <footer class="fbf-blue-footer">
-                                        <div class="footer-meta">
-                                            <span class="location">Rennes, France</span>
-                                            <span class="subtitle footer-local-time" id="rennes-time-bottom">--:--:--</span>
-                                        </div>
-                                        <div class="toggle-control">
-                                            <input type="checkbox" id="theme-toggle-bottom">
-                                            <label for="theme-toggle-bottom"></label>
-                                        </div>
-                                    </footer>
-                                </section>
-                            </div>
-
-                            <nav id="menu-wrapper" style="display:none;">
-                                <ul class="menu-list">
-                                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                                    <li><a href="work.html" class="hover-underline">Projets</a></li>
-                                    <li><a href="about.html" class="hover-underline">À propos</a></li>
-                                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </section>
-                </main>
-            </div>
-        </div>
+    <div class="edge-fade edge-fade-top" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+    <div class="edge-fade edge-fade-bottom" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
-    <script src="script-core.js?v=20261006"></script>
+    <div class="page">
+        <main class="main-card">
+            <header class="content-top-section">
+                <div class="title-group">
+                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="subtitle">SIKO MOBILITY</p>
+                </div>
+                <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-bottom"></span>
+                </button>
+            </header>
+
+            <div id="baseline-wrapper">
+                <article class="case">
+
+                    <!-- 1. En-tete : ce que c'est, en une lecture -->
+                    <section class="case-text case-intro case-reveal">
+                        <div class="case-head">
+                            <div class="case-actions">
+                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                    onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
+                            </div>
+                            <h2 class="section-title">siko.mobility</h2>
+                            <p class="subtitle">Parcours de financement</p>
+                        </div>
+                        <p class="case-lead">Une expérience pensée pour aller vite, sans jamais perdre l'utilisateur en route. De la simulation à la signature du contrat, chaque écran réduit les frictions d'un parcours de financement de véhicule, sur mobile comme sur desktop.</p>
+                        <ul class="case-tags" aria-label="Domaines">
+                            <li class="case-tag">UX Research</li>
+                            <li class="case-tag">User Flow</li>
+                            <li class="case-tag">UI Design</li>
+                            <li class="case-tag">Prototype</li>
+                        </ul>
+                        <ul class="case-list case-list--meta" aria-label="Informations projet">
+                            <li class="case-entry">
+                                <span class="case-entry-title">Année</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">2025</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Supports</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Mobile &amp; desktop</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Livrables</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Wireframes, UI Kit, Prototype</span>
+                            </li>
+                        </ul>
+                        <div class="case-cta">
+                            <a
+                                href="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&amp;t=CwRA9eGsXH4xepeP-1"
+                                class="btn btn-download"
+                                data-desktop-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=171-2956&amp;t=CwRA9eGsXH4xepeP-1"
+                                data-mobile-url="https://www.figma.com/proto/fbOrUi4HPkhvGNwymhzqsn/Siko-Mobility-Test-Technique?node-id=11-2021&amp;t=CwRA9eGsXH4xepeP-1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >ACCÉDER AU PROTOTYPE</a>
+                        </div>
+                    </section>
+
+                    <!-- 2. Visuel d'ouverture : la video ne se charge qu'a l'approche -->
+                    <figure class="case-media case-media--hero case-reveal">
+                        <video class="case-video" muted loop playsinline preload="none"
+                            poster="images/siko-mobility/siko-mobility-prototype-mockup.webp"
+                            aria-label="Défilement des écrans mobiles Siko Mobility">
+                            <source src="fichiers/sikovid_3mb.mp4" type="video/mp4">
+                        </video>
+                    </figure>
+
+                    <!-- 3. Contexte -->
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">contexte.objectifs</h2>
+                        <p class="case-body">Le produit regroupe plusieurs actions clés — simuler, s'identifier, payer, signer — dans une interface souvent consultée en déplacement. L'enjeu : raccourcir le temps d'accès à l'information et à l'action, tout en gardant une lecture claire à chaque étape.</p>
+                    </section>
+
+                    <figure class="case-media case-reveal">
+                        <img src="images/siko-mobility/siko-mobility-booking-flow.webp" alt="Formulaire d'identité Siko Mobility sur desktop, avec le stepper du parcours à gauche" width="3200" height="1799" loading="lazy" decoding="async">
+                    </figure>
+
+                    <!-- 4. Parcours : les 8 etapes du stepper, lisibles d'un coup d'oeil -->
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">parcours.utilisateur</h2>
+                        <p class="case-body">Un stepper fixe découpe le parcours en huit étapes courtes. L'utilisateur sait toujours où il en est et ce qu'il lui reste à faire.</p>
+                        <ol class="case-list case-list--steps">
+                            <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Simulateur</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Demande de financement</span></li>
+                            <li class="case-entry"><span class="case-entry-num">02</span><span class="case-entry-title">Identité</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Informations personnelles</span></li>
+                            <li class="case-entry"><span class="case-entry-num">03</span><span class="case-entry-title">Véhicule</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Informations véhicule</span></li>
+                            <li class="case-entry"><span class="case-entry-num">04</span><span class="case-entry-title">Vérification</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Validation biométrique</span></li>
+                            <li class="case-entry"><span class="case-entry-num">05</span><span class="case-entry-title">Paiement</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Carte bancaire</span></li>
+                            <li class="case-entry"><span class="case-entry-num">06</span><span class="case-entry-title">Souscription</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Remboursement des pannes</span></li>
+                            <li class="case-entry"><span class="case-entry-num">07</span><span class="case-entry-title">Signature</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Signature du contrat</span></li>
+                            <li class="case-entry"><span class="case-entry-num">08</span><span class="case-entry-title">Résumé</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Résumé du financement</span></li>
+                        </ol>
+                    </section>
+
+                    <!-- Paire carre + 16/9 : colonnes 1fr / 16:9fr -> hauteurs egales sans recadrage -->
+                    <div class="case-pair case-reveal">
+                        <figure class="case-media">
+                            <img src="images/siko-mobility/siko-mobility-square-ui-card.webp" alt="MacBook flottant affichant le formulaire d'identité Siko Mobility" width="2800" height="2800" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="case-media">
+                            <img src="images/siko-mobility/siko-mobility-device-mockup.webp?v=20260416" alt="Fenêtre récapitulative du montant total de la transaction sur desktop" width="2771" height="1558" loading="lazy" decoding="async">
+                        </figure>
+                    </div>
+
+                    <!-- 5. Interface -->
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">interface.design</h2>
+                        <p class="case-body">Le travail a porté sur la hiérarchie visuelle, la simplification des formulaires et la cohérence des composants : un même système décliné du desktop au mobile, pour fluidifier les usages à une main.</p>
+                    </section>
+
+                    <figure class="case-media case-reveal">
+                        <img src="images/siko-mobility/siko-mobility-prototype-mockup.webp" alt="Application mobile Siko Mobility en main, à côté de l'ensemble des écrans du parcours" width="2771" height="1558" loading="lazy" decoding="async">
+                    </figure>
+
+                    <!-- 6. Suite : meme grammaire que les listes de la page About -->
+                    <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
+                        <h2 class="section-title">et.ensuite</h2>
+                        <ul class="projects-list">
+                            <li>
+                                <a class="projects-list-link" href="project-1.html">
+                                    <span class="projects-list-title">Nintendo</span>
+                                    <span class="projects-list-tag">( Projet suivant )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="projects-list-link" href="work.html">
+                                    <span class="projects-list-title">Tous les projets</span>
+                                    <span class="projects-list-tag">( 5 projets )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </article>
+            </div>
+
+            <nav id="menu-wrapper" style="display:none;">
+                <ul class="menu-list">
+                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
+                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="about.html" class="hover-underline">À propos</a></li>
+                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                </ul>
+            </nav>
+
+            <footer class="footer-group">
+                <div class="footer-meta">
+                    <span class="location">Rennes, France</span>
+                    <span class="subtitle footer-local-time" id="rennes-time">--:--:--</span>
+                </div>
+                <div class="toggle-control">
+                    <input type="checkbox" id="theme-toggle">
+                    <label for="theme-toggle"></label>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <dialog class="case-lightbox" aria-label="Image agrandie">
+        <img class="case-lightbox-img" alt="">
+    </dialog>
+
+    <script src="script-core.js?v=20261004"></script>
+    <script src="script-case.js?v=20261004"></script>
     <script src="script-sound.js?v=20261006"></script>
 </body>
 

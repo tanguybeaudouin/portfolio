@@ -483,110 +483,51 @@
     display: block;
 }
 
+/* Meme reglage que les etudes de cas (project-case.css) : voile en courbe
+   ease-in-out plutot qu'en degrade lineaire (dont le debut et la fin de rampe
+   se voyaient comme une ligne laiteuse), plateau opaque reduit a ~10%, et
+   chaque palier de flou s'eteint en douceur jusqu'a son bord. */
+.about-page {
+    --fade-scrim:
+        #000 0%, #000 10%,
+        rgba(0, 0, 0, 0.987) 17.3%, rgba(0, 0, 0, 0.951) 24%,
+        rgba(0, 0, 0, 0.896) 30.3%, rgba(0, 0, 0, 0.825) 36.1%,
+        rgba(0, 0, 0, 0.741) 41.8%, rgba(0, 0, 0, 0.648) 47.1%,
+        rgba(0, 0, 0, 0.55) 52.4%, rgba(0, 0, 0, 0.45) 57.6%,
+        rgba(0, 0, 0, 0.352) 62.9%, rgba(0, 0, 0, 0.259) 68.2%,
+        rgba(0, 0, 0, 0.175) 73.9%, rgba(0, 0, 0, 0.104) 79.8%,
+        rgba(0, 0, 0, 0.049) 86.1%, rgba(0, 0, 0, 0.013) 92.7%,
+        transparent 100%;
+}
+
 /* Les quatre paliers occupent 4/4, 3/4, 2/4 puis 1/4 de la bande, avec un flou
    qui double a chaque fois. */
-.edge-fade-1 {
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
-}
-
-.edge-fade-2 {
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-}
-
-.edge-fade-3 {
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-}
-
-.edge-fade-4 {
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-}
+.edge-fade-1 { -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); }
+.edge-fade-2 { -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.edge-fade-3 { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.edge-fade-4 { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 
 /* Meme fondu que .main-card : sans transition, les deux bandes prenaient la
    nouvelle couleur de fond d'un coup pendant que la carte, elle, fondait encore
    — on voyait deux bandeaux de la mauvaise couleur pendant tout le basculement. */
 .edge-fade-tint {
+    top: 0;
+    bottom: 0;
     background-color: var(--bg-card);
     transition: background-color 0.8s ease;
 }
 
-.edge-fade-top .edge-fade-1 {
-    top: 0;
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(#000 70%, transparent 95%);
-    mask-image: linear-gradient(#000 70%, transparent 95%);
-}
+.edge-fade-top .edge-fade-1 { top: 0; bottom: 0; -webkit-mask-image: linear-gradient(#000 65%, transparent 100%); mask-image: linear-gradient(#000 65%, transparent 100%); }
+.edge-fade-top .edge-fade-2 { top: 0; bottom: calc(var(--fade-h) * 0.25); -webkit-mask-image: linear-gradient(#000 50%, transparent 100%); mask-image: linear-gradient(#000 50%, transparent 100%); }
+.edge-fade-top .edge-fade-3 { top: 0; bottom: calc(var(--fade-h) * 0.5); -webkit-mask-image: linear-gradient(#000 35%, transparent 100%); mask-image: linear-gradient(#000 35%, transparent 100%); }
+.edge-fade-top .edge-fade-4 { top: 0; bottom: calc(var(--fade-h) * 0.75); -webkit-mask-image: linear-gradient(#000 20%, transparent 100%); mask-image: linear-gradient(#000 20%, transparent 100%); }
+.edge-fade-top .edge-fade-tint { -webkit-mask-image: linear-gradient(to bottom, var(--fade-scrim)); mask-image: linear-gradient(to bottom, var(--fade-scrim)); }
 
-.edge-fade-top .edge-fade-2 {
-    top: 0;
-    bottom: calc(var(--fade-h) * 0.25);
-    -webkit-mask-image: linear-gradient(#000 45%, transparent 70%);
-    mask-image: linear-gradient(#000 45%, transparent 70%);
-}
-
-.edge-fade-top .edge-fade-3 {
-    top: 0;
-    bottom: calc(var(--fade-h) * 0.5);
-    -webkit-mask-image: linear-gradient(#000 20%, transparent 45%);
-    mask-image: linear-gradient(#000 20%, transparent 45%);
-}
-
-/* Ce palier n'avait aucun masque : le flou le plus fort s'arretait net a son
-   bord, ce qui dessinait une barre floue au lieu de se fondre. Il s'eteint
-   maintenant sur toute sa hauteur, comme les trois autres. */
-.edge-fade-top .edge-fade-4 {
-    top: 0;
-    bottom: calc(var(--fade-h) * 0.75);
-    -webkit-mask-image: linear-gradient(#000 0%, transparent 100%);
-    mask-image: linear-gradient(#000 0%, transparent 100%);
-}
-
-.edge-fade-top .edge-fade-tint {
-    top: 0;
-    bottom: 0;
-    /* Plus de plateau opaque : le degrade descend des le bord. Les 20% pleins
-       faisaient un bloc de couleur franc la ou tout le reste est diffus. */
-    -webkit-mask-image: linear-gradient(#000 0%, transparent 90%);
-    mask-image: linear-gradient(#000 0%, transparent 90%);
-}
-
-.edge-fade-bottom .edge-fade-1 {
-    top: 0;
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, #000 70%, transparent 95%);
-    mask-image: linear-gradient(to top, #000 70%, transparent 95%);
-}
-
-.edge-fade-bottom .edge-fade-2 {
-    top: calc(var(--fade-h) * 0.25);
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, #000 45%, transparent 70%);
-    mask-image: linear-gradient(to top, #000 45%, transparent 70%);
-}
-
-.edge-fade-bottom .edge-fade-3 {
-    top: calc(var(--fade-h) * 0.5);
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 45%);
-    mask-image: linear-gradient(to top, #000 20%, transparent 45%);
-}
-
-.edge-fade-bottom .edge-fade-4 {
-    top: calc(var(--fade-h) * 0.75);
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
-    mask-image: linear-gradient(to top, #000 0%, transparent 100%);
-}
-
-.edge-fade-bottom .edge-fade-tint {
-    top: 0;
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 90%);
-    mask-image: linear-gradient(to top, #000 0%, transparent 90%);
-}
+.edge-fade-bottom .edge-fade-1 { top: 0; bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 65%, transparent 100%); mask-image: linear-gradient(to top, #000 65%, transparent 100%); }
+.edge-fade-bottom .edge-fade-2 { top: calc(var(--fade-h) * 0.25); bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 50%, transparent 100%); mask-image: linear-gradient(to top, #000 50%, transparent 100%); }
+.edge-fade-bottom .edge-fade-3 { top: calc(var(--fade-h) * 0.5); bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 35%, transparent 100%); mask-image: linear-gradient(to top, #000 35%, transparent 100%); }
+.edge-fade-bottom .edge-fade-4 { top: calc(var(--fade-h) * 0.75); bottom: 0; -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 100%); mask-image: linear-gradient(to top, #000 20%, transparent 100%); }
+.edge-fade-bottom .edge-fade-tint { -webkit-mask-image: linear-gradient(to top, var(--fade-scrim)); mask-image: linear-gradient(to top, var(--fade-scrim)); }
 
 @media (max-width: 1250px) {
     .about-structure {
