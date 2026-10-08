@@ -1411,6 +1411,140 @@
 }
 
 /* ==========================================================================
+   APPEL A L'ACTION + LOGOS PARTENAIRES (1280 x 574.64 : maquette 558.64
+   + 16 px d'air sous les logos)
+   ========================================================================== */
+
+.case-mock--cta {
+    aspect-ratio: 1280 / 574.64;
+}
+
+.case-mock--cta .sg-stage {
+    height: 574.64px;
+}
+
+.sg-cta-wrap {
+    padding: 16px;
+}
+
+.sg-cta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 457.64px;
+    padding: 96px;
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+/* Photo exportee de Figma en 2x, voile sombre deja inclus, recadree au
+   format exact de la carte (1248 x 457.64) : elle la remplit sans deformation. */
+.sg-cta-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+}
+
+.sg-stage .sg-cta-photo {
+    object-fit: cover;
+}
+
+.sg-cta-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sg-cta-tag {
+    padding: 9.821px 14.821px;
+    border: 0.821px solid rgba(243, 243, 245, 0.1);
+    border-radius: 99px;
+    background: rgba(243, 243, 245, 0.1);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    font-size: 16px;
+    line-height: 1.3;
+    letter-spacing: -0.48px;
+    color: rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+}
+
+/* Espaceurs de la maquette : 32 px au-dessus, 16 + 32 px en dessous.
+   (.sg-stage devant : sinon `.sg-stage p { margin: 0 }` les annule.) */
+.sg-stage .sg-cta-title {
+    margin-top: 32px;
+    margin-bottom: 48px;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -1.68px;
+    color: #fff;
+}
+
+/* Bandeau de logos : la bande defile en continu (deux fois la meme suite),
+   fondue sur les cotes par un degrade blanc. */
+.sg-logos {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 69px;
+    margin-bottom: 16px;
+    padding: 24px;
+    overflow: hidden;
+}
+
+.sg-logos-slider {
+    position: relative;
+    flex-shrink: 0;
+    width: 1248px;
+    height: 56px;
+}
+
+.sg-logos-track {
+    position: absolute;
+    top: 5.5px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.sg-logos-track > * {
+    flex-shrink: 0;
+}
+
+/* EGYM : logo detoure par un masque, cale comme dans Figma. */
+.sg-logo-egym {
+    width: 89.055px;
+    height: 44.8px;
+}
+
+.sg-logo-egym span {
+    display: block;
+    width: 67.261px;
+    height: 24.061px;
+    margin: 10.345px 0 0 10.896px;
+    -webkit-mask: url("images/sportigo/sections/logo-egym-mask.svg") -10.896px -10.345px / 89.055px 44.8px no-repeat;
+    mask: url("images/sportigo/sections/logo-egym-mask.svg") -10.896px -10.345px / 89.055px 44.8px no-repeat;
+}
+
+.sg-logo-egym img {
+    width: 100%;
+    height: 100%;
+}
+
+.sg-logos-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #fff 10%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, #fff 90%);
+}
+
+/* ==========================================================================
    MICRO-ANIMATIONS
    --------------------------------------------------------------------------
    Elles demarrent quand le cadre apparait (.case-reveal.is-in, pose par
@@ -1547,6 +1681,24 @@
         animation: sg-breathe 2.8s ease-in-out 1s infinite;
     }
 
+    /* Appel a l'action : tag, titre et bouton montent ; photo en zoom lent ;
+       logos en defilement continu (une suite = 1114.98 px + 40 px d'ecart). */
+    .case-reveal.is-in .sg-cta-content > * {
+        animation: sg-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .case-reveal.is-in .sg-cta-content > :nth-child(1) { animation-delay: 0.25s; }
+    .case-reveal.is-in .sg-cta-content > :nth-child(2) { animation-delay: 0.35s; }
+    .case-reveal.is-in .sg-cta-content > :nth-child(3) { animation-delay: 0.45s; }
+
+    .case-reveal.is-in .sg-cta-photo {
+        animation: sg-zoom 14s ease-in-out infinite alternate;
+    }
+
+    .case-reveal.is-in .sg-logos-track {
+        animation: sg-marquee 32s linear infinite;
+    }
+
     /* Reflet qui traverse le bouton principal du hero. */
     .sg-btn--primary {
         position: relative;
@@ -1615,6 +1767,10 @@
 @keyframes sg-breathe {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
+}
+
+@keyframes sg-marquee {
+    to { translate: -1154.98px 0; }
 }
 
 @keyframes sg-shine {

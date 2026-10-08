@@ -28,9 +28,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css?v=20261004">
     <link rel="stylesheet" href="project-case.css?v=20261007q">
+    <link rel="stylesheet" href="project-siko.css?v=20261008b">
 </head>
 
 <body class="case-page">
@@ -132,14 +133,86 @@
                         <p class="case-body">Le produit regroupe plusieurs actions clés — simuler, s'identifier, payer, signer — dans une interface souvent consultée en déplacement. L'enjeu : raccourcir le temps d'accès à l'information et à l'action, tout en gardant une lecture claire à chaque étape.</p>
                     </section>
 
+                    <!-- Ecran desktop « Formulaire d'identite », code d'apres Figma
+                         (1512 px de large, coupe sous les boutons, mis a l'echelle du cadre). Styles : project-siko.css -->
                     <figure class="case-media case-reveal">
-                        <img src="images/siko-mobility/siko-mobility-booking-flow.webp" alt="Formulaire d'identité Siko Mobility sur desktop, avec le stepper du parcours à gauche" width="3200" height="1799" loading="lazy" decoding="async">
+                        <div class="case-mock case-mock--screen" role="img" aria-label="Écran desktop Siko Mobility : formulaire d'identité, avec à gauche le tableau de bord des huit étapes du parcours, l'étape Simulateur validée en vert et l'étape Identité en cours en bleu">
+                            <div class="sk-stage" aria-hidden="true">
+                                <div class="sk-nav">
+                                    <div class="sk-nav-row">
+                                        <img class="sk-logo" src="images/siko-mobility/ui/logo.svg" alt="" width="112" height="28" loading="lazy" decoding="async">
+                                        <div class="sk-nav-right">
+                                            <div class="sk-nav-links"><span>Qui sommes-nous ?</span><span>Nous contacter</span><span>Nos services</span></div>
+                                            <div class="sk-nav-btns">
+                                                <span class="sk-btn">Simulation</span>
+                                                <span class="sk-btn sk-btn--primary"><img src="images/siko-mobility/ui/icon-user-light.svg" alt="" width="14" height="14" loading="lazy" decoding="async">Espace client</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sk-rule"></div>
+                                </div>
+                                <div class="sk-body">
+                                    <div class="sk-steps">
+                                        <div class="sk-step sk-step--done"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Simulateur</strong>Demande de financement</span></div>
+                                        <span class="sk-step-link sk-step-link--done"></span>
+                                        <div class="sk-step sk-step--current"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-user-active.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Identité</strong>Informations personnelles</span></div>
+                                        <span class="sk-step-link sk-step-link--current"></span>
+                                        <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-truck.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Véhicule</strong>Informations véhicules</span></div>
+                                        <span class="sk-step-link"></span>
+                                        <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-identification.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Vérification d’identité</strong>Validation biométrique</span></div>
+                                        <span class="sk-step-link"></span>
+                                        <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-credit-card.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Paiement</strong>Paiement par carte bleue</span></div>
+                                        <span class="sk-step-link"></span>
+                                        <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-shield-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Souscription</strong>Remboursement des pannes</span></div>
+                                        <span class="sk-step-link"></span>
+                                        <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-pencil.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Signature</strong>Signature du contrat</span></div>
+                                        <span class="sk-step-link"></span>
+                                        <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-document-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Résumé</strong>Résumé du financement</span></div>
+                                    </div>
+                                    <div class="sk-form">
+                                        <p class="sk-title">Formulaire d’identité</p>
+                                        <p class="sk-subtitle">Informations personnelles</p>
+                                        <div class="sk-fields">
+                                            <div class="sk-col">
+                                                <div class="sk-field" style="padding-top: 25px"><span>Civilité</span><div class="sk-options"><span class="sk-option"><span class="sk-radio sk-radio--on"></span>Madame</span><span class="sk-option"><span class="sk-radio"></span>Monsieur</span></div></div>
+                                                <div class="sk-field"><span>Prénom</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Nom</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Êtes-vous né en France ?</span><div class="sk-options"><span class="sk-option"><span class="sk-radio sk-radio--on"></span>Oui</span><span class="sk-option"><span class="sk-radio"></span>Non</span></div></div>
+                                                <div class="sk-field"><span>Ville de naissance</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Date de naissance</span><span class="sk-input">Informations</span></div>
+                                            </div>
+                                            <div class="sk-col">
+                                                <div class="sk-field"><span>Email</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Téléphone</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Adresse</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-consent"><span class="sk-radio"></span><p>Je mandate Siko Mobility pour obtenir un financement du <span class="sk-link">montant total de la transaction</span> et, en cas d’acceptation, pour le verser au marchand partenaire.</p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sk-actions">
+                                    <span class="sk-btn">Précédent</span>
+                                    <span class="sk-btn sk-btn--primary">Suivant</span>
+                                </div>
+                            </div>
+                        </div>
                     </figure>
 
-                    <!-- 4. Parcours : les 8 etapes du stepper, lisibles d'un coup d'oeil -->
+                    <!-- 4. Parcours : nombre de clics et les 8 etapes du stepper -->
                     <section class="case-text case-reveal">
                         <h2 class="section-title">parcours.utilisateur</h2>
-                        <p class="case-body">Un stepper fixe découpe le parcours en huit étapes courtes. L'utilisateur sait toujours où il en est et ce qu'il lui reste à faire.</p>
+                        <p class="case-body">Tout le parcours vise l'efficacité : le moins de clics possible, aucune étape superflue. Simuler, s'identifier, payer et signer tiennent en six pages et deux pop-ups.</p>
+                        <ul class="case-list case-list--meta" aria-label="Parcours en chiffres">
+                            <li class="case-entry"><span class="case-entry-title">Clics</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">14 au total</span></li>
+                            <li class="case-entry"><span class="case-entry-title">Écrans</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">6 pages, 2 pop-ups</span></li>
+                            <li class="case-entry"><span class="case-entry-title">Rythme</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">≈ 2 clics par étape</span></li>
+                        </ul>
+                    </section>
+
+                    <!-- 5. Tableau de bord -->
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">tableau.de.bord</h2>
+                        <p class="case-body">Un tableau de bord vertical accompagne tout le parcours pour rassurer et donner une vue d'ensemble. Les étapes validées passent au vert, l'étape en cours est en bleu. Sur mobile, il se réduit à ses icônes pour laisser la place au formulaire, sans rien perdre en lisibilité.</p>
                         <ol class="case-list case-list--steps">
                             <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Simulateur</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Demande de financement</span></li>
                             <li class="case-entry"><span class="case-entry-num">02</span><span class="case-entry-title">Identité</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Informations personnelles</span></li>
@@ -152,6 +225,114 @@
                         </ol>
                     </section>
 
+                    <!-- Tableau de bord : meme etape sur mobile (icones seules) et sur
+                         desktop (etapes detaillees), codee d'apres Figma (scene 1100 x 660).
+                         L'ecran desktop (1512 px) est reduit dans une fenetre de navigateur. Styles : project-siko.css -->
+                    <figure class="case-media case-reveal">
+                        <div class="case-mock case-mock--steps" role="img" aria-label="Tableau de bord du parcours sur deux supports : à gauche sur mobile, une colonne d'icônes seules à côté du formulaire ; à droite sur desktop, la liste complète des huit étapes avec leur titre et leur description">
+                            <div class="sk-stage" aria-hidden="true">
+                                <p class="sk-device-label sk-device-label--mobile"><span>Mobile</span>Icônes seules</p>
+                                <p class="sk-device-label sk-device-label--desktop"><span>Desktop</span>Étapes détaillées</p>
+                                <div class="sk-phone">
+                                    <div class="sk-nav sk-nav--mobile">
+                                        <div class="sk-nav-row">
+                                            <img class="sk-logo" src="images/siko-mobility/ui/logo.svg" alt="" width="112" height="28" loading="lazy" decoding="async">
+                                            <span class="sk-burger"><span></span><span></span><span></span></span>
+                                        </div>
+                                        <div class="sk-rule"></div>
+                                    </div>
+                                    <div class="sk-body--mobile">
+                                        <div class="sk-steps sk-steps--compact">
+                                            <div class="sk-step sk-step--done"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link sk-step-link--done"></span>
+                                            <div class="sk-step sk-step--current"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-user-active.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link sk-step-link--current"></span>
+                                            <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-truck.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link"></span>
+                                            <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-identification.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link"></span>
+                                            <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-credit-card.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link"></span>
+                                            <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-shield-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link"></span>
+                                            <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-pencil.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                            <span class="sk-step-link"></span>
+                                            <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-document-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                        <div class="sk-form">
+                                            <p class="sk-title">Formulaire d’identité</p>
+                                            <p class="sk-subtitle">Informations personnelles</p>
+                                            <div class="sk-col">
+                                                <div class="sk-field"><span>Civilité</span><div class="sk-options"><span class="sk-option"><span class="sk-radio sk-radio--on"></span>Madame</span><span class="sk-option"><span class="sk-radio"></span>Monsieur</span></div></div>
+                                                <div class="sk-field"><span>Prénom</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Nom</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Email</span><span class="sk-input">Informations</span></div>
+                                                <div class="sk-field"><span>Téléphone</span><span class="sk-input">Informations</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sk-window">
+                                    <div class="sk-window-bar"><span></span><span></span><span></span></div>
+                                    <div class="sk-window-screen">
+                                        <div class="sk-nav">
+                                            <div class="sk-nav-row">
+                                                <img class="sk-logo" src="images/siko-mobility/ui/logo.svg" alt="" width="112" height="28" loading="lazy" decoding="async">
+                                                <div class="sk-nav-right">
+                                                    <div class="sk-nav-links"><span>Qui sommes-nous ?</span><span>Nous contacter</span><span>Nos services</span></div>
+                                                    <div class="sk-nav-btns">
+                                                        <span class="sk-btn">Simulation</span>
+                                                        <span class="sk-btn sk-btn--primary"><img src="images/siko-mobility/ui/icon-user-light.svg" alt="" width="14" height="14" loading="lazy" decoding="async">Espace client</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sk-rule"></div>
+                                        </div>
+                                        <div class="sk-body">
+                                            <div class="sk-steps">
+                                                <div class="sk-step sk-step--done"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Simulateur</strong>Demande de financement</span></div>
+                                                <span class="sk-step-link sk-step-link--done"></span>
+                                                <div class="sk-step sk-step--current"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-user-active.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Identité</strong>Informations personnelles</span></div>
+                                                <span class="sk-step-link sk-step-link--current"></span>
+                                                <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-truck.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Véhicule</strong>Informations véhicules</span></div>
+                                                <span class="sk-step-link"></span>
+                                                <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-identification.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Vérification d’identité</strong>Validation biométrique</span></div>
+                                                <span class="sk-step-link"></span>
+                                                <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-credit-card.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Paiement</strong>Paiement par carte bleue</span></div>
+                                                <span class="sk-step-link"></span>
+                                                <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-shield-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Souscription</strong>Remboursement des pannes</span></div>
+                                                <span class="sk-step-link"></span>
+                                                <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-pencil.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Signature</strong>Signature du contrat</span></div>
+                                                <span class="sk-step-link"></span>
+                                                <div class="sk-step"><span class="sk-step-icon"><img src="images/siko-mobility/ui/icon-document-check.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="sk-step-text"><strong>Résumé</strong>Résumé du financement</span></div>
+                                            </div>
+                                            <div class="sk-form">
+                                                <p class="sk-title">Formulaire d’identité</p>
+                                                <p class="sk-subtitle">Informations personnelles</p>
+                                                <div class="sk-fields">
+                                                    <div class="sk-col">
+                                                        <div class="sk-field" style="padding-top: 25px"><span>Civilité</span><div class="sk-options"><span class="sk-option"><span class="sk-radio sk-radio--on"></span>Madame</span><span class="sk-option"><span class="sk-radio"></span>Monsieur</span></div></div>
+                                                        <div class="sk-field"><span>Prénom</span><span class="sk-input">Informations</span></div>
+                                                        <div class="sk-field"><span>Nom</span><span class="sk-input">Informations</span></div>
+                                                        <div class="sk-field"><span>Êtes-vous né en France ?</span><div class="sk-options"><span class="sk-option"><span class="sk-radio sk-radio--on"></span>Oui</span><span class="sk-option"><span class="sk-radio"></span>Non</span></div></div>
+                                                        <div class="sk-field"><span>Ville de naissance</span><span class="sk-input">Informations</span></div>
+                                                        <div class="sk-field"><span>Date de naissance</span><span class="sk-input">Informations</span></div>
+                                                    </div>
+                                                    <div class="sk-col">
+                                                        <div class="sk-field"><span>Email</span><span class="sk-input">Informations</span></div>
+                                                        <div class="sk-field"><span>Téléphone</span><span class="sk-input">Informations</span></div>
+                                                        <div class="sk-field"><span>Adresse</span><span class="sk-input">Informations</span></div>
+                                                        <div class="sk-consent"><span class="sk-radio"></span><p>Je mandate Siko Mobility pour obtenir un financement du <span class="sk-link">montant total de la transaction</span> et, en cas d’acceptation, pour le verser au marchand partenaire.</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
                     <!-- Paire carre + 16/9 : colonnes 1fr / 16:9fr -> hauteurs egales sans recadrage -->
                     <div class="case-pair case-reveal">
                         <figure class="case-media">
@@ -162,10 +343,102 @@
                         </figure>
                     </div>
 
-                    <!-- 5. Interface -->
+                    <!-- 6. Interactions : boutons, survol, cases a cocher -->
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">boutons.interactions</h2>
+                        <p class="case-body">La couleur principale est réservée aux actions qui font avancer : un repère constant qui trace le chemin à suivre. Le placement suit le sens de lecture, avancer à droite, revenir ou annuler à gauche. Au survol, le fond fonce légèrement et le texte blanc reste blanc, pour éviter tout effet de clignotement.</p>
+                        <p class="case-body">Pensées pour le tactile, les cases à cocher sont cliquables sur une zone élargie de 4 px, libellé compris : toucher « Madame » ou « Non » suffit, le geste gagne en précision.</p>
+                    </section>
+
+                    <!-- Details d'interaction, codes d'apres le design system Figma
+                         (composants Button, Button 3 et Informations Checkbox). Styles : project-siko.css -->
+                    <div class="case-pair case-pair--even case-reveal">
+                        <figure class="case-media">
+                            <div class="case-mock case-mock--detail" role="img" aria-label="Boutons Précédent à gauche et Suivant à droite ; au survol du curseur, le fond de chaque bouton fonce légèrement et le texte garde sa couleur">
+                                <div class="sk-stage" aria-hidden="true">
+                                    <div class="sk-cta">
+                                        <div class="sk-cta-item"><span class="sk-btn sk-btn--ghost">Précédent</span><span class="sk-cta-note">← retour</span></div>
+                                        <div class="sk-cta-item"><span class="sk-btn sk-btn--primary">Suivant</span><span class="sk-cta-note">avancer →</span></div>
+                                        <svg class="sk-cursor" viewBox="0 0 14 20" width="14" height="20"><path d="M1 1v15.5l4-3.8 2.6 5.8 2.6-1.1-2.6-5.7H13L1 1z" fill="#111827" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                        <figure class="case-media">
+                            <div class="case-mock case-mock--detail" role="img" aria-label="Question « Êtes-vous né en France ? » : la zone cliquable de chaque choix couvre le rond, le libellé et 4 px autour ; un clic sur le mot Non suffit à le sélectionner">
+                                <div class="sk-stage" aria-hidden="true">
+                                    <div class="sk-hit">
+                                        <span>Êtes-vous né en France ?</span>
+                                        <div class="sk-options">
+                                            <span class="sk-option"><span class="sk-radio sk-radio--on sk-radio--yes"></span>Oui</span>
+                                            <span class="sk-option sk-option--zone"><span class="sk-radio sk-radio--no"></span>Non<span class="sk-hit-size">57 Hug × 25 Hug</span></span>
+                                        </div>
+                                        <svg class="sk-cursor" viewBox="0 0 14 20" width="14" height="20"><path d="M1 1v15.5l4-3.8 2.6 5.8 2.6-1.1-2.6-5.7H13L1 1z" fill="#111827" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+
+                    <!-- 7. Mode sombre -->
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">mode.sombre</h2>
+                        <p class="case-body">Pas de noir pur sous du texte blanc : ce contraste trop fort fatigue l'œil sur la durée. Le mode sombre pose plutôt un fond gris adouci, plus foncé que le blanc du mode clair, et garde le texte en noir. Moins d'éblouissement, une lisibilité intacte.</p>
+                    </section>
+
+                    <!-- Pop-up de recapitulatif en mode clair puis sombre, codee d'apres Figma
+                         (2.2 Montant total de la transaction, 519 x 518, sur une scene 760 x 600). Styles : project-siko.css -->
+                    <div class="case-pair case-pair--even case-reveal">
+                        <figure class="case-media">
+                            <div class="case-mock case-mock--modal" role="img" aria-label="Pop-up « Montant total de la transaction » en mode clair, total de 3270 €">
+                                <div class="sk-stage" aria-hidden="true">
+                                    <div class="sk-modal">
+                                        <p class="sk-title">Montant total de la transaction</p>
+                                        <div class="sk-breakdown">
+                                            <div class="sk-amounts">
+                                                <div class="sk-amount"><p>Prix du véhicule :<strong>3000 €</strong></p></div>
+                                                <div class="sk-amount"><p>Mandat de recherche :<strong>150 €</strong></p></div>
+                                                <div class="sk-amount"><p>Frais de dossier :<strong>20 €</strong></p></div>
+                                                <div class="sk-amount"><p>Frais de banquaire :<strong>100 €</strong></p></div>
+                                            </div>
+                                            <p class="sk-total">3270 €</p>
+                                        </div>
+                                        <div class="sk-modal-actions">
+                                            <span class="sk-btn">Précédent</span>
+                                            <span class="sk-btn sk-btn--primary">Suivant</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                        <figure class="case-media">
+                            <div class="case-mock case-mock--modal" role="img" aria-label="Pop-up « Montant total de la transaction » en mode sombre : fond gris adouci, texte noir et bleus légèrement assombris, total de 3270 €">
+                                <div class="sk-stage sk-dark" aria-hidden="true">
+                                    <div class="sk-modal">
+                                        <p class="sk-title">Montant total de la transaction</p>
+                                        <div class="sk-breakdown">
+                                            <div class="sk-amounts">
+                                                <div class="sk-amount"><p>Prix du véhicule :<strong>3000 €</strong></p></div>
+                                                <div class="sk-amount"><p>Mandat de recherche :<strong>150 €</strong></p></div>
+                                                <div class="sk-amount"><p>Frais de dossier :<strong>20 €</strong></p></div>
+                                                <div class="sk-amount"><p>Frais de banquaire :<strong>100 €</strong></p></div>
+                                            </div>
+                                            <p class="sk-total">3270 €</p>
+                                        </div>
+                                        <div class="sk-modal-actions">
+                                            <span class="sk-btn">Précédent</span>
+                                            <span class="sk-btn sk-btn--primary">Suivant</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+
+                    <!-- 8. Interface -->
                     <section class="case-text case-reveal">
                         <h2 class="section-title">interface.design</h2>
-                        <p class="case-body">Le travail a porté sur la hiérarchie visuelle, la simplification des formulaires et la cohérence des composants : un même système décliné du desktop au mobile, pour fluidifier les usages à une main.</p>
+                        <p class="case-body">Un même système de composants, décliné du desktop au mobile : hiérarchie visuelle nette, formulaires simplifiés, et des écrans pensés pour un usage à une main.</p>
                     </section>
 
                     <figure class="case-media case-reveal">
