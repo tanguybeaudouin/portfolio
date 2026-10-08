@@ -24,8 +24,8 @@ Each page loads `main.css` + one page-specific stylesheet, and `script-core.js` 
 page-specific script. There is no minification step and no `.min.*` files — those were
 deleted in `402a761`; the source files are what the pages load directly.
 
-- `main.css` on every page, plus `about.css`, `contact.css`, `work.css`, or
-  `project.css` (`en-cours.html` only). The five case-study pages load `project-case.css`
+- `main.css` on every page, plus `about.css`, `contact.css`, `work.css`, `legal.css`
+  (`mentions-legales.html` and `confidentialite.html`), or `project.css` (`en-cours.html` only). The five case-study pages load `project-case.css`
   (shared case-study layout) plus one per-project sheet: `project-nintendo.css`,
   `project-siko.css`, `project-sportigo.css`, `project-shopcaisse.css` (`project-2.html`,
   Frame by Frame, has none).
@@ -58,7 +58,7 @@ serve this directory directly. The working setup lives in `~/.claude/portfolio-p
 **One shared script (`script-core.js`) drives all pages**, gated by `document.body.classList.contains('<page>-page')`. It's a single `DOMContentLoaded` handler containing distinct sections (search for the `// ====` banners): DOM selection, Rennes local-time clock, typewriter animation, burger menu, magnetic buttons, dark mode, and a custom throttled cursor. Page-specific extra behavior lives in a matching small script per page: `script-home.js`, `script-about.js`, `script-contact.js`, `script-case.js` (`work.html` needs none).
 
 **Body classes are the routing mechanism** — there's no JS router; each page sets one `<body class="...">` and both CSS and `script-core.js` branch on it:
-- `home-page` (`index.html`), `work-page` (`work.html`), `about-page` (`about.html`), `contact-page` (`contact.html`), `wip-page` (`en-cours.html`, `robots.txt`-disallowed placeholder)
+- `home-page` (`index.html`), `work-page` (`work.html`), `about-page` (`about.html`), `contact-page` (`contact.html`), `wip-page` (`en-cours.html`, `robots.txt`-disallowed placeholder), `legal-page` (`mentions-legales.html`, `confidentialite.html`, linked only from the contact page; update their "Mis à jour le" date and the services list in `confidentialite.html` if hosting, form handling or fonts change)
 - `case-page` for the five case-study pages (`project-1.html` Nintendo, `project-2.html` Frame by Frame, `project-3.html` Siko Mobility, `project-4.html` Sportigo, `project-5.html` Shopcaisse). No GSAP or external animation library; their inline `<head>` script also adds `case-js` to `<html>` to enable the scroll-reveal styles.
 
 **`main.css` is the shared stylesheet** (loaded on every page) with numbered sections (variables/themes, reset, typography, custom cursor, main layout, header, baseline, typewriter, nav, burger menu, CTA button, footer). Each page then loads its page-specific stylesheet(s) on top (see "Stylesheets and scripts").

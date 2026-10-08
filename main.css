@@ -622,6 +622,7 @@ h3 {
     .home-page .content-section,
     .about-page .content-section,
     .contact-page .content-section,
+    .legal-page .content-section,
     .work-page .content-section {
         display: contents;
     }
@@ -634,6 +635,7 @@ h3 {
     .home-page .content-top-section,
     .about-page .content-top-section,
     .contact-page .content-top-section,
+    .legal-page .content-top-section,
     .work-page .content-top-section {
         order: 1;
         padding: var(--space-24) var(--space-24) var(--space-24) !important;
@@ -697,13 +699,15 @@ h3 {
     }
 
     .about-page .about-baseline-section,
-    .contact-page .about-baseline-section {
+    .contact-page .about-baseline-section,
+    .legal-page .about-baseline-section {
         order: 3;
         padding: var(--space-24);
     }
 
     .about-page .content-section > div:last-child,
-    .contact-page .content-section > div:last-child {
+    .contact-page .content-section > div:last-child,
+    .legal-page .content-section > div:last-child {
         order: 4;
     }
 

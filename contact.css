@@ -198,6 +198,10 @@
         letter-spacing: -0.012em;
     }
 
+    .contact-legal {
+        margin-top: var(--space-8);
+    }
+
     .contact-layout {
         display: flex;
         flex-direction: column;
@@ -383,6 +387,30 @@
 
 .contact-feedback:empty {
     display: none;
+}
+
+/* Mention RGPD sous le bouton : meme voix que le message d'aide (petit, gris,
+   centre). C'est la que les donnees sont envoyees, donc la que les liens
+   legaux ont un sens. */
+.contact-legal {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--neutral-dark-05);
+    text-align: center;
+    transition: color 0.8s ease;
+}
+
+.contact-legal a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+.contact-legal a:hover,
+.contact-legal a:focus-visible {
+    color: var(--neutral-dark);
 }
 
 .contact-submit.is-enabled {
