@@ -1223,39 +1223,59 @@ h3 {
 }
 
 .sound-toggle {
+    --sound-ease: cubic-bezier(0.15, 0.9, 0.34, 0.95);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    width: 30px;
-    height: 16px;
+    gap: 2.5px;
+    width: 26px;
+    height: 26px;
     padding: 0;
     border: 0;
+    border-radius: 50%;
     background: none;
     color: inherit;
     position: relative;
-    opacity: 0.4;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sound-toggle.is-on,
-.sound-toggle:hover,
-.sound-toggle:focus-visible {
-    opacity: 1;
+/* Cercle au trait fin, à peine visible, qui se précise au survol (d'après
+   thirtysixstudio.com). Dessiné en currentColor avec une opacité propre pour
+   suivre la couleur du texte, y compris sur les pieds de page sombres. */
+.sound-toggle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.12;
+    transition: opacity 0.4s var(--sound-ease);
+}
+
+.sound-toggle:hover::after,
+.sound-toggle:focus-visible::after {
+    opacity: 0.4;
 }
 
 .sound-toggle::before {
     content: '';
     position: absolute;
-    inset: -12px;
+    inset: -8px;
 }
 
+/* Cinq traits fins. Coupé : des points. Actif : ils oscillent comme un
+   égaliseur ; la hauteur est pilotée image par image par script-sound.js. */
 .sound-toggle span {
     display: block;
-    width: 2px;
+    width: 1px;
     height: 2px;
     border-radius: 1px;
     background: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sound-toggle::after {
+        transition: none;
+    }
 }
 
 /* Images: arrondi global */

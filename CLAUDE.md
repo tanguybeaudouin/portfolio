@@ -28,8 +28,8 @@ deleted in `402a761`; the source files are what the pages load directly.
   `project-fbf.css` (the three project pages) / `project.css` (`en-cours.html` only).
 - `script-core.js` on every page, plus `script-home.js`, `script-about.js`, or
   `script-contact.js`. `work.html` has no page script (its project list is plain links).
-- `script-sound.js` on every page, loaded last: UI sound design synthesised with Web Audio
-  (no audio files). Desktop/mouse only; it injects a sound on/off button before each
+- `script-sound.js` on every page, loaded last: UI sound design and very discreet generative
+  ambient music (sparse piano notes, C418-style), all synthesised with Web Audio (no audio files). Desktop/mouse only; it injects a sound on/off button before each
   `.toggle-control` (styled in `main.css` section 13) and stores the choice in
   `localStorage('sound')`.
 - Fonts are declared in each page's `<head>`: Neue Haas Grotesk (cdnfonts) and DM Mono
