@@ -2494,6 +2494,19 @@
     height: auto;
 }
 
+/* Le menu garde sa taille reelle : la scene prend sa largeur (358 px), est
+   centree dans le cadre et ne retrecit que si le cadre est plus etroit. */
+.case-mock--mnav .sc-stage {
+    width: 358px;
+    left: calc(50% - 179px);
+    transform: scale(min(var(--mock-scale, 1), 1));
+    transform-origin: 50% 0;
+}
+
+.case-mock--mnav .sc-mnav {
+    left: 0;
+}
+
 .sc-mnav {
     left: 201px;
 }
@@ -2562,4 +2575,45 @@
 
 .sc-m-feature--news .sc-feature-text > div {
     gap: 8px;
+}
+
+/* ==========================================================================
+   SURVOL DES BOUTONS (souris uniquement), d'apres la charte Shopcaisse
+   --------------------------------------------------------------------------
+   - boutons transparents (liens des menus) : fond anthracite 6 %, comme
+     les onglets ;
+   - bouton bleu roi : voile bleu saphir par-dessus le halo ;
+   - boutons safran, blanc et neutre : voile anthracite ;
+   - badges stores : anthracite eclairci, verre un peu plus opaque.
+   La scene est inerte : seuls les boutons recoivent le pointeur.
+   ========================================================================== */
+
+.sc-btn,
+.sc-store {
+    pointer-events: auto;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sc-btn:not(.sc-tab, .sc-btn--primary, .sc-btn--neutral, .sc-btn--safran, .sc-btn--white):hover {
+        background-color: var(--sc-anthracite-6);
+    }
+
+    .sc-btn--primary:hover {
+        box-shadow: var(--sc-btn-inset), inset 0 0 0 100px rgba(2, 0, 160, 0.22);
+    }
+
+    .sc-btn--safran:hover,
+    .sc-btn--neutral:hover,
+    .sc-plan .sc-btn--white:hover {
+        box-shadow: var(--sc-btn-inset), inset 0 0 0 100px var(--sc-anthracite-6);
+    }
+
+    .sc-store:hover {
+        background-color: #2b2b2b;
+    }
+
+    .sc-store--glass:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+    }
 }

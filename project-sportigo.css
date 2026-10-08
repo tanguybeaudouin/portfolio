@@ -1777,3 +1777,29 @@
     0% { left: -40%; }
     35%, 100% { left: 120%; }
 }
+
+/* ---------- Survol des boutons et liens (souris uniquement) ----------
+   Charte Sportigo : le bouton gris fonce d'un cran, le bouton bleu garde
+   son degrade et s'assombrit d'un voile encre (#0d0e14) ; les liens de la
+   barre passent de l'encre a 80 % a l'encre pleine. La scene est inerte :
+   seuls les boutons et liens recoivent le pointeur. */
+
+.sg-btn,
+.sg-navbar-links > span {
+    pointer-events: auto;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sg-btn:hover {
+        background-color: #eeeeef;
+    }
+
+    .sg-btn--primary:hover {
+        box-shadow: inset 0 0 0 100px rgba(13, 14, 20, 0.12);
+    }
+
+    .sg-navbar-links > span:hover {
+        color: #0d0e14;
+    }
+}

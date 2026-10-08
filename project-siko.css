@@ -34,6 +34,10 @@
     --sk-blanc: #f0f2f5;
     --sk-bleu-blanc: #e4edf8;
     --sk-bleu-2: rgba(211, 220, 247, 0.5);
+    /* Survols du mode sombre : un cran plus fonce que les fonds ci-dessus,
+       sinon le bleu (deja #204bc2) et le blanc gris ne changent pas. */
+    --sk-bleu-hover: #1e40af;
+    --sk-blanc-gris-2: #e5e7eb;
 }
 
 /* ---------- Cadre et mise a l'echelle ---------- */
@@ -750,4 +754,32 @@
     0% { border: 0.5px solid var(--sk-gris-2); background: var(--sk-blanc-gris); }
     40% { border: 3px solid var(--sk-bleu); background: var(--sk-blanc); }
     92% { border: 0.5px solid var(--sk-gris-2); background: var(--sk-blanc-gris); }
+}
+
+/* ---------- Survol des boutons et liens (souris uniquement) ----------
+   Etats « Hover » du design system Siko : le bouton bleu passe en
+   --sk-bleu-hover, le bouton blanc en --sk-blanc-gris-2. La scene est
+   inerte : seuls les boutons et liens recoivent le pointeur. Les boutons
+   animes de la figure « Precedent / Suivant » gardent leur animation. */
+
+.sk-btn,
+.sk-link {
+    pointer-events: auto;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sk-btn:hover {
+        background: var(--sk-blanc-gris-2);
+    }
+
+    .sk-btn--primary:hover {
+        background: var(--sk-bleu-hover);
+    }
+
+    .sk-link:hover {
+        color: var(--sk-bleu-hover);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
 }

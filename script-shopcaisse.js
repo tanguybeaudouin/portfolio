@@ -152,7 +152,7 @@ function initMobileMenu() {
     const demo = document.querySelector('.sc-mdemo');
     if (!demo) return;
 
-    const STAGE_WIDTH = 760;
+    const STAGE_WIDTH = 358;
     const BOTTOM_SPACE = 24;
     const levels = new Map(
         Array.from(demo.querySelectorAll('[data-sc-level]')).map((el) => [el.dataset.scLevel, el])
@@ -169,7 +169,8 @@ function initMobileMenu() {
     const fitHeight = () => {
         const level = levels.get(current);
         if (!level) return;
-        const scale = demo.clientWidth / STAGE_WIDTH;
+        // Meme plafond que le CSS : le menu ne depasse pas sa taille reelle.
+        const scale = Math.min(demo.clientWidth / STAGE_WIDTH, 1);
         demo.style.aspectRatio = 'auto';
         demo.style.height = `${Math.ceil((level.offsetHeight + BOTTOM_SPACE) * scale)}px`;
     };
