@@ -241,30 +241,4 @@
             if (event.key === 'Escape') closeLightbox();
         });
     }
-
-    // ==========================================
-    // COPIE DU LIEN DE LA PAGE
-    // ==========================================
-    const copyButton = document.querySelector('.case-copy-link');
-    const copyStatus = document.querySelector('.case-copy-status');
-    if (copyButton && navigator.clipboard) {
-        let copyTimer = 0;
-        copyButton.addEventListener('click', () => {
-            const url = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                copyButton.classList.add('is-copied');
-                if (copyStatus) {
-                    copyStatus.textContent = 'Lien copié';
-                    copyStatus.classList.add('is-visible');
-                }
-                window.clearTimeout(copyTimer);
-                copyTimer = window.setTimeout(() => {
-                    copyButton.classList.remove('is-copied');
-                    copyStatus?.classList.remove('is-visible');
-                }, 1600);
-            }).catch(() => {});
-        });
-    } else if (copyButton) {
-        copyButton.hidden = true;
-    }
 })();

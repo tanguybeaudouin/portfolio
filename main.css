@@ -34,13 +34,11 @@ VARIABLES & THÈMES ========================================== */
     --neutral-light-05: rgba(244, 244, 244, 0.5);
     --neutral-light-01: rgba(244, 244, 244, 0.1);
     --bg-card: #F4F4F4;
-    --radius-inner: 16px;
     --btn-hover: #141414;
     --space-8: 8px;
     --space-16: 16px;
     --space-24: 24px;
     --space-32: 32px;
-    --space-56: 56px;
 }
 
 .dark-theme {
@@ -68,7 +66,6 @@ html.has-custom-cursor *::before,
 html.has-custom-cursor *::after {
     cursor: none !important;
 }
-
 
 html {
     background-color: var(--bg-card);
@@ -98,57 +95,10 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-body.project-2-page .page,
-body.project-fbf-page .page {
-    transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1), filter 0.18s cubic-bezier(0.22, 1, 0.36, 1);
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    filter: none;
-    transform-origin: 50% 50%;
-}
-
-body.is-project-transitioning-will-change.project-2-page .page,
-body.is-project-transitioning-will-change.project-fbf-page .page,
-body.is-project-entering-will-change.project-2-page .page,
-body.is-project-entering-will-change.project-fbf-page .page {
-    will-change: transform, opacity, filter;
-}
-
-body.is-project-transitioning.project-2-page .page,
-body.is-project-transitioning.project-fbf-page .page {
-    transform: scale(0.75);
-    opacity: 0;
-    filter: none;
-}
-
-body.is-project-transitioning.is-project-transitioning-critical.project-2-page .page,
-body.is-project-transitioning.is-project-transitioning-critical.project-fbf-page .page {
-    filter: blur(30px);
-}
-
-body.is-project-entering-from-project.project-2-page .page,
-body.is-project-entering-from-project.project-fbf-page .page {
-    transform: translateY(100vh) scale(1);
-    opacity: 1;
-    filter: none;
-}
-
-html.project-transition-enter body.project-2-page .page,
-html.project-transition-enter body.project-fbf-page .page {
-    transform: translateY(100vh) scale(1);
-    opacity: 1;
-    filter: none;
-}
-
 /* Style Body (Figma): DM Mono / Regular / 14 / 140% / 0% */
 :where(
-    .projects-intro,
-    .projects-hover-desc,
     .about-text-content p:not(.intro-greeting):not(.subtitle):not(.no-scramble),
-    .skills-list p,
     .contact-block p,
-    .project2-block p,
-    .project2-caption p,
     .location
 ) {
     font-family: 'DM Mono', monospace;
@@ -186,7 +136,6 @@ html::-webkit-scrollbar,
     display: inline-block;
 }
 
-
 html.first-visit-loading .home-page .page {
     opacity: 0;
     pointer-events: none;
@@ -220,7 +169,6 @@ html.first-visit-loading #custom-cursor {
     opacity: 0;
     pointer-events: none;
 }
-
 
 /* ========================================== 3. TYPOGRAPHIE ========================================== */
 
@@ -360,143 +308,6 @@ h3 {
     min-width: 320px;
 }
 
-.image-section {
-    flex: 1;
-    overflow: hidden;
-    border-radius: var(--radius-inner);
-}
-
-.image-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Section galerie de projets */
-.projects-gallery-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.project-item {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-inner);
-    color: inherit;
-    text-decoration: none;
-    outline-offset: 3px;
-}
-
-.project-item:focus-visible {
-    outline: 2px solid var(--primary);
-}
-
-.project-item::before,
-.project-item::after {
-    display: none;
-}
-
-.project-media {
-    position: absolute;
-    inset: 0;
-}
-
-.project-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.8s ease;
-}
-
-.project-image-light {
-    opacity: 1;
-}
-
-.project-image-dark {
-    opacity: 0;
-}
-
-.dark-theme .project-image-light {
-    opacity: 0;
-}
-
-.dark-theme .project-image-dark {
-    opacity: 1;
-}
-
-.project-cta {
-    position: absolute;
-    top: var(--space-16);
-    right: var(--space-16);
-    color: var(--neutral-dark);
-    background-color: var(--neutral-light-05);
-    padding: 8px 14px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.05em;
-    transition: 0.5s ease;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.project-item:hover .project-cta,
-.project-item:focus-visible .project-cta {
-    background-color: var(--bg-card);
-    color: var(--neutral-dark);
-    opacity: 1;
-}
-
-.project-meta {
-    position: absolute;
-    left: var(--space-16);
-    right: var(--space-16);
-    bottom: var(--space-16);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 2;
-    color: var(--neutral-dark);
-    transition: color 0.8s ease;
-}
-
-.project-meta h3 {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.project-role {
-    font-size: 12px;
-    color: var(--neutral-dark-05);
-    transition: color 0.8s ease;
-}
-
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.project-tag {
-    font-size: 10px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    line-height: 1;
-    padding: 6px 8px;
-    border-radius: 100px;
-    background: var(--neutral-dark-01);
-    border: none;
-    color: var(--neutral-dark);
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
 .content-section {
     width: 100%;
     height: 100%;
@@ -532,10 +343,6 @@ h3 {
     flex-direction: column;
     justify-content: flex-start;
     position: relative;
-}
-
-.about-baseline-section.menu-open {
-    justify-content: center;
 }
 
 #baseline-wrapper,
@@ -883,23 +690,10 @@ h3 {
         line-height: 1.2;
     }
 
-    .home-page .image-section {
-        order: 3;
-        margin-top: var(--space-24);
-        flex: 0 0 auto;
-        width: 100%;
-        height: min(410px, 100vw);
-    }
-
     /* Padding et margin viennent de la regle .footer-group commune ci-dessus :
        on ne declare ici que la position dans le flux. */
     .home-page .footer-group {
         order: 4;
-    }
-
-    .about-page .image-section,
-    .contact-page .image-section {
-        order: 2;
     }
 
     .about-page .about-baseline-section,
@@ -913,12 +707,6 @@ h3 {
         order: 4;
     }
 
-    .work-page .projects-gallery-section {
-        order: 2;
-        gap: var(--space-24);
-        padding: 0 var(--space-24) var(--space-24);
-    }
-
     .work-page .about-baseline-section {
         order: 3;
         padding: 0;
@@ -927,27 +715,6 @@ h3 {
     .work-page .footer-group {
         order: 4;
     }
-
-    .home-page .image-section,
-    .about-page .image-section,
-    .contact-page .image-section {
-        width: 100%;
-        max-width: 100%;
-        height: min(410px, 100vw);
-        border-radius: 0;
-        flex: 0 0 auto;
-    }
-
-    .home-page .image-section img,
-    .about-page .image-section img,
-    .contact-page .image-section img {
-        border-radius: 0;
-    }
-
-    /* (Anciennes regles work mobile supprimees : project-item gris + padding,
-       project-media en 2800/1013, project-meta/tag/cta/role. Elles dataient d'une
-       mise en page work revolue, n'existaient plus dans le HTML et cassaient la
-       galerie actuelle. work.css possede desormais entierement le work mobile.) */
 
     h1 {
         font-size: 24px;
@@ -981,27 +748,8 @@ h3 {
         line-height: 1.2;
     }
 
-    .projects-intro,
-    .projects-hover-info,
     .about-text-content {
         width: 100%;
-    }
-
-    .projects-hover-info {
-        display: none;
-    }
-
-    .projects-intro {
-        display: none;
-    }
-
-    .about-text-content,
-    .projects-intro {
-        font-size: 12px;
-        line-height: 1.2;
-    }
-
-    .skills-list p {
         font-size: 12px;
         line-height: 1.2;
     }
@@ -1051,11 +799,6 @@ h3 {
         padding: var(--space-24);
     }
 
-    .about-page .cta-container {
-        margin-top: var(--space-16);
-        margin-bottom: var(--space-32);
-    }
-
     .contact-form-title {
         display: block;
     }
@@ -1075,13 +818,6 @@ h3 {
 }
 
 /* ========================================== 12. BOUTON CTA ========================================== */
-
-.cta-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--space-56);
-}
 
 .btn {
     display: inline-flex;
@@ -1281,13 +1017,6 @@ h3 {
 /* Images: arrondi global */
 img {
     border-radius: 6px;
-}
-
-.image-section,
-.image-section img,
-.project-item,
-.project-image {
-    border-radius: 6px !important;
 }
 
 /* ========================================== 14. LISTE DE PROJETS ==========================================

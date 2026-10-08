@@ -25,9 +25,14 @@ page-specific script. There is no minification step and no `.min.*` files — th
 deleted in `402a761`; the source files are what the pages load directly.
 
 - `main.css` on every page, plus `about.css`, `contact.css`, `work.css`, or
-  `project-fbf.css` (the three project pages) / `project.css` (`en-cours.html` only).
-- `script-core.js` on every page, plus `script-home.js`, `script-about.js`, or
-  `script-contact.js`. `work.html` has no page script (its project list is plain links).
+  `project.css` (`en-cours.html` only). The five case-study pages load `project-case.css`
+  (shared case-study layout) plus one per-project sheet: `project-nintendo.css`,
+  `project-siko.css`, `project-sportigo.css`, `project-shopcaisse.css` (`project-2.html`,
+  Frame by Frame, has none).
+- `script-core.js` on every page, plus `script-home.js`, `script-about.js`,
+  `script-contact.js`, or `script-case.js` (case-study pages: scroll reveal, lightbox;
+  `project-5.html` also loads `script-shopcaisse.js` for its interactive mockups).
+  `work.html` has no page script (its project list is plain links).
 - `script-sound.js` on every page, loaded last: UI sound design and very discreet generative
   ambient music (sparse piano notes, C418-style), all synthesised with Web Audio (no audio files). Desktop/mouse only; it injects a sound on/off button before each
   `.toggle-control` (styled in `main.css` section 13) and stores the choice in
@@ -50,13 +55,13 @@ serve this directory directly. The working setup lives in `~/.claude/portfolio-p
 
 ## Architecture
 
-**One shared script (`script-core.js`) drives all pages**, gated by `document.body.classList.contains('<page>-page')`. It's a single `DOMContentLoaded` handler containing distinct sections (search for the `// ====` banners): DOM selection, Rennes local-time clock, typewriter animation, burger menu, dark-mode/portrait image swap, and a custom throttled cursor. Page-specific extra behavior lives in a matching small script per page: `script-home.js`, `script-about.js`, `script-contact.js` (`work.html` needs none).
+**One shared script (`script-core.js`) drives all pages**, gated by `document.body.classList.contains('<page>-page')`. It's a single `DOMContentLoaded` handler containing distinct sections (search for the `// ====` banners): DOM selection, Rennes local-time clock, typewriter animation, burger menu, magnetic buttons, dark mode, and a custom throttled cursor. Page-specific extra behavior lives in a matching small script per page: `script-home.js`, `script-about.js`, `script-contact.js`, `script-case.js` (`work.html` needs none).
 
 **Body classes are the routing mechanism** — there's no JS router; each page sets one `<body class="...">` and both CSS and `script-core.js` branch on it:
 - `home-page` (`index.html`), `work-page` (`work.html`), `about-page` (`about.html`), `contact-page` (`contact.html`), `wip-page` (`en-cours.html`, `robots.txt`-disallowed placeholder)
-- `project-fbf-page` for the three case-study pages (`project-1.html`, `project-2.html`, `project-3.html`), which additionally load GSAP + ScrollTrigger + ScrollSmoother from jsDelivr for scroll animation. `project-3.html` adds a second class (`project-siko-page`) for page-specific overrides.
+- `case-page` for the five case-study pages (`project-1.html` Nintendo, `project-2.html` Frame by Frame, `project-3.html` Siko Mobility, `project-4.html` Sportigo, `project-5.html` Shopcaisse). No GSAP or external animation library; their inline `<head>` script also adds `case-js` to `<html>` to enable the scroll-reveal styles.
 
-**`main.css` is the shared stylesheet** (loaded on every page) with numbered sections (variables/themes, reset, typography, custom cursor, main layout, header, baseline, typewriter, nav, burger menu, CTA button, footer). Each page then loads one additional page-specific stylesheet on top (`about.css`, `contact.css`, `work.css`, `project.css`/`project-fbf.css`).
+**`main.css` is the shared stylesheet** (loaded on every page) with numbered sections (variables/themes, reset, typography, custom cursor, main layout, header, baseline, typewriter, nav, burger menu, CTA button, footer). Each page then loads its page-specific stylesheet(s) on top (see "Stylesheets and scripts").
 
 **Theme (light/dark) and the first-visit loader are initialized inline** in a blocking `<script>` in each page's `<head>`, before the CSS/JS loads — this avoids a flash of wrong theme by reading `localStorage.getItem('theme')` and adding `dark-theme`/`first-visit-loading` classes to `<html>` synchronously. If you touch theming or the intro loader, that inline snippet (duplicated at the top of every page) and the corresponding logic in `script-core.js` need to stay consistent.
 

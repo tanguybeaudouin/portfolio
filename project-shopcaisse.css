@@ -196,13 +196,6 @@
 }
 
 /* Variante « Fond None » du hero : verre presque transparent. */
-.sc-store--glass {
-    background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    filter: none;
-    box-shadow: var(--sc-glass-inset), 0 0 3.653px 0 rgba(0, 0, 0, 0.12);
-}
 
 .sc-store-text {
     display: flex;
@@ -216,30 +209,6 @@
     letter-spacing: -0.1169px;
     color: #fff;
     text-box: trim-both cap alphabetic;
-}
-
-/* Badge mobile, une fois et demie plus grand (Badge Mobile du hero). */
-.sc-store--lg {
-    gap: 6.032px;
-    height: 57.308px;
-    padding: 12.065px 18.097px;
-    border-width: 1.017px;
-    border-radius: 18.097px;
-    backdrop-filter: blur(9.049px);
-    -webkit-backdrop-filter: blur(9.049px);
-    box-shadow:
-        inset 0 0 22.036px 0 rgba(255, 255, 255, 0.25),
-        inset 0 2.204px 4.407px 0 rgba(255, 255, 255, 0.25),
-        0 0 5.509px 0 rgba(0, 0, 0, 0.12);
-}
-
-.sc-store--lg .sc-store-text {
-    gap: 6.032px;
-}
-
-.sc-store--lg .sc-store-text small {
-    font-size: 8.81px;
-    letter-spacing: -0.1762px;
 }
 
 /* ---------- Badge Avis Verifies (pieces vectorielles assemblees) ---------- */
@@ -438,122 +407,6 @@
     gap: 8px;
 }
 
-.sc-intro {
-    position: absolute;
-    top: 200px;
-    left: 148px;
-    right: 148px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-}
-
-.sc-intro-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-}
-
-.sc-proof {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 8px 12px;
-    border: 0.8px solid #e0f6ff;
-    border-radius: 999px;
-    background:
-        linear-gradient(180deg, rgba(224, 246, 255, 0) 80%, rgba(224, 246, 255, 0.06) 100%),
-        linear-gradient(180deg, rgba(224, 246, 255, 0.06) 0%, rgba(224, 246, 255, 0) 20%),
-        rgba(224, 246, 255, 0.06);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    font-size: 14px;
-    color: #fff;
-    white-space: nowrap;
-}
-
-.sc-proof-note {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-weight: 500;
-    letter-spacing: -0.28px;
-    line-height: 1;
-}
-
-.sc-proof-note img {
-    width: 10.473px;
-    height: 10px;
-}
-
-/* Trait vertical : la ligne Figma de 18 x 0,5, tournee d'un quart de tour. */
-.sc-proof-divider {
-    position: relative;
-    align-self: stretch;
-    width: 0;
-}
-
-.sc-proof-divider img {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 17px;
-    height: 0.5px;
-    transform: translate(-50%, -50%) rotate(-90deg);
-}
-
-.sc-intro-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    text-align: center;
-}
-
-.sc-title {
-    width: 848px;
-    font-family: 'Chillax', sans-serif;
-    font-weight: 600;
-    font-size: 56px;
-    line-height: 56px;
-    letter-spacing: -1.4px;
-    color: #fff;
-}
-
-.sc-lead {
-    width: 288px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.sc-lead span {
-    color: var(--sc-safran);
-}
-
-.sc-ctas {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-.sc-photo {
-    position: absolute;
-    top: 604px;
-    left: 148px;
-    width: 984px;
-    height: 553px;
-    overflow: hidden;
-    border-radius: 20px;
-}
-
-.sc-stage .sc-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 /* ---------- Scene 2 : mega-menu interactif (1280 x 706) ---------- */
 
 .sc-demo .sc-veil,
@@ -566,13 +419,6 @@
 }
 
 /* Menu ouvert : le texte du hero s'efface, il depasserait sous les panneaux. */
-.sc-demo .sc-intro-text {
-    transition: opacity 0.25s ease;
-}
-
-.sc-demo.is-open .sc-intro-text {
-    opacity: 0;
-}
 
 .sc-panel[hidden] {
     display: none;
@@ -974,100 +820,8 @@
 
 /* ---------- Scene 3 : menu mobile en trois niveaux (1340 x 816) ---------- */
 
-.case-mock--mobile {
-    aspect-ratio: 1340 / 816;
-    background: #f5f5f5;
-}
-
-.case-mock--mobile .sc-stage {
-    width: 1340px;
-    height: 816px;
-}
-
-.sc-step-label {
-    position: absolute;
-    top: 30px;
-    display: flex;
-    gap: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    color: #6b7280;
-    white-space: nowrap;
-}
-
-.sc-step-label span {
-    font-weight: 500;
-    color: var(--sc-anthracite);
-}
-
-/* Fleche entre deux ecrans : on lit le parcours de gauche a droite. */
-.sc-step-arrow {
-    position: absolute;
-    top: 400px;
-    width: 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 20px;
-    color: #6b7280;
-    text-align: center;
-}
-
-.sc-phone {
-    position: absolute;
-    top: 64px;
-    width: 390px;
-    height: 706px;
-    overflow: hidden;
-    border-radius: 28px;
-    box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.06),
-        0 12px 32px -8px rgba(17, 24, 39, 0.18);
-}
-
-.sc-phone .sc-hero-bg,
 .sc-handset .sc-hero-bg {
     background: radial-gradient(287.2px 519.9px at 50% 0, #0385f1 0%, #0267e1 50%, #0049d0 100%);
-}
-
-.sc-m-intro {
-    position: absolute;
-    top: 200px;
-    left: 16px;
-    right: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-}
-
-.sc-m-intro .sc-intro-text {
-    width: 100%;
-}
-
-.sc-m-proof {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 8px;
-    border: 0.674px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: var(--sc-glass-inset), 0 0 3.653px 0 rgba(0, 0, 0, 0.12);
-    font-size: 14px;
-    color: #fff;
-    white-space: nowrap;
-}
-
-.sc-m-title {
-    width: 100%;
-    font-family: 'Chillax', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 80.875%;
-    letter-spacing: -1.4px;
-    color: #fff;
 }
 
 .sc-m-menu {
@@ -1222,11 +976,6 @@
     padding: 4px 4px 4px 16px;
 }
 
-/* Le chemin suivi d'un ecran a l'autre : l'element touche est surligne. */
-.sc-btn.is-tapped {
-    background: var(--sc-anthracite-6);
-}
-
 /* ==========================================================================
    COMPARATIFS MOBILE / DESKTOP (scenes 1 514 px de large)
    --------------------------------------------------------------------------
@@ -1343,11 +1092,6 @@
     fill: currentColor;
 }
 
-/* Ecran hero : meme mise en page que la scene plein cadre. */
-.sc-screen--hero {
-    height: 706px;
-}
-
 /* ---------- Barre mobile fermee (Nav-bar-Mobile) ---------- */
 
 .sc-m-bar {
@@ -1457,105 +1201,6 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
-}
-
-/* ---------- Section « Cree ta caisse en 3 etapes » (Ready) ---------- */
-
-.sc-ready {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 80px;
-    padding: 160px 16px;
-    background: #fff;
-}
-
-.sc-ready .sc-h2 {
-    width: 646px;
-}
-
-.sc-ready .sc-sub {
-    width: 468px;
-}
-
-.sc-ready-steps {
-    display: flex;
-    align-items: center;
-    gap: 64px;
-    width: 982px;
-}
-
-.sc-ready-step {
-    display: flex;
-    flex: 1 0 0;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    min-width: 1px;
-    text-align: center;
-}
-
-.sc-ready-num {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 999px;
-    background: radial-gradient(circle 93.7px at 79.67px -26px, #0385f1 0%, #0267e1 44%, #0049d0 88%);
-    font-weight: 600;
-    font-size: 32px;
-    color: #fff;
-}
-
-.sc-ready-title {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 21.333px;
-    text-box: trim-both cap alphabetic;
-}
-
-.sc-ready-step .sc-sub {
-    width: auto;
-}
-
-.sc-ready--m {
-    align-items: stretch;
-    gap: 40px;
-    padding: 80px 16px;
-}
-
-.sc-ready--m > .sc-section-head {
-    padding: 0 16px;
-}
-
-.sc-ready--m .sc-h3 {
-    white-space: nowrap;
-}
-
-.sc-ready--m .sc-sub {
-    width: auto;
-}
-
-.sc-ready--m .sc-ready-steps {
-    flex-direction: column;
-    gap: 32px;
-    width: auto;
-}
-
-.sc-ready--m .sc-ready-step {
-    gap: 8px;
-}
-
-.sc-ready--m .sc-ready-num {
-    width: 64px;
-    height: 64px;
-    background: radial-gradient(circle 75px at 63.7px -20.8px, #0385f1 0%, #0267e1 44%, #0049d0 88%);
-    font-size: 25.6px;
-}
-
-.sc-ready--m .sc-ready-step .sc-sub {
-    width: 262px;
 }
 
 /* ---------- Section « Fini la caisse compliquee » (Avant / Avec) ---------- */
@@ -2246,15 +1891,6 @@
    a droite servent de reperes et de commandes (script-shopcaisse.js).
    ========================================================================== */
 
-.sc-phone--demo {
-    top: 55px;
-    left: 190px;
-}
-
-.sc-phone--demo .sc-m-menu[hidden] {
-    display: none;
-}
-
 /* Entree d'un niveau : depuis la droite quand on descend, depuis la gauche
    quand on remonte. */
 .sc-mdemo .sc-m-menu {
@@ -2279,132 +1915,6 @@
     .sc-mdemo .sc-m-menu {
         animation: none;
     }
-}
-
-/* Elements cliquables du telephone : l'entree suivante du parcours et le retour. */
-.sc-phone--demo .sc-tab {
-    width: auto;
-    text-align: left;
-}
-
-.sc-phone--demo .sc-m-back {
-    background: transparent;
-}
-
-.sc-phone--demo .sc-m-back:hover {
-    background: var(--sc-anthracite-6);
-}
-
-/* ---------- Etapes du parcours ---------- */
-
-.sc-steps {
-    position: absolute;
-    top: 50%;
-    left: 690px;
-    width: 520px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    transform: translateY(-50%);
-}
-
-.sc-step {
-    display: flex;
-    gap: 24px;
-    width: 100%;
-    margin: 0;
-    padding: 24px 28px;
-    border: 0;
-    border-radius: 16px;
-    background: transparent;
-    font-family: 'DM Mono', monospace;
-    text-align: left;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: background-color 0.3s ease;
-}
-
-.sc-step.is-active {
-    background: #fff;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 12px 32px -12px rgba(17, 24, 39, 0.14);
-}
-
-.sc-step:focus-visible {
-    outline: 2px solid var(--sc-bleu-roi);
-    outline-offset: 2px;
-}
-
-.sc-step-num {
-    font-size: 18px;
-    color: #9ca3af;
-}
-
-.sc-step-body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.sc-step-title {
-    font-family: 'Chillax', sans-serif;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 30px;
-    letter-spacing: -0.7px;
-    color: #9ca3af;
-    transition: color 0.3s ease;
-}
-
-.sc-step-desc {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #9ca3af;
-}
-
-.sc-step.is-active .sc-step-num,
-.sc-step.is-active .sc-step-title {
-    color: var(--sc-anthracite);
-}
-
-.sc-step.is-active .sc-step-desc {
-    color: #6b7280;
-}
-
-/* Barre de progression de la lecture automatique, sous l'etape active. */
-.sc-step-bar {
-    display: none;
-    height: 3px;
-    margin-top: 6px;
-    overflow: hidden;
-    border-radius: 3px;
-    background: var(--sc-anthracite-6);
-}
-
-.sc-step.is-active .sc-step-bar {
-    display: block;
-}
-
-.sc-step-bar span {
-    display: block;
-    width: 0;
-    height: 100%;
-    background: var(--sc-bleu-roi);
-}
-
-.sc-mdemo.is-playing .sc-step.is-active .sc-step-bar span {
-    animation: sc-step-progress var(--sc-step-time, 3.2s) linear forwards;
-}
-
-.sc-mdemo:not(.is-playing) .sc-step.is-active .sc-step-bar span {
-    width: 100%;
-}
-
-@keyframes sc-step-progress {
-    to { width: 100%; }
 }
 
 /* ==========================================================================
@@ -2645,7 +2155,4 @@
         background-color: #2b2b2b;
     }
 
-    .sc-store--glass:hover {
-        background-color: rgba(255, 255, 255, 0.08);
-    }
 }

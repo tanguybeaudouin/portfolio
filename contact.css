@@ -60,7 +60,6 @@
     letter-spacing: 0;
 }
 
-
 .contact-email {
     display: inline-flex;
     align-items: center;
@@ -156,7 +155,6 @@
     display: block;
     margin-bottom: 8px;
 }
-
 
 .sr-only {
     position: absolute;
@@ -356,10 +354,6 @@
     transition: background-color 0.8s ease, color 0.8s ease;
     margin-top: 0;
     margin-bottom: 0;
-}
-
-.contact-page .image-section {
-    display: none;
 }
 
 @media (max-width: 1250px) {

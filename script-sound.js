@@ -583,7 +583,7 @@
 
         menuLinks.forEach((link) => onMouseEnter(link, () => play('menuHover')));
 
-        document.querySelectorAll('#theme-toggle, #theme-toggle-bottom').forEach((input) => {
+        document.querySelectorAll('#theme-toggle').forEach((input) => {
             input.addEventListener('change', () => play('theme', input.checked));
         });
 
