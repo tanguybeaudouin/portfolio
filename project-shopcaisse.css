@@ -1228,11 +1228,13 @@
 }
 
 /* ==========================================================================
-   COMPARATIFS DESKTOP / MOBILE (scenes 1 524 px de large)
+   COMPARATIFS MOBILE / DESKTOP (scenes 1 514 px de large)
    --------------------------------------------------------------------------
-   Une fenetre de navigateur (ecran Figma 1 280 px reduit a 0,8) a gauche,
-   un telephone (ecran 390 px reduit a 0,846) a droite, chacun sous son
-   etiquette. Hauteur de la scene : posee sur chaque figure (style inline).
+   Un telephone (ecran 390 px reduit a 0,846) a gauche, une fenetre de
+   navigateur (ecran Figma 1 280 px reduit a 0,8) a droite, a 32 px l'un de
+   l'autre. Marge de 64 px en haut, a gauche et a droite :
+   64 + 330 + 32 + 1 024 + 64 = 1 514. Comme sur Siko, les deux ecrans filent
+   sous le bord bas du cadre : la scene (style inline) est moins haute qu'eux.
    ========================================================================== */
 
 .case-mock--compare {
@@ -1240,23 +1242,7 @@
 }
 
 .case-mock--compare .sc-stage {
-    width: 1524px;
-}
-
-.sc-compare-label {
-    position: absolute;
-    top: 26px;
-    display: flex;
-    gap: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    color: #6b7280;
-    white-space: nowrap;
-}
-
-.sc-compare-label span {
-    font-weight: 500;
-    color: var(--sc-anthracite);
+    width: 1514px;
 }
 
 .sc-window,
@@ -1271,7 +1257,7 @@
 }
 
 .sc-window {
-    left: 60px;
+    left: 426px;
     width: 1024px;
     border-radius: 12px;
 }
@@ -1294,9 +1280,10 @@
 }
 
 .sc-handset {
-    left: 1134px;
+    left: 64px;
     width: 330px;
-    border-radius: 28px;
+    /* Arrondi d'ecran d'iPhone (55 pt sur 393) ramene a 330 px. */
+    border-radius: 46px 46px 0 0;
 }
 
 .sc-screen {
@@ -1310,6 +1297,50 @@
 .sc-handset .sc-screen {
     width: 390px;
     transform: scale(0.84615);
+}
+
+/* Barre d'etat iOS (memes mesures que Siko) : heure et icones centrees dans
+   les deux "oreilles" de part et d'autre de la Dynamic Island. */
+.sc-statusbar {
+    position: absolute;
+    z-index: 2;
+    top: 11px;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr 126px 1fr;
+    align-items: center;
+    height: 37px;
+    color: #000;
+}
+
+.sc-statusbar-time {
+    justify-self: center;
+    padding-left: 6px;
+    font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+}
+
+.sc-island {
+    height: 37px;
+    border-radius: 18.5px;
+    background: #000;
+}
+
+.sc-statusbar-icons {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 6px;
+}
+
+.sc-statusbar-icons svg {
+    display: block;
+    fill: currentColor;
 }
 
 /* Ecran hero : meme mise en page que la scene plein cadre. */
@@ -1636,7 +1667,8 @@
 
 /* Version mobile : les deux cartes s'empilent, « Avec » chevauche « Avant ». */
 .sc-versus--m {
-    padding: 80px 16px;
+    /* 80 px du Figma + la place de la barre d'etat iOS. */
+    padding: 104px 16px 80px;
     background: linear-gradient(180deg, rgba(3, 133, 241, 0.24) 0%, rgba(3, 133, 241, 0) 80%), #fff;
 }
 

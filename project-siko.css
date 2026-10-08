@@ -407,46 +407,66 @@
     height: 660px;
 }
 
-/* Etiquette de support au-dessus de chaque ecran, a la maniere d'un nom de
-   frame Figma : support en noir, ce qui change en gris. */
-.sk-device-label {
-    position: absolute;
-    top: 26px;
-    display: flex;
-    gap: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    color: var(--sk-gris);
-    white-space: nowrap;
-}
-
-.sk-device-label span {
-    font-weight: 500;
-    color: var(--sk-noir);
-}
-
-.sk-device-label--mobile {
-    left: 90px;
-}
-
-.sk-device-label--desktop {
-    left: 543px;
-}
-
-/* Les deux ecrans partent sous leur etiquette et filent sous les bords du
-   cadre (bas pour le mobile, bas et droite pour le desktop). */
+/* Meme marge de 64 px en haut et a gauche ; les deux ecrans filent sous les
+   bords du cadre (bas pour le mobile, bas et droite pour le desktop). */
 .sk-phone {
     position: absolute;
     top: 64px;
-    left: 90px;
+    left: 64px;
     width: 393px;
-    height: 640px;
+    height: 700px;
     overflow: hidden;
-    border-radius: 24px;
+    border-radius: 55px 55px 0 0;
+    /* Ecran a 393 pt (iPhone 15 Pro) reduit a 88 % pour alleger le mobile. */
+    transform: scale(0.88);
+    transform-origin: 0 0;
     background: var(--sk-blanc);
     box-shadow:
         0 0 0 1px rgba(0, 0, 0, 0.06),
         0 12px 32px -8px rgba(17, 24, 39, 0.12);
+}
+
+/* Barre d'etat iOS d'un iPhone 15 Pro (393 pt) : heure et icones centrees
+   dans les deux "oreilles" de part et d'autre de la Dynamic Island. */
+.sk-statusbar {
+    position: absolute;
+    top: 11px;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr 126px 1fr;
+    align-items: center;
+    height: 37px;
+    color: #000;
+}
+
+.sk-statusbar-time {
+    justify-self: center;
+    padding-left: 6px;
+    font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+}
+
+.sk-island {
+    height: 37px;
+    border-radius: 18.5px;
+    background: #000;
+}
+
+.sk-statusbar-icons {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 6px;
+}
+
+.sk-statusbar-icons svg {
+    display: block;
+    fill: currentColor;
 }
 
 .sk-body--mobile {
@@ -466,8 +486,10 @@
 .sk-window {
     position: absolute;
     top: 64px;
-    left: 543px;
-    width: 620px;
+    /* 32 px a droite du mobile (64 + 393 * 0.88 + 32), et assez large pour
+       filer sous le bord droit du cadre. */
+    left: 442px;
+    width: 700px;
     height: 640px;
     overflow: hidden;
     border-radius: 12px;
