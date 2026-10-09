@@ -323,9 +323,11 @@ body.case-page {
     cursor: zoom-in;
 }
 
-/* Bouton son pose sur la video, en bas a droite : petit haut-parleur au
-   trait fin, barre quand le son est coupe, avec ondes quand il joue. Meme
-   effet d'aimant que le burger (script-core.js, .is-magnetic). */
+/* Bouton son pose sur la video, en bas a droite (la place attendue : le
+   centre est celui de lecture/pause). Pastille sombre et floutee, lisible sur
+   n'importe quelle image : haut-parleur barre + « Activer le son » tant que
+   la video est muette, puis l'icone seule une fois le son mis. Meme effet
+   d'aimant que le burger (script-core.js, .is-magnetic). */
 .case-media--hero {
     position: relative;
 }
@@ -336,35 +338,60 @@ body.case-page {
     bottom: 24px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    padding: 0;
+    gap: 8px;
+    height: 36px;
+    padding: 0 10px;
     border: 0;
-    background: none;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     color: #fff;
-    opacity: 0.7;
-    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.25));
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), gap 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Zone de clic plus large que l'icone, a la mesure du rayon de l'aimant. */
+/* Zone de clic un peu plus large que la pastille. */
 .case-video-sound::before {
     content: '';
     position: absolute;
-    inset: -12px;
+    inset: -8px;
 }
 
-.case-video-sound[aria-pressed="true"],
 .case-video-sound:hover,
 .case-video-sound:focus-visible {
-    opacity: 1;
+    background: rgba(0, 0, 0, 0.65);
 }
 
 .case-video-sound svg {
     display: block;
-    width: 20px;
-    height: 20px;
+    flex: none;
+    width: 16px;
+    height: 16px;
+}
+
+/* Le libelle se replie quand le son est actif : reste une pastille ronde. */
+.case-video-sound-label {
+    display: block;
+    max-width: 10em;
+    overflow: hidden;
+    transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+.case-video-sound[aria-pressed="true"] {
+    gap: 0;
+    padding: 0 10px;
+}
+
+.case-video-sound[aria-pressed="true"] .case-video-sound-label {
+    max-width: 0;
+    opacity: 0;
 }
 
 .case-video-sound .icon-sound-on,
@@ -656,7 +683,7 @@ body.case-page {
         right: var(--space-24);
     }
 
-    .case-page .title-group h1 {
+    .case-page .title-group .site-title {
         font-size: clamp(40px, 6.2vmin, 56px);
         letter-spacing: -0.012em;
     }

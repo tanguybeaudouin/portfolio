@@ -6,11 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nintendo — Étude de cas e-commerce UX/UI | Tanguy Beaudouin</title>
     <meta name="description" content="Refonte conceptuelle d'une expérience e-commerce Nintendo : découverte produit, lisibilité de l'interface et parcours d'achat optimisé.">
-    <link rel="canonical" href="https://tanguy.studio/project-1">
+    <link rel="canonical" href="https://tanguy.studio/nintendo">
     <meta property="og:title" content="Nintendo — Étude de cas e-commerce UX/UI | Tanguy Beaudouin">
     <meta property="og:description" content="Refonte conceptuelle d'une expérience e-commerce Nintendo : découverte produit, lisibilité de l'interface et parcours d'achat optimisé.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tanguy.studio/project-1">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tanguy.studio/nintendo">
+    <meta property="og:site_name" content="tanguy.studio">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://tanguy.studio/images/og/og-nintendo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Maquette de la refonte e-commerce Nintendo sur un ordinateur portable, fond rouge">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://tanguy.studio/nintendo#projet",
+          "name": "Nintendo",
+          "headline": "Nintendo — Étude de cas e-commerce UX/UI | Tanguy Beaudouin",
+          "description": "Refonte conceptuelle d'une expérience e-commerce Nintendo : découverte produit, lisibilité de l'interface et parcours d'achat optimisé.",
+          "url": "https://tanguy.studio/nintendo",
+          "image": "https://tanguy.studio/images/og/og-nintendo.jpg",
+          "dateCreated": "2025",
+          "inLanguage": "fr-FR",
+          "genre": "Étude de cas UX/UI",
+          "keywords": "UX Audit, Architecture, UI Design, Prototype",
+          "creator": {
+            "@id": "https://tanguy.studio/#person"
+          },
+          "author": {
+            "@id": "https://tanguy.studio/#person"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://tanguy.studio/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Projets",
+              "item": "https://tanguy.studio/work"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Nintendo",
+              "item": "https://tanguy.studio/nintendo"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tanguy.studio/#person",
+          "name": "Tanguy Beaudouin",
+          "url": "https://tanguy.studio/"
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <script>
@@ -29,8 +91,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20261008y2">
-    <link rel="stylesheet" href="project-case.css?v=20261008z">
+    <link rel="stylesheet" href="main.css?v=20261009g">
+    <link rel="stylesheet" href="project-case.css?v=20261009h">
     <link rel="stylesheet" href="project-nintendo.css?v=20261008d">
 </head>
 
@@ -56,7 +118,7 @@
         <main class="main-card">
             <header class="content-top-section">
                 <div class="title-group">
-                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="site-title"><a class="site-title-link" href="/" aria-label="Retour à la page d'accueil">tanguy.studio</a></p>
                     <p class="subtitle">NINTENDO</p>
                 </div>
                 <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
@@ -72,11 +134,10 @@
                     <section class="case-text case-intro case-reveal">
                         <div class="case-head">
                             <div class="case-actions">
-                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                <a href="/work" class="case-return-link" aria-label="Retour"
                                     onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
                             </div>
-                            <h2 class="section-title">nintendo</h2>
-                            <p class="subtitle">Refonte e-commerce</p>
+                            <h1 class="title-stack"><span class="section-title">Nintendo</span> <span class="subtitle">Refonte e-commerce</span></h1>
                         </div>
                         <p class="case-lead">Repenser l'expérience web pour accéder rapidement aux jeux, aux offres et aux contenus clés de la marque. L'objectif : rendre l'offre lisible et accélérer l'accès aux actions principales, sur desktop comme sur mobile.</p>
                         <ul class="case-tags" aria-label="Domaines">
@@ -107,7 +168,7 @@
 <!-- 2. Visuel d'ouverture : l'accueil du prototype, code d'apres Figma
                          (1514 x 921, mis a l'echelle du cadre). Styles : project-nintendo.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--home" role="img" aria-label="Accueil de la refonte Nintendo : barre de navigation rouge en pilule, puis carrousel des sorties avec Hollow Knight: Silksong au premier plan">
+                        <div data-nosnippet class="case-mock case-mock--home" role="img" aria-label="Accueil de la refonte Nintendo : barre de navigation rouge en pilule, puis carrousel des sorties avec Hollow Knight: Silksong au premier plan">
                             <div class="nt-stage nt-home" aria-hidden="true">
                                 <div class="nt-nav">
                                     <img class="nt-nav-logo" src="images/Nintendo/proto/logo-nintendo.svg" alt="" width="192" height="48" loading="lazy" decoding="async">
@@ -140,13 +201,13 @@
                     </figure>
 
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">contexte.objectifs</h2>
+                        <h2 class="section-title">Contexte et enjeux e-commerce</h2>
                         <p class="case-body">L'écosystème Nintendo réunit une offre riche, des profils utilisateurs variés et de nombreux points d'entrée. Le défi : clarifier la navigation sans perdre l'identité visuelle forte de la marque.</p>
                     </section>
 
                     <!-- Rayon Jeux du store, code d'apres Figma (1514 x 614). Styles : project-nintendo.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--games" role="img" aria-label="Rayon Jeux du store sur fond rouge : quatre cartes Donkey Kong Bananza, Street Fighter 6, Mario Kart World et Pokémon Z-A, avec boutons Acheter et favori">
+                        <div data-nosnippet class="case-mock case-mock--games" role="img" aria-label="Rayon Jeux du store sur fond rouge : quatre cartes Donkey Kong Bananza, Street Fighter 6, Mario Kart World et Pokémon Z-A, avec boutons Acheter et favori">
                             <div class="nt-stage" aria-hidden="true">
                                 <div class="nt-block nt-block--red nt-games">
                                     <p class="nt-h2 nt-trim">Jeux</p>
@@ -190,7 +251,7 @@
                     </figure>
 
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">parcours.prioritaires</h2>
+                        <h2 class="section-title">Parcours d'achat</h2>
                         <p class="case-body">Le travail s'est concentré sur les parcours qui comptent : découvrir un jeu, le trouver dans le catalogue, puis l'acheter sans détour.</p>
                         <ol class="case-list case-list--steps">
                             <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Accueil</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Carrousel des sorties</span></li>
@@ -204,7 +265,7 @@
 
                     <!-- Bloc Consoles, code d'apres Figma (1514 x 794). Styles : project-nintendo.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--consoles" role="img" aria-label="Bloc Nos consoles sur fond gris : grande carte Nintendo Switch 2 et carte Nintendo Switch, chacune avec boutons Acheter et favori">
+                        <div data-nosnippet class="case-mock case-mock--consoles" role="img" aria-label="Bloc Nos consoles sur fond gris : grande carte Nintendo Switch 2 et carte Nintendo Switch, chacune avec boutons Acheter et favori">
                             <div class="nt-stage" aria-hidden="true">
                                 <div class="nt-block nt-consoles">
                                     <p class="nt-h2 nt-trim">Nos consoles</p>
@@ -231,7 +292,7 @@
 
                     <!-- Fiche jeu Mario Kart World, codee d'apres Figma (1514 x 664). Styles : project-nintendo.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--product" role="img" aria-label="Fiche jeu Mario Kart World : grande carte rouge où Mario en kart déborde du cadre, et carte d'achat à 79,99 € avec bouton Acheter sur le Nintendo eShop">
+                        <div data-nosnippet class="case-mock case-mock--product" role="img" aria-label="Fiche jeu Mario Kart World : grande carte rouge où Mario en kart déborde du cadre, et carte d'achat à 79,99 € avec bouton Acheter sur le Nintendo eShop">
                             <div class="nt-stage" aria-hidden="true">
                                 <div class="nt-product">
                                     <div class="nt-product-hero">
@@ -256,13 +317,13 @@
                     </figure>
 
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">interface.design</h2>
+                        <h2 class="section-title">Design system</h2>
                         <p class="case-body">Le rouge Nintendo porte la navigation et les rayons, le bleu eShop est réservé aux favoris. Tout le reste tient en deux formes : des pilules pour les actions, des cartes arrondies à 32 px pour les contenus. Les visuels débordent parfois du cadre, pour garder le côté joueur de la marque.</p>
                     </section>
 
                     <!-- Cartes cadeaux du store, codees d'apres Figma (1514 x 599). Styles : project-nintendo.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--gifts" role="img" aria-label="Cartes cadeaux Nintendo : Pikachu sur jaune à 25 €, Donkey Kong sur brun à 50 €, Link sur vert à 75 € et Mario sur rouge à 100 €">
+                        <div data-nosnippet class="case-mock case-mock--gifts" role="img" aria-label="Cartes cadeaux Nintendo : Pikachu sur jaune à 25 €, Donkey Kong sur brun à 50 €, Link sur vert à 75 € et Mario sur rouge à 100 €">
                             <div class="nt-stage" aria-hidden="true">
                                 <div class="nt-block nt-gifts">
                                     <p class="nt-h2 nt-trim">Cartes cadeaux</p>
@@ -297,17 +358,17 @@
 
                     <!-- Suite : meme grammaire que les listes de la page About -->
                     <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
-                        <h2 class="section-title">et.ensuite</h2>
+                        <h2 class="section-title">Et ensuite</h2>
                         <ul class="projects-list">
                             <li>
-                                <a class="projects-list-link" href="project-4.html">
+                                <a class="projects-list-link" href="/sportigo">
                                     <span class="projects-list-title">Sportigo</span>
                                     <span class="projects-list-tag">( Projet suivant )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
                                 </a>
                             </li>
                             <li>
-                                <a class="projects-list-link" href="work.html">
+                                <a class="projects-list-link" href="/work">
                                     <span class="projects-list-title">Tous les projets</span>
                                     <span class="projects-list-tag">( 5 projets )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
@@ -321,10 +382,10 @@
 
             <nav id="menu-wrapper" style="display:none;">
                 <ul class="menu-list">
-                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
-                    <li><a href="about.html" class="hover-underline">À propos</a></li>
-                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                    <li><a href="/" class="hover-underline">Accueil</a></li>
+                    <li><a href="/work" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="/about" class="hover-underline">À propos</a></li>
+                    <li><a href="/contact" class="hover-underline">Contact</a></li>
                 </ul>
             </nav>
 
@@ -348,9 +409,9 @@
         </div>
     </div>
 
-    <script src="script-core.js?v=20261008z"></script>
+    <script src="script-core.js?v=20261009d"></script>
     <script src="script-case.js?v=20261008z"></script>
-    <script src="script-sound.js?v=20261008z"></script>
+    <script src="script-sound.js?v=20261009"></script>
 </body>
 
 </html>

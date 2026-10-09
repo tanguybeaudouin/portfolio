@@ -6,11 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frame by Frame — Étude de cas UX/UI | Tanguy Beaudouin</title>
     <meta name="description" content="Étude de cas Frame by Frame : conception d'un site vitrine immersif pour une agence créative orientée cinéma.">
-    <link rel="canonical" href="https://tanguy.studio/project-2">
+    <link rel="canonical" href="https://tanguy.studio/frame-by-frame">
     <meta property="og:title" content="Frame by Frame — Étude de cas UX/UI | Tanguy Beaudouin">
     <meta property="og:description" content="Étude de cas Frame by Frame : conception d'un site vitrine immersif pour une agence créative orientée cinéma.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tanguy.studio/project-2">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tanguy.studio/frame-by-frame">
+    <meta property="og:site_name" content="tanguy.studio">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://tanguy.studio/images/og/og-frame-by-frame.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Livret imprimé Frame by Frame posé sur un fond orange">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://tanguy.studio/frame-by-frame#projet",
+          "name": "Frame by Frame",
+          "headline": "Frame by Frame — Étude de cas UX/UI | Tanguy Beaudouin",
+          "description": "Étude de cas Frame by Frame : conception d'un site vitrine immersif pour une agence créative orientée cinéma.",
+          "url": "https://tanguy.studio/frame-by-frame",
+          "image": "https://tanguy.studio/images/og/og-frame-by-frame.jpg",
+          "dateCreated": "2025",
+          "inLanguage": "fr-FR",
+          "genre": "Étude de cas UX/UI",
+          "keywords": "Direction artistique, Logo, Identité visuelle, Vidéo, Motion design, Props, UI Design, Site web",
+          "creator": {
+            "@id": "https://tanguy.studio/#person"
+          },
+          "author": {
+            "@id": "https://tanguy.studio/#person"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://tanguy.studio/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Projets",
+              "item": "https://tanguy.studio/work"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Frame by Frame",
+              "item": "https://tanguy.studio/frame-by-frame"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tanguy.studio/#person",
+          "name": "Tanguy Beaudouin",
+          "url": "https://tanguy.studio/"
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <script>
@@ -29,8 +91,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20261008y2">
-    <link rel="stylesheet" href="project-case.css?v=20261008z">
+    <link rel="stylesheet" href="main.css?v=20261009g">
+    <link rel="stylesheet" href="project-case.css?v=20261009h">
 </head>
 
 <body class="case-page">
@@ -55,7 +117,7 @@
         <main class="main-card">
             <header class="content-top-section">
                 <div class="title-group">
-                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="site-title"><a class="site-title-link" href="/" aria-label="Retour à la page d'accueil">tanguy.studio</a></p>
                     <p class="subtitle">FRAME BY FRAME</p>
                 </div>
                 <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
@@ -71,11 +133,10 @@
                     <section class="case-text case-intro case-reveal">
                         <div class="case-head">
                             <div class="case-actions">
-                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                <a href="/work" class="case-return-link" aria-label="Retour"
                                     onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
                             </div>
-                            <h2 class="section-title">frame.by.frame</h2>
-                            <p class="subtitle">Identité &amp; site vitrine</p>
+                            <h1 class="title-stack"><span class="section-title">Frame by Frame</span> <span class="subtitle">Identité &amp; site vitrine</span></h1>
                         </div>
                         <p class="case-lead">Un site vitrine pour une agence de branding cinéma, conçu pour plonger le visiteur dans un univers visuel fort. Il présente les services, le style créatif et les réalisations de l'agence, tout en facilitant la prise de contact.</p>
                         <ul class="case-tags" aria-label="Domaines">
@@ -123,6 +184,7 @@
                                 <path d="M2.5 6h2l3-2.5v9L4.5 10h-2z"/>
                                 <path d="M10 6a3 3 0 0 1 0 4M12 4a6 6 0 0 1 0 8"/>
                             </svg>
+                            <span class="case-video-sound-label" aria-hidden="true">Activer le son</span>
                         </button>
                     </figure>
 
@@ -132,7 +194,7 @@
                     </figure>
 
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">contexte.objectifs</h2>
+                        <h2 class="section-title">Contexte et enjeux du branding cinéma</h2>
                         <p class="case-body">Frame by Frame est une agence créative spécialisée dans le branding pour le cinéma. L'enjeu : montrer ses services, sa direction artistique et ses réalisations de manière claire, sensible et percutante.</p>
                     </section>
 
@@ -141,7 +203,7 @@
                     </figure>
 
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">architecture.site</h2>
+                        <h2 class="section-title">Architecture du site</h2>
                         <p class="case-body">Trois pages portent l'essentiel du site ; les fonctionnalités secondaires restent accessibles sans concurrencer l'univers visuel.</p>
                         <ol class="case-list case-list--steps">
                             <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Accueil</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Home page immersive</span></li>
@@ -172,23 +234,23 @@
                     </div>
 
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">interface.design</h2>
+                        <h2 class="section-title">Interface mobile</h2>
                         <p class="case-body">Sur mobile, la hiérarchie est condensée pour conserver l'impact visuel tout en facilitant les interactions : navigation, repérage rapide et prise de contact.</p>
                     </section>
 
                     <!-- Suite : meme grammaire que les listes de la page About -->
                     <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
-                        <h2 class="section-title">et.ensuite</h2>
+                        <h2 class="section-title">Et ensuite</h2>
                         <ul class="projects-list">
                             <li>
-                                <a class="projects-list-link" href="project-1.html">
+                                <a class="projects-list-link" href="/nintendo">
                                     <span class="projects-list-title">Nintendo</span>
                                     <span class="projects-list-tag">( Projet suivant )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
                                 </a>
                             </li>
                             <li>
-                                <a class="projects-list-link" href="work.html">
+                                <a class="projects-list-link" href="/work">
                                     <span class="projects-list-title">Tous les projets</span>
                                     <span class="projects-list-tag">( 5 projets )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
@@ -202,10 +264,10 @@
 
             <nav id="menu-wrapper" style="display:none;">
                 <ul class="menu-list">
-                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
-                    <li><a href="about.html" class="hover-underline">À propos</a></li>
-                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                    <li><a href="/" class="hover-underline">Accueil</a></li>
+                    <li><a href="/work" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="/about" class="hover-underline">À propos</a></li>
+                    <li><a href="/contact" class="hover-underline">Contact</a></li>
                 </ul>
             </nav>
 
@@ -229,9 +291,9 @@
         </div>
     </div>
 
-    <script src="script-core.js?v=20261008z"></script>
+    <script src="script-core.js?v=20261009d"></script>
     <script src="script-case.js?v=20261008z"></script>
-    <script src="script-sound.js?v=20261008z"></script>
+    <script src="script-sound.js?v=20261009"></script>
 </body>
 
 </html>

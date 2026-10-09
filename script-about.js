@@ -99,7 +99,7 @@
    glisse donc dessous pour se dissoudre dans le flou, sans que header et footer
    entrent eux-memes dans le defilement (voir about.css, ZONE DE DEFILEMENT).
 
-   Leurs hauteurs ne sont pas figees : le h1 est en clamp() sous 900px, et le
+   Leurs hauteurs ne sont pas figees : le logo est en clamp() sous 900px, et le
    footer se replie en deux lignes. On les publie en variables plutot que de les
    coder en dur, et on resynchronise au resize comme au chargement des polices,
    qui change la hauteur du texte apres le premier rendu. */

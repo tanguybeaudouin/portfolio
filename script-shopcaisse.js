@@ -1,5 +1,5 @@
 // ==========================================
-// SHOPCAISSE : mega-menu interactif (project-5.html)
+// SHOPCAISSE : mega-menu interactif (shopcaisse.html)
 // ==========================================
 // Les onglets de la maquette codee ouvrent le panneau correspondant, au
 // survol ou au clic. Tant que le visiteur n'y touche pas, la maquette fait

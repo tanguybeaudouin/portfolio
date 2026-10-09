@@ -270,21 +270,36 @@
         // Piano feutré : une fondamentale qui tient, un 2e harmonique qui donne
         // le coup de marteau et s'éteint vite, un triangle pour la chaleur.
         // Les graves résonnent plus longtemps que les aigus.
-        const pianoNote = (midi, time, velocity) => {
+        // `offset` (secondes) : note frappée sur la page précédente, qu'on fait
+        // reprendre là où elle en était de sa résonance, sans nouvelle attaque.
+        const noteDecay = (midi) => (midi < 50 ? 6 : 4.5 - (midi - 55) * 0.08);
+        const pianoNote = (midi, time, velocity, offset = 0) => {
             const freq = midiToFreq(midi);
-            const decay = midi < 50 ? 6 : 4.5 - (midi - 55) * 0.08;
+            const decay = noteDecay(midi);
             const partials = [
                 { ratio: 1, type: 'sine', gain: 1, decay },
                 { ratio: 2, type: 'sine', gain: 0.18, decay: 0.9 },
                 { ratio: 1.0015, type: 'triangle', gain: 0.12, decay: decay * 0.7 },
             ];
             partials.forEach((partial) => {
+                const remaining = partial.decay - offset;
+                if (remaining < 0.2) return;
                 const env = ctx.createGain();
                 const peak = 0.22 * velocity * partial.gain;
-                env.gain.setValueAtTime(0, time);
-                env.gain.linearRampToValueAtTime(peak, time + 0.015);
-                env.gain.exponentialRampToValueAtTime(peak * 0.4, time + 0.35);
-                env.gain.exponentialRampToValueAtTime(0.0001, time + partial.decay);
+                if (offset > 0) {
+                    // Niveau atteint par l'enveloppe ci-dessous au bout de `offset`.
+                    const level = offset < 0.35
+                        ? peak * 0.4 ** ((offset - 0.015) / 0.335)
+                        : peak * 0.4 * (0.0001 / (peak * 0.4)) ** ((offset - 0.35) / (partial.decay - 0.35));
+                    env.gain.setValueAtTime(0, time);
+                    env.gain.linearRampToValueAtTime(level, time + 0.08);
+                    env.gain.exponentialRampToValueAtTime(0.0001, time + remaining);
+                } else {
+                    env.gain.setValueAtTime(0, time);
+                    env.gain.linearRampToValueAtTime(peak, time + 0.015);
+                    env.gain.exponentialRampToValueAtTime(peak * 0.4, time + 0.35);
+                    env.gain.exponentialRampToValueAtTime(0.0001, time + partial.decay);
+                }
                 env.connect(ambientInput);
 
                 const osc = ctx.createOscillator();
@@ -292,10 +307,21 @@
                 osc.frequency.value = freq * partial.ratio;
                 osc.connect(env);
                 osc.start(time);
-                osc.stop(time + partial.decay + 0.05);
+                osc.stop(time + remaining + 0.05);
                 ambientOscillators.add(osc);
                 osc.addEventListener('ended', () => ambientOscillators.delete(osc));
             });
+        };
+
+        // Mémoire des dernières notes (heure murale, en ms) et de la prochaine
+        // phrase : passée à la page suivante pour que la musique y enchaîne.
+        const AMBIENT_STATE_KEY = 'ambient-state';
+        let recentNotes = [];
+        let nextPhraseAt = 0;
+        const playNote = (midi, time, velocity) => {
+            pianoNote(midi, time, velocity);
+            const at = Date.now() + (time - ctx.currentTime) * 1000;
+            recentNotes.push({ midi, at, velocity });
         };
 
         // Une phrase : parfois une basse, puis quelques notes qui avancent par
@@ -304,17 +330,19 @@
         const playPhrase = () => {
             const chord = CHORDS[Math.floor(Date.now() / CHORD_MS) % CHORDS.length];
             let time = ctx.currentTime + 0.05;
-            if (Math.random() < 0.7) pianoNote(chord.bass, time, 0.55);
+            const now = Date.now();
+            recentNotes = recentNotes.filter((note) => now - note.at < noteDecay(note.midi) * 1000);
+            if (Math.random() < 0.7) playNote(chord.bass, time, 0.55);
 
             const count = 2 + Math.floor(Math.random() * 4);
             let index = 2 + Math.floor(Math.random() * 3);
             for (let i = 0; i < count; i += 1) {
                 time += pick(NOTE_GAPS) * (0.9 + Math.random() * 0.2);
                 const velocity = 0.45 + Math.random() * 0.4;
-                pianoNote(chord.tones[index], time, velocity);
+                playNote(chord.tones[index], time, velocity);
                 // De temps en temps, une tierce dessous : un accord à deux notes.
                 if (index >= 2 && Math.random() < 0.2) {
-                    pianoNote(chord.tones[index - 2], time + 0.02, velocity * 0.7);
+                    playNote(chord.tones[index - 2], time + 0.02, velocity * 0.7);
                 }
                 // Au bord de l'accord, la mélodie rebondit au lieu de répéter la note.
                 const step = pick([-2, -1, -1, 1, 1, 2]);
@@ -325,6 +353,7 @@
         };
 
         const scheduleNextPhrase = (delaySec) => {
+            nextPhraseAt = Date.now() + delaySec * 1000;
             ambientTimer = window.setTimeout(() => {
                 const phraseSec = playPhrase();
                 const silence = SILENCE_MIN + Math.random() * (SILENCE_MAX - SILENCE_MIN);
@@ -336,15 +365,52 @@
             if (ambientOn) return;
             ambientOn = true;
             if (!ambientBus) buildAmbient();
+
+            // Arrivée depuis une autre page du site : on reprend la musique où
+            // elle en était (notes qui résonnaient encore, notes déjà prévues,
+            // silence restant avant la phrase suivante).
+            let saved = null;
+            try {
+                saved = JSON.parse(sessionStorage.getItem(AMBIENT_STATE_KEY));
+                sessionStorage.removeItem(AMBIENT_STATE_KEY);
+            } catch {
+                // stockage indisponible : départ à zéro
+            }
+            const now = Date.now();
+            const resuming = saved && now - saved.savedAt < 5000;
+
             ambientBus.gain.cancelScheduledValues(ctx.currentTime);
-            ambientBus.gain.setTargetAtTime(AMBIENT_LEVEL, ctx.currentTime, 0.5);
-            // Première phrase quelques secondes après l'arrivée, jamais pile au clic.
-            scheduleNextPhrase(3 + Math.random() * 4);
+            ambientBus.gain.setTargetAtTime(AMBIENT_LEVEL, ctx.currentTime, resuming ? 0.03 : 0.5);
+
+            if (resuming) {
+                saved.notes.forEach(({ midi, at, velocity }) => {
+                    const elapsed = (now - at) / 1000;
+                    if (elapsed < 0) playNote(midi, ctx.currentTime - elapsed, velocity);
+                    else pianoNote(midi, ctx.currentTime + 0.02, velocity, elapsed);
+                });
+                recentNotes = recentNotes.concat(saved.notes.filter((note) => note.at <= now));
+                scheduleNextPhrase(Math.max((saved.nextAt - now) / 1000, 0.3));
+            } else {
+                // Première phrase quelques secondes après l'arrivée, jamais pile au clic.
+                scheduleNextPhrase(3 + Math.random() * 4);
+            }
         };
+
+        window.addEventListener('pagehide', () => {
+            if (!ambientOn) return;
+            const now = Date.now();
+            const notes = recentNotes.filter((note) => now - note.at < noteDecay(note.midi) * 1000);
+            try {
+                sessionStorage.setItem(AMBIENT_STATE_KEY, JSON.stringify({ savedAt: now, nextAt: nextPhraseAt, notes }));
+            } catch {
+                // stockage indisponible
+            }
+        });
 
         const stopAmbient = () => {
             if (!ambientOn) return;
             ambientOn = false;
+            recentNotes = [];
             window.clearTimeout(ambientTimer);
             const now = ctx.currentTime;
             ambientBus.gain.cancelScheduledValues(now);

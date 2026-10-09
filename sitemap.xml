@@ -2,29 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tanguy.studio/</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/work.html</loc>
+    <loc>https://tanguy.studio/work</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/about.html</loc>
+    <loc>https://tanguy.studio/about</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/contact.html</loc>
+    <loc>https://tanguy.studio/contact</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/project-1</loc>
+    <loc>https://tanguy.studio/sportigo</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/project-2</loc>
+    <loc>https://tanguy.studio/siko-mobility</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/project-3</loc>
+    <loc>https://tanguy.studio/shopcaisse</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/project-4</loc>
+    <loc>https://tanguy.studio/frame-by-frame</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
-    <loc>https://tanguy.studio/project-5</loc>
+    <loc>https://tanguy.studio/nintendo</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
 </urlset>

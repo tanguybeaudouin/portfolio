@@ -52,9 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const rennesTimes = Array.from(document.querySelectorAll('.footer-local-time'));
 
-    // Le 2e <br> est masque sous 900px (voir main.css) : le texte doit donc rester
-    // lisible avec ET sans ce saut de ligne, d'ou l'espace apres le <br>.
-    const defaultTypewriterText = "Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br> pensées conversion et SEO, garanties sans frustration utilisateur.";
+    // Le texte du typewriter est ecrit dans le HTML (lisible sans JS par Google et
+    // les IA) ; on le lit une fois ici, avant que l'animation ne le decoupe en mots.
+    const typewriterSource = typewriter
+        ? (typewriter.dataset.text || typewriter.innerHTML).replace(/<br\s*\/?>/gi, '<br>').trim()
+        : '';
 
     // ==========================================
     // HORLOGE LOCALE (RENNES)
@@ -175,9 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     function animateText() {
         if (!typewriter) return;
-        const textHTML = typewriter.dataset.text || defaultTypewriterText;
 
-        typewriter.innerHTML = textHTML
+        typewriter.innerHTML = typewriterSource
             .split(/(\s+|<br>)/)
             .map(part => {
                 if (part === '<br>') return '<br>';
@@ -185,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return `<span class="word">${part}</span>`;
             })
             .join('');
+        typewriter.classList.remove('is-pending');
 
         typewriter.querySelectorAll('.word').forEach((word, index) => {
             setTimeout(() => word.classList.add('visible'), index * 80);
@@ -337,17 +339,40 @@ document.addEventListener('DOMContentLoaded', () => {
         window.setTimeout(resolve, duration);
     });
 
+    // Seul enfant tolere dans un titre brouille : le complement reserve aux
+    // lecteurs d'ecran (.sr-only).
+    const isScrambleDecoration = (child) => child.matches('.sr-only');
+
     const getPageIntroScrambleElements = () => {
-        const selector = '.page h1, .page h2, .page h3, .page .subtitle, .page .location';
+        const selector = '.page h1, .page h2, .page h3, .page .section-title, .page .subtitle, .page .location';
         return Array.from(document.querySelectorAll(selector)).filter((element) => {
             if (element.id === 'typewriter' || element.classList.contains('footer-local-time')) return false;
             if (element.closest('#menu-wrapper')) return false;
             if (element.closest('.project-item')) return false;
             if (element.classList.contains('no-scramble')) return false;
-            if (element.children.length > 0) return false;
+            if (Array.from(element.children).some((child) => !isScrambleDecoration(child))) return false;
             const text = element.textContent?.trim() || '';
             return text.length > 0;
         });
+    };
+
+    // Avec un enfant .sr-only, on brouille chaque noeud texte dans un span
+    // temporaire, puis on remet le texte d'origine : le complement reste en place.
+    const scrambleElement = (element) => {
+        if (element.children.length === 0) {
+            return scrambleText(element, element.textContent || '');
+        }
+        const textNodes = Array.from(element.childNodes).filter((node) => (
+            node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== ''
+        ));
+        return Promise.all(textNodes.map((node) => {
+            const text = node.textContent;
+            const holder = document.createElement('span');
+            node.replaceWith(holder);
+            return scrambleText(holder, text).then(() => {
+                holder.replaceWith(document.createTextNode(text));
+            });
+        }));
     };
 
     const menuScrambleElements = Array.from(document.querySelectorAll('#menu-wrapper .menu-list a'));
@@ -387,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach((element, index) => {
             const delay = index * staggerMs;
             revealTargets.push(
-                waitMs(delay).then(() => scrambleText(element, element.textContent || ''))
+                waitMs(delay).then(() => scrambleElement(element))
             );
         });
         startTypewriterAnimation();
@@ -650,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
         !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
         if (btn) makeMagnetic(btn, '.bar');
-        document.querySelectorAll('.is-magnetic').forEach((element) => makeMagnetic(element, 'svg'));
+        document.querySelectorAll('.is-magnetic').forEach((element) => makeMagnetic(element, 'svg, .case-video-sound-label'));
     }
 
     // ==========================================

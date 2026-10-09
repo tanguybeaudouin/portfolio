@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /en-cours.html
 
 Sitemap: https://tanguy.studio/sitemap.xml

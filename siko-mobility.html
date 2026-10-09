@@ -6,11 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siko Mobility — Étude de cas UX/UI | Tanguy Beaudouin</title>
     <meta name="description" content="Siko Mobility : conception UX/UI d'un parcours de financement de véhicule en 8 étapes, sur mobile et desktop.">
-    <link rel="canonical" href="https://tanguy.studio/project-3">
+    <link rel="canonical" href="https://tanguy.studio/siko-mobility">
     <meta property="og:title" content="Siko Mobility — Étude de cas UX/UI | Tanguy Beaudouin">
     <meta property="og:description" content="Siko Mobility : conception UX/UI d'un parcours de financement de véhicule en 8 étapes, sur mobile et desktop.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tanguy.studio/project-3">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tanguy.studio/siko-mobility">
+    <meta property="og:site_name" content="tanguy.studio">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://tanguy.studio/images/og/og-siko-mobility.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Formulaire d'identité du parcours de financement Siko Mobility sur un ordinateur portable, fond bleu">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://tanguy.studio/siko-mobility#projet",
+          "name": "Siko Mobility",
+          "headline": "Siko Mobility — Étude de cas UX/UI | Tanguy Beaudouin",
+          "description": "Siko Mobility : conception UX/UI d'un parcours de financement de véhicule en 8 étapes, sur mobile et desktop.",
+          "url": "https://tanguy.studio/siko-mobility",
+          "image": "https://tanguy.studio/images/og/og-siko-mobility.jpg",
+          "dateCreated": "2025",
+          "inLanguage": "fr-FR",
+          "genre": "Étude de cas UX/UI",
+          "keywords": "UX Research, User Flow, UI Design, Prototype",
+          "creator": {
+            "@id": "https://tanguy.studio/#person"
+          },
+          "author": {
+            "@id": "https://tanguy.studio/#person"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://tanguy.studio/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Projets",
+              "item": "https://tanguy.studio/work"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Siko Mobility",
+              "item": "https://tanguy.studio/siko-mobility"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tanguy.studio/#person",
+          "name": "Tanguy Beaudouin",
+          "url": "https://tanguy.studio/"
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <script>
@@ -29,8 +91,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20261008y2">
-    <link rel="stylesheet" href="project-case.css?v=20261008z">
+    <link rel="stylesheet" href="main.css?v=20261009g">
+    <link rel="stylesheet" href="project-case.css?v=20261009h">
     <link rel="stylesheet" href="project-siko.css?v=20261008e">
 </head>
 
@@ -56,7 +118,7 @@
         <main class="main-card">
             <header class="content-top-section">
                 <div class="title-group">
-                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="site-title"><a class="site-title-link" href="/" aria-label="Retour à la page d'accueil">tanguy.studio</a></p>
                     <p class="subtitle">SIKO MOBILITY</p>
                 </div>
                 <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
@@ -72,11 +134,10 @@
                     <section class="case-text case-intro case-reveal">
                         <div class="case-head">
                             <div class="case-actions">
-                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                <a href="/work" class="case-return-link" aria-label="Retour"
                                     onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
                             </div>
-                            <h2 class="section-title">siko.mobility</h2>
-                            <p class="subtitle">Parcours de financement</p>
+                            <h1 class="title-stack"><span class="section-title">Siko Mobility</span> <span class="subtitle">Parcours de financement</span></h1>
                         </div>
                         <p class="case-lead">Une expérience pensée pour aller vite, sans jamais perdre l'utilisateur en route. De la simulation à la signature du contrat, chaque écran réduit les frictions d'un parcours de financement de véhicule, sur mobile comme sur desktop.</p>
                         <ul class="case-tags" aria-label="Domaines">
@@ -129,14 +190,14 @@
 
                     <!-- 3. Contexte -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">contexte.objectifs</h2>
+                        <h2 class="section-title">Contexte et enjeux du financement</h2>
                         <p class="case-body">Le produit regroupe plusieurs actions clés — simuler, s'identifier, payer, signer — dans une interface souvent consultée en déplacement. L'enjeu : raccourcir le temps d'accès à l'information et à l'action, tout en gardant une lecture claire à chaque étape.</p>
                     </section>
 
                     <!-- Ecran desktop « Formulaire d'identite », code d'apres Figma
                          (1512 px de large, coupe sous les boutons, mis a l'echelle du cadre). Styles : project-siko.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--screen" role="img" aria-label="Écran desktop Siko Mobility : formulaire d'identité, avec à gauche le tableau de bord des huit étapes du parcours, l'étape Simulateur validée en vert et l'étape Identité en cours en bleu">
+                        <div data-nosnippet class="case-mock case-mock--screen" role="img" aria-label="Écran desktop Siko Mobility : formulaire d'identité, avec à gauche le tableau de bord des huit étapes du parcours, l'étape Simulateur validée en vert et l'étape Identité en cours en bleu">
                             <div class="sk-stage" aria-hidden="true">
                                 <div class="sk-nav">
                                     <div class="sk-nav-row">
@@ -200,7 +261,7 @@
 
                     <!-- 4. Parcours : nombre de clics et les 8 etapes du stepper -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">parcours.utilisateur</h2>
+                        <h2 class="section-title">Parcours utilisateur</h2>
                         <p class="case-body">Tout le parcours vise l'efficacité : le moins de clics possible, aucune étape superflue. Simuler, s'identifier, payer et signer tiennent en six pages et deux pop-ups.</p>
                         <ul class="case-list case-list--meta" aria-label="Parcours en chiffres">
                             <li class="case-entry"><span class="case-entry-title">Clics</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">14 au total</span></li>
@@ -211,7 +272,7 @@
 
                     <!-- 5. Tableau de bord -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">tableau.de.bord</h2>
+                        <h2 class="section-title">Tableau de bord</h2>
                         <p class="case-body">Un tableau de bord vertical accompagne tout le parcours pour rassurer et donner une vue d'ensemble. Les étapes validées passent au vert, l'étape en cours est en bleu. Sur mobile, il se réduit à ses icônes pour laisser la place au formulaire, sans rien perdre en lisibilité.</p>
                         <ol class="case-list case-list--steps">
                             <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Simulateur</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Demande de financement</span></li>
@@ -229,7 +290,7 @@
                          desktop (etapes detaillees), codee d'apres Figma (scene 1100 x 660).
                          L'ecran desktop (1512 px) est reduit dans une fenetre de navigateur. Styles : project-siko.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--steps" role="img" aria-label="Tableau de bord du parcours sur deux supports : à gauche sur mobile, une colonne d'icônes seules à côté du formulaire ; à droite sur desktop, la liste complète des huit étapes avec leur titre et leur description">
+                        <div data-nosnippet class="case-mock case-mock--steps" role="img" aria-label="Tableau de bord du parcours sur deux supports : à gauche sur mobile, une colonne d'icônes seules à côté du formulaire ; à droite sur desktop, la liste complète des huit étapes avec leur titre et leur description">
                             <div class="sk-stage" aria-hidden="true">
                                 <div class="sk-phone">
                                     <div class="sk-statusbar">
@@ -352,7 +413,7 @@
 
                     <!-- 6. Interactions : boutons, survol, cases a cocher -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">boutons.interactions</h2>
+                        <h2 class="section-title">Boutons et interactions</h2>
                         <p class="case-body">La couleur principale est réservée aux actions qui font avancer : un repère constant qui trace le chemin à suivre. Le placement suit le sens de lecture, avancer à droite, revenir ou annuler à gauche. Au survol, le fond fonce légèrement et le texte blanc reste blanc, pour éviter tout effet de clignotement.</p>
                         <p class="case-body">Pensées pour le tactile, les cases à cocher sont cliquables sur une zone élargie de 4 px, libellé compris : toucher « Madame » ou « Non » suffit, le geste gagne en précision.</p>
                     </section>
@@ -361,7 +422,7 @@
                          (composants Button, Button 3 et Informations Checkbox). Styles : project-siko.css -->
                     <div class="case-pair case-pair--even case-reveal">
                         <figure class="case-media">
-                            <div class="case-mock case-mock--detail" role="img" aria-label="Boutons Précédent à gauche et Suivant à droite ; au survol du curseur, le fond de chaque bouton fonce légèrement et le texte garde sa couleur">
+                            <div data-nosnippet class="case-mock case-mock--detail" role="img" aria-label="Boutons Précédent à gauche et Suivant à droite ; au survol du curseur, le fond de chaque bouton fonce légèrement et le texte garde sa couleur">
                                 <div class="sk-stage" aria-hidden="true">
                                     <div class="sk-cta">
                                         <div class="sk-cta-item"><span class="sk-btn sk-btn--ghost">Précédent</span><span class="sk-cta-note">← retour</span></div>
@@ -372,7 +433,7 @@
                             </div>
                         </figure>
                         <figure class="case-media">
-                            <div class="case-mock case-mock--detail" role="img" aria-label="Question « Êtes-vous né en France ? » : la zone cliquable de chaque choix couvre le rond, le libellé et 4 px autour ; un clic sur le mot Non suffit à le sélectionner">
+                            <div data-nosnippet class="case-mock case-mock--detail" role="img" aria-label="Question « Êtes-vous né en France ? » : la zone cliquable de chaque choix couvre le rond, le libellé et 4 px autour ; un clic sur le mot Non suffit à le sélectionner">
                                 <div class="sk-stage" aria-hidden="true">
                                     <div class="sk-hit">
                                         <span>Êtes-vous né en France ?</span>
@@ -389,7 +450,7 @@
 
                     <!-- 7. Mode sombre -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">mode.sombre</h2>
+                        <h2 class="section-title">Mode sombre</h2>
                         <p class="case-body">Pas de noir pur sous du texte blanc : ce contraste trop fort fatigue l'œil sur la durée. Le mode sombre pose plutôt un fond gris adouci, plus foncé que le blanc du mode clair, et garde le texte en noir. Moins d'éblouissement, une lisibilité intacte.</p>
                     </section>
 
@@ -397,7 +458,7 @@
                          (2.2 Montant total de la transaction, 519 x 518, sur une scene 760 x 600). Styles : project-siko.css -->
                     <div class="case-pair case-pair--even case-reveal">
                         <figure class="case-media">
-                            <div class="case-mock case-mock--modal" role="img" aria-label="Pop-up « Montant total de la transaction » en mode clair, total de 3270 €">
+                            <div data-nosnippet class="case-mock case-mock--modal" role="img" aria-label="Pop-up « Montant total de la transaction » en mode clair, total de 3270 €">
                                 <div class="sk-stage" aria-hidden="true">
                                     <div class="sk-modal">
                                         <p class="sk-title">Montant total de la transaction</p>
@@ -419,7 +480,7 @@
                             </div>
                         </figure>
                         <figure class="case-media">
-                            <div class="case-mock case-mock--modal" role="img" aria-label="Pop-up « Montant total de la transaction » en mode sombre : fond gris adouci, texte noir et bleus légèrement assombris, total de 3270 €">
+                            <div data-nosnippet class="case-mock case-mock--modal" role="img" aria-label="Pop-up « Montant total de la transaction » en mode sombre : fond gris adouci, texte noir et bleus légèrement assombris, total de 3270 €">
                                 <div class="sk-stage sk-dark" aria-hidden="true">
                                     <div class="sk-modal">
                                         <p class="sk-title">Montant total de la transaction</p>
@@ -444,7 +505,7 @@
 
                     <!-- 8. Interface -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">interface.design</h2>
+                        <h2 class="section-title">Design system</h2>
                         <p class="case-body">Un même système de composants, décliné du desktop au mobile : hiérarchie visuelle nette, formulaires simplifiés, et des écrans pensés pour un usage à une main.</p>
                     </section>
 
@@ -454,17 +515,17 @@
 
                     <!-- 6. Suite : meme grammaire que les listes de la page About -->
                     <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
-                        <h2 class="section-title">et.ensuite</h2>
+                        <h2 class="section-title">Et ensuite</h2>
                         <ul class="projects-list">
                             <li>
-                                <a class="projects-list-link" href="project-5.html">
+                                <a class="projects-list-link" href="/shopcaisse">
                                     <span class="projects-list-title">Shopcaisse</span>
                                     <span class="projects-list-tag">( Projet suivant )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
                                 </a>
                             </li>
                             <li>
-                                <a class="projects-list-link" href="work.html">
+                                <a class="projects-list-link" href="/work">
                                     <span class="projects-list-title">Tous les projets</span>
                                     <span class="projects-list-tag">( 5 projets )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
@@ -478,10 +539,10 @@
 
             <nav id="menu-wrapper" style="display:none;">
                 <ul class="menu-list">
-                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
-                    <li><a href="about.html" class="hover-underline">À propos</a></li>
-                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                    <li><a href="/" class="hover-underline">Accueil</a></li>
+                    <li><a href="/work" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="/about" class="hover-underline">À propos</a></li>
+                    <li><a href="/contact" class="hover-underline">Contact</a></li>
                 </ul>
             </nav>
 
@@ -505,9 +566,9 @@
         </div>
     </div>
 
-    <script src="script-core.js?v=20261008z"></script>
+    <script src="script-core.js?v=20261009d"></script>
     <script src="script-case.js?v=20261008z"></script>
-    <script src="script-sound.js?v=20261008z"></script>
+    <script src="script-sound.js?v=20261009"></script>
 </body>
 
 </html>

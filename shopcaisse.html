@@ -6,11 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopcaisse — Navigation du site | Tanguy Beaudouin</title>
     <meta name="description" content="Shopcaisse : refonte de la navigation d'un site d'application de caisse, méga-menu desktop et menu mobile à niveaux.">
-    <link rel="canonical" href="https://tanguy.studio/project-5">
+    <link rel="canonical" href="https://tanguy.studio/shopcaisse">
     <meta property="og:title" content="Shopcaisse — Navigation du site | Tanguy Beaudouin">
     <meta property="og:description" content="Shopcaisse : refonte de la navigation d'un site d'application de caisse, méga-menu desktop et menu mobile à niveaux.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tanguy.studio/project-5">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tanguy.studio/shopcaisse">
+    <meta property="og:site_name" content="tanguy.studio">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://tanguy.studio/images/og/og-shopcaisse.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logo Shopcaisse blanc et signature « simple mais pas basique » sur un dégradé bleu">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://tanguy.studio/shopcaisse#projet",
+          "name": "Shopcaisse",
+          "headline": "Shopcaisse — Navigation du site | Tanguy Beaudouin",
+          "description": "Shopcaisse : refonte de la navigation d'un site d'application de caisse, méga-menu desktop et menu mobile à niveaux.",
+          "url": "https://tanguy.studio/shopcaisse",
+          "image": "https://tanguy.studio/images/og/og-shopcaisse.jpg",
+          "dateCreated": "2026",
+          "inLanguage": "fr-FR",
+          "genre": "Étude de cas UX/UI",
+          "keywords": "Navigation, Architecture de l'information, UX Design, UI Design, Responsive",
+          "creator": {
+            "@id": "https://tanguy.studio/#person"
+          },
+          "author": {
+            "@id": "https://tanguy.studio/#person"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://tanguy.studio/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Projets",
+              "item": "https://tanguy.studio/work"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Shopcaisse",
+              "item": "https://tanguy.studio/shopcaisse"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tanguy.studio/#person",
+          "name": "Tanguy Beaudouin",
+          "url": "https://tanguy.studio/"
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <script>
@@ -32,8 +94,8 @@
     <!-- Chillax et Outfit : polices des maquettes Shopcaisse codees dans la page -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
     <link href="https://api.fontshare.com/v2/css?f[]=chillax@400,600,700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20261008y2">
-    <link rel="stylesheet" href="project-case.css?v=20261008z">
+    <link rel="stylesheet" href="main.css?v=20261009g">
+    <link rel="stylesheet" href="project-case.css?v=20261009h">
     <link rel="stylesheet" href="project-shopcaisse.css?v=20261008z">
 </head>
 
@@ -59,7 +121,7 @@
         <main class="main-card">
             <header class="content-top-section">
                 <div class="title-group">
-                    <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                    <p class="site-title"><a class="site-title-link" href="/" aria-label="Retour à la page d'accueil">tanguy.studio</a></p>
                     <p class="subtitle">SHOPCAISSE</p>
                 </div>
                 <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
@@ -75,11 +137,10 @@
                     <section class="case-text case-intro case-reveal">
                         <div class="case-head">
                             <div class="case-actions">
-                                <a href="work.html" class="case-return-link" aria-label="Retour"
+                                <a href="/work" class="case-return-link" aria-label="Retour"
                                     onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
                             </div>
-                            <h2 class="section-title">shopcaisse</h2>
-                            <p class="subtitle">Navigation du site</p>
+                            <h1 class="title-stack"><span class="section-title">Shopcaisse</span> <span class="subtitle">Navigation du site</span></h1>
                         </div>
                         <p class="case-lead">Shopcaisse est une application de caisse pour commerçants : plus de 300 fonctionnalités, une offre pour chaque métier, de la restauration au marché. Le projet porte sur la navigation de son site, une barre compacte qui ouvre sur un méga-menu desktop et un menu mobile à niveaux.</p>
                         <ul class="case-tags" aria-label="Domaines">
@@ -99,7 +160,7 @@
                     <!-- Visuel d'ouverture : vignette du projet, codee d'apres Figma
                          (Thumbnail 1920 x 1080, mise a l'echelle du cadre). Styles : project-shopcaisse.css -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--cover" role="img" aria-label="Logo Shopcaisse blanc, avec la signature « simple mais pas basique », sur un dégradé bleu traversé en diagonale par un motif de logos">
+                        <div data-nosnippet class="case-mock case-mock--cover" role="img" aria-label="Logo Shopcaisse blanc, avec la signature « simple mais pas basique », sur un dégradé bleu traversé en diagonale par un motif de logos">
                             <div class="sc-stage" aria-hidden="true">
 <div class="sc-cover-bg"></div>
 <img class="sc-cover-pattern" src="images/shopcaisse/cover/pattern.webp" alt="" width="1812" height="1080" decoding="async">
@@ -110,13 +171,13 @@
 
                     <!-- 2. Contexte -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">contexte.objectifs</h2>
+                        <h2 class="section-title">Contexte et enjeux du logiciel de caisse</h2>
                         <p class="case-body">Un produit très riche face à des visiteurs pressés : restaurateurs, commerçants, ambulants. L'enjeu : permettre à chacun de trouver sa fonctionnalité ou son métier en deux clics, tout en gardant « Télécharger gratuitement » toujours à portée.</p>
                     </section>
 
                     <!-- 3. Mega-menu desktop -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">navigation.desktop</h2>
+                        <h2 class="section-title">Méga-menu desktop</h2>
                         <p class="case-body">Une barre flottante en verre dépoli, six entrées et un seul bouton plein. Quatre entrées ouvrent un panneau, chacun construit selon ce que le visiteur cherche, avec toujours une offre mise en avant et une preuve de confiance en pied de panneau. La maquette ci-dessous est codée : survolez ou touchez les onglets pour ouvrir les panneaux.</p>
                         <ol class="case-list case-list--steps">
                             <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">L'appli</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Produit, nouveauté, offre gratuite</span></li>
@@ -129,7 +190,7 @@
                     <!-- Mega-menu interactif : les onglets ouvrent les quatre panneaux codes
                          d'apres Figma (New - Large menu). Comportement : script-shopcaisse.js -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--hero sc-demo is-open" role="group" aria-label="Maquette interactive du méga-menu Shopcaisse : survolez ou sélectionnez L'appli, Fonctionnalités, Ton activité ou Ressources pour ouvrir le panneau correspondant">
+                        <div data-nosnippet class="case-mock case-mock--hero sc-demo is-open" role="group" aria-label="Maquette interactive du méga-menu Shopcaisse : survolez ou sélectionnez L'appli, Fonctionnalités, Ton activité ou Ressources pour ouvrir le panneau correspondant">
                             <div class="sc-stage">
 <div class="sc-hero-bg"><img src="images/shopcaisse/nav/hero-bg.webp" alt="" width="2560" height="2048" loading="lazy" decoding="async"></div>
 <div class="sc-veil" aria-hidden="true"></div>
@@ -172,7 +233,7 @@
 
                     <!-- 4. Menu mobile -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">navigation.mobile</h2>
+                        <h2 class="section-title">Navigation mobile</h2>
                         <p class="case-body">Sur mobile, le méga-menu devient un menu à niveaux. Chaque entrée ouvre un écran dédié, avec un retour explicite (« Retour au menu », « Retour aux activités ») plutôt qu'une simple flèche. L'offre du métier choisi et le téléchargement restent visibles à chaque étape. La maquette ci-dessous est entièrement navigable : chaque entrée ouvre son niveau, jusqu'aux métiers de chaque secteur.</p>
                     </section>
 
@@ -180,7 +241,7 @@
                          codes d'apres Figma (Nav-bar-Mobile-Open, 358 px). La scene suit la hauteur
                          du niveau affiche. Navigation : script-shopcaisse.js -->
                     <figure class="case-media case-media--bare case-reveal">
-                        <div class="case-mock case-mock--mnav sc-mdemo" role="group" aria-label="Maquette interactive de la barre de navigation mobile Shopcaisse : chaque entrée ouvre son niveau, Retour remonte et la croix referme le menu">
+                        <div data-nosnippet class="case-mock case-mock--mnav sc-mdemo" role="group" aria-label="Maquette interactive de la barre de navigation mobile Shopcaisse : chaque entrée ouvre son niveau, Retour remonte et la croix referme le menu">
                             <div class="sc-stage">
 <div class="sc-mnav">
 <div class="sc-m-bar" data-sc-level="closed" hidden><span class="sc-logo"><img src="images/shopcaisse/nav/logo-submark.svg" alt="" width="16" height="22" loading="lazy" decoding="async"></span><button type="button" class="sc-tab sc-m-burger" data-sc-go="menu" aria-label="Ouvrir le menu"><img src="images/shopcaisse/nav/menu.svg" alt="" width="16" height="8" loading="lazy" decoding="async"></button></div>
@@ -233,13 +294,13 @@
 
                     <!-- 5. Page d'accueil -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">page.accueil</h2>
+                        <h2 class="section-title">Page d'accueil</h2>
                         <p class="case-body">Chaque section de l'accueil a sa version mobile pensée à part, pas seulement rétrécie. La comparaison « Avant / Avec » passe du côte à côte à deux cartes superposées, la bleue venant recouvrir la grise.</p>
                     </section>
 
                     <!-- Accueil : section « Fini la caisse compliquee » (desktop 1280 x 826 et mobile 390 x 922) -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--compare" style="aspect-ratio: 1514 / 760" role="img" aria-label="Section « Fini la caisse compliquée » : sur mobile, la carte bleue vient chevaucher la carte grise ; sur desktop, la carte grise « Avant » et la carte bleue « Avec Shopcaisse » côte à côte">
+                        <div data-nosnippet class="case-mock case-mock--compare" style="aspect-ratio: 1514 / 760" role="img" aria-label="Section « Fini la caisse compliquée » : sur mobile, la carte bleue vient chevaucher la carte grise ; sur desktop, la carte grise « Avant » et la carte bleue « Avec Shopcaisse » côte à côte">
                             <div class="sc-stage" style="height: 760px" aria-hidden="true">
 <div class="sc-window" style="height: 740px"><div class="sc-window-bar"><span></span><span></span><span></span></div><div class="sc-screen " style="height: 826px"><div class="sc-versus"><div class="sc-section-head"><span class="sc-tag">Prête en 3 minutes</span><p class="sc-h2">Fini la caisse compliquée.</p><p class="sc-sub">Pas besoin de technicien, pas de formation longue.<br>Tu installes l'app sur ta tablette ou ton téléphone et c'est parti.</p></div><div class="sc-versus-cards"><div class="sc-before"><p class="sc-before-title">Avant</p><ul><li><img src="images/shopcaisse/home/cross.svg" alt="" width="20" height="20" loading="lazy" decoding="async">Une caisse qui prend des heures à configurer</li><li><img src="images/shopcaisse/home/cross.svg" alt="" width="20" height="20" loading="lazy" decoding="async">Du matériel à 2 000€ avant même d'encaisser</li><li><img src="images/shopcaisse/home/cross.svg" alt="" width="20" height="20" loading="lazy" decoding="async">Un logiciel que personne ne comprend</li><li><img src="images/shopcaisse/home/cross.svg" alt="" width="20" height="20" loading="lazy" decoding="async">Un contrat d'engagement longue durée</li><li><img src="images/shopcaisse/home/cross.svg" alt="" width="20" height="20" loading="lazy" decoding="async">Un support injoignable quand ça coince</li></ul></div><div class="sc-after"><p class="sc-after-title">Avec Shopcaisse</p><ul><li><img src="images/shopcaisse/home/check.svg" alt="" width="24.083" height="24.083" loading="lazy" decoding="async">Opérationnel en 3 minutes, depuis ta tablette</li><li><img src="images/shopcaisse/home/check.svg" alt="" width="24.083" height="24.083" loading="lazy" decoding="async">Gratuit pour commencer, sans carte bancaire</li><li><img src="images/shopcaisse/home/check.svg" alt="" width="24.083" height="24.083" loading="lazy" decoding="async">Une appli intuitive, prise en main en solo</li><li><img src="images/shopcaisse/home/check.svg" alt="" width="24.083" height="24.083" loading="lazy" decoding="async">Sans engagement, résiliable à tout moment</li><li><img src="images/shopcaisse/home/check.svg" alt="" width="24.083" height="24.083" loading="lazy" decoding="async">Support réactif, chat et téléphone 7j/7</li></ul></div></div></div></div></div>
 <div class="sc-handset" style="height: 780.2px"><div class="sc-screen " style="height: 922px"><div class="sc-statusbar"><span class="sc-statusbar-time">9:41</span><span class="sc-island"></span><span class="sc-statusbar-icons"><svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="7.4" width="3.2" height="4.6" rx="1"/><rect x="5.1" y="5" width="3.2" height="7" rx="1"/><rect x="10.2" y="2.5" width="3.2" height="9.5" rx="1"/><rect x="15.3" y="0" width="3.2" height="12" rx="1"/></svg><svg width="17" height="12" viewBox="0 0 17 12"><path stroke="currentColor" stroke-width=".6" stroke-linejoin="round" d="M0.87 4.24A10.6 10.6 0 0 1 16.13 4.24L14.47 5.83A8.3 8.3 0 0 0 2.53 5.83ZM3.61 6.88A6.8 6.8 0 0 1 13.39 6.88L11.67 8.54A4.4 4.4 0 0 0 5.33 8.54ZM8.5 11.6L6.34 9.52A3.0 3.0 0 0 1 10.66 9.52Z"/></svg><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".35"/><rect x="2" y="2" width="21" height="9" rx="2.5"/><path d="M26 4.4v4.2c.8-.3 1.3-1.2 1.3-2.1s-.5-1.8-1.3-2.1Z" opacity=".4"/></svg></span></div><div class="sc-versus sc-versus--m"><div class="sc-section-head"><span class="sc-tag">Prête en 3 minutes</span><p class="sc-h3">Fini la caisse compliquée.</p><p class="sc-sub">Pas besoin de technicien, pas de formation longue.<br>Tu installes l'app sur ta tablette ou ton téléphone<br>et c'est parti.</p></div><div class="sc-versus-cards"><div class="sc-before"><p class="sc-before-title">Avant</p><ul><li><img src="images/shopcaisse/home/cross-m.svg" alt="" width="10" height="10" loading="lazy" decoding="async">Une caisse qui prend des heures à configurer</li><li><img src="images/shopcaisse/home/cross-m.svg" alt="" width="10" height="10" loading="lazy" decoding="async">Du matériel à 2 000€ avant même d'encaisser</li><li><img src="images/shopcaisse/home/cross-m.svg" alt="" width="10" height="10" loading="lazy" decoding="async">Un logiciel que personne ne comprend</li><li><img src="images/shopcaisse/home/cross-m.svg" alt="" width="10" height="10" loading="lazy" decoding="async">Un contrat d'engagement longue durée</li><li><img src="images/shopcaisse/home/cross-m-last.svg" alt="" width="10" height="10" loading="lazy" decoding="async">Un support injoignable quand ça coince</li></ul></div><div class="sc-after"><p class="sc-after-title">Avec Shopcaisse</p><ul><li><img src="images/shopcaisse/home/check-m.svg" alt="" width="15" height="11" loading="lazy" decoding="async">Opérationnel en 3 minutes, depuis ta tablette</li><li><img src="images/shopcaisse/home/check-m.svg" alt="" width="15" height="11" loading="lazy" decoding="async">Gratuit pour commencer, sans carte bancaire</li><li><img src="images/shopcaisse/home/check-m.svg" alt="" width="15" height="11" loading="lazy" decoding="async">Une appli intuitive, prise en main en solo</li><li><img src="images/shopcaisse/home/check-m.svg" alt="" width="15" height="11" loading="lazy" decoding="async">Sans engagement, résiliable à tout moment</li><li><img src="images/shopcaisse/home/check-m.svg" alt="" width="15" height="11" loading="lazy" decoding="async">Support réactif, chat et téléphone 7j/7</li></ul></div></div></div></div></div>
@@ -249,14 +310,14 @@
 
                     <!-- 6. Page Tarifs -->
                     <section class="case-text case-reveal">
-                        <h2 class="section-title">page.tarifs</h2>
+                        <h2 class="section-title">Page tarifs</h2>
                         <p class="case-body">Quatre offres, un repère clair : la formule recommandée est surélevée et bordée, la Pro passe en bleu profond. Le prix annuel reste affiché sous chaque prix mensuel pour comparer sans calculer. Essayez le sélecteur Mensuel / Annuel. Plus bas, un tableau comparatif détaille ce qui change d'une offre à l'autre : survolez une colonne pour la lire d'un coup d'œil.</p>
                     </section>
 
                     <!-- Page Tarifs : grille des offres, codee d'apres Figma (Frame 2147227775,
                          1280 x 789). Le selecteur Mensuel / Annuel est interactif (script-shopcaisse.js) -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--pricing sc-prices" role="group" aria-label="Grille tarifaire Shopcaisse : Gratuit, Flex 300, Flex 800 recommandé et Pro ; le sélecteur Mensuel / Annuel met à jour les prix">
+                        <div data-nosnippet class="case-mock case-mock--pricing sc-prices" role="group" aria-label="Grille tarifaire Shopcaisse : Gratuit, Flex 300, Flex 800 recommandé et Pro ; le sélecteur Mensuel / Annuel met à jour les prix">
                             <div class="sc-stage">
 <div class="sc-pricing">
 <div class="sc-period" role="group" aria-label="Période de facturation"><button type="button" class="sc-btn sc-tab is-active" data-period="monthly" aria-pressed="true"><span>Mensuel</span></button><button type="button" class="sc-btn sc-tab" data-period="yearly" aria-pressed="false"><span>Annuel</span><span class="sc-discount">−17%</span></button></div>
@@ -297,7 +358,7 @@
                     <!-- Page Tarifs : tableau comparatif, code d'apres Figma (Frame 2147227626,
                          1280 x 1298). Survoler une colonne la surligne (script-shopcaisse.js) -->
                     <figure class="case-media case-reveal">
-                        <div class="case-mock case-mock--table" role="img" aria-label="Tableau « Comparer les plans en détail » : cinq offres de Gratuit à Pack business, comparées sur le volume, le support, la commission Tap to Pay et les fonctionnalités avancées ; la colonne Pro est surlignée">
+                        <div data-nosnippet class="case-mock case-mock--table" role="img" aria-label="Tableau « Comparer les plans en détail » : cinq offres de Gratuit à Pack business, comparées sur le volume, le support, la commission Tap to Pay et les fonctionnalités avancées ; la colonne Pro est surlignée">
                             <div class="sc-stage" aria-hidden="true">
 <div class="sc-compare-section"><div class="sc-section-head"><span class="sc-tag">Comparatif</span><p class="sc-h2">Comparer les plans en détail.</p><p class="sc-sub">Les vraies différences entre les plans : volume, plafond de CA, support et commissions.</p></div>
 <div class="sc-table" data-default-col="4"><div class="sc-row sc-row--head"><div>Ce qui change</div><div data-col="1"><span>Gratuit</span><span class="sc-head-price sc-head-price--free">0€ <small>/ mois</small></span></div><div data-col="2"><span>Flex 300</span><span class="sc-head-price">29€ <small>/ mois</small></span></div><div data-col="3"><span>Flex 800</span><span class="sc-head-price">49€ <small>/ mois</small></span></div><div data-col="4" class="is-col"><span>Pro</span><span class="sc-head-price">69€ <small>/ mois</small></span></div><div data-col="5"><span>Pack business</span><span class="sc-head-price">119€ <small>/ mois</small></span></div></div><div class="sc-group-head">Volume &amp; limites</div><div class="sc-row"><div>Tickets / mois</div><div data-col="1" class="">100</div><div data-col="2" class="">300</div><div data-col="3" class="">800</div><div data-col="4" class="is-col"><span class="sc-cell-strong">Illimité</span></div><div data-col="5" class=""><span class="sc-cell-strong">Illimité</span></div></div><div class="sc-row"><div>CA TTC max / mois</div><div data-col="1" class="">3 000€</div><div data-col="2" class="">10 000€</div><div data-col="3" class="">30 000€</div><div data-col="4" class="is-col"><span class="sc-cell-strong">Illimité</span></div><div data-col="5" class=""><span class="sc-cell-strong">Illimité</span></div></div><div class="sc-group-head">Fonctionnalités avancées</div><div class="sc-row"><div>Notice &amp; Chat</div><div data-col="1" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="2" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="3" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="4" class="is-col"><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row"><div>Email</div><div data-col="1" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="2" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="3" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="4" class="is-col"><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row"><div>Téléphone 7j/7 prioritaire</div><div data-col="1" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="2" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="3" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="4" class="is-col"><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-group-head">Paiement Tap to Pay</div><div class="sc-row"><div>Paiement sur smartphone</div><div data-col="1" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="2" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="3" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="4" class="is-col"><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row"><div>Commission</div><div data-col="1" class="">1,45%</div><div data-col="2" class="">1,25%</div><div data-col="3" class="">0,99%</div><div data-col="4" class="is-col"><span class="sc-cell-strong">0,79%</span></div><div data-col="5" class=""><span class="sc-cell-strong">0,59%</span></div></div><div class="sc-group-head">Fonctionnalités avancées</div><div class="sc-row"><div>Intégration API</div><div data-col="1" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="2" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="3" class=""><span class="sc-cross"><img src="images/shopcaisse/tarifs/cross.svg" alt="" width="8.404" height="8.419" loading="lazy" decoding="async"></span></div><div data-col="4" class="is-col"><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row"><div>Multiposte</div><div data-col="1" class=""><span class="sc-cell-small">En option</span></div><div data-col="2" class=""><span class="sc-cell-small">En option</span></div><div data-col="3" class=""><span class="sc-cell-small">En option</span></div><div data-col="4" class="is-col"><span class="sc-cell-small">En option</span></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row"><div>Click &amp; Collect</div><div data-col="1" class=""><span class="sc-cell-small">En option</span></div><div data-col="2" class=""><span class="sc-cell-small">En option</span></div><div data-col="3" class=""><span class="sc-cell-small">En option</span></div><div data-col="4" class="is-col"><span class="sc-cell-small">En option</span></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row"><div>Télécommande PAD</div><div data-col="1" class=""><span class="sc-cell-small">En option</span></div><div data-col="2" class=""><span class="sc-cell-small">En option</span></div><div data-col="3" class=""><span class="sc-cell-small">En option</span></div><div data-col="4" class="is-col"><span class="sc-cell-small">En option</span></div><div data-col="5" class=""><span class="sc-cell-strong">2 incluses</span></div></div><div class="sc-row"><div>Commande QR code</div><div data-col="1" class=""><span class="sc-cell-small">En option</span></div><div data-col="2" class=""><span class="sc-cell-small">En option</span></div><div data-col="3" class=""><span class="sc-cell-small">En option</span></div><div data-col="4" class="is-col"><span class="sc-cell-small">En option</span></div><div data-col="5" class=""><img src="images/shopcaisse/tarifs/check-plan.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></div></div><div class="sc-row sc-row--cta"><div></div><div data-col="1"><span class="sc-glassy"><span class="sc-btn sc-btn--safran"><span>Démarrer maintenant</span></span></span></div><div data-col="2"><span class="sc-glassy"><span class="sc-btn sc-btn--white"><span>Choisir Flex 300</span><img src="images/shopcaisse/nav/chevron-right.svg" alt="" width="18" height="18" loading="lazy" decoding="async"></span></span></div><div data-col="3"><span class="sc-glassy"><span class="sc-btn sc-btn--white"><span>Choisir Flex 800</span><img src="images/shopcaisse/nav/chevron-right.svg" alt="" width="18" height="18" loading="lazy" decoding="async"></span></span></div><div data-col="4" class="is-col"><span class="sc-glassy"><span class="sc-btn sc-btn--white"><span>Passer au Pro</span><img src="images/shopcaisse/nav/chevron-right.svg" alt="" width="18" height="18" loading="lazy" decoding="async"></span></span></div><div data-col="5"><span class="sc-glassy"><span class="sc-btn sc-btn--white"><span>Découvrir le Pack</span><img src="images/shopcaisse/nav/chevron-right.svg" alt="" width="18" height="18" loading="lazy" decoding="async"></span></span></div></div></div></div>
@@ -307,17 +368,17 @@
 
                     <!-- 7. Suite -->
                     <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
-                        <h2 class="section-title">et.ensuite</h2>
+                        <h2 class="section-title">Et ensuite</h2>
                         <ul class="projects-list">
                             <li>
-                                <a class="projects-list-link" href="project-2.html">
+                                <a class="projects-list-link" href="/frame-by-frame">
                                     <span class="projects-list-title">Frame by Frame</span>
                                     <span class="projects-list-tag">( Projet suivant )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
                                 </a>
                             </li>
                             <li>
-                                <a class="projects-list-link" href="work.html">
+                                <a class="projects-list-link" href="/work">
                                     <span class="projects-list-title">Tous les projets</span>
                                     <span class="projects-list-tag">( 5 projets )</span>
                                     <span class="projects-list-arrow" aria-hidden="true"></span>
@@ -331,10 +392,10 @@
 
             <nav id="menu-wrapper" style="display:none;">
                 <ul class="menu-list">
-                    <li><a href="index.html" class="hover-underline">Accueil</a></li>
-                    <li><a href="work.html" class="hover-underline is-active">Projets</a></li>
-                    <li><a href="about.html" class="hover-underline">À propos</a></li>
-                    <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                    <li><a href="/" class="hover-underline">Accueil</a></li>
+                    <li><a href="/work" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="/about" class="hover-underline">À propos</a></li>
+                    <li><a href="/contact" class="hover-underline">Contact</a></li>
                 </ul>
             </nav>
 
@@ -358,10 +419,10 @@
         </div>
     </div>
 
-    <script src="script-core.js?v=20261008z"></script>
+    <script src="script-core.js?v=20261009d"></script>
     <script src="script-case.js?v=20261008z"></script>
     <script src="script-shopcaisse.js?v=20261008g"></script>
-    <script src="script-sound.js?v=20261008z"></script>
+    <script src="script-sound.js?v=20261009"></script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
     align-items: flex-start;
 }
 
-.about-page .title-group h1 {
+.about-page .title-group .site-title {
     font-size: 64px;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -617,8 +617,8 @@
         padding: 0;
     }
 
-    /* h1 40px qui grandit avec l'ecran, exactement comme index */
-    .about-page .title-group h1 {
+    /* Logo 40px qui grandit avec l'ecran, exactement comme index */
+    .about-page .title-group .site-title {
         font-size: clamp(40px, 6.2vmin, 56px);
         letter-spacing: -0.012em;
     }

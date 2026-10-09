@@ -1,0 +1,32 @@
+# Tanguy Beaudouin — tanguy.studio
+
+> Tanguy Beaudouin est UX/UI Designer à Rennes (France). Il conçoit des expériences digitales inclusives, pensées conversion et SEO/GEO : sites BtoB, e-commerce, parcours utilisateur, design systems et landing pages, de la wireframe au prototype Figma. Étudiant en Master Direction Artistique, il recherche une alternance en UX/UI ou Product Design.
+
+Le site est en français. Chaque étude de cas présente le contexte, les choix UX/UI et les écrans du projet.
+
+## Profil
+
+- [À propos](https://tanguy.studio/about): parcours, compétences et certifications. UX/UI Designer chez Digidop (stage puis alternance, 2026), agence primée « Webflow Partner of the Year », sur des maquettes BtoB pensées conversion et SEO/GEO. Designer graphique freelance de 2021 à 2025. Certifié « Figma UI UX Design Advanced » et « Google UX Design » (2025).
+- [CV (PDF)](https://tanguy.studio/fichiers/CV_Tanguy_Beaudouin.pdf): CV complet.
+- [Contact](https://tanguy.studio/contact): formulaire de contact, email, téléphone, LinkedIn et Behance.
+
+## Études de cas
+
+- [Sportigo](https://tanguy.studio/sportigo): identité visuelle et landing page d'une plateforme SaaS de gestion pour salles de sport, studios et clubs (réservations, abonnements, paiements, plannings). 2026.
+- [Siko Mobility](https://tanguy.studio/siko-mobility): conception UX/UI d'un parcours de financement de véhicule en 8 étapes, de la simulation à la signature, sur mobile et desktop. 2025.
+- [Shopcaisse](https://tanguy.studio/shopcaisse): refonte de la navigation du site d'une application de caisse pour commerçants : méga-menu desktop et menu mobile à niveaux. 2026.
+- [Frame by Frame](https://tanguy.studio/frame-by-frame): direction artistique, identité et site vitrine immersif d'une agence de branding orientée cinéma. 2025.
+- [Nintendo](https://tanguy.studio/nintendo): refonte conceptuelle de l'expérience e-commerce Nintendo : découverte produit, catalogue et parcours d'achat. 2025.
+
+## Compétences
+
+- UX/UI design, wireframes, user flows, prototypes, design systems (Figma : variantes, tokens, auto-layout, Figma MCP)
+- SEO, GEO et optimisation de la conversion (CRO) intégrés dès la maquette
+- Création de sites no-code avec Webflow et Framer, intégration front-end HTML, CSS et JavaScript
+- Suite Adobe (Illustrator, Photoshop, After Effects, InDesign, Lightroom) et usage avancé de l'IA (Claude) dans le processus de design
+
+## Optional
+
+- [Projets](https://tanguy.studio/work): liste de toutes les études de cas.
+- [LinkedIn](https://www.linkedin.com/in/tanguy-beaudouin/)
+- [Behance](https://www.behance.net/tanguybeaudouin2)

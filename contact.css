@@ -19,7 +19,16 @@
     padding-top: 2px;
 }
 
-.contact-block h3 {
+/* Titres de blocs en h2 (le h1 est le sous-titre du header) : on reprend la
+   typo du h3 de main.css, sinon le h2 retomberait sur ses 36px. */
+.contact-block h2,
+.contact-form-title {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    line-height: normal;
+    letter-spacing: 0;
+}
+
+.contact-block h2 {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -192,8 +201,8 @@
 }
 
 @media (max-width: 900px) {
-    /* Header comme home/about : h1 40px qui grandit avec l'ecran */
-    .contact-page .title-group h1 {
+    /* Header comme home/about : logo 40px qui grandit avec l'ecran */
+    .contact-page .title-group .site-title {
         font-size: clamp(40px, 6.2vmin, 56px);
         letter-spacing: -0.012em;
     }

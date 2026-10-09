@@ -172,7 +172,7 @@ html.first-visit-loading #custom-cursor {
 
 /* ========================================== 3. TYPOGRAPHIE ========================================== */
 
-h1 {
+.site-title {
     font-size: 64px;
     font-weight: 600;
     line-height: 1;
@@ -183,6 +183,22 @@ h1 {
 .site-title-link {
     color: inherit;
     text-decoration: none;
+}
+
+/* Le logo "tanguy.studio" n'est pas le h1 : chaque page porte son propre h1
+   (accroche, nom du projet, nom de la page), qui garde le style de l'element
+   qu'il remplace. On neutralise donc le 2em/gras par defaut du navigateur. */
+h1 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* Titre + sous-titre regroupes dans un meme h1 (etudes de cas, About) :
+   meme pile qu'avant, 8px entre les deux. */
+.title-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
 }
 
 h2 {
@@ -205,6 +221,14 @@ h3 {
     font-weight: 600;
     line-height: 1.18;
     letter-spacing: 0.005em;
+}
+
+/* L'accroche est ecrite dans le HTML, lisible sans JS par Google et les IA.
+   Avec JS, elle reste masquee jusqu'a ce que le typewriter la reprenne mot a mot. */
+@media (scripting: enabled) {
+    #typewriter.is-pending {
+        visibility: hidden;
+    }
 }
 
 .subtitle {
@@ -658,7 +682,7 @@ h3 {
     }
 
     /* Typo mobile de la home — d'apres la maquette Figma (node 2043:3101) */
-    .home-page .title-group h1 {
+    .home-page .title-group .site-title {
         font-size: clamp(40px, 6.2vmin, 56px);
         line-height: 1;
         letter-spacing: -0.012em;
@@ -673,13 +697,14 @@ h3 {
     /* Sous 900px le texte coule d'un bloc et se replie sur une mesure fixe : ce sont
        ces replis que le text-align: justify herite de .home-page #typewriter etire.
        34ch = la mesure obtenue sur un telephone de 390px, la ou le bloc a ete calibre
-       d'apres la maquette. La police est fixe a 16px comme sur desktop : seuls le h1
+       d'apres la maquette. La police est fixe a 16px comme sur desktop : seuls le logo
        et la marge grandissent avec l'ecran, le pave garde sa taille de lecture. */
     .home-page #typewriter {
         font-size: 16px;
         max-width: 34ch;
         padding: 0;
     }
+
 
     .home-page .location {
         font-family: 'DM Mono', monospace;
@@ -720,7 +745,7 @@ h3 {
         order: 4;
     }
 
-    h1 {
+    .site-title {
         font-size: 24px;
         line-height: 1.1;
     }

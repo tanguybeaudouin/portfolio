@@ -11,6 +11,62 @@
     <meta property="og:description" content="Portfolio de Tanguy Beaudouin, UX/UI Designer à Rennes. Études de cas, design systems, interfaces e-commerce et expériences digitales.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tanguy.studio/">
+    <meta property="og:site_name" content="tanguy.studio">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://tanguy.studio/images/og/og-tanguy-studio.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="tanguy.studio : Tanguy Beaudouin, UX/UI Designer à Rennes">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://tanguy.studio/#website",
+          "url": "https://tanguy.studio/",
+          "name": "tanguy.studio",
+          "description": "Portfolio de Tanguy Beaudouin, UX/UI Designer à Rennes. Études de cas, design systems, interfaces e-commerce et expériences digitales.",
+          "inLanguage": "fr-FR",
+          "publisher": {
+            "@id": "https://tanguy.studio/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tanguy.studio/#person",
+          "name": "Tanguy Beaudouin",
+          "jobTitle": "UX/UI Designer",
+          "url": "https://tanguy.studio/",
+          "image": "https://tanguy.studio/images/portrait-tanguy.webp",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Rennes",
+            "addressCountry": "FR"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/tanguy-beaudouin/",
+            "https://www.behance.net/tanguybeaudouin2",
+            "https://www.instagram.com/tanguy_graphiste"
+          ],
+          "knowsAbout": [
+            "UX Design",
+            "UI Design",
+            "Design system",
+            "Figma",
+            "Prototypage",
+            "SEO",
+            "GEO",
+            "Optimisation de la conversion (CRO)",
+            "Webflow",
+            "Framer",
+            "Intégration HTML, CSS et JavaScript"
+          ]
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <!-- Initialisation du thème avant le rendu -->
@@ -50,7 +106,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css?v=20261008y2">
+    <link rel="stylesheet" href="main.css?v=20261009g">
 </head>
 
 <body class="home-page">
@@ -67,7 +123,7 @@
                 <!-- Header -->
                 <header class="content-top-section">
                     <div class="title-group">
-                        <h1><a class="site-title-link" href="index.html" aria-label="Retour à la page d'accueil">tanguy.studio</a></h1>
+                        <p class="site-title"><a class="site-title-link" href="/" aria-label="Retour à la page d'accueil">tanguy.studio</a></p>
                         <p class="subtitle">UX/UI DESIGNER</p>
                     </div>
                     <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
@@ -79,15 +135,18 @@
                 <!-- Baseline / Menu -->
                 <div class="baseline-section">
                     <div id="baseline-wrapper">
-                        <h2 id="typewriter"></h2>
+                        <!-- Accroche ecrite ici (lisible sans JS par Google et les IA), animee mot a mot
+                             par script-core.js. Le 2e <br> est masque sous 900px (voir main.css) : le texte
+                             doit rester lisible avec ET sans ce saut de ligne, d'ou l'espace apres le <br>. -->
+                        <h1 id="typewriter" class="is-pending">Hello, moi c'est Tanguy.<br>Je conçois des expériences digitales inclusives,<br> pensées conversion et SEO, garanties sans frustration utilisateur.</h1>
                     </div>
 
                     <nav id="menu-wrapper" style="display:none;">
                         <ul class="menu-list">
-                            <li><a href="index.html" class="hover-underline is-active">Accueil</a></li>
-                            <li><a href="work.html" class="hover-underline">Projets</a></li>
-                            <li><a href="about.html" class="hover-underline">À propos</a></li>
-                            <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                            <li><a href="/" class="hover-underline is-active">Accueil</a></li>
+                            <li><a href="/work" class="hover-underline">Projets</a></li>
+                            <li><a href="/about" class="hover-underline">À propos</a></li>
+                            <li><a href="/contact" class="hover-underline">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -107,9 +166,9 @@
         </main>
     </div>
 
-    <script src="script-core.js?v=20261008z"></script>
+    <script src="script-core.js?v=20261009d"></script>
     <script src="script-home.js?v=20260923"></script>
-    <script src="script-sound.js?v=20261008z"></script>
+    <script src="script-sound.js?v=20261009"></script>
 </body>
 
 </html>

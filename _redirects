@@ -1,13 +1,36 @@
-# Études de cas : URL propres (/project-1) servies par les fichiers .html,
+# URL propres (/work, /sportigo) servies par les fichiers .html,
 # et l'ancienne forme en .html redirigée définitivement vers l'URL propre.
-/project-1 /project-1.html 200
-/project-2 /project-2.html 200
-/project-3 /project-3.html 200
-/project-4 /project-4.html 200
-/project-5 /project-5.html 200
+/work /work.html 200
+/about /about.html 200
+/contact /contact.html 200
+/mentions-legales /mentions-legales.html 200
+/confidentialite /confidentialite.html 200
+/sportigo /sportigo.html 200
+/siko-mobility /siko-mobility.html 200
+/shopcaisse /shopcaisse.html 200
+/frame-by-frame /frame-by-frame.html 200
+/nintendo /nintendo.html 200
 
-/project-1.html /project-1 301
-/project-2.html /project-2 301
-/project-3.html /project-3 301
-/project-4.html /project-4 301
-/project-5.html /project-5 301
+/work.html /work 301
+/about.html /about 301
+/contact.html /contact 301
+/mentions-legales.html /mentions-legales 301
+/confidentialite.html /confidentialite 301
+/sportigo.html /sportigo 301
+/siko-mobility.html /siko-mobility 301
+/shopcaisse.html /shopcaisse 301
+/frame-by-frame.html /frame-by-frame 301
+/nintendo.html /nintendo 301
+
+# Anciennes URL numérotées des études de cas (en ligne jusqu'en octobre 2026),
+# redirigées vers le même projet pour ne pas casser les liens déjà partagés.
+/project-1 /nintendo 301
+/project-1.html /nintendo 301
+/project-2 /frame-by-frame 301
+/project-2.html /frame-by-frame 301
+/project-3 /siko-mobility 301
+/project-3.html /siko-mobility 301
+/project-4 /sportigo 301
+/project-4.html /sportigo 301
+/project-5 /shopcaisse 301
+/project-5.html /shopcaisse 301

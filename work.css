@@ -61,7 +61,7 @@
     }
 
     /* Header 40px qui grandit avec l'ecran, comme les autres pages */
-    .work-page .title-group h1 {
+    .work-page .title-group .site-title {
         font-size: clamp(40px, 6.2vmin, 56px);
         letter-spacing: -0.012em;
     }
