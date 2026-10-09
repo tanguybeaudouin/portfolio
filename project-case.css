@@ -73,6 +73,9 @@ body.case-page {
 
 .case-intro {
     padding-top: 0;
+    /* Le 1er visuel remonte pour depasser en bas d'ecran : on voit qu'il y a
+       une suite sous la fiche projet. */
+    padding-bottom: 72px;
 }
 
 .case-media,
@@ -112,8 +115,9 @@ body.case-page {
     margin-bottom: var(--space-16);
 }
 
-/* Retour : la meme grande fleche que la page "en cours" (.wip-return-* dans
-   project.css), masque teinte en currentColor pour suivre le theme. */
+/* Retour : la fleche de la page "en cours" (.wip-return-* dans project.css),
+   en taille reduite pour ne pas voler la vedette au projet. Masque teinte en
+   currentColor pour suivre le theme. */
 .case-return-link {
     display: block;
     color: var(--neutral-dark);
@@ -124,8 +128,7 @@ body.case-page {
    place, sinon il s'echappe de sous le curseur et le survol clignote. */
 .case-return-arrow {
     display: block;
-    height: calc(2.6em + 4px);
-    font-size: 16px;
+    height: 30px;
     aspect-ratio: 83 / 71;
     background-color: currentColor;
     -webkit-mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
@@ -710,6 +713,7 @@ body.case-page {
 
     .case-intro {
         padding-top: 0;
+        padding-bottom: 52px;
     }
 
     .case-next--full {
