@@ -602,6 +602,7 @@
         const menuButton = document.getElementById('menu-toggle');
         const menuWrapper = document.getElementById('menu-wrapper');
         const menuLinks = menuWrapper ? Array.from(menuWrapper.querySelectorAll('.menu-list a')) : [];
+        const homeLatestLink = document.querySelector('.home-latest');
         const CLICKABLE = 'a, button, label[for]';
 
         // Clic global, sauf les éléments qui ont leur propre son.
@@ -617,7 +618,7 @@
             if (event.pointerType !== 'mouse') return;
             const target = event.target.closest(CLICKABLE);
             if (!target || target.contains(event.relatedTarget)) return;
-            if (target === menuButton || menuLinks.includes(target)) return; // sons dédiés
+            if (target === menuButton || menuLinks.includes(target) || target === homeLatestLink) return; // sons dédiés
             if (target.getAttribute('aria-disabled') === 'true' || target.disabled) return;
             play('hover');
         });
@@ -648,6 +649,18 @@
         }
 
         menuLinks.forEach((link) => onMouseEnter(link, () => play('menuHover')));
+
+        // Lien "( Dernier projet )" de l'accueil : son brouillage au survol
+        // (script-core.js) a le même crépitement que l'ouverture du menu.
+        if (homeLatestLink) {
+            let homeLatestBusy = false;
+            onMouseEnter(homeLatestLink, () => {
+                if (homeLatestBusy) return;
+                homeLatestBusy = true;
+                play('scramble', 650);
+                window.setTimeout(() => { homeLatestBusy = false; }, 650);
+            });
+        }
 
         document.querySelectorAll('#theme-toggle').forEach((input) => {
             input.addEventListener('change', () => play('theme', input.checked));

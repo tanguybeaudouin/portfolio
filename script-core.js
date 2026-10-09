@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const baselineWrapper = document.getElementById('baseline-wrapper');
     const menuWrapper = document.getElementById('menu-wrapper');
     const typewriter = document.getElementById('typewriter');
+    const homeLatestLink = document.querySelector('.home-latest');
+    const homeLatestText = homeLatestLink ? homeLatestLink.textContent : '';
     const themeToggles = Array.from(
         document.querySelectorAll('#theme-toggle')
     );
@@ -188,9 +190,21 @@ document.addEventListener('DOMContentLoaded', () => {
             .join('');
         typewriter.classList.remove('is-pending');
 
-        typewriter.querySelectorAll('.word').forEach((word, index) => {
+        const words = typewriter.querySelectorAll('.word');
+        words.forEach((word, index) => {
             setTimeout(() => word.classList.add('visible'), index * 80);
         });
+
+        // Le lien "( Dernier projet )" se masque et reapparait apres le dernier
+        // mot, en se brouillant comme les liens du menu : au chargement comme a
+        // la fermeture du menu, il suit l'accroche.
+        if (homeLatestLink) {
+            homeLatestLink.classList.add('is-waiting');
+            window.setTimeout(() => {
+                homeLatestLink.classList.remove('is-waiting');
+                scrambleHomeLatest();
+            }, words.length * 80 + 300);
+        }
     }
 
     const startTypewriterAnimation = () => {
@@ -395,6 +409,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     };
+
+    // Lien "( Dernier projet : Sportigo )" de l'accueil : brouillage des liens
+    // du menu, a son apparition (animateText) et au survol (le son de survol est
+    // dans script-sound.js). Pas de relance tant que le brouillage n'est pas fini.
+    let homeLatestScrambling = false;
+    function scrambleHomeLatest() {
+        if (!homeLatestLink || homeLatestScrambling) return;
+        homeLatestScrambling = true;
+        scrambleText(homeLatestLink, homeLatestText, MENU_SCRAMBLE_DURATION_MS).then(() => {
+            homeLatestScrambling = false;
+        });
+    }
+
+    homeLatestLink?.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse') scrambleHomeLatest();
+    });
 
     const runPageIntroScramble = async (withPageReveal = false, staggerMs = SCRAMBLE_STAGGER_MS) => {
         const revealTargets = [];
