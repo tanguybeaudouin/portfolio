@@ -1,0 +1,75 @@
+/* ========================================== 11F. PAGE EN COURS ========================================== */
+
+.wip-page .main-card {
+    align-items: center;
+    justify-content: center;
+}
+
+.wip-content-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    gap: 0;
+    position: relative;
+}
+
+.wip-baseline-wrapper {
+    width: auto;
+    max-width: min(90vw, 920px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.wip-page #baseline-wrapper.wip-baseline-wrapper {
+    width: auto;
+}
+
+.wip-baseline-wrapper #typewriter {
+    min-height: 1.1em;
+}
+
+/* Meme phrase que l'accueil : DM Mono 16px, interligne 1.3, en 400 (seule
+   graisse chargee, le 600 de #typewriter serait un faux gras). Fixe aussi
+   sous 900px, ou #typewriter retombe a 14px ailleurs. */
+.wip-page #typewriter {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0;
+}
+
+/* Retour : la grande fleche de la liste des projets (meme fichier, meme
+   taille), retournee vers la gauche. Masque teinte en currentColor pour
+   suivre le theme. */
+.wip-return-link {
+    position: absolute;
+    top: var(--space-16);
+    left: var(--space-16);
+    display: block;
+    color: var(--neutral-dark);
+    transition: color 0.8s ease;
+}
+
+/* Au survol, seule la fleche glisse : le lien (la zone cliquable) reste en
+   place, sinon il s'echappe de sous le curseur et le survol clignote. */
+.wip-return-arrow {
+    display: block;
+    height: calc(2.6em + 4px);
+    font-size: 16px;
+    aspect-ratio: 83 / 71;
+    background-color: currentColor;
+    -webkit-mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
+    mask: url("fichiers/arrow-left.svg") center / contain no-repeat;
+    transform: scaleX(-1);
+    transition: transform 0.2s ease;
+}
+
+@media (hover: hover) {
+    .wip-return-link:hover .wip-return-arrow {
+        transform: translateX(-4px) scaleX(-1);
+    }
+}

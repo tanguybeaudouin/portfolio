@@ -1,0 +1,82 @@
+/* ========================================== WORK PAGE ========================================== */
+
+.work-page .main-card {
+    display: block;
+    width: 100%;
+    padding: 32px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.work-page .content-section {
+    width: 100%;
+    padding: 0;
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 64px);
+}
+
+.work-page .content-top-section {
+    align-items: flex-start;
+}
+
+.work-page .about-baseline-section {
+    position: relative;
+    min-height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.work-page .footer-group {
+    margin-top: 0;
+}
+
+/* ========== LISTE DES PROJETS (maquette 2284:61334) ==========
+   Composant .projects-list dans main.css (partage avec "et.ensuite" des pages
+   projet). Ici : colonne de 434px decalee de 96px, centree verticalement
+   entre header et footer. */
+.projects-list-section {
+    padding: 0 96px;
+}
+
+.work-page .projects-list {
+    width: 434px;
+}
+
+@media (max-width: 900px) {
+    /* padding 0 sur la carte : le padding 24 des sections (header, liste, footer)
+       suffit. Avant, carte 24 + sections 24 = 48px de double marge (padding "pas bon"). */
+    .work-page .main-card {
+        padding: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .work-page .content-section {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    /* Header 40px qui grandit avec l'ecran, comme les autres pages */
+    .work-page .title-group .site-title {
+        font-size: clamp(40px, 6.2vmin, 56px);
+        letter-spacing: -0.012em;
+    }
+
+    .work-page .about-baseline-section {
+        flex: 1;
+    }
+
+    .projects-list-section {
+        padding: 0 var(--space-24);
+    }
+
+    .work-page .projects-list {
+        width: 100%;
+    }
+
+    /* Footer : padding commun (.footer-group dans main.css), rien a surcharger ici. */
+}

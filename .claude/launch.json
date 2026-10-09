@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/Users/tanguybeaudouin/.claude/portfolio-preview/serve.py", "8767"],
+      "port": 8767,
+      "autoPort": false
+    }
+  ]
+}

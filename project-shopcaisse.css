@@ -1,0 +1,2158 @@
+/* ==========================================================================
+   SHOPCAISSE — navigation du site, codee en HTML/CSS (shopcaisse.html)
+   --------------------------------------------------------------------------
+   Reproduction des maquettes Figma (page shopcaisse > New - Large menu) :
+   hero avec la barre de navigation, les quatre panneaux du mega-menu et le
+   menu mobile a niveaux. Comme pour Sportigo et Siko, chaque scene garde ses
+   dimensions de maquette et est mise a l'echelle de son cadre par
+   script-case.js (--mock-scale) : les cotes ci-dessous sont celles de Figma.
+   Le mega-menu est interactif (script-shopcaisse.js).
+   Polices : Chillax (Fontshare) et Outfit (Google Fonts), dans le <head>.
+   ========================================================================== */
+
+/* ---------- Jetons ---------- */
+
+.sc-stage {
+    --sc-anthracite: #191919;
+    --sc-anthracite-90: rgba(25, 25, 25, 0.9);
+    --sc-anthracite-20: rgba(25, 25, 25, 0.2);
+    --sc-anthracite-6: rgba(25, 25, 25, 0.06);
+    --sc-bleu-roi: #0049d0;
+    --sc-bleu-saphir: #0200a0;
+    --sc-safran: #ffb400;
+    --sc-gris-3: #7e91a2;
+    --sc-blanc-90: rgba(255, 255, 255, 0.9);
+    --sc-glass-inset:
+        inset 0 0 14.612px 0 rgba(255, 255, 255, 0.25),
+        inset 0 1.461px 2.922px 0 rgba(255, 255, 255, 0.25);
+    --sc-btn-inset:
+        inset 0 0 20px 0 rgba(255, 255, 255, 0.15),
+        inset 0 2px 4px 0 rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+    --sc-bar-shadow:
+        0 0 3.653px 0 rgba(0, 0, 0, 0.12),
+        0 2px 8px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* ---------- Cadre et mise a l'echelle ---------- */
+
+.case-mock {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #0049d0;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 1px 2px -1px rgba(0, 0, 0, 0.06),
+        0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sc-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(var(--mock-scale, 1));
+    transform-origin: 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    color: var(--sc-anthracite);
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    pointer-events: none;
+}
+
+.sc-stage img {
+    display: block;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.sc-stage p {
+    margin: 0;
+}
+
+/* Figma rogne ces libelles a la hauteur des capitales (text-box-trim). */
+.sc-trim {
+    text-box: trim-both cap alphabetic;
+}
+
+/* ---------- Fond du hero (degrade + texture) ---------- */
+
+.sc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(942.5px 519.9px at 50% 0, #0385f1 0%, #0267e1 50%, #0049d0 100%);
+}
+
+.sc-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Voile pose sur la page quand un menu est ouvert (calque « Fond »). */
+.sc-veil {
+    position: absolute;
+    inset: 0;
+    background: var(--sc-anthracite-6);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+/* ---------- Boutons (composants Button, Button-Glassy) ---------- */
+
+.sc-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 38px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--sc-anthracite);
+    white-space: nowrap;
+}
+
+.sc-btn > span {
+    padding: 0 4px;
+}
+
+.sc-btn img {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Bouton plein : bleu roi, halo radial et reflets interieurs « verre ». */
+.sc-btn--primary,
+.sc-btn--neutral,
+.sc-btn--safran {
+    gap: 8px;
+    border: 1px solid var(--sc-anthracite-20);
+    box-shadow: var(--sc-btn-inset);
+    filter: drop-shadow(0 0 2.5px rgba(0, 0, 0, 0.12));
+}
+
+.sc-btn--primary {
+    background:
+        radial-gradient(77px 50px at 69% 0, rgba(3, 133, 241, 0.65) 0%, rgba(2, 103, 225, 0.65) 50%, rgba(0, 73, 208, 0.65) 100%),
+        var(--sc-bleu-roi);
+    color: #fff;
+}
+
+.sc-btn--neutral {
+    border-color: var(--sc-anthracite-6);
+    background: #fff;
+}
+
+.sc-btn--safran {
+    background: var(--sc-safran);
+}
+
+/* Petit format (26 px) des boutons de panneau. */
+.sc-btn--sm {
+    gap: 4px;
+    height: 26px;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.sc-glassy {
+    display: inline-flex;
+    padding: 4px;
+    border: 1px solid rgba(224, 246, 255, 0.06);
+    border-radius: 16px;
+    background: rgba(224, 246, 255, 0.06);
+    box-shadow:
+        0 2px 8.4px 0 rgba(0, 0, 0, 0.04),
+        0 7px 35px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sc-glassy--sm {
+    border-radius: 12px;
+}
+
+/* ---------- Badges stores ---------- */
+
+.sc-store {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 38px;
+    padding: 8px 12px;
+    border: 0.674px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: var(--sc-anthracite);
+    box-shadow: var(--sc-glass-inset);
+    filter: drop-shadow(0 0 1.826px rgba(0, 0, 0, 0.12));
+}
+
+/* Variante « Fond None » du hero : verre presque transparent. */
+
+.sc-store-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sc-store-text small {
+    font-size: 5.845px;
+    line-height: 1.3;
+    letter-spacing: -0.1169px;
+    color: #fff;
+    text-box: trim-both cap alphabetic;
+}
+
+/* ---------- Badge Avis Verifies (pieces vectorielles assemblees) ---------- */
+
+.sc-avis {
+    position: relative;
+    width: 82.29px;
+    height: 30.7px;
+    flex-shrink: 0;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    color: var(--sc-anthracite-90);
+}
+
+.sc-avis > * {
+    position: absolute;
+}
+
+.sc-avis-mark {
+    top: 0;
+    left: 0;
+    width: 48.46px;
+    height: 12.539px;
+}
+
+.sc-avis-note {
+    top: 0.86px;
+    left: 63.17px;
+    font-size: 8.648px;
+}
+
+.sc-avis-total {
+    top: 2.59px;
+    left: 75.29px;
+    font-size: 6.486px;
+}
+
+.sc-avis-stars {
+    top: 15.57px;
+    left: 1.15px;
+    display: flex;
+    justify-content: space-between;
+    width: 80.855px;
+    height: 15.133px;
+}
+
+.sc-avis-star {
+    position: relative;
+    width: 15.133px;
+    height: 15.133px;
+}
+
+.sc-avis-star img {
+    position: absolute;
+}
+
+.sc-avis-star img:first-child {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sc-avis-star img:last-child {
+    top: 2.47px;
+    left: 1.97px;
+    width: 10.851px;
+    height: 9.865px;
+}
+
+.sc-avis-star:first-child img:last-child {
+    top: 2.59px;
+    left: 2.16px;
+    width: 10.377px;
+    height: 9.512px;
+}
+
+.sc-avis-star:last-child img:last-child {
+    top: 2.46px;
+    left: 2.16px;
+    width: 10.853px;
+    height: 9.886px;
+}
+
+/* ---------- Barre de navigation desktop (Nav-bar) ---------- */
+
+.sc-bar,
+.sc-panel {
+    position: relative;
+    border-radius: 16px;
+    box-shadow: var(--sc-bar-shadow);
+}
+
+/* Fond et reflets dans des calques a part, comme dans Figma : le flou
+   d'arriere-plan reste sous le contenu. */
+.sc-bar::before,
+.sc-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--sc-blanc-90);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.sc-bar::after,
+.sc-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    /* Contour interieur comme dans Figma (1px qui ne s'ajoute pas a la taille). */
+    box-shadow: inset 0 0 0 1px var(--sc-anthracite-6), var(--sc-glass-inset);
+    pointer-events: none;
+}
+
+.sc-bar > *,
+.sc-panel > * {
+    position: relative;
+}
+
+.sc-bar {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+    padding: 4px;
+}
+
+.sc-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.sc-logo {
+    padding-left: 8px;
+}
+
+.sc-logo img {
+    width: 16px;
+    height: 22px;
+}
+
+.sc-tabs,
+.sc-bar-right {
+    display: flex;
+    align-items: center;
+}
+
+.sc-bar-right {
+    gap: 8px;
+}
+
+/* Les onglets restent cliquables dans une scene sinon inerte. */
+.sc-tab {
+    margin: 0;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: background-color 0.2s ease;
+}
+
+.sc-tab:hover,
+.sc-tab.is-active {
+    background: var(--sc-anthracite-6);
+}
+
+.sc-tab:focus-visible {
+    outline: 2px solid var(--sc-bleu-roi);
+    outline-offset: 2px;
+}
+
+/* ---------- Scene 1 : hero (1280 x 706) ---------- */
+
+.case-mock--hero {
+    aspect-ratio: 1280 / 706;
+}
+
+.case-mock--hero .sc-stage {
+    width: 1280px;
+    height: 706px;
+    overflow: hidden;
+}
+
+.sc-nav {
+    position: absolute;
+    top: 24px;
+    left: calc(50% - 6px);
+    width: 1122px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ---------- Scene 2 : mega-menu interactif (1280 x 706) ---------- */
+
+.sc-demo .sc-veil,
+.sc-demo .sc-panel {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.sc-demo:not(.is-open) .sc-veil {
+    opacity: 0;
+}
+
+/* Menu ouvert : le texte du hero s'efface, il depasserait sous les panneaux. */
+
+.sc-panel[hidden] {
+    display: none;
+}
+
+.sc-demo .sc-panel {
+    animation: sc-panel-in 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sc-panel-in {
+    from { opacity: 0.4; transform: translateY(-6px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sc-demo .sc-panel {
+        animation: none;
+    }
+}
+
+.sc-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+}
+
+.sc-panel-body {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.sc-card {
+    display: flex;
+    gap: 12px;
+    align-self: stretch;
+    padding: 8px;
+    box-shadow: inset 0 0 0 1px var(--sc-anthracite-6);
+    border-radius: 12px;
+    background: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+.sc-card--grow {
+    flex: 1 0 0;
+    min-width: 1px;
+}
+
+.sc-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sc-links .sc-btn {
+    width: 100%;
+}
+
+.sc-links--grow {
+    flex: 1 0 0;
+    min-width: 1px;
+}
+
+.sc-group {
+    display: flex;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.sc-group--grow {
+    flex: 1 0 0;
+    min-width: 1px;
+}
+
+.sc-divider {
+    width: 0;
+    align-self: stretch;
+    position: relative;
+}
+
+.sc-divider img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -0.5px;
+    width: 1px;
+    height: 100%;
+}
+
+/* Elements actifs (secteur, metier) : meme fond que l'onglet ouvert. */
+.sc-btn.is-current {
+    background: var(--sc-anthracite-6);
+}
+
+.sc-btn--split {
+    justify-content: space-between;
+}
+
+/* Bloc editorial : surtitre, titre en capitales, texte et bouton. */
+.sc-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.sc-feature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.sc-kicker {
+    font-family: 'Chillax', sans-serif;
+    font-size: 13px;
+}
+
+.sc-heading {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--sc-bleu-saphir);
+    text-transform: uppercase;
+}
+
+.sc-body {
+    font-size: 14px;
+    color: var(--sc-anthracite-90);
+}
+
+.sc-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sc-check {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--sc-anthracite-90);
+    white-space: nowrap;
+}
+
+.sc-check img {
+    width: 16px;
+    height: 16px;
+}
+
+.sc-media {
+    align-self: stretch;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sc-stage .sc-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sc-panel-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding-left: 12px;
+    border-radius: 12px;
+}
+
+.sc-foot-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.sc-foot-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sc-stores {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* -- Panneau L'appli -- */
+
+.sc-panel--appli .sc-panel-body {
+    height: 329px;
+}
+
+.sc-panel--appli .sc-card--appli {
+    width: 431px;
+}
+
+.sc-offer {
+    width: 225px;
+    flex-shrink: 0;
+    padding: 8px 12px;
+}
+
+.sc-offer .sc-feature {
+    align-items: center;
+}
+
+.sc-price-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.sc-price {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sc-price-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.sc-price-value {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 45px;
+    letter-spacing: -1.3px;
+}
+
+.sc-price-unit {
+    font-size: 17px;
+    line-height: 26px;
+    color: var(--sc-gris-3);
+}
+
+.sc-price-note {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.28px;
+    color: var(--sc-gris-3);
+}
+
+.sc-quota {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    border: 1px solid var(--sc-anthracite-6);
+    border-radius: 12px;
+    background: var(--sc-anthracite-6);
+}
+
+.sc-quota-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--sc-bleu-roi);
+}
+
+.sc-quota-icon img {
+    width: 16px;
+    height: 16px;
+}
+
+.sc-quota p {
+    font-weight: 600;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+.sc-panel--appli .sc-media {
+    flex: 1 0 0;
+    min-width: 1px;
+}
+
+/* -- Panneau Fonctionnalites -- */
+
+.sc-panel--features .sc-card {
+    flex: 1 0 0;
+    align-items: flex-start;
+}
+
+.sc-col-fixed {
+    width: 265.5px;
+    flex-shrink: 0;
+}
+
+.sc-cat {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--sc-bleu-roi);
+    text-transform: uppercase;
+}
+
+.sc-col-new {
+    position: relative;
+}
+
+.sc-new {
+    position: absolute;
+    top: 34px;
+    left: 188.25px;
+    padding: 4px 6px;
+    border: 0.8px solid rgba(255, 180, 0, 0);
+    border-radius: 100px;
+    background:
+        linear-gradient(180deg, rgba(255, 180, 0, 0) 80%, rgba(255, 180, 0, 0.06) 100%),
+        linear-gradient(180deg, rgba(255, 180, 0, 0.06) 0%, rgba(255, 180, 0, 0) 20%),
+        rgba(255, 180, 0, 0.06);
+    font-weight: 500;
+    font-size: 8px;
+    color: var(--sc-safran);
+    text-transform: uppercase;
+}
+
+.sc-panel--features .sc-panel-foot {
+    padding-left: 0;
+}
+
+.sc-panel--features .sc-foot-left .sc-glassy {
+    width: 183px;
+    align-self: stretch;
+}
+
+.sc-panel--features .sc-foot-left .sc-btn {
+    flex: 1;
+    height: auto;
+}
+
+/* -- Panneaux Ton activite et Ressources -- */
+
+.sc-panel--activite .sc-panel-body,
+.sc-panel--ressources .sc-panel-body {
+    height: 285px;
+}
+
+.sc-panel--activite .sc-card--grow {
+    gap: 8px;
+}
+
+.sc-panel--activite .sc-aside {
+    width: 274px;
+}
+
+.sc-panel--ressources .sc-aside {
+    width: 233px;
+}
+
+.sc-aside {
+    flex-shrink: 0;
+    padding: 8px 12px;
+}
+
+.sc-aside .sc-feature {
+    flex: 1;
+}
+
+.sc-aside .sc-feature-text {
+    gap: 8px;
+}
+
+.sc-aside .sc-feature-text > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sc-panel--ressources .sc-aside .sc-feature-text > div {
+    gap: 8px;
+}
+
+.sc-panel--activite .sc-media,
+.sc-panel--ressources .sc-media {
+    width: 418px;
+    flex-shrink: 0;
+}
+
+/* ---------- Scene 3 : menu mobile en trois niveaux (1340 x 816) ---------- */
+
+.sc-handset .sc-hero-bg {
+    background: radial-gradient(287.2px 519.9px at 50% 0, #0385f1 0%, #0267e1 50%, #0049d0 100%);
+}
+
+.sc-m-menu {
+    position: absolute;
+    top: 48px;
+    left: 16px;
+    width: 358px;
+}
+
+.sc-m-menu .sc-panel {
+    gap: 4px;
+}
+
+.sc-m-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 8px;
+    box-shadow: inset 0 0 0 1px var(--sc-anthracite-6);
+    border-radius: 12px;
+    background: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+.sc-m-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.sc-m-head--back {
+    align-items: flex-start;
+}
+
+.sc-m-close {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding: 4px 8px;
+}
+
+.sc-m-close img {
+    width: 11.899px;
+    height: 12px;
+}
+
+.sc-m-head .sc-logo {
+    padding-left: 0;
+}
+
+.sc-m-head--back .sc-btn > span {
+    padding: 0 4px;
+}
+
+/* Chevron bas du menu mobile, dessine 9,33 x 5,33 dans une case de 18. */
+.sc-chevron-m {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+
+.sc-stage .sc-chevron-m img {
+    width: 9.333px;
+    height: 5.333px;
+}
+
+.sc-m-links .sc-btn {
+    width: auto;
+}
+
+.sc-m-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.sc-m-actions .sc-glassy:first-child {
+    flex: 1 0 0;
+}
+
+.sc-m-actions .sc-btn {
+    justify-content: center;
+}
+
+.sc-m-actions .sc-glassy:first-child .sc-btn {
+    width: 100%;
+}
+
+.sc-m-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px;
+    box-shadow: inset 0 0 0 1px var(--sc-anthracite-6);
+    border-radius: 12px;
+    background: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+.sc-m-sub .sc-links {
+    align-items: flex-start;
+}
+
+.sc-m-rule {
+    height: 1px;
+    margin: 0;
+    border: 0;
+    background: var(--sc-anthracite-6);
+}
+
+.sc-m-sublist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sc-m-sublist .sc-m-rule {
+    margin: 0 16px;
+}
+
+.sc-m-feature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 156px;
+    padding: 4px 16px;
+}
+
+.sc-m-feature .sc-feature-text > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sc-m-sub .sc-glassy {
+    width: 100%;
+}
+
+.sc-m-sub .sc-glassy .sc-btn {
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+}
+
+.sc-m-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 4px 4px 16px;
+}
+
+/* ==========================================================================
+   COMPARATIFS MOBILE / DESKTOP (scenes 1 514 px de large)
+   --------------------------------------------------------------------------
+   Un telephone (ecran 390 px reduit a 0,846) a gauche, une fenetre de
+   navigateur (ecran Figma 1 280 px reduit a 0,8) a droite, a 32 px l'un de
+   l'autre. Marge de 64 px en haut, a gauche et a droite :
+   64 + 330 + 32 + 1 024 + 64 = 1 514. Comme sur Siko, les deux ecrans filent
+   sous le bord bas du cadre : la scene (style inline) est moins haute qu'eux.
+   ========================================================================== */
+
+.case-mock--compare {
+    background: #f5f5f5;
+}
+
+.case-mock--compare .sc-stage {
+    width: 1514px;
+}
+
+.sc-window,
+.sc-handset {
+    position: absolute;
+    top: 64px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 12px 32px -8px rgba(17, 24, 39, 0.14);
+}
+
+.sc-window {
+    left: 426px;
+    width: 1024px;
+    border-radius: 12px;
+}
+
+.sc-window-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--sc-anthracite-6);
+    background: #f9fafb;
+}
+
+.sc-window-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cacdd4;
+}
+
+.sc-handset {
+    left: 64px;
+    width: 330px;
+    /* Arrondi d'ecran d'iPhone (55 pt sur 393) ramene a 330 px. */
+    border-radius: 46px 46px 0 0;
+}
+
+.sc-screen {
+    position: relative;
+    width: 1280px;
+    overflow: hidden;
+    transform: scale(0.8);
+    transform-origin: 0 0;
+}
+
+.sc-handset .sc-screen {
+    width: 390px;
+    transform: scale(0.84615);
+}
+
+/* Barre d'etat iOS (memes mesures que Siko) : heure et icones centrees dans
+   les deux "oreilles" de part et d'autre de la Dynamic Island. */
+.sc-statusbar {
+    position: absolute;
+    z-index: 2;
+    top: 11px;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr 126px 1fr;
+    align-items: center;
+    height: 37px;
+    color: #000;
+}
+
+.sc-statusbar-time {
+    justify-self: center;
+    padding-left: 6px;
+    font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+}
+
+.sc-island {
+    height: 37px;
+    border-radius: 18.5px;
+    background: #000;
+}
+
+.sc-statusbar-icons {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 6px;
+}
+
+.sc-statusbar-icons svg {
+    display: block;
+    fill: currentColor;
+}
+
+/* ---------- Barre mobile fermee (Nav-bar-Mobile) ---------- */
+
+.sc-m-bar {
+    position: absolute;
+    top: 48px;
+    left: 16px;
+    width: 358px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px 12px 16px;
+    border-radius: 16px;
+    box-shadow: var(--sc-bar-shadow);
+}
+
+.sc-m-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--sc-blanc-90);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.sc-m-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px var(--sc-anthracite-6), var(--sc-glass-inset);
+}
+
+.sc-m-bar > * {
+    position: relative;
+}
+
+.sc-m-bar .sc-logo {
+    padding-left: 0;
+}
+
+.sc-m-burger {
+    width: 14px;
+    height: 6px;
+    overflow: visible;
+}
+
+.sc-stage .sc-m-burger img {
+    width: 16px;
+    height: 8px;
+    margin: -1px;
+}
+
+/* ---------- Tag de rubrique (TAG bleu) ---------- */
+
+.sc-tag {
+    display: inline-flex;
+    padding: 8px 16px;
+    border: 0.8px solid rgba(0, 73, 208, 0);
+    border-radius: 100px;
+    background:
+        linear-gradient(180deg, rgba(0, 73, 208, 0) 80%, rgba(0, 73, 208, 0.06) 100%),
+        linear-gradient(180deg, rgba(0, 73, 208, 0.06) 0%, rgba(0, 73, 208, 0) 20%),
+        rgba(0, 73, 208, 0.06);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--sc-bleu-roi);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sc-h2 {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 45px;
+    letter-spacing: -1.3px;
+    text-align: center;
+}
+
+.sc-h2 em,
+.sc-h3 em {
+    font-style: normal;
+    color: var(--sc-bleu-roi);
+}
+
+.sc-h3 {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 30px;
+    letter-spacing: -0.7px;
+    text-align: center;
+}
+
+.sc-sub {
+    font-size: 14px;
+    color: var(--sc-gris-3);
+    text-align: center;
+}
+
+.sc-section-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* ---------- Section « Fini la caisse compliquee » (Avant / Avec) ---------- */
+
+.sc-versus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    padding: 120px 48px;
+    background: linear-gradient(180deg, rgba(3, 133, 241, 0.24) 0%, rgba(3, 133, 241, 0) 80%), #fff;
+}
+
+.sc-versus .sc-section-head {
+    width: 588px;
+}
+
+.sc-versus .sc-sub {
+    white-space: nowrap;
+}
+
+.sc-versus-cards {
+    display: flex;
+    align-items: center;
+}
+
+.sc-before {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px;
+    border: 8px solid #fff;
+    border-right: 0;
+    border-radius: 24px 0 0 24px;
+    background: #ecf2f7;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+.sc-before-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 0.85;
+    letter-spacing: -0.6px;
+    text-box: trim-both cap alphabetic;
+}
+
+.sc-before ul,
+.sc-after ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sc-before li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--sc-gris-3);
+    white-space: nowrap;
+}
+
+.sc-before li img {
+    width: 20px;
+    height: 20px;
+}
+
+.sc-after {
+    display: flex;
+    flex-direction: column;
+    gap: 38.533px;
+    width: 502.51px;
+    height: 358.6px;
+    padding: 48px;
+    border-radius: 32px;
+    background: radial-gradient(ellipse 640px 440px at 337.76px -166.52px, #0385f1 0%, #0267e1 50%, #0049d0 100%);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+    color: #fff;
+}
+
+.sc-after-title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 0.85;
+    letter-spacing: -0.72px;
+    text-box: trim-both cap alphabetic;
+}
+
+.sc-after ul {
+    gap: 19.267px;
+    padding-right: 32px;
+}
+
+.sc-after li {
+    display: flex;
+    align-items: center;
+    gap: 8.429px;
+    font-size: 17px;
+    line-height: 26px;
+    white-space: nowrap;
+}
+
+.sc-after li img {
+    width: 24.083px;
+    height: 24.083px;
+}
+
+/* Version mobile : les deux cartes s'empilent, « Avec » chevauche « Avant ». */
+.sc-versus--m {
+    /* 80 px du Figma + la place de la barre d'etat iOS. */
+    padding: 104px 16px 80px;
+    background: linear-gradient(180deg, rgba(3, 133, 241, 0.24) 0%, rgba(3, 133, 241, 0) 80%), #fff;
+}
+
+.sc-versus--m .sc-section-head {
+    width: 100%;
+    padding: 0 16px;
+}
+
+.sc-versus--m .sc-sub {
+    white-space: normal;
+}
+
+.sc-versus--m .sc-versus-cards {
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 4px;
+}
+
+.sc-versus--m .sc-before {
+    width: 354px;
+    gap: 22px;
+    margin-bottom: -16px;
+    padding: 40px 16px 32px;
+    border: 8px solid #fff;
+    border-bottom: 0;
+    border-radius: 24px 24px 0 0;
+    filter: none;
+}
+
+.sc-versus--m .sc-before-title {
+    font-size: 17px;
+    line-height: normal;
+    letter-spacing: 0;
+    color: #0e1116;
+    text-box: none;
+}
+
+.sc-versus--m .sc-before ul {
+    gap: 14px;
+}
+
+.sc-versus--m .sc-before li {
+    gap: 8px;
+    height: 20px;
+    color: #526077;
+}
+
+.sc-versus--m .sc-before li img {
+    width: 10px;
+    height: 10px;
+}
+
+.sc-versus--m .sc-after {
+    position: relative;
+    justify-content: center;
+    gap: 22px;
+    width: 368px;
+    height: 245.03px;
+    padding: 32px;
+    background: radial-gradient(ellipse 470px 320px at 247.35px -113.79px, #0385f1 0%, #0267e1 50%, #0049d0 100%);
+    filter: none;
+}
+
+.sc-versus--m .sc-after-title {
+    font-size: 17px;
+    line-height: normal;
+    letter-spacing: 0;
+    text-box: none;
+}
+
+.sc-versus--m .sc-after ul {
+    gap: 14px;
+    padding-right: 0;
+}
+
+.sc-versus--m .sc-after li {
+    gap: 8px;
+    font-size: 14px;
+    line-height: normal;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.sc-versus--m .sc-after li img {
+    width: 15px;
+    height: 11px;
+}
+
+/* ==========================================================================
+   PAGE TARIFS : grille des offres, selecteur Mensuel / Annuel interactif
+   (Frame 2147227775, 1280 x 789)
+   ========================================================================== */
+
+.case-mock--pricing {
+    aspect-ratio: 1280 / 789;
+    background: #fff;
+}
+
+.case-mock--pricing .sc-stage {
+    width: 1280px;
+    height: 789px;
+}
+
+.sc-pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding: 64px 48px;
+}
+
+.sc-period {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 47.5px;
+    padding: 5px;
+    border: 1px solid rgba(0, 73, 208, 0.06);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.01);
+    box-shadow:
+        inset 0 0 22.036px 0 rgba(255, 255, 255, 0.25),
+        inset 0 2.204px 4.407px 0 rgba(255, 255, 255, 0.25),
+        0 0 5.509px 0 rgba(0, 0, 0, 0.12);
+}
+
+.sc-period .sc-tab {
+    gap: 4px;
+    color: var(--sc-anthracite-90);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sc-period .sc-tab:hover {
+    background: transparent;
+}
+
+/* Option choisie : pastille blanche en relief, comme « Mensuel » dans Figma. */
+.sc-period .sc-tab.is-active {
+    background: #fff;
+    color: var(--sc-anthracite);
+    box-shadow:
+        inset 0 0 20px 0 rgba(255, 255, 255, 0.15),
+        inset 0 2px 4px 0 rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0 0 2.5px rgba(0, 0, 0, 0.12));
+}
+
+/* .sc-btn devant : sinon « .sc-btn > span { padding: 0 4px } » ecrase le
+   padding vertical et la pastille parait aplatie. */
+.sc-btn > .sc-discount {
+    padding: 7px 6px;
+    border-radius: 100px;
+    background: rgba(0, 73, 208, 0.06);
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 16.5px;
+    color: var(--sc-bleu-roi);
+    text-box: trim-both cap alphabetic;
+}
+
+.sc-plans {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Quatre colonnes de 284 px comme dans Figma : en flex-basis 0, le padding
+   des cartes s'ajoutait a leur part et l'enveloppe de Flex 800 retrecissait. */
+.sc-plans > .sc-plan,
+.sc-plans > .sc-plan-wrap {
+    flex: 0 0 calc((100% - 48px) / 4);
+}
+
+.sc-plan {
+    position: relative;
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: 80px;
+    min-width: 1px;
+    padding: 32px;
+    border-radius: 20px;
+    background: var(--sc-blanc-90);
+    box-shadow:
+        inset 0 0 0 1px var(--sc-anthracite-6),
+        0 2px 8px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sc-plan-wrap {
+    display: flex;
+    flex: 1 0 0;
+    min-width: 1px;
+    padding-bottom: 16px;
+}
+
+.sc-plan--featured {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--sc-anthracite-20);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+.sc-plan--pro {
+    background: radial-gradient(ellipse 450px 1050px at 0 0, #0385f1 9.8%, #0267e1 17.1%, #0049d0 24.4%, #0125b8 37.2%, #0212ac 43.6%, #0200a0 49.9%, #01007d 70.2%, #00005a 90.5%);
+    box-shadow: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+    color: #fff;
+}
+
+.sc-plan-top {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sc-plan-head {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sc-plan-name {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 30px;
+    letter-spacing: -0.7px;
+}
+
+.sc-plan-desc {
+    font-size: 14px;
+    color: var(--sc-anthracite-90);
+}
+
+.sc-plan-price {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sc-plan .sc-price-note em {
+    font-style: normal;
+    color: var(--sc-bleu-roi);
+}
+
+.sc-plan-rule {
+    width: 100%;
+    height: 1px;
+}
+
+.sc-plan .sc-quota {
+    height: 62px;
+    padding: 13px 15px;
+}
+
+.sc-plan-feature {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--sc-anthracite-90);
+    white-space: nowrap;
+}
+
+.sc-plan-feature img {
+    width: 16px;
+    height: 16px;
+}
+
+.sc-plan-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.sc-plan-cta p {
+    font-size: 13px;
+    color: var(--sc-gris-3);
+    text-align: center;
+}
+
+.sc-plan-tag {
+    position: absolute;
+    top: -18.5px;
+    left: 75px;
+    background:
+        linear-gradient(180deg, rgba(0, 73, 208, 0) 80%, rgba(0, 73, 208, 0.06) 100%),
+        linear-gradient(180deg, rgba(0, 73, 208, 0.06) 0%, rgba(0, 73, 208, 0) 20%),
+        linear-gradient(rgba(0, 73, 208, 0.06), rgba(0, 73, 208, 0.06)),
+        #fff;
+}
+
+.sc-plan--pro .sc-plan-tag {
+    top: 16px;
+    left: 116px;
+    border-color: #e0f6ff;
+    background:
+        linear-gradient(180deg, rgba(224, 246, 255, 0) 80%, rgba(224, 246, 255, 0.06) 100%),
+        linear-gradient(180deg, rgba(224, 246, 255, 0.06) 0%, rgba(224, 246, 255, 0) 20%),
+        rgba(224, 246, 255, 0.06);
+    color: #fff;
+}
+
+.sc-plan--pro .sc-plan-desc,
+.sc-plan--pro .sc-price-unit,
+.sc-plan--pro .sc-price-note,
+.sc-plan--pro .sc-plan-feature,
+.sc-plan--pro .sc-plan-cta p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sc-plan--pro .sc-price-note em {
+    color: var(--sc-safran);
+}
+
+.sc-plan--pro .sc-quota {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: none;
+}
+
+.sc-plan--pro .sc-quota-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sc-plan .sc-glassy .sc-btn {
+    gap: 4px;
+}
+
+.sc-plan .sc-btn--white {
+    border: 1px solid var(--sc-anthracite-6);
+    background: #fff;
+    box-shadow: var(--sc-btn-inset);
+    filter: drop-shadow(0 0 2.5px rgba(0, 0, 0, 0.12));
+}
+
+/* Le prix change de valeur en fondu quand on bascule Mensuel / Annuel. */
+.sc-amount {
+    display: inline-block;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sc-amount.is-switching {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+/* ==========================================================================
+   VISUEL D'OUVERTURE : vignette du projet (Figma « Thumbnail », 1920 x 1080)
+   Degrade radial bleu, motif de logos a 10 % en diagonale, logo blanc.
+   ========================================================================== */
+
+.case-mock--cover {
+    aspect-ratio: 1920 / 1080;
+    background: #101010;
+}
+
+.case-mock--cover .sc-stage {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+}
+
+/* Calque de couverture Figma (2 122 x 1 509, decale de -101 / -168) :
+   degrade radial centre en haut, du bleu clair au bleu roi. */
+.sc-cover-bg {
+    position: absolute;
+    top: -168px;
+    left: -101px;
+    width: 2122px;
+    height: 1508.98px;
+    background: radial-gradient(1231px 875px at 50% 0, #0385f1 0%, #0049d0 100%);
+}
+
+.sc-stage .sc-cover-pattern {
+    position: absolute;
+    top: 0;
+    left: 108.63px;
+    width: 1812px;
+    height: 1080px;
+}
+
+.sc-stage .sc-cover-logo {
+    position: absolute;
+    top: 475px;
+    left: 62px;
+    width: 1019.22px;
+    height: 194.517px;
+}
+
+/* ==========================================================================
+   PAGE TARIFS : tableau « Comparer les plans en detail »
+   (Frame 2147227626, 1280 x 1298). Les colonnes suivent celles de l'en-tete
+   (1 libre + 5 x 196,36) ; survoler une colonne la surligne comme la Pro.
+   ========================================================================== */
+
+.case-mock--table {
+    aspect-ratio: 1280 / 1298;
+    background: #fff;
+}
+
+.case-mock--table .sc-stage {
+    width: 1280px;
+    height: 1298px;
+}
+
+.sc-compare-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    padding: 120px 32px;
+}
+
+.sc-compare-section .sc-section-head {
+    gap: 16px;
+}
+
+.sc-compare-section .sc-h2,
+.sc-compare-section .sc-sub {
+    white-space: nowrap;
+}
+
+.sc-table {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: inset 0 0 0 0.912px var(--sc-anthracite-6);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+    pointer-events: auto;
+}
+
+.sc-row {
+    display: grid;
+    grid-template-columns: 1fr repeat(5, 196.36px);
+    border-top: 0.912px solid var(--sc-anthracite-6);
+}
+
+.sc-row > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    padding: 0 16.9px 0 16px;
+    border-right: 0.912px solid var(--sc-anthracite-6);
+    font-size: 14px;
+    color: var(--sc-gris-3);
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.sc-row > :first-child {
+    justify-content: flex-start;
+    color: var(--sc-anthracite);
+}
+
+.sc-row > :last-child {
+    border-right: 0;
+}
+
+/* En-tete bleu : nom de l'offre en gris clair, prix en blanc. */
+.sc-row--head {
+    border-top: 0;
+    background: radial-gradient(895px 58.2px at 50% 0, #0385f1 0%, #0267e1 50%, #0049d0 100%);
+}
+
+.sc-row--head > * {
+    flex-direction: column;
+    height: 79px;
+    border-right-color: rgba(255, 255, 255, 0.2);
+    font-weight: 500;
+    color: #bac7d3;
+}
+
+.sc-row--head > :first-child {
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sc-head-price {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20.054px;
+    letter-spacing: -0.7292px;
+    color: #fff;
+}
+
+.sc-head-price small {
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sc-head-price--free {
+    color: var(--sc-safran);
+}
+
+.sc-group-head {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 8px 15px;
+    border-top: 0.912px solid var(--sc-anthracite-6);
+    background: var(--sc-anthracite-6);
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--sc-gris-3);
+    text-transform: uppercase;
+}
+
+.sc-row .sc-cell-small {
+    font-size: 13px;
+}
+
+.sc-row .sc-cell-strong {
+    font-family: 'Chillax', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--sc-bleu-roi);
+    text-transform: uppercase;
+}
+
+.sc-row img {
+    width: 16px;
+    height: 16px;
+}
+
+.sc-cross {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15.281px;
+    height: 15.307px;
+    border-radius: 50%;
+    background: var(--sc-anthracite-20);
+}
+
+.sc-row .sc-cross img {
+    width: 8.404px;
+    height: 8.419px;
+}
+
+.sc-row--cta {
+    background: var(--sc-anthracite-6);
+}
+
+.sc-row--cta > * {
+    height: 63.862px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+/* Colonne mise en avant (la Pro par defaut, ou celle survolee). */
+.sc-table [data-col].is-col {
+    background: rgba(0, 73, 208, 0.06);
+}
+
+.sc-row--head [data-col].is-col {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Par defaut seule la Pro est surlignee, en-tete exclu (comme dans Figma). */
+.sc-table:not(.is-hovering) .sc-row--head [data-col].is-col {
+    background: none;
+}
+
+/* ==========================================================================
+   MENU MOBILE INTERACTIF : un telephone + les trois etapes du parcours
+   (scene 1340 x 816). Les niveaux s'enchainent en glissant ; les etapes
+   a droite servent de reperes et de commandes (script-shopcaisse.js).
+   ========================================================================== */
+
+/* Entree d'un niveau : depuis la droite quand on descend, depuis la gauche
+   quand on remonte. */
+.sc-mdemo .sc-m-menu {
+    animation: sc-level-in 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sc-mdemo.is-back .sc-m-menu {
+    animation-name: sc-level-back;
+}
+
+@keyframes sc-level-in {
+    from { opacity: 0; transform: translateX(28px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes sc-level-back {
+    from { opacity: 0; transform: translateX(-28px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sc-mdemo .sc-m-menu {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   MENU MOBILE : la barre seule, sans fond de telephone (scene 900 x 760).
+   Fermee au depart, elle s'ouvre au burger et descend sur trois niveaux.
+   ========================================================================== */
+
+.case-mock--mnav {
+    aspect-ratio: 900 / 760;
+    background: #f5f5f5;
+}
+
+.case-mock--mnav .sc-stage {
+    width: 900px;
+    height: 760px;
+}
+
+.sc-mnav {
+    position: absolute;
+    top: 56px;
+    left: 271px;
+    width: 358px;
+}
+
+.sc-mnav .sc-m-bar,
+.sc-mnav .sc-m-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.sc-mnav [data-sc-level][hidden] {
+    display: none;
+}
+
+/* Boutons de la barre (burger, croix) : sans fond, zone de clic du composant. */
+.sc-mnav .sc-m-burger,
+.sc-mnav .sc-m-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 8px;
+}
+
+.sc-mnav .sc-m-burger {
+    width: 30px;
+    height: 30px;
+    margin: -12px -8px;
+}
+
+.sc-mnav .sc-m-close {
+    width: 30px;
+    height: 30px;
+    margin: -4px 0;
+}
+
+/* Ouverture : le menu se deploie depuis la barre. */
+.sc-mdemo.is-opening .sc-m-menu {
+    animation-name: sc-menu-open;
+}
+
+@keyframes sc-menu-open {
+    from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.sc-mdemo .sc-m-bar {
+    animation: sc-menu-open 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sc-mdemo .sc-m-bar {
+        animation: none;
+    }
+}
+
+/* La barre mobile flotte directement sur la page : ni cadre de figure ni
+   fond de scene, et plus de marge au-dessus du menu. */
+.case-media--bare {
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.case-media--bare .case-mock {
+    overflow: visible;
+    background: none;
+    box-shadow: none;
+}
+
+.case-mock--mnav {
+    aspect-ratio: 900 / 660;
+}
+
+.case-mock--mnav .sc-stage {
+    height: 660px;
+}
+
+.sc-mnav {
+    top: 0;
+}
+
+/* ==========================================================================
+   MENU MOBILE ENTIEREMENT NAVIGABLE (scene 760 px de large)
+   La hauteur du cadre suit le niveau affiche (script-shopcaisse.js) :
+   plus de vide sous le menu. Sans JS, le cadre garde la hauteur du menu.
+   ========================================================================== */
+
+.case-mock--mnav {
+    aspect-ratio: 760 / 350;
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.case-mock--mnav .sc-stage {
+    width: 760px;
+    height: auto;
+}
+
+/* Le menu garde sa taille reelle : la scene prend sa largeur (358 px), est
+   centree dans le cadre et ne retrecit que si le cadre est plus etroit. */
+.case-mock--mnav .sc-stage {
+    width: 358px;
+    left: calc(50% - 179px);
+    transform: scale(min(var(--mock-scale, 1), 1));
+    transform-origin: 50% 0;
+}
+
+.case-mock--mnav .sc-mnav {
+    left: 0;
+}
+
+.sc-mnav {
+    left: 201px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .case-mock--mnav {
+        transition: none;
+    }
+}
+
+/* Offre « Gratuit » du niveau L'appli. */
+.sc-m-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 16px;
+}
+
+.sc-m-offer > * {
+    width: 100%;
+}
+
+.sc-m-offer .sc-m-rule {
+    margin: 0;
+}
+
+/* Note sous la liste des fonctionnalites. */
+.sc-m-note {
+    margin: 0;
+    padding: 0 16px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--sc-gris-3);
+    text-align: center;
+}
+
+/* Deux colonnes de liens du niveau Ressources. */
+.sc-m-cols {
+    display: flex;
+    gap: 8px;
+}
+
+.sc-m-cols .sc-links {
+    flex: 1 0 0;
+}
+
+.sc-m-feature--news {
+    height: auto;
+    padding: 8px 16px;
+}
+
+.sc-mnav .sc-m-links .sc-tab:hover {
+    background: var(--sc-anthracite-6);
+}
+
+/* Ajustements a Figma : la note tient sur deux lignes, le bloc actualite
+   reprend les espacements serres de la version desktop. */
+.sc-m-note {
+    padding: 0;
+}
+
+.sc-m-feature--news {
+    padding: 4px 16px;
+}
+
+.sc-m-feature--news .sc-feature-text > div {
+    gap: 8px;
+}
+
+/* ==========================================================================
+   SURVOL DES BOUTONS (souris uniquement), d'apres la charte Shopcaisse
+   --------------------------------------------------------------------------
+   - boutons transparents (liens des menus) : fond anthracite 6 %, comme
+     les onglets ;
+   - bouton bleu roi : voile bleu saphir par-dessus le halo ;
+   - boutons safran, blanc et neutre : voile anthracite ;
+   - badges stores : anthracite eclairci, verre un peu plus opaque.
+   La scene est inerte : seuls les boutons recoivent le pointeur.
+   ========================================================================== */
+
+.sc-btn,
+.sc-store {
+    pointer-events: auto;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sc-btn:not(.sc-tab, .sc-btn--primary, .sc-btn--neutral, .sc-btn--safran, .sc-btn--white):hover {
+        background-color: var(--sc-anthracite-6);
+    }
+
+    .sc-btn--primary:hover {
+        box-shadow: var(--sc-btn-inset), inset 0 0 0 100px rgba(2, 0, 160, 0.22);
+    }
+
+    .sc-btn--safran:hover,
+    .sc-btn--neutral:hover,
+    .sc-plan .sc-btn--white:hover {
+        box-shadow: var(--sc-btn-inset), inset 0 0 0 100px var(--sc-anthracite-6);
+    }
+
+    .sc-store:hover {
+        background-color: #2b2b2b;
+    }
+
+}
