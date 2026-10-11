@@ -8,7 +8,7 @@ Le site est en français. Chaque étude de cas présente le contexte, les choix 
 
 - [À propos](https://tanguy.studio/about): parcours, compétences et certifications. UX/UI Designer chez Digidop (stage puis alternance, 2026), agence primée « Webflow Partner of the Year », sur des maquettes BtoB pensées conversion et SEO/GEO. Designer graphique freelance de 2021 à 2025. Certifié « Figma UI UX Design Advanced » et « Google UX Design » (2025).
 - [CV (PDF)](https://tanguy.studio/fichiers/CV_Tanguy_Beaudouin.pdf): CV complet.
-- [Contact](https://tanguy.studio/contact): formulaire de contact, email, téléphone, LinkedIn et Behance.
+- [Contact](https://tanguy.studio/contact): formulaire de contact, email, téléphone, LinkedIn et Instagram.
 
 ## Études de cas
 
@@ -29,4 +29,4 @@ Le site est en français. Chaque étude de cas présente le contexte, les choix 
 
 - [Projets](https://tanguy.studio/work): liste de toutes les études de cas.
 - [LinkedIn](https://www.linkedin.com/in/tanguy-beaudouin/)
-- [Behance](https://www.behance.net/tanguybeaudouin2)
+- [Instagram](https://www.instagram.com/tanguy.beaudouin/)
