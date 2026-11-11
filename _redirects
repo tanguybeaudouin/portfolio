@@ -10,6 +10,7 @@
 /shopcaisse /shopcaisse.html 200
 /frame-by-frame /frame-by-frame.html 200
 /nintendo /nintendo.html 200
+/link /link.html 200
 
 /work.html /work 301
 /about.html /about 301
@@ -21,6 +22,7 @@
 /shopcaisse.html /shopcaisse 301
 /frame-by-frame.html /frame-by-frame 301
 /nintendo.html /nintendo 301
+/link.html /link 301
 
 # Anciennes URL numérotées des études de cas (en ligne jusqu'en octobre 2026),
 # redirigées vers le même projet pour ne pas casser les liens déjà partagés.
