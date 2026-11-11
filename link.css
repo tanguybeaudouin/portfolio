@@ -94,10 +94,10 @@ body.link-page {
 .link-tile {
     position: relative;
     display: block;
-    width: 44px;
-    height: 44px;
+    width: var(--tile);
+    height: var(--tile);
     flex-shrink: 0;
-    border-radius: 12px;
+    border-radius: var(--tile-radius);
     overflow: hidden;
     box-shadow:
         0 0 0 1.243px rgba(0, 0, 0, 0.06),
@@ -133,7 +133,8 @@ body.link-page {
    x1.12 puis x1.04 pour ses voisines). L'etiquette (style Figma 2635:30708)
    monte en fondu et se pose 12px au-dessus du dock. */
 .link-dock {
-    --tile: 44px;
+    --tile: 48.4px; /* 44px x 1.1 */
+    --tile-radius: 13.2px; /* 12px x 1.1 */
     --dock-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -144,7 +145,7 @@ body.link-page {
     justify-content: center;
     width: var(--tile);
     flex-shrink: 0;
-    border-radius: 12px;
+    border-radius: var(--tile-radius);
     outline: none;
     transition: width 0.45s var(--dock-ease);
 }
