@@ -232,10 +232,37 @@ body.link-page {
     }
 }
 
-@media (max-width: 480px) {
-    .link-main {
-        gap: 96px;
+/* Mobile : la page tient dans l'ecran visible, sans defilement.
+   main.css donne au body min-height: 100vh, plus haut que la zone visible sur
+   iOS quand la barre d'adresse est affichee : on le ramene a 100dvh et on
+   bloque le defilement (et le rebond). Les espacements se resserrent sur les
+   petits ecrans pour que tout tienne. */
+@media (max-width: 900px) {
+    html:has(body.link-page),
+    body.link-page {
+        height: 100%;
+        overflow: hidden;
+        overscroll-behavior: none;
     }
+
+    body.link-page {
+        min-height: 0;
+    }
+
+    .link-main {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        gap: clamp(40px, 11dvh, 96px);
+        padding-block: clamp(16px, 6dvh, 64px);
+    }
+
+    .link-intro {
+        padding-top: clamp(0px, 6dvh, 64px);
+    }
+}
+
+@media (max-width: 480px) {
 
     #typewriter.link-title {
         font-size: 28px;
