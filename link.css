@@ -22,8 +22,13 @@ body.link-page {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: var(--space-16);
     padding-top: 64px;
+}
+
+.link-dock {
+    flex-shrink: 0;
 }
 
 .link-card {
@@ -253,12 +258,16 @@ body.link-page {
         height: 100vh;
         height: 100dvh;
         min-height: 0;
-        gap: clamp(40px, 11dvh, 96px);
-        padding-block: clamp(16px, 6dvh, 64px);
+        gap: 32px;
+        padding-top: clamp(16px, 6dvh, 64px);
+        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
 
+    /* Mobile : le bloc photo + nom + titre occupe l'espace libre et s'y
+       centre ; le dock reste colle en bas de l'ecran. */
     .link-intro {
-        padding-top: clamp(0px, 6dvh, 64px);
+        flex: 1 0 auto;
+        padding-top: 0;
     }
 }
 
