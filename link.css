@@ -237,12 +237,11 @@ body.link-page {
     }
 }
 
-/* Mobile : la page tient dans l'ecran visible, sans defilement.
-   main.css donne au body min-height: 100vh, plus haut que la zone visible sur
-   iOS quand la barre d'adresse est affichee : on le ramene a 100dvh et on
-   bloque le defilement (et le rebond). Les espacements se resserrent sur les
-   petits ecrans pour que tout tienne. */
-@media (max-width: 900px) {
+/* Mobile (portrait et paysage) : la page tient dans l'ecran visible, sans
+   defilement. main.css donne au body min-height: 100vh, plus haut que la zone
+   visible sur iOS quand la barre d'adresse est affichee : on le ramene a
+   100dvh et on bloque le defilement (et le rebond). */
+@media (max-width: 900px), (orientation: landscape) and (max-height: 500px) {
     html:has(body.link-page),
     body.link-page {
         height: 100%;
@@ -258,21 +257,55 @@ body.link-page {
         height: 100vh;
         height: 100dvh;
         min-height: 0;
+    }
+}
+
+/* Mobile portrait : le bloc photo + nom + titre occupe l'espace libre et s'y
+   centre ; le dock reste colle en bas de l'ecran. */
+@media (max-width: 900px) and (orientation: portrait) {
+    .link-main {
         gap: 32px;
         padding-top: clamp(16px, 6dvh, 64px);
         padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
 
-    /* Mobile : le bloc photo + nom + titre occupe l'espace libre et s'y
-       centre ; le dock reste colle en bas de l'ecran. */
     .link-intro {
         flex: 1 0 auto;
         padding-top: 0;
     }
 }
 
-@media (max-width: 480px) {
+/* Telephone en paysage : peu de hauteur. La photo et le nom passent a gauche
+   du titre, le dock reste dessous ; la photo et les espacements suivent la
+   hauteur disponible. */
+@media (orientation: landscape) and (max-height: 500px) {
+    .link-main {
+        justify-content: center;
+        gap: clamp(16px, 7dvh, 40px);
+        padding: 16px max(var(--space-16), env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(var(--space-16), env(safe-area-inset-left, 0px));
+    }
 
+    .link-intro {
+        flex-direction: row;
+        gap: 32px;
+        padding-top: 0;
+    }
+
+    .link-photo {
+        width: clamp(72px, 30dvh, 132px);
+        height: clamp(72px, 30dvh, 132px);
+        padding: 4px;
+    }
+
+    #typewriter.link-title {
+        max-width: 340px;
+        font-size: 26px;
+        line-height: 30px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
     #typewriter.link-title {
         font-size: 28px;
         line-height: 32px;
