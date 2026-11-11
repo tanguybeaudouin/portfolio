@@ -1,0 +1,73 @@
+/* ========================================== 11G. PAGES LEGALES ==========================================
+   Mentions legales et confidentialite (body.legal-page). Meme cadre que la page
+   contact : en-tete et footer fixes, le texte defile entre les deux. */
+
+.legal-page .about-baseline-section {
+    min-height: 0;
+    margin-top: 8px;
+}
+
+.legal-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.legal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    max-width: 640px;
+    padding-bottom: var(--space-32);
+}
+
+.legal-block h2 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+.legal-block p,
+.legal-updated {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--neutral-dark);
+    transition: color 0.8s ease;
+}
+
+.legal-block p + p {
+    margin-top: 8px;
+}
+
+.legal-content a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.legal-updated {
+    color: var(--neutral-dark-05);
+}
+
+@media (max-width: 900px) {
+    .legal-page .about-baseline-section {
+        margin-top: 0;
+    }
+
+    .legal-scroll {
+        overflow: visible;
+    }
+
+    .legal-block p,
+    .legal-updated {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nintendo — Étude de cas e-commerce UX/UI | Tanguy Beaudouin</title>
+    <meta name="description" content="Refonte conceptuelle d'une expérience e-commerce Nintendo : découverte produit, lisibilité de l'interface et parcours d'achat optimisé.">
+    <link rel="canonical" href="https://tanguy.studio/nintendo">
+    <meta property="og:title" content="Nintendo — Étude de cas e-commerce UX/UI | Tanguy Beaudouin">
+    <meta property="og:description" content="Refonte conceptuelle d'une expérience e-commerce Nintendo : découverte produit, lisibilité de l'interface et parcours d'achat optimisé.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tanguy.studio/nintendo">
+    <meta property="og:site_name" content="tanguy.studio">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://tanguy.studio/images/og/og-nintendo.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Maquette de la refonte e-commerce Nintendo sur un ordinateur portable, fond rouge">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://tanguy.studio/nintendo#projet",
+          "name": "Nintendo",
+          "headline": "Nintendo — Étude de cas e-commerce UX/UI | Tanguy Beaudouin",
+          "description": "Refonte conceptuelle d'une expérience e-commerce Nintendo : découverte produit, lisibilité de l'interface et parcours d'achat optimisé.",
+          "url": "https://tanguy.studio/nintendo",
+          "image": "https://tanguy.studio/images/og/og-nintendo.jpg",
+          "dateCreated": "2025",
+          "inLanguage": "fr-FR",
+          "genre": "Étude de cas UX/UI",
+          "keywords": "UX Audit, Architecture, UI Design, Prototype",
+          "creator": {
+            "@id": "https://tanguy.studio/#person"
+          },
+          "author": {
+            "@id": "https://tanguy.studio/#person"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://tanguy.studio/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Projets",
+              "item": "https://tanguy.studio/work"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Nintendo",
+              "item": "https://tanguy.studio/nintendo"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://tanguy.studio/#person",
+          "name": "Tanguy Beaudouin",
+          "url": "https://tanguy.studio/"
+        }
+      ]
+    }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            if (localStorage.getItem('theme') === 'dark') {
+                root.classList.add('dark-theme');
+            }
+            // Pose avant le rendu : sans JS, rien n'est masque en attente du reveal.
+            root.classList.add('case-js');
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css?v=20261009n">
+    <link rel="stylesheet" href="project-case.css?v=20261009j">
+    <link rel="stylesheet" href="project-nintendo.css?v=20261008d">
+</head>
+
+<body class="case-page">
+    <div id="custom-cursor"></div>
+
+    <div class="edge-fade edge-fade-top" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+    <div class="edge-fade edge-fade-bottom" aria-hidden="true">
+        <span class="edge-fade-layer edge-fade-1"></span>
+        <span class="edge-fade-layer edge-fade-2"></span>
+        <span class="edge-fade-layer edge-fade-3"></span>
+        <span class="edge-fade-layer edge-fade-4"></span>
+        <span class="edge-fade-layer edge-fade-tint"></span>
+    </div>
+
+    <div class="page">
+        <main class="main-card">
+            <header class="content-top-section">
+                <div class="title-group">
+                    <p class="site-title"><a class="site-title-link" href="/" aria-label="Retour à la page d'accueil">tanguy.studio</a></p>
+                    <p class="subtitle">NINTENDO</p>
+                </div>
+                <button class="menu-burger" id="menu-toggle" aria-label="Menu" aria-controls="menu-wrapper" aria-expanded="false">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-bottom"></span>
+                </button>
+            </header>
+
+            <div id="baseline-wrapper">
+                <article class="case">
+
+                    <!-- 1. En-tete : ce que c'est, en une lecture -->
+                    <section class="case-text case-intro case-reveal">
+                        <div class="case-head">
+                            <div class="case-actions">
+                                <a href="/work" class="case-return-link" aria-label="Retour"
+                                    onclick="if (history.length > 1) { history.back(); return false; }"><span class="case-return-arrow" aria-hidden="true"></span></a>
+                            </div>
+                            <h1 class="title-stack"><span class="section-title">Nintendo</span> <span class="subtitle">Refonte e-commerce</span></h1>
+                        </div>
+                        <p class="case-lead">Repenser l'expérience web pour accéder rapidement aux jeux, aux offres et aux contenus clés de la marque. L'objectif : rendre l'offre lisible et accélérer l'accès aux actions principales, sur desktop comme sur mobile.</p>
+                        <ul class="case-tags" aria-label="Domaines">
+                            <li class="case-tag">UX Audit</li>
+                            <li class="case-tag">Architecture</li>
+                            <li class="case-tag">UI Design</li>
+                            <li class="case-tag">Prototype</li>
+                        </ul>
+                        <ul class="case-list case-list--meta" aria-label="Informations projet">
+                            <li class="case-entry">
+                                <span class="case-entry-title">Année</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">2025</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Supports</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Desktop &amp; mobile</span>
+                            </li>
+                            <li class="case-entry">
+                                <span class="case-entry-title">Livrables</span>
+                                <span class="case-entry-leader" aria-hidden="true"></span>
+                                <span class="case-entry-meta">Wireframes, Design System, Prototype</span>
+                            </li>
+                        </ul>
+                    </section>
+
+<!-- 2. Visuel d'ouverture : l'accueil du prototype, code d'apres Figma
+                         (1514 x 921, mis a l'echelle du cadre). Styles : project-nintendo.css -->
+                    <figure class="case-media case-reveal">
+                        <div data-nosnippet class="case-mock case-mock--home" role="img" aria-label="Accueil de la refonte Nintendo : barre de navigation rouge en pilule, puis carrousel des sorties avec Hollow Knight: Silksong au premier plan">
+                            <div class="nt-stage nt-home" aria-hidden="true">
+                                <div class="nt-nav">
+                                    <img class="nt-nav-logo" src="images/Nintendo/proto/logo-nintendo.svg" alt="" width="192" height="48" loading="lazy" decoding="async">
+                                    <div class="nt-nav-menu">
+                                        <span class="nt-search"><img src="images/Nintendo/proto/search.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span>
+                                        <span class="nt-nav-links"><span class="nt-trim">Jeux</span><span class="nt-trim">Consoles</span><span class="nt-trim">Store</span><span class="nt-trim">News</span></span>
+                                        <span class="nt-nav-actions">
+                                            <span class="nt-nav-cart"><img src="images/Nintendo/proto/cart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span>
+                                            <span class="nt-nav-account"><img src="images/Nintendo/proto/chevron.svg" alt="" width="16" height="16" loading="lazy" decoding="async"><img src="images/Nintendo/proto/account.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="nt-carousel">
+                                    <div class="nt-slide nt-slide--prev"><img src="images/Nintendo/proto/slide-noir.webp" alt="" width="1024" height="512" loading="lazy" decoding="async"></div>
+                                    <div class="nt-slide nt-slide--next"><img src="images/Nintendo/proto/slide-gris-c.webp" alt="" width="1000" height="563" loading="lazy" decoding="async"></div>
+                                    <div class="nt-slide nt-slide--current">
+                                        <img src="images/Nintendo/proto/slide-silksong.webp" alt="" width="1240" height="698" loading="lazy" decoding="async">
+                                        <div class="nt-slide-text">
+                                            <div class="nt-slide-copy">
+                                                <p class="nt-h2 nt-trim">Hollow Knight: Silksong</p>
+                                                <p class="nt-body nt-trim">Incarnez Hornet, princesse protectrice de Hallownest, et explorez un royaume inédit hanté par la soie et le chant. Édition Nintendo Switch 2.</p>
+                                            </div>
+                                            <div class="nt-btns"><span class="nt-btn">Jeux<img src="images/Nintendo/proto/icon-jeux.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                        <img class="nt-dots" src="images/Nintendo/proto/dots.svg" alt="" width="56" height="8" loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">Contexte et enjeux e-commerce</h2>
+                        <p class="case-body">L'écosystème Nintendo réunit une offre riche, des profils utilisateurs variés et de nombreux points d'entrée. Le défi : clarifier la navigation sans perdre l'identité visuelle forte de la marque.</p>
+                    </section>
+
+                    <!-- Rayon Jeux du store, code d'apres Figma (1514 x 614). Styles : project-nintendo.css -->
+                    <figure class="case-media case-reveal">
+                        <div data-nosnippet class="case-mock case-mock--games" role="img" aria-label="Rayon Jeux du store sur fond rouge : quatre cartes Donkey Kong Bananza, Street Fighter 6, Mario Kart World et Pokémon Z-A, avec boutons Acheter et favori">
+                            <div class="nt-stage" aria-hidden="true">
+                                <div class="nt-block nt-block--red nt-games">
+                                    <p class="nt-h2 nt-trim">Jeux</p>
+                                    <div class="nt-row">
+                                        <div class="nt-card">
+                                            <img src="images/Nintendo/proto/jeu-dk.webp" alt="" width="1000" height="563" loading="lazy" decoding="async">
+                                            <span class="nt-card-blur"><img src="images/Nintendo/proto/jeu-dk.webp" alt="" width="1000" height="563" loading="lazy" decoding="async"></span>
+                                            <span class="nt-card-shade nt-card-shade--dark"></span>
+                                            <div class="nt-card-text"><p class="nt-h3 nt-trim">Donkey Kong Bananza</p><p class="nt-body nt-trim">Creusez, cassez, traversez le monde souterrain.</p></div>
+                                            <div class="nt-btns"><span class="nt-btn">Acheter<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                        <div class="nt-card">
+                                            <img src="images/Nintendo/proto/jeu-2.webp" alt="" width="1000" height="563" loading="lazy" decoding="async">
+                                            <span class="nt-card-blur"><img src="images/Nintendo/proto/jeu-2.webp" alt="" width="1000" height="563" loading="lazy" decoding="async"></span>
+                                            <span class="nt-card-shade nt-card-shade--dark"></span>
+                                            <div class="nt-card-text"><p class="nt-h3 nt-trim">Street Fighter 6</p><p class="nt-body nt-trim">Le classique du combat, en ligne comme en local.</p></div>
+                                            <div class="nt-btns"><span class="nt-btn">Acheter<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                        <div class="nt-card">
+                                            <img src="images/Nintendo/proto/jeu-mkw.webp" alt="" width="1240" height="698" loading="lazy" decoding="async">
+                                            <span class="nt-card-blur"><img src="images/Nintendo/proto/jeu-mkw.webp" alt="" width="1240" height="698" loading="lazy" decoding="async"></span>
+                                            <span class="nt-card-shade nt-card-shade--dark"></span>
+                                            <div class="nt-card-text"><p class="nt-h3 nt-trim">Mario Kart World</p><p class="nt-body nt-trim">Un monde ouvert à parcourir à pleine vitesse.</p></div>
+                                            <div class="nt-btns"><span class="nt-btn">Acheter<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                        <div class="nt-card">
+                                            <img src="images/Nintendo/proto/jeu-pokemon.webp" alt="" width="1240" height="698" loading="lazy" decoding="async">
+                                            <span class="nt-card-blur"><img src="images/Nintendo/proto/jeu-pokemon.webp" alt="" width="1240" height="698" loading="lazy" decoding="async"></span>
+                                            <span class="nt-card-shade nt-card-shade--dark"></span>
+                                            <div class="nt-card-text"><p class="nt-h3 nt-trim">Pokémon Z-A</p><p class="nt-body nt-trim">Illumis se réinvente, combats en temps réel.</p></div>
+                                            <div class="nt-btns"><span class="nt-btn">Acheter<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="nt-block-foot">
+                                        <span class="nt-btn">Voir tous les jeux<img src="images/Nintendo/proto/store.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span>
+                                        <span class="nt-arrows"><span class="nt-arrow"><img src="images/Nintendo/proto/arrow.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-arrow nt-arrow--next"><img src="images/Nintendo/proto/arrow.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">Parcours d'achat</h2>
+                        <p class="case-body">Le travail s'est concentré sur les parcours qui comptent : découvrir un jeu, le trouver dans le catalogue, puis l'acheter sans détour.</p>
+                        <ol class="case-list case-list--steps">
+                            <li class="case-entry"><span class="case-entry-num">01</span><span class="case-entry-title">Accueil</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Carrousel des sorties</span></li>
+                            <li class="case-entry"><span class="case-entry-num">02</span><span class="case-entry-title">Jeux</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Catalogue et filtres</span></li>
+                            <li class="case-entry"><span class="case-entry-num">03</span><span class="case-entry-title">Consoles</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Gamme et accessoires</span></li>
+                            <li class="case-entry"><span class="case-entry-num">04</span><span class="case-entry-title">Store</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Jeux, matériel, cartes cadeaux</span></li>
+                            <li class="case-entry"><span class="case-entry-num">05</span><span class="case-entry-title">Fiche jeu</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Prix et achat sur l'eShop</span></li>
+                            <li class="case-entry"><span class="case-entry-num">06</span><span class="case-entry-title">News</span><span class="case-entry-leader" aria-hidden="true"></span><span class="case-entry-meta">Nintendo Direct et annonces</span></li>
+                        </ol>
+                    </section>
+
+                    <!-- Bloc Consoles, code d'apres Figma (1514 x 794). Styles : project-nintendo.css -->
+                    <figure class="case-media case-reveal">
+                        <div data-nosnippet class="case-mock case-mock--consoles" role="img" aria-label="Bloc Nos consoles sur fond gris : grande carte Nintendo Switch 2 et carte Nintendo Switch, chacune avec boutons Acheter et favori">
+                            <div class="nt-stage" aria-hidden="true">
+                                <div class="nt-block nt-consoles">
+                                    <p class="nt-h2 nt-trim">Nos consoles</p>
+                                    <div class="nt-row">
+                                        <div class="nt-card nt-card--console">
+                                            <img src="images/Nintendo/proto/console-switch2.webp" alt="" width="1200" height="675" loading="lazy" decoding="async">
+                                            <span class="nt-card-blur"><img src="images/Nintendo/proto/console-switch2.webp" alt="" width="1200" height="675" loading="lazy" decoding="async"></span>
+                                            <span class="nt-card-shade"></span>
+                                            <div class="nt-card-text"><p class="nt-h3 nt-trim">Nintendo Switch 2</p><p class="nt-body nt-trim">Plus grande, plus puissante, compatible avec vos jeux Switch.</p></div>
+                                            <div class="nt-btns"><span class="nt-btn">Acheter<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                        <div class="nt-card nt-card--console nt-card--narrow">
+                                            <img src="images/Nintendo/proto/console-switch.webp" alt="" width="912" height="608" loading="lazy" decoding="async">
+                                            <span class="nt-card-blur"><img src="images/Nintendo/proto/console-switch.webp" alt="" width="912" height="608" loading="lazy" decoding="async"></span>
+                                            <span class="nt-card-shade"></span>
+                                            <div class="nt-card-text"><p class="nt-h3 nt-trim">Nintendo Switch</p><p class="nt-body nt-trim">Jouez à la maison comme en déplacement.</p></div>
+                                            <div class="nt-btns"><span class="nt-btn">Acheter<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon"><img src="images/Nintendo/proto/heart.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <!-- Fiche jeu Mario Kart World, codee d'apres Figma (1514 x 664). Styles : project-nintendo.css -->
+                    <figure class="case-media case-reveal">
+                        <div data-nosnippet class="case-mock case-mock--product" role="img" aria-label="Fiche jeu Mario Kart World : grande carte rouge où Mario en kart déborde du cadre, et carte d'achat à 79,99 € avec bouton Acheter sur le Nintendo eShop">
+                            <div class="nt-stage" aria-hidden="true">
+                                <div class="nt-product">
+                                    <div class="nt-product-hero">
+                                        <span class="nt-card-shade"></span>
+                                        <img class="nt-product-art" src="images/Nintendo/proto/mario-kart.webp" alt="" width="700" height="651" loading="lazy" decoding="async">
+                                        <div class="nt-product-title"><p class="nt-h1 nt-trim">Mario Kart World</p><p class="nt-body nt-trim">Sortie le 05 juin 2025</p></div>
+                                        <span class="nt-btn">Sur Nintendo Switch 2<img src="images/Nintendo/proto/icon-jeux.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span>
+                                    </div>
+                                    <div class="nt-product-buy">
+                                        <span class="nt-card-shade"></span>
+                                        <div class="nt-price">
+                                            <p class="nt-h3 nt-trim">Télécharger sur<br>la console</p>
+                                            <p class="nt-h1 nt-trim">79,99 €</p>
+                                            <p class="nt-caption">Prix sur le Nintendo eShop (TTC)</p>
+                                        </div>
+                                        <div class="nt-btns"><span class="nt-btn">Acheter sur le Nintendo eShop<img src="images/Nintendo/proto/cart-dark.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="nt-btn nt-btn--icon nt-btn--blue"><img src="images/Nintendo/proto/heart-white.svg" alt="" width="16" height="16" loading="lazy" decoding="async"></span></div>
+                                        <p class="nt-body nt-trim">Roulez où vous voulez avec Mario et ses amis ! Faites la course d'un circuit à l'autre dans un vaste monde interconnecté et parcourez à toute vitesse des plaines verdoyantes, des villes animées, des volcans grondants, des étendues d'eau et bien plus encore dans ce nouveau titre exclusif à la Nintendo Switch 2 !</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <section class="case-text case-reveal">
+                        <h2 class="section-title">Design system</h2>
+                        <p class="case-body">Le rouge Nintendo porte la navigation et les rayons, le bleu eShop est réservé aux favoris. Tout le reste tient en deux formes : des pilules pour les actions, des cartes arrondies à 32 px pour les contenus. Les visuels débordent parfois du cadre, pour garder le côté joueur de la marque.</p>
+                    </section>
+
+                    <!-- Cartes cadeaux du store, codees d'apres Figma (1514 x 599). Styles : project-nintendo.css -->
+                    <figure class="case-media case-reveal">
+                        <div data-nosnippet class="case-mock case-mock--gifts" role="img" aria-label="Cartes cadeaux Nintendo : Pikachu sur jaune à 25 €, Donkey Kong sur brun à 50 €, Link sur vert à 75 € et Mario sur rouge à 100 €">
+                            <div class="nt-stage" aria-hidden="true">
+                                <div class="nt-block nt-gifts">
+                                    <p class="nt-h2 nt-trim">Cartes cadeaux</p>
+                                    <div class="nt-row">
+                                        <div class="nt-gift nt-gift--pikachu"><img class="nt-gift-art" src="images/Nintendo/proto/pikachu.webp" alt="" width="710" height="965" loading="lazy" decoding="async"><img class="nt-gift-logo" src="images/Nintendo/proto/logo-nintendo.svg" alt="" width="100" height="25" loading="lazy" decoding="async"><p class="nt-h2 nt-trim">25€</p></div>
+                                        <div class="nt-gift nt-gift--dk"><img class="nt-gift-art" src="images/Nintendo/proto/dk.webp" alt="" width="1400" height="1352" loading="lazy" decoding="async"><img class="nt-gift-logo" src="images/Nintendo/proto/logo-nintendo.svg" alt="" width="100" height="25" loading="lazy" decoding="async"><p class="nt-h2 nt-trim">50€</p></div>
+                                        <div class="nt-gift nt-gift--zelda"><img class="nt-gift-art" src="images/Nintendo/proto/link.webp" alt="" width="1024" height="1024" loading="lazy" decoding="async"><img class="nt-gift-logo" src="images/Nintendo/proto/logo-nintendo.svg" alt="" width="100" height="25" loading="lazy" decoding="async"><p class="nt-h2 nt-trim">75€</p></div>
+                                        <div class="nt-gift nt-gift--mario"><img class="nt-gift-art" src="images/Nintendo/proto/mario.webp" alt="" width="764" height="1706" loading="lazy" decoding="async"><img class="nt-gift-logo" src="images/Nintendo/proto/logo-nintendo.svg" alt="" width="100" height="25" loading="lazy" decoding="async"><p class="nt-h2 nt-trim">100€</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <figure class="case-media case-media--hero case-reveal">
+                        <video class="case-video" muted loop playsinline preload="none"
+                            poster="images/Nintendo/nintendo-homepage-concept-16x9.webp"
+                            aria-label="Navigation dans la refonte du site Nintendo">
+                            <source src="fichiers/video_nintendo_low.mp4" type="video/mp4">
+                        </video>
+                    </figure>
+
+                    <!-- Paire carre + 16/9 : meme hauteur, le premier visuel est legerement rogne -->
+                    <div class="case-pair case-reveal">
+                        <figure class="case-media">
+                            <img src="images/Nintendo/nintendo-ecommerce-mockup.webp?v=20260416" alt="Mockup desktop de la refonte e-commerce Nintendo" width="3200" height="2400" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="case-media">
+                            <img src="images/Nintendo/nintendo-wireframe-flow.webp" alt="Wireframe du parcours utilisateur Nintendo" width="3200" height="1799" loading="lazy" decoding="async">
+                        </figure>
+                    </div>
+
+                    <!-- Suite : meme grammaire que les listes de la page About -->
+                    <nav class="case-text case-next case-next--full case-reveal" aria-label="Suite">
+                        <h2 class="section-title">Et ensuite</h2>
+                        <ul class="projects-list">
+                            <li>
+                                <a class="projects-list-link" href="/sportigo">
+                                    <span class="projects-list-title">Sportigo</span>
+                                    <span class="projects-list-tag">( Projet suivant )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="projects-list-link" href="/work">
+                                    <span class="projects-list-title">Tous les projets</span>
+                                    <span class="projects-list-tag">( 5 projets )</span>
+                                    <span class="projects-list-arrow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </article>
+            </div>
+
+            <nav id="menu-wrapper" style="display:none;">
+                <ul class="menu-list">
+                    <li><a href="/" class="hover-underline">Accueil</a></li>
+                    <li><a href="/work" class="hover-underline is-active">Projets</a></li>
+                    <li><a href="/about" class="hover-underline">À propos</a></li>
+                    <li><a href="/contact" class="hover-underline">Contact</a></li>
+                </ul>
+            </nav>
+
+            <footer class="footer-group">
+                <div class="footer-meta">
+                    <span class="location">Rennes, France</span>
+                    <span class="subtitle footer-local-time" id="rennes-time">--:--:--</span>
+                </div>
+                <div class="toggle-control">
+                    <input type="checkbox" id="theme-toggle">
+                    <label for="theme-toggle"></label>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div class="case-lightbox" role="dialog" aria-label="Image agrandie" aria-hidden="true">
+        <div class="case-lightbox-backdrop"></div>
+        <div class="case-lightbox-frame">
+            <img class="case-lightbox-img" alt="">
+        </div>
+    </div>
+
+    <script src="script-core.js?v=20261009n"></script>
+    <script src="script-case.js?v=20261009j"></script>
+    <script src="script-sound.js?v=20261009m"></script>
+</body>
+
+</html>

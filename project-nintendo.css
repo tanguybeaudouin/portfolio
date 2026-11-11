@@ -1,0 +1,534 @@
+/* ==========================================================================
+   NINTENDO — ecrans du prototype, codes en HTML/CSS (nintendo.html)
+   --------------------------------------------------------------------------
+   Reproduction des frames Figma (Nintendo_LISAA > Proto). Chaque scene garde
+   ses dimensions de maquette et est mise a l'echelle de son cadre par
+   script-case.js (--mock-scale) : toutes les cotes ci-dessous sont donc
+   celles de Figma, en px. Les scenes reprennent la marge de 32 px de la page
+   autour des blocs.
+   Police : Arial, comme la maquette (police systeme, rien a charger).
+   ========================================================================== */
+
+/* ---------- Cadre et mise a l'echelle ---------- */
+
+.case-mock {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 1px 2px -1px rgba(0, 0, 0, 0.06),
+        0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+.nt-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1514px;
+    padding: 32px;
+    box-sizing: border-box;
+    transform: scale(var(--mock-scale, 1));
+    transform-origin: 0 0;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    color: #fafafa;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    pointer-events: none;
+}
+
+/* Hauteur de chaque scene : bloc Figma + 2 x 32 px de marge */
+.case-mock--home    { aspect-ratio: 1514 / 921; }
+.case-mock--games   { aspect-ratio: 1514 / 614; }
+.case-mock--consoles { aspect-ratio: 1514 / 794; }
+.case-mock--product { aspect-ratio: 1514 / 664; }
+.case-mock--gifts   { aspect-ratio: 1514 / 599; }
+
+.nt-stage img {
+    display: block;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.nt-stage p {
+    margin: 0;
+}
+
+/* Figma rogne ces textes a la hauteur des capitales (text-box-trim) */
+.nt-trim {
+    text-box: trim-both cap alphabetic;
+}
+
+.nt-h1 { font-size: 48px; font-weight: 700; }
+.nt-h2 { font-size: 36px; font-weight: 700; }
+.nt-h3 { font-size: 24px; font-weight: 700; }
+.nt-body { font-size: 16px; }
+
+/* ---------- Boutons (pilule claire, 14 px) ---------- */
+
+.nt-btn {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 80px;
+    background: #fafafa;
+    color: #333;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.nt-btn--icon {
+    padding: 8px;
+}
+
+.nt-btn--blue {
+    background: #02b3ed;
+}
+
+.nt-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.nt-btns {
+    display: flex;
+    flex-shrink: 0;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+/* ---------- Barre de navigation ---------- */
+
+.nt-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 80px;
+    background: #e60013;
+}
+
+.nt-nav-logo {
+    width: 192px;
+    height: 48px;
+}
+
+.nt-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    padding: 8px;
+    border-radius: 80px;
+    background: #f2f2f2;
+}
+
+.nt-search {
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0 7px;
+    box-sizing: border-box;
+    border: 1px solid #b6b6b6;
+    border-radius: 100px;
+}
+
+.nt-search img {
+    width: 16px;
+    height: 16px;
+}
+
+.nt-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    color: #333;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.nt-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nt-nav-cart,
+.nt-nav-account {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 80px;
+}
+
+.nt-nav-cart { background: #b6b6b6; }
+.nt-nav-account { background: #9c000d; }
+
+.nt-nav-cart img,
+.nt-nav-account img {
+    width: 16px;
+    height: 16px;
+}
+
+/* ---------- Accueil : carrousel ---------- */
+
+.nt-home .nt-nav {
+    margin-bottom: 32px;
+}
+
+.nt-carousel {
+    position: relative;
+    height: 761px;
+}
+
+.nt-slide {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 32px;
+}
+
+/* Diapositives voisines : 1370/805, en retrait de 40 px en haut et en bas */
+.nt-slide--prev,
+.nt-slide--next {
+    top: 40px;
+    bottom: 40px;
+    width: 1159px;
+}
+
+.nt-slide--prev { left: 0; }
+.nt-slide--next { right: 0; }
+
+.nt-slide--current {
+    top: 0;
+    bottom: 0;
+    left: 75px;
+    width: 1299px;
+}
+
+.nt-slide > img:first-child,
+.nt-card > img:first-child {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nt-slide-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 435px;
+}
+
+.nt-slide-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nt-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    width: 56px;
+    height: 8px;
+    transform: translateX(-50%);
+}
+
+/* ---------- Blocs du store ---------- */
+
+.nt-block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px;
+    border-radius: 32px;
+    background: rgba(18, 18, 18, 0.25);
+}
+
+.nt-block--red {
+    background: #e60013;
+}
+
+.nt-row {
+    display: flex;
+    gap: 24px;
+}
+
+/* Carte produit : visuel plein cadre, voile degrade en bas */
+.nt-card {
+    position: relative;
+    clip-path: inset(0 round 32px);
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 16px;
+    min-width: 0;
+    padding: 32px;
+    overflow: hidden;
+    border-radius: 32px;
+}
+
+.nt-card-shade {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 147px;
+    /* Arrondi du bas repris : sans lui, le flou deborde des coins de la carte */
+    border-radius: 0 0 32px 32px;
+    -webkit-backdrop-filter: blur(2.5px);
+    backdrop-filter: blur(2.5px);
+    /* Flou progressif : nul en haut du voile, plein en bas, sans arete */
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+}
+
+/* Dans les cartes, le flou vient d'une copie floutee du visuel (.nt-card-blur) :
+   un backdrop-filter capterait le fond rouge du bloc et le ferait baver
+   dans les coins arrondis. Le voile ne garde que son degrade. */
+.nt-card .nt-card-shade {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
+.nt-card-blur {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    -webkit-mask-image: linear-gradient(180deg, transparent calc(100% - 147px), #000 calc(100% - 40px));
+    mask-image: linear-gradient(180deg, transparent calc(100% - 147px), #000 calc(100% - 40px));
+}
+
+/* Deborde de 8 px pour que le flou ne s'eclaircisse pas sur les bords */
+.nt-card-blur img {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    object-fit: cover;
+    filter: blur(3px);
+}
+
+.nt-card-shade--dark {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.nt-card-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nt-card .nt-btns {
+    position: relative;
+}
+
+/* Rayon Jeux : quatre cartes de 364 px */
+.nt-games .nt-row {
+    height: 364px;
+}
+
+.nt-block-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nt-arrows {
+    display: flex;
+    gap: 8px;
+}
+
+.nt-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border: 1px solid #b6b6b6;
+    border-radius: 100px;
+    background: rgba(250, 250, 250, 0.25);
+}
+
+.nt-arrow img {
+    width: 16px;
+    height: 16px;
+    transform: rotate(90deg);
+}
+
+.nt-arrow--next img {
+    transform: rotate(-90deg);
+}
+
+/* Consoles : grande carte + carte de 500 px, fond gris sous le detourage */
+.nt-consoles .nt-row {
+    height: 600px;
+}
+
+.nt-card--console {
+    background: rgba(51, 51, 51, 0.2);
+}
+
+.nt-card--narrow {
+    flex: 0 0 500px;
+}
+
+/* ---------- Fiche jeu : Mario Kart World ---------- */
+
+.nt-product {
+    display: flex;
+    gap: 32px;
+    height: 600px;
+}
+
+.nt-product-hero {
+    position: relative;
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 32px;
+    border-radius: 32px;
+    background: #e60013;
+}
+
+/* Le visuel deborde du haut et de la droite de la carte, comme dans Figma */
+.nt-product-art {
+    position: absolute;
+    top: -26.21px;
+    right: -38px;
+    width: 639px;
+    height: 594px;
+    object-fit: cover;
+}
+
+.nt-product-title {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 414px;
+}
+
+.nt-product-hero .nt-btn {
+    position: relative;
+}
+
+.nt-product-buy {
+    position: relative;
+    display: flex;
+    flex: 0 0 359px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px;
+    border-radius: 32px;
+    background: #e60013;
+}
+
+.nt-price {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nt-caption {
+    font-size: 12px;
+}
+
+/* ---------- Cartes cadeaux ---------- */
+
+.nt-gifts .nt-row {
+    height: 405px;
+}
+
+.nt-gift {
+    position: relative;
+    clip-path: inset(0 round 32px);
+    display: flex;
+    flex: 1 0 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 32px;
+    overflow: hidden;
+    border-radius: 32px;
+}
+
+.nt-gift > p {
+    position: relative;
+}
+
+.nt-gift-logo {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 100px;
+    height: 25px;
+}
+
+.nt-gift-art {
+    position: absolute;
+    object-fit: cover;
+}
+
+.nt-gift--pikachu { background: #f8dc5e; }
+.nt-gift--dk      { background: #652a24; }
+.nt-gift--zelda   { background: #49d69c; }
+.nt-gift--mario   { background: #ff2a16; }
+
+/* Positions reprises de Figma (cartes de 324.5 x 405) */
+.nt-gift--pikachu .nt-gift-art {
+    top: 31px;
+    left: -18.5px;
+    width: 311.5px;
+    height: 423.37px;
+}
+
+.nt-gift--dk .nt-gift-art {
+    top: 21px;
+    left: -71.25px;
+    width: 511px;
+    height: 493px;
+    transform: scaleX(-1);
+}
+
+.nt-gift--zelda .nt-gift-art {
+    top: -232px;
+    left: -320.25px;
+    width: 1024px;
+    height: 1024px;
+}
+
+.nt-gift--mario .nt-gift-art {
+    top: -34.88px;
+    left: 50.75px;
+    width: 282.01px;
+    height: 629.67px;
+}

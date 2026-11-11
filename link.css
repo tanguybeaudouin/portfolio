@@ -1,0 +1,375 @@
+/* ============================================================
+   PAGE /link : lien en bio (photo, intitulé, dock d'icônes)
+   ============================================================ */
+
+body.link-page {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.link-main {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 128px;
+    padding: 64px var(--space-16);
+}
+
+.link-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-16);
+    padding-top: 64px;
+}
+
+.link-dock {
+    flex-shrink: 0;
+}
+
+.link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+/* Cadre de la photo : pastille verre + ombre douce */
+.link-photo {
+    width: 154px;
+    height: 154px;
+    padding: 6px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1.243px solid var(--neutral-dark-01);
+    box-shadow: 0 8.892px 13.338px -2.668px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(7.954px);
+    -webkit-backdrop-filter: blur(7.954px);
+}
+
+.link-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 1.243px rgba(0, 0, 0, 0.06),
+        0 1.243px 2.486px -1.243px rgba(0, 0, 0, 0.06),
+        0 2.486px 4.971px 0 rgba(0, 0, 0, 0.04);
+}
+
+.link-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--neutral-dark-05);
+}
+
+/* id + classe : passe devant les regles #typewriter de main.css */
+#typewriter.link-title {
+    max-width: 403px;
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    /* cdnfonts : 400 = Light, 500 = 55 Roman (graisse du Figma) */
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 1.28px;
+    text-align: center;
+    color: var(--neutral-dark);
+    text-wrap: balance;
+}
+
+/* Dock d'icônes */
+.link-dock {
+    display: flex;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 18px;
+    background: var(--bg-card);
+    border: 1.243px solid var(--neutral-dark-01);
+    filter: drop-shadow(0 8.892px 6.669px rgba(0, 0, 0, 0.06));
+    backdrop-filter: blur(7.954px);
+    -webkit-backdrop-filter: blur(7.954px);
+}
+
+.link-tile {
+    position: relative;
+    display: block;
+    width: var(--tile);
+    height: var(--tile);
+    flex-shrink: 0;
+    border-radius: var(--tile-radius);
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1.243px rgba(0, 0, 0, 0.06),
+        0 7.254px 10.881px -2.176px rgba(0, 0, 0, 0.06);
+}
+
+.link-tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.link-tile--portfolio {
+    background: var(--primary);
+}
+
+.link-tile--linkedin {
+    background: #007EBB;
+}
+
+.link-tile--linkedin img {
+    inset: auto;
+    left: 7.41%;
+    top: 7.93%;
+    width: 85.19%;
+    height: 85.19%;
+}
+
+/* Survol facon dock macOS (inspire de yevtam.com) : les tuiles gardent leur
+   taille, c'est leur emplacement qui s'elargit (x1.24 pour l'icone survolee,
+   x1.12 puis x1.04 pour ses voisines). L'etiquette (style Figma 2635:30708)
+   monte en fondu et se pose 12px au-dessus du dock. */
+.link-dock {
+    --tile: 48.4px; /* 44px x 1.1 */
+    --tile-radius: 13.2px; /* 12px x 1.1 */
+    --dock-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--tile);
+    flex-shrink: 0;
+    border-radius: var(--tile-radius);
+    outline: none;
+    transition: width 0.45s var(--dock-ease);
+}
+
+.link-item::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 50%;
+    /* padding du dock (6px) + bordure (1.243px) + 4px ; translateY(-8px) => 12px */
+    bottom: calc(100% + 6px + 1.243px + 4px);
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--neutral-dark-01);
+    box-shadow:
+        0 1px 2px 0 rgba(0, 0, 0, 0.03),
+        0 2px 4px 0 rgba(0, 0, 0, 0.04);
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    color: var(--neutral-dark);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 6px);
+    transition: opacity 0.15s var(--dock-ease), transform 0.15s var(--dock-ease);
+}
+
+.link-tile {
+    transition: filter 0.3s ease, transform 0.12s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .link-item:hover {
+        width: calc(var(--tile) * 1.24);
+    }
+
+    .link-item:hover + .link-item,
+    .link-item:has(+ .link-item:hover) {
+        width: calc(var(--tile) * 1.12);
+    }
+
+    .link-item:hover + .link-item + .link-item,
+    .link-item:has(+ .link-item + .link-item:hover) {
+        width: calc(var(--tile) * 1.04);
+    }
+
+    .link-item:hover::after {
+        opacity: 1;
+        transform: translate(-50%, -8px);
+    }
+
+    .link-item:hover .link-tile {
+        filter: saturate(1.06) brightness(1.02);
+    }
+}
+
+.link-item:focus-visible {
+    width: calc(var(--tile) * 1.24);
+}
+
+.link-item:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, -8px);
+}
+
+.link-item:focus-visible .link-tile {
+    outline: 2px solid var(--neutral-dark);
+    outline-offset: 2px;
+}
+
+.link-item:active .link-tile {
+    transform: scale(0.93);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .link-item,
+    .link-item::after,
+    .link-tile {
+        transition: none;
+    }
+}
+
+/* Mobile (portrait et paysage) : la page tient dans l'ecran visible, sans
+   defilement. main.css donne au body min-height: 100vh, plus haut que la zone
+   visible sur iOS quand la barre d'adresse est affichee : on le ramene a
+   100dvh et on bloque le defilement (et le rebond). */
+@media (max-width: 900px), (orientation: landscape) and (max-height: 500px) {
+    html:has(body.link-page),
+    body.link-page {
+        height: 100%;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
+    body.link-page {
+        min-height: 0;
+    }
+
+    .link-main {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+    }
+}
+
+/* Mobile portrait : le bloc photo + nom + titre occupe l'espace libre et s'y
+   centre ; le dock reste colle en bas de l'ecran. */
+@media (max-width: 900px) and (orientation: portrait) {
+    .link-main {
+        gap: 32px;
+        padding-top: clamp(16px, 6dvh, 64px);
+        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .link-intro {
+        flex: 1 0 auto;
+        padding-top: 0;
+    }
+}
+
+/* Telephone en paysage (Figma 2667:31032) : photo a gauche ; a droite, une
+   colonne alignee a gauche avec le nom, le titre (coupe apres "&") et le dock.
+   Le HTML ne change pas : l'en-tete et la carte passent en display: contents
+   pour que photo, nom, titre et dock se placent dans une meme grille. */
+@media (orientation: landscape) and (max-height: 500px) {
+    .link-main {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr auto auto auto 1fr;
+        justify-content: center;
+        align-items: center;
+        column-gap: 16px;
+        row-gap: 0;
+        padding: 16px max(var(--space-16), env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(var(--space-16), env(safe-area-inset-left, 0px));
+    }
+
+    .link-intro,
+    .link-card {
+        display: contents;
+    }
+
+    .link-photo {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        width: clamp(96px, 50dvh, 201px);
+        height: clamp(96px, 50dvh, 201px);
+    }
+
+    .link-name {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+
+    #typewriter.link-title {
+        grid-column: 2;
+        grid-row: 3;
+        justify-self: start;
+        max-width: none;
+        margin-top: 8px;
+        text-align: left;
+    }
+
+    .link-dock {
+        grid-column: 2;
+        grid-row: 4;
+        justify-self: start;
+        margin-top: 16px;
+    }
+}
+
+/* Saut de ligne apres "&" : seulement en paysage (maquette), ailleurs le
+   titre se coupe naturellement. */
+.link-page #typewriter br {
+    display: none;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .link-page #typewriter br {
+        display: inline;
+    }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+    #typewriter.link-title {
+        font-size: 28px;
+        line-height: 32px;
+    }
+}
+
+/* ============================================================
+   ANIMATIONS D'ENTREE (reprises du portfolio)
+   - nom : brouillage de lettres (script-core.js, via .page .location)
+   - accroche : apparition mot a mot du typewriter (script-core.js, a 1s)
+   - photo puis dock : fondu + montee de 20px, courbe de l'intro de l'accueil
+   ============================================================ */
+@keyframes link-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .link-photo {
+        animation: link-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+    }
+
+    /* Apres le dernier mot de l'accroche (1s + 6 mots x 80ms) */
+    .link-dock {
+        animation: link-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+    }
+}
