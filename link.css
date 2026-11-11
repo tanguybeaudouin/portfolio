@@ -65,7 +65,8 @@ body.link-page {
     color: var(--neutral-dark-05);
 }
 
-.link-title {
+/* id + classe : passe devant les regles #typewriter de main.css */
+#typewriter.link-title {
     max-width: 403px;
     font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
     /* cdnfonts : 400 = Light, 500 = 55 Roman (graisse du Figma) */
@@ -236,8 +237,37 @@ body.link-page {
         gap: 96px;
     }
 
-    .link-title {
+    #typewriter.link-title {
         font-size: 28px;
         line-height: 32px;
+    }
+}
+
+/* ============================================================
+   ANIMATIONS D'ENTREE (reprises du portfolio)
+   - nom : brouillage de lettres (script-core.js, via .page .location)
+   - accroche : apparition mot a mot du typewriter (script-core.js, a 1s)
+   - photo puis dock : fondu + montee de 20px, courbe de l'intro de l'accueil
+   ============================================================ */
+@keyframes link-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .link-photo {
+        animation: link-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+    }
+
+    /* Apres le dernier mot de l'accroche (1s + 6 mots x 80ms) */
+    .link-dock {
+        animation: link-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
     }
 }
