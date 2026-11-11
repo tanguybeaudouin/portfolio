@@ -275,33 +275,66 @@ body.link-page {
     }
 }
 
-/* Telephone en paysage : peu de hauteur. La photo et le nom passent a gauche
-   du titre, le dock reste dessous ; la photo et les espacements suivent la
-   hauteur disponible. */
+/* Telephone en paysage (Figma 2667:31032) : photo a gauche ; a droite, une
+   colonne alignee a gauche avec le nom, le titre (coupe apres "&") et le dock.
+   Le HTML ne change pas : l'en-tete et la carte passent en display: contents
+   pour que photo, nom, titre et dock se placent dans une meme grille. */
 @media (orientation: landscape) and (max-height: 500px) {
     .link-main {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr auto auto auto 1fr;
         justify-content: center;
-        gap: clamp(16px, 7dvh, 40px);
+        align-items: center;
+        column-gap: 16px;
+        row-gap: 0;
         padding: 16px max(var(--space-16), env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(var(--space-16), env(safe-area-inset-left, 0px));
     }
 
-    .link-intro {
-        flex-direction: row;
-        gap: 32px;
-        padding-top: 0;
+    .link-intro,
+    .link-card {
+        display: contents;
     }
 
     .link-photo {
-        width: clamp(72px, 30dvh, 132px);
-        height: clamp(72px, 30dvh, 132px);
-        padding: 4px;
+        grid-column: 1;
+        grid-row: 1 / -1;
+        width: clamp(96px, 50dvh, 201px);
+        height: clamp(96px, 50dvh, 201px);
+    }
+
+    .link-name {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
     }
 
     #typewriter.link-title {
-        max-width: 340px;
-        font-size: 26px;
-        line-height: 30px;
+        grid-column: 2;
+        grid-row: 3;
+        justify-self: start;
+        max-width: none;
+        margin-top: 8px;
         text-align: left;
+    }
+
+    .link-dock {
+        grid-column: 2;
+        grid-row: 4;
+        justify-self: start;
+        margin-top: 16px;
+    }
+}
+
+/* Saut de ligne apres "&" : seulement en paysage (maquette), ailleurs le
+   titre se coupe naturellement. */
+.link-page #typewriter br {
+    display: none;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .link-page #typewriter br {
+        display: inline;
     }
 }
 
